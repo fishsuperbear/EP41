@@ -1,0 +1,8 @@
+#include "hal_camera_log_impl.h"
+
+void Internal_SetPipelineConfig_ToDefault_Groupa(struct hw_video_blockspipelineconfig_t* i_ppipelineconfig);
+void Internal_SetPipelineConfig_ToDefault_Groupb(struct hw_video_blockspipelineconfig_t* i_ppipelineconfig);
+void Internal_SetPipelineConfig_ToDefault_Groupc(struct hw_video_blockspipelineconfig_t* i_ppipelineconfig);
+void Internal_SetPipelineConfig_ToDefault_MultiGroupMain(struct hw_video_blockspipelineconfig_t* i_ppipelineconfig);
+void Internal_SetPipelineConfig_ToDefault_MUltiGroupEnc(struct hw_video_blockspipelineconfig_t* i_ppipelineconfig);
+void Internal_SetPipelineConfig_ToDefault_MultiGroupCuda(struct hw_video_blockspipelineconfig_t* i_ppipelineconfig);

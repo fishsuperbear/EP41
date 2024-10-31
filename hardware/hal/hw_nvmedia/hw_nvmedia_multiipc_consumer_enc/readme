@@ -1,0 +1,5 @@
+into docker container in 10.4.50.10 nvsdk6060
+mkdir build 
+cd build 
+cmake ..
+make -j

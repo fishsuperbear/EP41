@@ -1,0 +1,1 @@
+如果需要基于nvidia公版调试，则需要把nvsciipc_init这个bin放到系统的/usr/bin底下

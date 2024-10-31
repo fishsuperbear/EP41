@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{e6e536d7-50d0-4c10-9f80-a6cdd4a70e68}</ProjectGuid>
+    <Keyword>Linux</Keyword>
+    <RootNamespace>hal_camera_vs</RootNamespace>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+    <ApplicationType>Linux</ApplicationType>
+    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <TargetLinuxPlatform>Generic</TargetLinuxPlatform>
+    <LinuxProjectType>{2238F9CD-F817-4ECC-BD14-2524D2669B35}</LinuxProjectType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <RemoteRootDir>/home/orin/$(USERNAME)/projects</RemoteRootDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <RemoteRootDir>/home/orin/$(USERNAME)/projects</RemoteRootDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <RemoteRootDir>/home/orin/$(USERNAME)/projects</RemoteRootDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <RemoteRootDir>/map/$(USERNAME)/projects</RemoteRootDir>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <TargetName>libhal_camera</TargetName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\code\hal_impl\cpp\impl_camera\CameraDeviceImpl.cpp" />
+    <ClCompile Include="..\..\..\code\hal_impl\cpp\impl_camera\CameraDeviceSessionImpl.cpp" />
+    <ClCompile Include="..\..\..\code\hal_impl\cpp\impl_camera\hal_camera_log_impl.cpp" />
+    <ClCompile Include="..\..\..\code\hal_impl\cpp\impl_camera\pipelineconfig\pipelineconfig_groupa.cpp" />
+    <ClCompile Include="..\..\..\code\hal_impl\cpp\impl_camera\pipelineconfig\pipelineconfig_groupb.cpp" />
+    <ClCompile Include="..\..\..\code\hal_impl\cpp\impl_camera\pipelineconfig\pipelineconfig_groupc.cpp" />
+    <ClCompile Include="..\..\..\code\hal_impl\cpp\impl_camera\pipelineconfig\pipelineconfig_multigroup.cpp" />
+    <ClCompile Include="..\..\..\code\hal_impl\cpp\impl_camera\threadroutine\blockpipeline_default.cpp" />
+    <ClCompile Include="..\..\..\code\hal_impl\cpp\impl_camera\threadroutine\outputpipeline_default.cpp" />
+    <ClCompile Include="..\..\..\code\hal_impl\cpp\impl_camera\threadroutine\sensorpipeline_default.cpp" />
+    <ClCompile Include="selftest\gpu_test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\code\hal_impl\cpp\impl_camera\CameraDeviceImpl.hpp" />
+    <ClInclude Include="..\..\..\code\hal_impl\cpp\impl_camera\CameraDeviceSessionImpl.hpp" />
+    <ClInclude Include="..\..\..\code\hal_impl\cpp\impl_camera\hal_camera_baseinc_impl.h" />
+    <ClInclude Include="..\..\..\code\hal_impl\cpp\impl_camera\hal_camera_def_impl.h" />
+    <ClInclude Include="..\..\..\code\hal_impl\cpp\impl_camera\hal_camera_impl.h" />
+    <ClInclude Include="..\..\..\code\hal_impl\cpp\impl_camera\hal_camera_log_impl.h" />
+    <ClInclude Include="..\..\..\code\hal_impl\cpp\impl_camera\pipelineconfig\pipelineconfig_default.h" />
+    <ClInclude Include="..\..\..\code\hal_impl\cpp\impl_camera\threadroutine\default_threadroutine.h" />
+    <ClInclude Include="..\..\..\code\interface\devices\global\devtype\hw_global_devtype_v0.1.h" />
+    <ClInclude Include="..\..\..\code\interface\devices\global\hw_global.h" />
+    <ClInclude Include="..\..\..\code\interface\devices\global\hw_global_devtype.h" />
+    <ClInclude Include="..\..\..\code\interface\devices\hw_devices.h" />
+    <ClInclude Include="..\..\..\code\interface\devices\video\hw_video.h" />
+    <ClInclude Include="..\..\..\code\interface\devices\video\hw_video_device.h" />
+    <ClInclude Include="..\..\..\code\interface\devices\video\hw_video_moduleid.h" />
+    <ClInclude Include="..\..\..\code\interface\devices\video\hw_video_version.h" />
+    <ClInclude Include="..\..\..\code\interface\devices\video\moduleid\hw_video_moduleid_v0.1.h" />
+    <ClInclude Include="..\..\..\code\interface\devices\video\v0.1\hw_video_device_v0.1.h" />
+    <ClInclude Include="..\..\..\code\interface\hardware.h" />
+    <ClInclude Include="..\..\..\code\interface\hpp\intf_camera\1.0\camera_types.hpp" />
+    <ClInclude Include="..\..\..\code\interface\hpp\intf_camera\1.0\hal_camera.hpp" />
+    <ClInclude Include="..\..\..\code\interface\hpp\intf_camera\1.0\ICameraDevice.hpp" />
+    <ClInclude Include="..\..\..\code\interface\hpp\intf_camera\1.0\ICameraDeviceCallback.hpp" />
+    <ClInclude Include="..\..\..\code\interface\hpp\intf_camera\1.0\ICameraDeviceSession.hpp" />
+    <ClInclude Include="..\..\..\code\interface\hw_hal_api.h" />
+    <ClInclude Include="..\..\..\code\interface\hw_tag_and_version.h" />
+    <ClInclude Include="..\..\..\code\interface\platform\hw_platform.h" />
+    <ClInclude Include="..\..\..\code\interface\platform\hw_plat_basedef.h" />
+    <ClInclude Include="..\..\..\code\interface\platform\hw_plat_basic.h" />
+    <ClInclude Include="..\..\..\code\interface\platform\hw_plat_log.h" />
+    <ClInclude Include="..\..\..\code\porting\hw_porting_baseinc.h" />
+    <ClInclude Include="..\..\..\code\porting\hw_porting_compile.h" />
+  </ItemGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../../code/interface;../../../code/interface/devices;../../../code/interface/devices/global;../../../code/interface/devices/global/devtype;../../../code/interface/devices/video;../../../code/interface/devices/video/moduleid;../../../code/interface/devices/video/v0.1;../../../code/interface/platform;../../../code/porting;../../../code/interface/hpp;../../../code/interface/hpp/intf_camera;../../../code/interface/hpp/intf_camera/0.1;../../../code/hal_impl/cpp;../../../code/hal_impl/cpp/impl_camera;../../../code/hal_impl/cpp/impl_camera/threadroutine;../../../code/hal_impl/cpp/impl_camera/pipelineconfig;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CppLanguageStandard>c++14</CppLanguageStandard>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>dl;hw_platform_vs;hw_hal_vs;pthread</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../../code/hal_impl;../../../code/hal_impl/hal;../../../code/hal_impl/cpp;../../../code/hal_impl/cpp/impl_camera;../../../code/hal_impl/cpp/impl_camera/pipelineconfig;../../../code/hal_impl/cpp/impl_camera/threadroutine;../../../code/interface;../../../code/interface/hpp;../../../code/interface/hpp/intf_camera/1.0;../../../code/interface/devices;../../../code/interface/devices/global;../../../code/interface/devices/global/devtype;../../../code/interface/devices/video;../../../code/interface/devices/video/moduleid;../../../code/interface/devices/video/v0.1;../../../code/interface/devices/lidar;../../../code/interface/devices/lidar/moduleid;../../../code/interface/devices/lidar/v0.1;../../../code/interface/platform;../../../code/porting;selftest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CppLanguageStandard>c++14</CppLanguageStandard>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>dl;pthread;hw_platform;hw_hal;hw_nvmedia_multiipc_main;hw_nvmedia_multiipc_cuda</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../../code/interface;../../../code/interface/devices;../../../code/interface/devices/global;../../../code/interface/devices/global/devtype;../../../code/interface/devices/video;../../../code/interface/devices/video/moduleid;../../../code/interface/devices/video/v0.1;../../../code/interface/platform;../../../code/porting;../../../code/interface/hpp;../../../code/interface/hpp/intf_camera;../../../code/interface/hpp/intf_camera/0.1;../../../code/hal_impl/cpp;../../../code/hal_impl/cpp/impl_camera;../../../code/hal_impl/cpp/impl_camera/threadroutine;../../../code/hal_impl/cpp/impl_camera/pipelineconfig;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CppLanguageStandard>c++14</CppLanguageStandard>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>dl;hw_platform_vs;hw_hal_vs;pthread</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../../code/interface;../../../code/interface/devices;../../../code/interface/devices/global;../../../code/interface/devices/global/devtype;../../../code/interface/devices/video;../../../code/interface/devices/video/moduleid;../../../code/interface/devices/video/v0.1;../../../code/interface/platform;../../../code/porting;../../../code/interface/hpp;../../../code/interface/hpp/intf_camera;../../../code/interface/hpp/intf_camera/0.1;../../../code/hal_impl/cpp;../../../code/hal_impl/cpp/impl_camera;../../../code/hal_impl/cpp/impl_camera/threadroutine;../../../code/hal_impl/cpp/impl_camera/pipelineconfig;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CppLanguageStandard>c++14</CppLanguageStandard>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>dl;hw_platform_vs;hw_hal_vs;pthread</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

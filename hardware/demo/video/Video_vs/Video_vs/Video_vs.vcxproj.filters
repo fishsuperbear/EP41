@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="code">
+      <UniqueIdentifier>{a1d4f68d-6f38-4ca1-88ef-eb12df4cfca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal">
+      <UniqueIdentifier>{72826881-cd1c-4c26-bba5-dcba896c043e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal\interface">
+      <UniqueIdentifier>{8af9d2c2-e306-49dc-8859-c1df5b033e9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal\porting">
+      <UniqueIdentifier>{ecb2d5f3-125f-4a5a-9caf-5509cdacb565}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal\interface\platform">
+      <UniqueIdentifier>{e7fe18b7-7ac0-4aad-a1ae-e0fe0bea5aa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal\interface\devices">
+      <UniqueIdentifier>{f3bdd81a-560a-4460-9247-2f2f8314e5d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal\interface\devices\global">
+      <UniqueIdentifier>{dd09641c-0edf-4360-a856-714b8a928258}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal\interface\devices\video">
+      <UniqueIdentifier>{972d4d72-1ebb-4c8a-9fc1-893970aff005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal\interface\devices\video\moduleid">
+      <UniqueIdentifier>{64f9541c-8312-4de3-a524-03b1350a3ce5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal\interface\devices\video\v0.1">
+      <UniqueIdentifier>{5d2acaee-441e-4b59-ba59-cb291fe72344}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal\interface\devices\global\devtype">
+      <UniqueIdentifier>{098371b8-4d55-4fbf-95a5-b87747e80374}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\code\main.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\hal\code\interface\devices\global\devtype\hw_global_devtype_v0.1.h">
+      <Filter>code\hal\interface\devices\global\devtype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\devices\global\hw_global.h">
+      <Filter>code\hal\interface\devices\global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\devices\global\hw_global_devtype.h">
+      <Filter>code\hal\interface\devices\global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\devices\video\moduleid\hw_video_moduleid_v0.1.h">
+      <Filter>code\hal\interface\devices\video\moduleid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\devices\video\v0.1\hw_video_device_v0.1.h">
+      <Filter>code\hal\interface\devices\video\v0.1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\devices\video\hw_video.h">
+      <Filter>code\hal\interface\devices\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\devices\video\hw_video_device.h">
+      <Filter>code\hal\interface\devices\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\devices\video\hw_video_moduleid.h">
+      <Filter>code\hal\interface\devices\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\devices\video\hw_video_version.h">
+      <Filter>code\hal\interface\devices\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\devices\hw_devices.h">
+      <Filter>code\hal\interface\devices</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\platform\hw_plat_log.h">
+      <Filter>code\hal\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\platform\hw_platform.h">
+      <Filter>code\hal\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\porting\hw_porting_compile.h">
+      <Filter>code\hal\porting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\hardware.h">
+      <Filter>code\hal\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\hw_hal_api.h">
+      <Filter>code\hal\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\hw_tag_and_version.h">
+      <Filter>code\hal\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\platform\hw_plat_basic.h">
+      <Filter>code\hal\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\platform\hw_plat_basedef.h">
+      <Filter>code\hal\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\porting\hw_porting_baseinc.h">
+      <Filter>code\hal\porting</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

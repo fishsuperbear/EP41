@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="code">
+      <UniqueIdentifier>{eeb829b0-407c-4244-a36e-5fdb429751a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\porting">
+      <UniqueIdentifier>{a26f8432-9adc-4b53-8013-c1b16e5961af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\plat_impl">
+      <UniqueIdentifier>{7bd5d337-1d9b-4817-a4ea-18d78bc5e20f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\plat_impl\log">
+      <UniqueIdentifier>{7c55fdac-4d2d-4acc-88c0-f3139d822c59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface">
+      <UniqueIdentifier>{b3ddc8da-16fc-4203-a5dc-165194e3658a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\platform">
+      <UniqueIdentifier>{905a4ae9-8547-4f32-b315-acf0851b3135}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\code\plat_impl\hw_impl_plat_basic.cpp">
+      <Filter>code\plat_impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\code\plat_impl\log\hw_impl_plat_log.cpp">
+      <Filter>code\plat_impl\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\code\plat_impl\log\hw_impl_plat_logdef.cpp">
+      <Filter>code\plat_impl\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\code\plat_impl\log\hw_impl_plat_logdump.cpp">
+      <Filter>code\plat_impl\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\hw_hal\hw_hal_vs\hw_hal_vs\main.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\code\porting\hw_porting_compile.h">
+      <Filter>code\porting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\plat_impl\hw_impl_platform.h">
+      <Filter>code\plat_impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\plat_impl\log\hw_impl_plat_log.h">
+      <Filter>code\plat_impl\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\plat_impl\log\hw_impl_plat_logdef.h">
+      <Filter>code\plat_impl\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\plat_impl\log\hw_impl_plat_logdump.h">
+      <Filter>code\plat_impl\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\plat_impl\log\hw_impl_plat_logtrace.h">
+      <Filter>code\plat_impl\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\platform\hw_plat_basic.h">
+      <Filter>code\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\platform\hw_plat_log.h">
+      <Filter>code\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\platform\hw_platform.h">
+      <Filter>code\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\platform\hw_plat_basedef.h">
+      <Filter>code\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\porting\hw_porting_baseinc.h">
+      <Filter>code\porting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\plat_impl\hw_impl_plat_basedef.h">
+      <Filter>code\plat_impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\plat_impl\hw_impl_plat_basic.h">
+      <Filter>code\plat_impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\plat_impl\hw_impl_plat_baseinc.h">
+      <Filter>code\plat_impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\plat_impl\hw_impl_plat_compile.h">
+      <Filter>code\plat_impl</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\code\plat_impl\readme.txt">
+      <Filter>code\plat_impl</Filter>
+    </Text>
+    <Text Include="..\..\..\code\plat_impl\log\readme.txt">
+      <Filter>code\plat_impl\log</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="code">
+      <UniqueIdentifier>{c35e23c5-9369-4556-9357-c79dac86d452}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal">
+      <UniqueIdentifier>{4c3bd365-b504-4065-9515-d38afe7c20ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal\hpp">
+      <UniqueIdentifier>{be723122-e627-491a-8643-e68dee347ee7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal\hpp\intf_camera">
+      <UniqueIdentifier>{d4363ebc-9790-4e24-89d6-fcaa24bd3ebd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\crt">
+      <UniqueIdentifier>{169c1975-70ca-42c9-8fdd-36092613a05a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal\hpp\intf_camera\1.0">
+      <UniqueIdentifier>{08407801-1b1f-4701-9fc1-df931477d8f5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="enctest.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\hal\code\interface\hpp\intf_camera\1.0\camera_types.hpp">
+      <Filter>code\hal\hpp\intf_camera\1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\hpp\intf_camera\1.0\hal_camera.hpp">
+      <Filter>code\hal\hpp\intf_camera\1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\hpp\intf_camera\1.0\ICameraDevice.hpp">
+      <Filter>code\hal\hpp\intf_camera\1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\hpp\intf_camera\1.0\ICameraDeviceCallback.hpp">
+      <Filter>code\hal\hpp\intf_camera\1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\hal\code\interface\hpp\intf_camera\1.0\ICameraDeviceSession.hpp">
+      <Filter>code\hal\hpp\intf_camera\1.0</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

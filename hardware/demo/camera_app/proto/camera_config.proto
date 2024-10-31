@@ -1,0 +1,91 @@
+syntax = "proto2";
+
+enum OpenType {
+  // only open one sensor imx728 of groupa
+  OPENTYPE_GROUPA_SENSOR_ONE_IMX728 = 1;
+  // only open sensor isx021 of groupa
+  OPENTYPE_GROUPA_SENSOR_ONE_ISX021 = 2;
+  // only open sensor isx021 of groupb
+  OPENTYPE_GROUPB_SENSOR_ONE_ISX021 = 3;
+  // open all four sensor ovx1f of groupc
+  OPENTYPE_GROUPC_SENSOR_FOUR_OVXIF = 4;
+  // only open one sensor(index:0) ovx1f of groupc
+  OPENTYPE_GROUPC_SENSOR_ONE_OVXIF_INDEX_0 = 5;
+  // only open one sensor(index:1) ovx1f of groupc
+  OPENTYPE_GROUPC_SENSOR_ONE_OVXIF_INDEX_1 = 6;
+  // only open one sensor(index:2) ovx1f of groupc
+  OPENTYPE_GROUPC_SENSOR_ONE_OVXIF_INDEX_2 = 7;
+  // only open one sensor(index:3) ovx1f of groupc
+  OPENTYPE_GROUPC_SENSOR_ONE_OVXIF_INDEX_3 = 8;
+  // open all sensor desay
+  OPENTYPE_MULTIROUP_SENSOR_DESAY = 9;
+}
+
+enum BlockType {
+  	BLOCK_TYPE_GROUPA = 1;
+	BLOCK_TYPE_GROUPB = 2;
+	BLOCK_TYPE_GROUPC = 3;
+	BLOCK_TYPE_GROUPD = 4;
+	// Use the macro to represent the single group when the specific opentype has only one group.
+	BLOCK_TYPE_CURRENT_SINGLE_GROUP = 100;
+}
+
+enum SensorType {
+  	SENSOR_TYPE_IMX728 = 1;
+	SENSOR_TYPE_ISX021 = 2;
+	SENSOR_TYPE_OVX1F = 3;
+	SENSOR_TYPE_OX08B40 = 4;
+	// Use the macro to represent the single senor when the specific opentype specific group has only one sensor type.
+	SENSOR_TYPE_CURRENT_SINGLE_SENSOR = 100;
+}
+
+enum GpuImageType {
+  	// rgb888 sub type
+	GPUDATACB_IMGTYPE_RGB888_NHWC_RGB = 1;
+	// rgb888 sub type, the common rgb888 sub type
+	GPUDATACB_IMGTYPE_RGB888_NHWC_BGR = 2;
+	// rgb888 sub type
+	GPUDATACB_IMGTYPE_RGB888_NCHW_RGB = 3;
+	// rgb888 sub type
+	GPUDATACB_IMGTYPE_RGB888_NCHW_BGR = 4;
+	// rgb888 sub type
+	GPUDATACB_IMGTYPE_RGB888_NCHW16_RGB = 5;
+	// rgb888 sub type
+	GPUDATACB_IMGTYPE_RGB888_NCHW16_BGR = 6;
+	// yuv420 sub type, the common yuv420 sub type
+	GPUDATACB_IMGTYPE_NV12 = 7;
+	// yuv420 sub type
+	GPUDATACB_IMGTYPE_NV21 = 8;
+	// yuv422 sub type, the common yuv422 sub type
+	GPUDATACB_IMGTYPE_YUYV = 9;
+	// yuv422 sub type
+	GPUDATACB_IMGTYPE_YVYU = 10;
+	// yuv422 sub type
+	GPUDATACB_IMGTYPE_VYUY = 11;
+}
+
+enum InterPolation {
+  	// Nearest cost time less but effect may not be so good
+	GPUDATACB_INTERPOLATION_NEAREST = 1;
+	// Bilinear cost time but effect may be good
+	GPUDATACB_INTERPOLATION_BILINEAR = 2;
+}
+
+message Config {
+	required uint32 no = 1;
+	required OpenType open_type = 2;
+	required BlockType block_type = 3;
+	required SensorType sensor_type = 4;
+	required uint32 sensor_index = 5;
+	required GpuImageType gpu_image_type = 6;
+	required InterPolation inter_polation = 7;
+	required uint32 buse_capture_resolution = 8;
+	required uint32 custom_width = 9;
+	required uint32 custom_height = 10;
+	required uint32 buse_capture_framerate = 11;
+	required uint32 rotate_degrees = 12;
+}
+
+message CameraConfig {
+	repeated Config config = 1;
+}

@@ -1,0 +1,645 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="code">
+      <UniqueIdentifier>{269b9e7b-65f6-4153-9f55-38fb420f2b76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface">
+      <UniqueIdentifier>{39cb1e1b-cc90-46ce-895d-42c1058eec98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\devices">
+      <UniqueIdentifier>{e86286ec-6ae8-4e26-b3cb-cda1c358ca2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\devices\global">
+      <UniqueIdentifier>{83c061ad-6c96-4f68-98d2-30cac979df81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\devices\global\devtype">
+      <UniqueIdentifier>{0170a623-11eb-4262-929d-f0eb775e0915}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\devices\video">
+      <UniqueIdentifier>{1f4b49b4-d7b9-470e-bd8d-491e502a6f2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\devices\video\moduleid">
+      <UniqueIdentifier>{f36e7cfe-511e-4b13-b913-408031c785fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\devices\video\v0.1">
+      <UniqueIdentifier>{ba980295-c755-4fba-82b4-0da0550bfc5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\platform">
+      <UniqueIdentifier>{5af5a71b-f8d9-4d56-8907-164096df5a06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules">
+      <UniqueIdentifier>{76ea35b6-b100-4b87-a85e-5a5c9b87aa4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules\devices">
+      <UniqueIdentifier>{fc263721-d1ac-4274-8d13-7e4b06cefb8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules\devices\video">
+      <UniqueIdentifier>{bd3ec024-15a0-4941-b6ee-c9bc8870f8b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules\devices\video\modules">
+      <UniqueIdentifier>{7f272730-37b5-43d9-ae8e-f167cb68a634}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules\devices\video\modules\common">
+      <UniqueIdentifier>{61e16934-b3f6-4ed1-b826-651e95dcd7a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules\devices\video\modules\nvmedia">
+      <UniqueIdentifier>{23fe5324-4e17-48ca-9d19-e25b5827c296}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules\devices\video\modules\nvmedia\common">
+      <UniqueIdentifier>{e1da71f3-9d8e-41b6-8972-246dfaf747df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules\devices\video\modules\nvmedia\common\impl">
+      <UniqueIdentifier>{e68e4ce2-9ab9-4f3f-8fdd-9f969db40c4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules\devices\video\modules\nvmedia\common\impl\device">
+      <UniqueIdentifier>{531633d5-d28c-4440-a854-d72125a4419a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules\devices\video\modules\nvmedia\common\impl\device\single_process">
+      <UniqueIdentifier>{6efd480f-1f40-4555-ac00-65729c1b29b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules\devices\video\modules\nvmedia\common\impl\eventhandler">
+      <UniqueIdentifier>{9914210e-ed36-4020-9129-211426f37935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules\devices\video\modules\nvmedia\common\impl\pipeline">
+      <UniqueIdentifier>{45f6b82a-ae6d-4242-a8a3-794d69649dae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules\devices\video\modules\nvmedia\common\impl\pipeline\single_process">
+      <UniqueIdentifier>{7d90303c-7f6d-406a-9b62-8c958d8c237d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules\devices\video\modules\nvmedia\common\impl\profiler">
+      <UniqueIdentifier>{fbd54d6d-29ff-4621-ae03-11846dde1e3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules\devices\video\modules\nvmedia\nvmedia_groupc">
+      <UniqueIdentifier>{3643b186-2665-4333-97a9-6d4b29c6d792}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\modules\devices\video\modules\nvmedia\nvmedia_groupc\impl">
+      <UniqueIdentifier>{08031f7b-dcd6-4ab3-b174-1bbcf585682b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\porting">
+      <UniqueIdentifier>{064cd860-e005-43a7-b637-aa97b3bc2d18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="driveos">
+      <UniqueIdentifier>{c2b54e90-c620-47f8-90d4-c3f9a36b02ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="driveos\v6.0.5">
+      <UniqueIdentifier>{b60b3a64-abc3-47eb-a05c-dde22157238d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="driveos\v6.0.5\include">
+      <UniqueIdentifier>{28e11103-9f57-4af7-82d2-369fd587bb05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="driveos\v6.0.5\include\cuda">
+      <UniqueIdentifier>{39cd73f3-7285-401a-8065-9a832e12a092}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="driveos\v6.0.5\include\nvmedia_6x">
+      <UniqueIdentifier>{fd825485-e1da-414a-896b-148d76dcdcdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="driveos\v6.0.5\include\cuda\crt">
+      <UniqueIdentifier>{bb19cc27-6c41-4e1d-badb-3615b193c7e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TensorRT">
+      <UniqueIdentifier>{fc99c37a-6761-40d0-afb9-6e4b877f699f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TensorRT\include">
+      <UniqueIdentifier>{10f33a29-4d2b-4d8f-a633-896e0e9246b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\thirdParty">
+      <UniqueIdentifier>{897584c2-1852-4683-8d9e-170a25b397e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\lib">
+      <UniqueIdentifier>{aa80e6e1-32a9-489b-82da-9c91f40f5b0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\thirdParty\yolov5">
+      <UniqueIdentifier>{885b9ea9-20ea-47a6-9e66-306b2f4a4e69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\thirdParty\yolov5\res">
+      <UniqueIdentifier>{4b7f0adc-7fdc-4544-bc0d-5db927061aaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\thirdParty\yolov5\include">
+      <UniqueIdentifier>{10c531c1-aee1-4125-b45f-6dc028bd92ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\thirdParty\gpuutils">
+      <UniqueIdentifier>{6d49b050-f5e1-4da0-9a15-fda7e9376982}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\thirdParty\gpuutils\include">
+      <UniqueIdentifier>{f7518e11-b2d7-4d51-932a-50cdafb179a3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\nvsciipc.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\nvscistream.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\nvscistream_api.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\nvscistream_types.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLCamera.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLCapStructs.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLCDICommon.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLClient.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLCommon.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSiplControlAutoDef.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLDeviceBlockInfo.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLDeviceBlockTrace.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLInterrupts.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLISPStat.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLISPStructs.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLPipelineMgr.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLPlatformCfg.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLQuery.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLQueryTrace.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLTrace.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\NvSIPLVersion.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\INvSiplControlAuto.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\INvSIPLDeviceInterfaceProvider.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\porting\hw_porting_compile.h">
+      <Filter>code\porting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\devices\global\devtype\hw_global_devtype_v0.1.h">
+      <Filter>code\interface\devices\global\devtype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\devices\video\moduleid\hw_video_moduleid_v0.1.h">
+      <Filter>code\interface\devices\video\moduleid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\devices\video\v0.1\hw_video_device_v0.1.h">
+      <Filter>code\interface\devices\video\v0.1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\devices\video\hw_video.h">
+      <Filter>code\interface\devices\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\devices\video\hw_video_device.h">
+      <Filter>code\interface\devices\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\devices\video\hw_video_moduleid.h">
+      <Filter>code\interface\devices\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\devices\video\hw_video_version.h">
+      <Filter>code\interface\devices\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\common\hw_video_modules_common.h">
+      <Filter>code\modules\devices\video\modules\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\hw_nvmedia_common.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\hw_nvmedia.h">
+      <Filter>code\modules\devices\video\modules\nvmedia</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\hw_nvmedia_compile.h">
+      <Filter>code\modules\devices\video\modules\nvmedia</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\hw_nvmedia_def.h">
+      <Filter>code\modules\devices\video\modules\nvmedia</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\platform\hw_plat_basic.h">
+      <Filter>code\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\platform\hw_plat_log.h">
+      <Filter>code\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\platform\hw_platform.h">
+      <Filter>code\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\platform\hw_plat_basedef.h">
+      <Filter>code\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\porting\hw_porting_baseinc.h">
+      <Filter>code\porting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\hardware.h">
+      <Filter>code\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\hw_hal_api.h">
+      <Filter>code\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\hw_tag_and_version.h">
+      <Filter>code\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\hw_nvmedia_common_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\device\hw_nvmedia_device_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\pipeline\hw_nvmedia_pipeline_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\hw_nvmedia_context_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\devices\global\hw_global.h">
+      <Filter>code\interface\devices\global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\interface\devices\global\hw_global_devtype.h">
+      <Filter>code\interface\devices\global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\device\single_process\hw_nvmedia_device_single_process_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\device\single_process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\pipeline\single_process\hw_nvmedia_pipeline_single_process_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\pipeline\single_process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\hw_nvmedia_log_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\hw_nvmedia_baseinc_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\hw_nvmedia_def_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\pipeline\hw_nvmedia_outputpipeline_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\hw_nvmedia_log_deviceblock_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CClientCommon.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CConsumer.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CCudaConsumer.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CEncConsumer.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CFactory.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CPoolManager.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CProducer.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CSIPLProducer.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\hw_nvmedia_eventhandler_common_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CEventHandler.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\cuda.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\cuda_runtime_api.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\crt\host_defines.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\builtin_types.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\nvmedia_6x\nvmedia_iep.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\nvmedia_6x\nvmedia_core.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\device_types.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\nvmedia_6x\nvmedia_common_encode.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\driver_types.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\surface_types.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\texture_types.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\vector_types.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\nvmedia_6x\nvmedia_common_encode_decode.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\cuda_device_runtime_api.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\profiler\hw_nvmedia_profiler_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\profiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\hw_nvmedia_baseinc.h">
+      <Filter>code\modules\devices\video\modules\nvmedia</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\hw_nvmedia_eventhandler_outputpipeline_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\hw_nvmedia_eventhandler_nvidia_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\hw_nvmedia_eventhandler_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\pipeline\hw_nvmedia_sensorpipeline_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\pipeline\hw_nvmedia_blockpipeline_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CCommonConsumer.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\nvmedia_groupc\impl\hw_nvmedia_groupc_impl.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\nvmedia_groupc\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\nvmedia_groupc\hw_nvmedia_groupc.h">
+      <Filter>code\modules\devices\video\modules\nvmedia\nvmedia_groupc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\nvmedia_6x\nvmedia_2d.h">
+      <Filter>driveos\v6.0.5\include\nvmedia_6x</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\nvmedia_6x\nvmedia_2d_sci.h">
+      <Filter>driveos\v6.0.5\include\nvmedia_6x</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CBuffer.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CBufferPool.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CCascadedMaster.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CChannel.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CQueue.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CSPCChannel.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CVICConsumer.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CVICProducer.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\ICascadedProvider.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\crt\device_functions.h">
+      <Filter>driveos\v6.0.5\include\cuda\crt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\crt\device_functions.hpp">
+      <Filter>driveos\v6.0.5\include\cuda\crt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\device_functions.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\driver_functions.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\vector_functions.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\driveos\v6.0.5\include\cuda\vector_functions.hpp">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TensorRT\include\NvCaffeParser.h">
+      <Filter>TensorRT\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TensorRT\include\NvInfer.h">
+      <Filter>TensorRT\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TensorRT\include\NvInferConsistency.h">
+      <Filter>TensorRT\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TensorRT\include\NvInferConsistencyImpl.h">
+      <Filter>TensorRT\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TensorRT\include\NvInferImpl.h">
+      <Filter>TensorRT\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TensorRT\include\NvInferLegacyDims.h">
+      <Filter>TensorRT\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TensorRT\include\NvInferPlugin.h">
+      <Filter>TensorRT\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TensorRT\include\NvInferPluginUtils.h">
+      <Filter>TensorRT\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TensorRT\include\NvInferRuntime.h">
+      <Filter>TensorRT\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TensorRT\include\NvInferRuntimeCommon.h">
+      <Filter>TensorRT\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TensorRT\include\NvInferSafeRuntime.h">
+      <Filter>TensorRT\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TensorRT\include\NvInferVersion.h">
+      <Filter>TensorRT\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TensorRT\include\NvOnnxConfig.h">
+      <Filter>TensorRT\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TensorRT\include\NvUffParser.h">
+      <Filter>TensorRT\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TensorRT\include\NvUtils.h">
+      <Filter>TensorRT\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\hw_nvmedia_gpu_common.hpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\thirdParty\yolov5\include\common.hpp">
+      <Filter>code\thirdParty\yolov5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\thirdParty\yolov5\include\cuda_utils.h">
+      <Filter>code\thirdParty\yolov5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\thirdParty\yolov5\include\logging.hpp">
+      <Filter>code\thirdParty\yolov5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\thirdParty\yolov5\include\macros.h">
+      <Filter>code\thirdParty\yolov5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\thirdParty\yolov5\include\preprocess.h">
+      <Filter>code\thirdParty\yolov5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\thirdParty\yolov5\include\yololayer.h">
+      <Filter>code\thirdParty\yolov5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\thirdParty\gpuutils\include\gpu_convert.hpp">
+      <Filter>code\thirdParty\gpuutils\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\code\thirdParty\gpuutils\include\kernel_process.hpp">
+      <Filter>code\thirdParty\gpuutils\include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\common\hw_video_modules_common.cpp">
+      <Filter>code\modules\devices\video\modules\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\hw_nvmedia_common.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\hw_nvmedia_common_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\device\hw_nvmedia_device_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\pipeline\hw_nvmedia_pipeline_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\hw_nvmedia_context_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\device\single_process\hw_nvmedia_device_single_process_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\device\single_process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\pipeline\single_process\hw_nvmedia_pipeline_single_process_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\pipeline\single_process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\hw_nvmedia_log_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\hw_nvmedia_def_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\pipeline\hw_nvmedia_outputpipeline_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\hw_nvmedia_log_deviceblock_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CClientCommon.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CConsumer.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CCudaConsumer.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CEncConsumer.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CFactory.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CPoolManager.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CProducer.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CSIPLProducer.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\hw_nvmedia_eventhandler_common_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\profiler\hw_nvmedia_profiler_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\profiler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\hw_nvmedia_eventhandler_outputpipeline_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\pipeline\hw_nvmedia_sensorpipeline_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\pipeline\hw_nvmedia_blockpipeline_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CCommonConsumer.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\nvmedia_groupc\impl\hw_nvmedia_groupc_impl.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\nvmedia_groupc\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\nvmedia_groupc\hw_nvmedia_groupc.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\nvmedia_groupc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CCascadedMaster.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CSPCChannel.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CVICConsumer.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\code\modules\devices\video\modules\nvmedia\common\impl\eventhandler\CVICProducer.cpp">
+      <Filter>code\modules\devices\video\modules\nvmedia\common\impl\eventhandler</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\..\code\modules\devices\video\modules\common\readme.txt">
+      <Filter>code\modules\devices\video\modules\common</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\code\lib\libgpuutils.so">
+      <Filter>code\lib</Filter>
+    </Library>
+    <Library Include="..\..\..\..\code\lib\libyolov5.so">
+      <Filter>code\lib</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\code\thirdParty\yolov5\res\yolov5.engine">
+      <Filter>code\thirdParty\yolov5\res</Filter>
+    </None>
+  </ItemGroup>
+</Project>

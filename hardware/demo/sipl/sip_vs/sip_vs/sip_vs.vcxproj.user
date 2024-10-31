@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <RemoteDebuggerCommandArguments>-c OVX1F_DPHY_x4 --link-enable-masks '0x0000 0x0000 0x1111 0x0000'  --enableRawOutput -0 -1 -2 -v 3 -s</RemoteDebuggerCommandArguments>
+    <DebuggerFlavor>LinuxDebugger</DebuggerFlavor>
+    <RemoteDebuggerCommand>
+    </RemoteDebuggerCommand>
+    <RemoteDebuggingTarget>755021389;10.5.11.68 (username=, port=22, authentication=Password)</RemoteDebuggingTarget>
+    <PreLaunchCommand>
+    </PreLaunchCommand>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <RemoteDebuggerCommandArguments>-c OVX1F_DPHY_x4 --link-enable-masks '0x0000 0x0000 0x1111 0x0000'  --enableRawOutput -0 -1 -2 -v 3 -s</RemoteDebuggerCommandArguments>
+    <DebuggerFlavor>LinuxDebugger</DebuggerFlavor>
+    <RemoteDebuggerCommand>
+    </RemoteDebuggerCommand>
+    <RemoteDebuggingTarget>755021389;10.5.11.68 (username=, port=22, authentication=Password)</RemoteDebuggingTarget>
+    <PreLaunchCommand>
+    </PreLaunchCommand>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <RemoteDebuggerCommandArguments>-c OVX1F_DPHY_x4 --link-enable-masks '0x0000 0x0000 0x1111 0x0000'  --enableRawOutput -0 -1 -2 -v 3 -s</RemoteDebuggerCommandArguments>
+    <DebuggerFlavor>LinuxDebugger</DebuggerFlavor>
+    <RemoteDebuggerCommand>
+    </RemoteDebuggerCommand>
+    <RemoteDebuggingTarget>755021389;10.5.11.68 (username=, port=22, authentication=Password)</RemoteDebuggingTarget>
+    <PreLaunchCommand>
+    </PreLaunchCommand>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <RemoteDebuggerCommandArguments>-c OVX1F_DPHY_x4 --link-enable-masks '0x0000 0x0000 0x1111 0x0000'  --enableRawOutput -0 -1 -2 -v 3 -s</RemoteDebuggerCommandArguments>
+    <DebuggerFlavor>LinuxDebugger</DebuggerFlavor>
+    <RemoteDebuggerCommand>
+    </RemoteDebuggerCommand>
+    <RemoteDebuggingTarget>755021389;10.5.11.68 (username=, port=22, authentication=Password)</RemoteDebuggingTarget>
+    <PreLaunchCommand>
+    </PreLaunchCommand>
+  </PropertyGroup>
+</Project>

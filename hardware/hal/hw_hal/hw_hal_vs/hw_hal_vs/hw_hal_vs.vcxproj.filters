@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="code">
+      <UniqueIdentifier>{67065198-0862-4ef2-a3a6-e69dccb2345a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal_impl">
+      <UniqueIdentifier>{19807a6a-9539-4f35-8c62-c314a2e322e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface">
+      <UniqueIdentifier>{61f9d860-f7da-479e-8370-4a8cdbdc55d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\porting">
+      <UniqueIdentifier>{5a3450be-fc6d-4a40-9d81-92e57e8285de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\devices">
+      <UniqueIdentifier>{99b3e4d0-824f-487b-a574-12f58f2d2082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\devices\global">
+      <UniqueIdentifier>{292595e4-cf08-4c90-8ae8-04a841498dbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\devices\global\devtype">
+      <UniqueIdentifier>{89828667-d494-4b90-9e16-8a397ba0a46d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\devices\video">
+      <UniqueIdentifier>{3ae260e1-d45e-4ebe-9e20-9b66d316aaad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\devices\video\moduleid">
+      <UniqueIdentifier>{e9c7eb4c-4c5a-4e04-9fa4-bf7f24917fee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\devices\video\v0.1">
+      <UniqueIdentifier>{98ba13a6-2b90-4d5c-9a04-8e199785b5f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\platform">
+      <UniqueIdentifier>{260f653f-46b6-4fba-99c5-3463e7b6c0f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\hal_impl\hal">
+      <UniqueIdentifier>{b9362388-0703-453c-87a4-d4c3a32e947b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\devices\lidar">
+      <UniqueIdentifier>{19952aec-1b0d-454a-a602-19b32189906b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\devices\lidar\moduleid">
+      <UniqueIdentifier>{1d680f8b-0903-451a-adc6-388d96495b7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\devices\lidar\v0.1">
+      <UniqueIdentifier>{1ec0019e-ae5c-4063-b72b-94b331b7672d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\code\hal_impl\hal\hw_hal_api.cpp">
+      <Filter>code\hal_impl\hal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\code\hal_impl\hal\hw_hal_impl_log.cpp">
+      <Filter>code\hal_impl\hal</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\code\interface\hardware.h">
+      <Filter>code\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\hw_hal_api.h">
+      <Filter>code\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\hw_tag_and_version.h">
+      <Filter>code\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\platform\hw_plat_log.h">
+      <Filter>code\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\platform\hw_platform.h">
+      <Filter>code\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\hw_devices.h">
+      <Filter>code\interface\devices</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\global\hw_global.h">
+      <Filter>code\interface\devices\global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\global\hw_global_devtype.h">
+      <Filter>code\interface\devices\global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\global\devtype\hw_global_devtype_v0.1.h">
+      <Filter>code\interface\devices\global\devtype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\video\moduleid\hw_video_moduleid_v0.1.h">
+      <Filter>code\interface\devices\video\moduleid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\video\hw_video.h">
+      <Filter>code\interface\devices\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\video\hw_video_device.h">
+      <Filter>code\interface\devices\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\video\hw_video_moduleid.h">
+      <Filter>code\interface\devices\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\video\hw_video_version.h">
+      <Filter>code\interface\devices\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\video\v0.1\hw_video_device_v0.1.h">
+      <Filter>code\interface\devices\video\v0.1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\porting\hw_porting_compile.h">
+      <Filter>code\porting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\platform\hw_plat_basic.h">
+      <Filter>code\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\platform\hw_plat_basedef.h">
+      <Filter>code\interface\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\porting\hw_porting_baseinc.h">
+      <Filter>code\porting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\hal_impl\hal\hw_hal_impl_log.h">
+      <Filter>code\hal_impl\hal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\hal_impl\hw_hal_impl_baseinc.h">
+      <Filter>code\hal_impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\lidar\moduleid\hw_lidar_moduleid_v0.1.h">
+      <Filter>code\interface\devices\lidar\moduleid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\lidar\v0.1\hw_lidar_device_v0.1.h">
+      <Filter>code\interface\devices\lidar\v0.1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\lidar\hw_lidar.h">
+      <Filter>code\interface\devices\lidar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\lidar\hw_lidar_device.h">
+      <Filter>code\interface\devices\lidar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\lidar\hw_lidar_moduleid.h">
+      <Filter>code\interface\devices\lidar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\devices\lidar\hw_lidar_version.h">
+      <Filter>code\interface\devices\lidar</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

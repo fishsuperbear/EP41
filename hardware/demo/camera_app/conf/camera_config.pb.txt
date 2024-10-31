@@ -1,0 +1,168 @@
+config {
+    no: 0
+    open_type: OPENTYPE_MULTIROUP_SENSOR_DESAY
+    block_type: BLOCK_TYPE_GROUPA
+    sensor_type: SENSOR_TYPE_CURRENT_SINGLE_SENSOR
+    sensor_index: 0
+    gpu_image_type: GPUDATACB_IMGTYPE_RGB888_NHWC_BGR
+    inter_polation: GPUDATACB_INTERPOLATION_NEAREST
+    buse_capture_resolution: 0
+    custom_width: 640
+    custom_height: 640
+    buse_capture_framerate: 1
+    rotate_degrees: 0
+}
+config {
+    no: 1
+    open_type: OPENTYPE_MULTIROUP_SENSOR_DESAY
+    block_type: BLOCK_TYPE_GROUPA
+    sensor_type: SENSOR_TYPE_CURRENT_SINGLE_SENSOR
+    sensor_index: 1
+    gpu_image_type: GPUDATACB_IMGTYPE_RGB888_NHWC_BGR
+    inter_polation: GPUDATACB_INTERPOLATION_NEAREST
+    buse_capture_resolution: 0
+    custom_width: 640
+    custom_height: 640
+    buse_capture_framerate: 1
+    rotate_degrees: 0
+}
+config {
+    no: 2
+    open_type: OPENTYPE_MULTIROUP_SENSOR_DESAY
+    block_type: BLOCK_TYPE_GROUPA
+    sensor_type: SENSOR_TYPE_CURRENT_SINGLE_SENSOR
+    sensor_index: 2
+    gpu_image_type: GPUDATACB_IMGTYPE_RGB888_NHWC_BGR
+    inter_polation: GPUDATACB_INTERPOLATION_NEAREST
+    buse_capture_resolution: 0
+    custom_width: 640
+    custom_height: 640
+    buse_capture_framerate: 1
+    rotate_degrees: 0
+}
+config {
+    no: 3
+    open_type: OPENTYPE_MULTIROUP_SENSOR_DESAY
+    block_type: BLOCK_TYPE_GROUPA
+    sensor_type: SENSOR_TYPE_CURRENT_SINGLE_SENSOR
+    sensor_index: 3
+    gpu_image_type: GPUDATACB_IMGTYPE_RGB888_NHWC_BGR
+    inter_polation: GPUDATACB_INTERPOLATION_NEAREST
+    buse_capture_resolution: 0
+    custom_width: 640
+    custom_height: 640
+    buse_capture_framerate: 1
+    rotate_degrees: 0
+}
+config {
+    no: 4
+    open_type: OPENTYPE_MULTIROUP_SENSOR_DESAY
+    block_type: BLOCK_TYPE_GROUPB
+    sensor_type: SENSOR_TYPE_CURRENT_SINGLE_SENSOR
+    sensor_index: 0
+    gpu_image_type: GPUDATACB_IMGTYPE_RGB888_NHWC_BGR
+    inter_polation: GPUDATACB_INTERPOLATION_NEAREST
+    buse_capture_resolution: 0
+    custom_width: 640
+    custom_height: 640
+    buse_capture_framerate: 1
+    rotate_degrees: 0
+}
+config {
+    no: 5
+    open_type: OPENTYPE_MULTIROUP_SENSOR_DESAY
+    block_type: BLOCK_TYPE_GROUPB
+    sensor_type: SENSOR_TYPE_CURRENT_SINGLE_SENSOR
+    sensor_index: 1
+    gpu_image_type: GPUDATACB_IMGTYPE_RGB888_NHWC_BGR
+    inter_polation: GPUDATACB_INTERPOLATION_NEAREST
+    buse_capture_resolution: 0
+    custom_width: 640
+    custom_height: 640
+    buse_capture_framerate: 1
+    rotate_degrees: 0
+}
+config {
+    no: 6
+    open_type: OPENTYPE_MULTIROUP_SENSOR_DESAY
+    block_type: BLOCK_TYPE_GROUPB
+    sensor_type: SENSOR_TYPE_CURRENT_SINGLE_SENSOR
+    sensor_index: 2
+    gpu_image_type: GPUDATACB_IMGTYPE_RGB888_NHWC_BGR
+    inter_polation: GPUDATACB_INTERPOLATION_NEAREST
+    buse_capture_resolution: 0
+    custom_width: 640
+    custom_height: 640
+    buse_capture_framerate: 1
+    rotate_degrees: 0
+}
+config {
+    no: 7
+    open_type: OPENTYPE_MULTIROUP_SENSOR_DESAY
+    block_type: BLOCK_TYPE_GROUPB
+    sensor_type: SENSOR_TYPE_CURRENT_SINGLE_SENSOR
+    sensor_index: 3
+    gpu_image_type: GPUDATACB_IMGTYPE_RGB888_NHWC_BGR
+    inter_polation: GPUDATACB_INTERPOLATION_NEAREST
+    buse_capture_resolution: 0
+    custom_width: 640
+    custom_height: 640
+    buse_capture_framerate: 1
+    rotate_degrees: 0
+}
+config {
+    no: 8
+    open_type: OPENTYPE_MULTIROUP_SENSOR_DESAY
+    block_type: BLOCK_TYPE_GROUPC
+    sensor_type: SENSOR_TYPE_CURRENT_SINGLE_SENSOR
+    sensor_index: 0
+    gpu_image_type: GPUDATACB_IMGTYPE_RGB888_NHWC_BGR
+    inter_polation: GPUDATACB_INTERPOLATION_NEAREST
+    buse_capture_resolution: 0
+    custom_width: 640
+    custom_height: 640
+    buse_capture_framerate: 1
+    rotate_degrees: 0
+}
+config {
+    no: 9
+    open_type: OPENTYPE_MULTIROUP_SENSOR_DESAY
+    block_type: BLOCK_TYPE_GROUPC
+    sensor_type: SENSOR_TYPE_CURRENT_SINGLE_SENSOR
+    sensor_index: 1
+    gpu_image_type: GPUDATACB_IMGTYPE_RGB888_NHWC_BGR
+    inter_polation: GPUDATACB_INTERPOLATION_NEAREST
+    buse_capture_resolution: 0
+    custom_width: 640
+    custom_height: 640
+    buse_capture_framerate: 1
+    rotate_degrees: 0
+}
+config {
+    no: 10
+    open_type: OPENTYPE_MULTIROUP_SENSOR_DESAY
+    block_type: BLOCK_TYPE_GROUPC
+    sensor_type: SENSOR_TYPE_CURRENT_SINGLE_SENSOR
+    sensor_index: 2
+    gpu_image_type: GPUDATACB_IMGTYPE_RGB888_NHWC_BGR
+    inter_polation: GPUDATACB_INTERPOLATION_NEAREST
+    buse_capture_resolution: 0
+    custom_width: 640
+    custom_height: 640
+    buse_capture_framerate: 1
+    rotate_degrees: 0
+}
+config {
+    no: 11
+    open_type: OPENTYPE_MULTIROUP_SENSOR_DESAY
+    block_type: BLOCK_TYPE_GROUPC
+    sensor_type: SENSOR_TYPE_CURRENT_SINGLE_SENSOR
+    sensor_index: 3
+    gpu_image_type: GPUDATACB_IMGTYPE_RGB888_NHWC_BGR
+    inter_polation: GPUDATACB_INTERPOLATION_NEAREST
+    buse_capture_resolution: 0
+    custom_width: 640
+    custom_height: 640
+    buse_capture_framerate: 1
+    rotate_degrees: 0
+}

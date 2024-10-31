@@ -1,0 +1,6 @@
+#ifndef HW_NVMEDIA_PIPELINE_IPC_CONSUMER_IMPL_H
+#define HW_NVMEDIA_PIPELINE_IPC_CONSUMER_IMPL_H
+
+#include "hw_nvmedia_device_impl.h"
+
+#endif  // HW_NVMEDIA_PIPELINE_IPC_CONSUMER_IMPL_H

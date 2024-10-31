@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="code">
+      <UniqueIdentifier>{48fb60d3-3e31-48fa-a4ed-fc00e8553345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface">
+      <UniqueIdentifier>{59898eea-f225-45dc-bd29-91e0dfb3d63a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\halnode_impl">
+      <UniqueIdentifier>{6eb4d8ce-1667-4e55-8d72-79ef13c4adc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\halnode">
+      <UniqueIdentifier>{f13c095b-b2c3-4e7a-b24a-41754e252794}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\code\interface\halnode\halnode.h">
+      <Filter>code\interface\halnode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\halnode_impl\halnode_impl.h">
+      <Filter>code\halnode_impl</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\code\halnode_impl\halnode_impl.cpp">
+      <Filter>code\halnode_impl</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

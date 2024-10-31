@@ -1,0 +1,15 @@
+#ifndef HW_PORTING_COMPILE_H
+#define HW_PORTING_COMPILE_H
+
+#define HW_PLAT_PROJ_ORIN			0
+#define HW_PLAT_PROJ_S32G			1
+
+#ifdef __HW_PLAT_PROJ_USING_ORIN
+#define HW_PLAT_PROJ				HW_PLAT_PROJ_ORIN
+#elif __HW_PLAT_PROJ_USING_S32G
+#define HW_PLAT_PROJ				HW_PLAT_PROJ_S32G
+#else
+#define HW_PLAT_PROJ				HW_PLAT_PROJ_ORIN
+#endif
+
+#endif

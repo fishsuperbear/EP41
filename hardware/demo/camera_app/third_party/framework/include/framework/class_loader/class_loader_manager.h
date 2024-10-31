@@ -1,0 +1,93 @@
+#ifndef CYBER_CLASS_LOADER_CLASS_LOADER_MANAGER_H_
+#define CYBER_CLASS_LOADER_CLASS_LOADER_MANAGER_H_
+
+#include <map>
+#include <memory>
+#include <mutex>
+#include <string>
+#include <vector>
+
+#include "framework/class_loader/class_loader.h"
+
+namespace netaos {
+namespace framework {
+namespace class_loader {
+
+class ClassLoaderManager {
+ public:
+  ClassLoaderManager();
+  virtual ~ClassLoaderManager();
+
+  bool LoadLibrary(const std::string& library_path);
+  void UnloadAllLibrary();
+  bool IsLibraryValid(const std::string& library_path);
+  template <typename Base>
+  std::shared_ptr<Base> CreateClassObj(const std::string& class_name);
+  template <typename Base>
+  std::shared_ptr<Base> CreateClassObj(const std::string& class_name,
+                                       const std::string& library_path);
+  template <typename Base>
+  bool IsClassValid(const std::string& class_name);
+  template <typename Base>
+  std::vector<std::string> GetValidClassNames();
+
+ private:
+  ClassLoader* GetClassLoaderByLibPath(const std::string& library_path);
+  std::vector<ClassLoader*> GetAllValidClassLoaders();
+  std::vector<std::string> GetAllValidLibPath();
+  int UnloadLibrary(const std::string& library_path);
+
+ private:
+  std::mutex libpath_loader_map_mutex_;
+  std::map<std::string, ClassLoader*> libpath_loader_map_;
+};
+
+template <typename Base>
+std::shared_ptr<Base> ClassLoaderManager::CreateClassObj(
+    const std::string& class_name) {
+  std::vector<ClassLoader*> class_loaders = GetAllValidClassLoaders();
+  for (auto class_loader : class_loaders) {
+    if (class_loader->IsClassValid<Base>(class_name)) {
+      return (class_loader->CreateClassObj<Base>(class_name));
+    }
+  }
+  AERROR << "Invalid class name: " << class_name;
+  return std::shared_ptr<Base>();
+}
+
+template <typename Base>
+std::shared_ptr<Base> ClassLoaderManager::CreateClassObj(
+    const std::string& class_name, const std::string& library_path) {
+  ClassLoader* loader = GetClassLoaderByLibPath(library_path);
+  if (loader) {
+    return (loader->CreateClassObj<Base>(class_name));
+  }
+  AERROR << "Could not create classobj, there is no ClassLoader in: "
+         << class_name;
+  return std::shared_ptr<Base>();
+}
+
+template <typename Base>
+bool ClassLoaderManager::IsClassValid(const std::string& class_name) {
+  std::vector<std::string> valid_classes = GetValidClassNames<Base>();
+  return (valid_classes.end() !=
+          std::find(valid_classes.begin(), valid_classes.end(), class_name));
+}
+
+template <typename Base>
+std::vector<std::string> ClassLoaderManager::GetValidClassNames() {
+  std::vector<std::string> valid_classes;
+  for (auto class_loader : GetAllValidClassLoaders()) {
+    std::vector<std::string> class_loaders =
+        class_loader->GetValidClassNames<Base>();
+    valid_classes.insert(valid_classes.end(), class_loaders.begin(),
+                         class_loaders.end());
+  }
+  return valid_classes;
+}
+
+}  // namespace class_loader
+}  // namespace framework
+}  // namespace netaos
+
+#endif  // CYBER_CLASS_LOADER_CLASS_LOADER_MANAGER_H_

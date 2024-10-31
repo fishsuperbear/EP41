@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="code">
+      <UniqueIdentifier>{0a76b2a5-1bd5-4183-a945-2e7c0c4fa10e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\platform">
+      <UniqueIdentifier>{c0b77129-92c2-4e3e-b27c-d843bc5343e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="driveos">
+      <UniqueIdentifier>{c73952a7-ef97-4d92-af6c-6dd0bfb26dda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="driveos\v6.0.5">
+      <UniqueIdentifier>{5e7f1d13-1744-47bf-9620-d0343190e69e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="driveos\v6.0.5\include">
+      <UniqueIdentifier>{5f56406e-0e30-4cb8-a081-557b11880c32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="driveos\v6.0.5\include\cuda">
+      <UniqueIdentifier>{b0a1e9c5-ca24-4654-8d1b-1aa297fc8844}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="driveos\v6.0.5\include\nvmedia_6x">
+      <UniqueIdentifier>{cc9e0aa5-99c5-448e-8a5a-6fd600de11e6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\code\CChannel.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CClientCommon.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CCmdLineParser.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CConsumer.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CCudaConsumer.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CEncConsumer.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CEventHandler.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CFactory.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CIpcConsumerChannel.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CIpcProducerChannel.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CMaster.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Common.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CPoolManager.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CProducer.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CProfiler.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CSingleProcessChannel.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CSIPLProducer.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CUtils.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\cuda\builtin_types.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\cuda\cuda.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\cuda\cuda_device_runtime_api.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\cuda\cuda_runtime_api.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\cuda\device_types.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\cuda\driver_types.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\cuda\surface_types.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\cuda\texture_types.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\cuda\vector_types.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\INvSiplControlAuto.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\INvSIPLDeviceInterfaceProvider.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\nvmedia_6x\nvmedia_common_encode.h">
+      <Filter>driveos\v6.0.5\include\nvmedia_6x</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\nvmedia_6x\nvmedia_common_encode_decode.h">
+      <Filter>driveos\v6.0.5\include\nvmedia_6x</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\nvmedia_6x\nvmedia_core.h">
+      <Filter>driveos\v6.0.5\include\nvmedia_6x</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\nvmedia_6x\nvmedia_iep.h">
+      <Filter>driveos\v6.0.5\include\nvmedia_6x</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\nvsciipc.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\nvscistream.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\nvscistream_api.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\nvscistream_types.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLCamera.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLCapStructs.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLCDICommon.h">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLClient.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLCommon.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSiplControlAutoDef.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLDeviceBlockInfo.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLDeviceBlockTrace.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLInterrupts.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLISPStat.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLISPStructs.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLPipelineMgr.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLPlatformCfg.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLQuery.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLQueryTrace.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLTrace.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\NvSIPLVersion.hpp">
+      <Filter>driveos\v6.0.5\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\driveos\v6.0.5\include\cuda\crt\host_defines.h">
+      <Filter>driveos\v6.0.5\include\cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\platform\ar0820.hpp">
+      <Filter>code\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\CCommonConsumer.hpp">
+      <Filter>code</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\code\CClientCommon.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\CConsumer.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\CCudaConsumer.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\CEncConsumer.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\CPoolManager.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\CProducer.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\CSIPLProducer.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\CUtils.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\main.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\CCommonConsumer.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\code\README.txt">
+      <Filter>code</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

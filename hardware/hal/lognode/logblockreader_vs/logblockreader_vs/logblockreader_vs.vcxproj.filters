@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="code">
+      <UniqueIdentifier>{9aa86a97-4c85-4c51-931a-b89d87360185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface">
+      <UniqueIdentifier>{d0b5585d-11fd-4f5a-9de9-e3e128ffa6a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface\lognode">
+      <UniqueIdentifier>{9da6d2d0-9f3a-4431-8bd4-331a70870694}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\lognode_impl">
+      <UniqueIdentifier>{b2a06cd9-8976-422e-b9dd-10475321698c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\code\interface\lognode\logblockreader.h">
+      <Filter>code\interface\lognode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\interface\lognode\logblockwriter.h">
+      <Filter>code\interface\lognode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\code\lognode_impl\logblock_impl.h">
+      <Filter>code\lognode_impl</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\code\lognode_impl\logblockreader_impl.cpp">
+      <Filter>code\lognode_impl</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

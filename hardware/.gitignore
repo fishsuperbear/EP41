@@ -1,0 +1,13 @@
+.vs
+.vs/*
+bin
+bin/*
+obj
+obj/*
+hz.sh
+hzscp
+hzscp.sh
+out
+out/*
+/.vscode
+/demo/lidar/build
