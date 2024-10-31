@@ -1,0 +1,243 @@
+syntax = "proto2";
+
+package hozon.hdmap;
+
+import "proto/common/header.proto";
+import "proto/map/map_clear_area.proto";
+import "proto/map/map_crosswalk.proto";
+import "proto/map/map_junction.proto";
+import "proto/map/map_lane.proto";
+import "proto/map/map_overlap.proto";
+import "proto/map/map_signal.proto";
+import "proto/map/map_speed_bump.proto";
+import "proto/map/map_stop_sign.proto";
+import "proto/map/map_yield_sign.proto";
+import "proto/map/map_road.proto";
+import "proto/map/map_parking_space.proto";
+import "proto/map/map_pnc_junction.proto";
+import "proto/map/map_rsu.proto";
+import "proto/common/types.proto";
+import "proto/map/ehp.proto";
+import "proto/map/adasisv3.proto";
+import "proto/routing/routing.proto";
+import "proto/common/error_code.proto";
+
+    // This message defines how we project the ellipsoidal Earth surface to a plane.
+message Projection {
+      // PROJ.4 setting:
+      // "+proj=tmerc +lat_0={origin.lat} +lon_0={origin.lon} +k={scale_factor}
+      // +ellps=WGS84 +no_defs"
+  optional string proj       = 1;
+  optional int32 utm_zone_id = 5;
+}
+
+message Header {
+  optional bytes version                 = 1;
+  optional bytes date                    = 2;
+  optional Projection projection         = 3;
+  optional bytes district                = 4;
+  optional bytes generation              = 5;
+  optional bytes rev_major               = 6;
+  optional bytes rev_minor               = 7;
+  optional double left                   = 8;
+  optional double top                    = 9;
+  optional double right                  = 10;
+  optional double bottom                 = 11;
+  optional bytes vendor                  = 12;
+  optional hozon.common.Header header   = 13;
+  optional hozon.common.StatusPb status = 14;
+  optional string id                     = 15;  // parking
+  optional double j02longitude           = 17;  // parking
+  optional double j02latitude            = 18;  // parking
+  optional double j02altitude            = 19;  // parking
+
+  optional uint32 region_code            = 30;
+
+}
+
+message ArrowData {
+  optional string id                          = 1;
+  optional hozon.common.Point2D center_point = 2;
+  optional hozon.common.Polygon shape        = 3;
+  optional double heading                     = 4;
+  enum Type {
+    UNKNOWN_TURN             = 0;
+    STRAIGHT                 = 1;
+    RIGHT_TURN               = 2;
+    LEFT_TURN                = 3;
+    U_TURN                   = 4;
+    STRAIGHT_LEFT_TURN       = 5;
+    STRAIGHT_RIGHT_TURN      = 6;
+    STRAIGHT_U_TURN          = 7;
+    LEFT_U_TURN              = 8;
+    LEFT_RIGHT_TURN          = 9;
+    LEFT_FRONT_TURN          = 10;
+    RIGHT_FRONT_TURN         = 11;
+    STRAIGHT_LEFT_RIGHT_TURN = 12;
+  }
+  optional Type type      = 5;
+  repeated string lane_id = 6;
+}
+
+message MarkerData {
+  optional string id                   = 1;
+  optional hozon.common.Polygon shape = 2;
+  enum Type {
+    UNKNOWN = 0;  // unknown
+    EMERGENCY_EXIT_INDICATOR = 1;  // 安全出口标志灯
+    LEADING_WORDS = 2; // 引导语
+    POLE = 3; // 杆子
+    TURNSTILE = 4; // 闸机
+    ANTI_CONLLSION_STRIP = 5; // 防撞条
+    HYDRANT = 6; //消防栓
+    REFLECTOR = 7; //镜子
+    DOOR = 8; //门
+    RAILINGS =9; //栅栏
+  }
+  optional Type type      = 4;
+  repeated string lane_id = 5;
+}
+
+message ProhibitedArea {
+  optional string id                   = 1;  // Prohibited area ID
+  optional hozon.common.Polygon shape = 2;  // Geometric shape
+  enum Type {
+    UNKNOWN       = 0;
+    GREEN_BELT    = 1;
+    PLATFORM      = 2;
+    TRAFFIC_BOOTH = 3;
+  }
+  optional Type type     = 3;
+  optional double height = 4;
+}
+
+message FreeArea {
+  optional string id                   = 1;  // FreeArea ID
+  optional hozon.common.Polygon shape = 2;  // Geometric shape
+  repeated string lane_id              = 3;  // Lane's ID which are related to the free area.
+  repeated string prohibited_area_id   = 4;  // Prohibited area ID
+  optional bool is_traffic_safe        = 5;  // there are lanes in free area when not traffic safe
+}
+
+message Pillar {
+  optional string id                   = 1;  // Pillar ID
+  optional hozon.common.Polygon shape = 2;  // Geometric shape
+  repeated string lane_id              = 3;  // Lane's ID which are related to the pillar.
+}
+
+message Gate {
+  optional string id                   = 1;  // gate ID
+  optional hozon.common.Polygon shape = 2;  // Geometric shape
+  enum Type {
+    UNKNOWN_TYPE = 0;
+    AUTO_GATE    = 1;  // automatic gate
+    BARRIER_GATE = 3;  // arm barrier gate
+  }
+  optional Type type      = 3;  // type
+  repeated string lane_id = 4;  // Lane's ID which are related to the gate.
+}
+
+message Parking {
+  optional string id                   = 1;  // Parking ID
+  optional hozon.common.Polygon shape = 2;  // Geometric shape
+  repeated string lane_id              = 3;  // Lane's ID which are related to the parking.
+  enum Type {
+    UNKNOWN  = 0;  //unknown type
+    VERTICAL = 1;
+    LATERAL  = 2;
+    OBLIQUE  = 3;
+  }
+  optional Type type    = 4;  //parking type
+  optional string label = 5;
+}
+
+message StopLine {
+  optional string id                     = 1;   // StopLine ID.
+  optional hozon.common.Polygon shape   = 2;   // Geometric shape.
+  repeated string lane_id                = 3;   // Lane's ID which are related to the stop line.
+}
+
+message Map {
+  optional Header header                  = 1;
+  repeated Crosswalk crosswalk            = 2;
+  repeated Junction junction              = 3;
+  repeated Lane lane                      = 4;
+  repeated StopSign stop_sign             = 5;
+  repeated Signal signal                  = 6;
+  repeated YieldSign yield                = 7;
+  repeated Overlap overlap                = 8;
+  repeated ClearArea clear_area           = 9;
+  repeated SpeedBump speed_bump           = 10;
+  repeated Road road                      = 11;
+  repeated ParkingSpace parking_space     = 12;
+  repeated PNCJunction pnc_junction       = 13;
+  repeated RSU rsu                        = 14;
+  repeated ArrowData arraw                = 15;
+  repeated MarkerData marker              = 16;
+  repeated ProhibitedArea prohibited_area = 17;
+  repeated FreeArea free_area             = 18;
+  repeated Pillar pillar                  = 19;
+  repeated Gate gate                      = 20;
+  repeated Parking parking                = 21;
+  repeated StopLine stop_line             = 22;
+}
+
+message PathProfile {
+  optional uint32 path_id = 1;
+  message ProfileEntryMap {
+    optional hozon.adasisv3.ProfileType profile_type        = 1;
+    repeated hozon.adasisv3.ProfileEntry profile_entry_list = 2;
+  }
+  repeated ProfileEntryMap profile_entry_map = 2;
+}
+
+message V3Data {
+  optional hozon.adasisv3.PositionMessage positions             = 1;
+  optional hozon.adasisv3.GlobalDataMessage globaldata          = 2;
+  optional hozon.adasisv3.ProfileControlMessage profilecontrols = 3;
+  optional hozon.adasisv3.PathControlMessage pathcontrols       = 4;
+  repeated PathProfile profiles_map                              = 5;
+}
+message BuildPath {
+  optional uint32 path_id = 1;
+  optional uint32 offset  = 2;
+}
+
+message PositionOffSet {
+  message OffSet {
+    optional uint32 last_offset = 1;
+    optional uint32 offset      = 2;
+  }
+  optional uint32 path_id = 1;
+  optional OffSet off_set = 2;
+}
+
+message EhrLane {
+  optional string lane_id = 1;
+  optional Lane lane      = 2;
+}
+
+message EhrData {
+  optional uint32 zone                                          = 1;
+  optional V3Data v3_data                                       = 2;
+  repeated BuildPath build_paths                                = 3;
+  repeated PositionOffSet position_offsets                      = 4;
+  repeated EhrLane hozon_lanes                                 = 5;
+  optional hozon.routing.RoutingResponse last_routing_response = 6;
+  optional int32 counter                                        = 7;
+}
+
+message MapStateData {
+  optional Header header = 1;
+
+  repeated hozon.ehp.EHP ehp_data                     = 2;
+  repeated hozon.adasisv3.MessageOnBus message_on_bus = 3;
+  optional EhrData ehr_data                            = 4;
+  optional Map map                                     = 5;
+
+  optional int32 new_utm_zone      = 6;
+  optional int32 previous_utm_zone = 7;
+
+  optional bool is_ehr_running                                  = 8;
+  optional hozon.routing.RoutingResponse last_routing_response = 9;
+}

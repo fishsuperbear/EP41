@@ -1,0 +1,110 @@
+[
+  {
+    "key": "application_name",
+    "value": {
+      "string": "smn"
+    },
+    "checksum": 111
+  },
+  {
+    "key": "startup_configs",
+    "value": {
+      "object[]": [
+        {
+          "key": "SmnProcess",
+          "value": {
+            "object[]": [
+              {
+                "key": "executable",
+                "value": {
+                  "string": "smn"
+                },
+                "checksum": 333
+              },
+              {
+                "key": "restart_attempt_num",
+                "value": {
+                  "uint32": 3
+                },
+                "checksum": 333
+              },
+              {
+                "key": "shall_run_ons",
+                "value": {
+                  "string[]": []
+                },
+                "checksum": 333
+              },
+              {
+                "key": "shall_not_run_ons",
+                "value": {
+                  "string[]": []
+                },
+                "checksum": 333
+              },
+              {
+                "key": "depends",
+                "value": {
+                  "string[]": [
+                    "SomeipdProcess.Running"
+                  ]
+                },
+                "checksum": 333
+              },
+              {
+                "key": "machine_states",
+                "value": {
+                  "string[]": [
+                    "Reset",
+                    "Restart",
+                    "Shutdown",
+                    "Standby",
+                    "Update",
+                    "Verify",
+                    "Startup",
+                    "PreStartup"
+                  ]
+                },
+                "checksum": 333
+              },
+              {
+                "key": "function_group_states",
+                "value": {
+                  "string[]": []
+                },
+                "checksum": 333
+              },
+              {
+                "key": "arguments",
+                "value": {
+                  "string[]": [
+                    "1"
+                  ]
+                },
+                "checksum": 333
+              },
+              {
+                "key": "environments",
+                "value": {
+                  "string[]": [
+                    "CM_CONFIG_FILE_PATH=/opt/platform/mdc_platform/runtime_service/smn/etc/SmnProcess"
+                  ]
+                },
+                "checksum": 333
+              },
+              {
+                "key": "resource_group",
+                "value": {
+                  "string": "ResourceLimit"
+                },
+                "checksum": 333
+              }
+            ]
+          },
+          "checksum": 222
+        }
+      ]
+    },
+    "checksum": 111
+  }
+]

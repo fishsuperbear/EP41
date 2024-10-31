@@ -1,0 +1,36 @@
+/*
+ * Copyright (c) Hozon Auto Co., Ltd. 2023-2025. All rights reserved.
+ * Module: devm
+ * Description: devm_device_info.cpp
+ * Created on: Nov 21, 2023
+ * Author: yanlongxiang
+ *
+ */
+#pragma once
+
+#include "devm_define.h"
+#include "zmq_ipc/manager/zmq_ipc_client.h"
+#include "cfg/include/config_param.h"
+
+using namespace hozon::netaos::zmqipc;
+
+namespace hozon {
+namespace netaos {
+namespace devm {
+
+class DevmClientDeviceInfoZmq {
+public:
+    DevmClientDeviceInfoZmq();
+    ~DevmClientDeviceInfoZmq();
+    int32_t SendRequestToServer(DeviceInfo& resp);
+    bool GetTemperature(struct TemperatureData& temp);
+    bool GetVoltage(struct VoltageData& voltage);
+
+private:
+    std::shared_ptr<ZmqIpcClient> client_{};
+};
+
+}  // namespace devm
+}  // namespace netaos
+}  // namespace hozon
+

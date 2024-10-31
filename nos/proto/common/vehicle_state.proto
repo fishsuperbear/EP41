@@ -1,0 +1,33 @@
+syntax = "proto2";
+
+package hozon.common;
+
+import "proto/soc/chassis.proto";
+import "proto/common/types.proto";
+import "proto/common/vehicle_signal.proto";
+import "proto/common/header.proto";
+
+message VehicleState {
+  optional double x = 1 [default = 0.0];
+  optional double y = 2 [default = 0.0];
+  optional double z = 3 [default = 0.0];
+  optional double timestamp = 4 [default = 0.0];
+  optional double roll = 5 [default = 0.0];
+  optional double pitch = 6 [default = 0.0];
+  optional double yaw = 7 [default = 0.0];
+  optional double heading = 8 [default = 0.0];
+  optional double kappa = 9 [default = 0.0];
+  optional double linear_velocity = 10 [default = 0.0];
+  optional double angular_velocity = 11 [default = 0.0];
+  optional double linear_acceleration = 12 [default = 0.0];
+  optional hozon.soc.Chassis.GearPosition gear = 13;
+  optional hozon.soc.Chassis.DrivingMode driving_mode = 14;
+  optional hozon.common.Pose pose = 15;
+  optional double steering_percentage = 16;
+  optional VehicleSignal sigal = 17;
+  optional Header localization_header = 18;
+  optional Header header = 19;
+  optional bool is_vehicle_reference_frame = 20;
+  optional double linear_steer_ratio = 21;
+  optional hozon.soc.Chassis chassis = 22;
+}

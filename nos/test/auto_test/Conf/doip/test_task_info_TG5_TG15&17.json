@@ -1,0 +1,97 @@
+[
+{
+	"ip_addr":"172.16.50.11",
+	"port":13400,
+	"fname":"mgbe3_0.50",
+	"thread_start_delay":10,
+	"test":[
+	{
+		"protocol_type":"TCP",
+		"timeout":2000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":9,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"10 00 00 00 00"
+		},
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0007",
+			"payload_len":0
+		}
+		],
+		"describe":"<TG5_TC15> task1 SA注册到已激活且在线的TCP_DATA Socket的路由激活请求测试-0005-0007"
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":2000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0008",
+			"payload_len":2,
+			"payload_data":"1062"
+		}
+		],
+		"describe":"<TG5_TC15> task1 SA注册到已激活且在线的TCP_DATA Socket的路由激活请求测试-0008",
+		"delay_timems": 1000
+	}
+	]
+},
+{
+	"ip_addr":"172.16.50.11",
+	"port":13400,
+	"fname":"mgbe3_0.50",
+	"thread_start_delay":200,
+	"test":[
+	{
+		"protocol_type":"TCP",
+		"timeout":2000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":9,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"03 00 00 00 00"
+		}
+		],
+		"describe":"<TG5_TC15> task2 SA注册到已激活且在线的TCP_DATA Socket的路由激活请求测试-激活1062",
+		"sever_close_wait":200
+	}
+	]
+}
+]

@@ -1,0 +1,43 @@
+syntax = "proto2";
+
+package hozon.metric;
+
+message JerkErrInfo{
+  optional double timestamp = 1;
+  optional double lat = 2;
+  optional double lon = 3;
+}
+
+message FilterAccInfo{
+  optional double lat_acc = 1;
+  optional double lon_acc = 2;
+  optional double steer_rate = 3;
+}
+
+message NnpMetric {
+  optional double active_mile = 1 [default = 0.000];
+  optional double hdmap_mile = 2 [default = 0.000];
+  optional uint32 odd_downgrade = 3 [default = 0];
+  optional uint32 other_downgrade = 4 [default = 0];
+  optional uint32 lat_override = 5 [default = 0];
+  optional uint32 lon_override = 6 [default = 0];
+  optional uint32 take_over = 7 [default = 0];
+  optional uint32 in_mainroad_success = 8 [default = 0];
+  optional uint32 in_mainroad_fail = 9 [default = 0];
+  optional uint32 in_ramp_success = 10 [default = 0];
+  optional uint32 in_ramp_fail = 11 [default = 0];
+  optional uint32 navi_lane_change_success = 12 [default = 0];
+  optional uint32 navi_lane_change_fail = 13 [default = 0];
+  optional uint32 effi_lane_change_success = 14 [default = 0];
+  optional uint32 effi_lane_change_fail = 15 [default = 0];
+  optional uint32 switch_lane_change_success = 16 [default = 0];
+  optional uint32 switch_lane_change_fail = 17 [default = 0];
+  optional uint32 audio_lane_change_success = 18 [default = 0];
+  optional uint32 audio_lane_change_fail = 19 [default = 0];
+  optional JerkErrInfo jerk_err_info = 20;
+  optional FilterAccInfo filter_acc_info = 21;
+  optional string car_name = 23;
+  optional uint32 location_downgrade = 25 [default = 0];
+  optional double total_mile = 27 [default = 0.000];
+  optional double pilot_mile = 29 [default = 0.000];
+}

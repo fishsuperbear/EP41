@@ -1,0 +1,50 @@
+[
+    {
+        "key" : "app",
+        "value" :
+        {
+            "string" : "devm"
+        }
+    },
+    {
+        "key" : "command",
+        "value" :
+        {
+            "string[]" : [ "devm get-dev-cfg 3",
+                           "devm set-cpu-cfg < CTRL > < DATA > < AI >",
+                           "devm get-cpu-cfg",
+                           "devm get-boardinfo [ topo ]",
+                           "devm get-dev-info { Soc | Mcu | Cpld | Lsw0 }",
+                           "devm get-dev-state { Soc | Mcu | Cpld | Lsw0 }",
+                           "devm get-dev-statinfo { Soc | Mcu | Lsw0 | Storage }",
+                           "devm read-did < devName > < didId >",
+                           "devm set-ddr-ecc-enable < enable >",
+                           "devm get-ddr-ecc-enable",
+                           "devm get-compute-power",
+                           "devm get-ai-group-info",
+                           "devm get-qos-config",
+                           "devm set-qos-config < mpamid > < bw_high > < bw_low > < hardlimit >"]
+        }
+    },
+    {
+        "key" : "help",
+        "value" :
+        {
+            "string[]" : ["devm get-dev-cfg 3,                                          Used to get devm config",
+                          "                                                                 3: Esn Lable",
+                          "devm set-cpu-cfg < CTRL > < DATA > < AI >,                   Used to set CTRL DATA AI cpu core number",
+                          "devm get-cpu-cfg,                                            Used to get CTRL DATA AI cpu core number.",
+                          "devm get-boardinfo,                                          Used to get mdc boardinfo.",
+                          "devm get-dev-info devName,                                   Used to get dev info, such as version,type.",
+                          "devm get-dev-state devName,                                  Used to get dev work state, 0 means normal, others means abnormal.",
+                          "devm get-dev-statinfo devName,                               Used to get dev statistic info.",
+                          "devm read-did devName didId,                                 Used to read dev did value.",
+                          "devm set-ddr-ecc-enable enable                               set ddr-ecc-enable cfg, 1(enable) 0(disable)",
+                          "devm get-ddr-ecc-enable                                      get ddr-ecc-enable cfg",
+                          "devm get-compute-power                                       Used to get compute power",
+                          "devm get-ai-group-info                                       Used to get ai core&vector group info",
+                          "devm get-qos-config                                          Used to get qos config",
+                          "devm set-qos-config                                          Used to set qos config"]
+        }
+    }
+]

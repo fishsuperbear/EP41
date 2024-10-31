@@ -1,0 +1,172 @@
+/*
+ * Copyright (c) Hozon Auto Co., Ltd. 2021-2023. All rights reserved.
+ * Description:  Class TimerTaskBase Header
+ */
+
+#ifndef TASK_OBJECT_DEF_H_
+#define TASK_OBJECT_DEF_H_
+#ifndef __cplusplus
+#    error ERROR: This file requires C++ compilation (use a .cpp suffix)
+#endif
+
+#include <vector>
+#include <map>
+#include "diag/libsttask/STObjectDef.h"
+#include "diag/libsttask/STTimerTask.h"
+
+using namespace hozon::netaos::sttask;
+
+namespace hozon {
+namespace netaos {
+namespace update {
+
+#define     OTA_DUPLICATE_TASK_IN_QUEUE_MAX   (30)
+
+
+typedef enum {
+    /// only once in task queue at most.
+    OTA_ECU_ID_SOC1      = 0x10C1,
+    OTA_ECU_ID_SOC2      = 0X10C2,
+    OTA_ECU_ID_MDC       = 0x10C3,
+    OTA_ECU_ID_MCU       = 0x10A1,
+    OTA_ECU_ID_LIDAR_FL  = 0x10CA,
+    OTA_ECU_ID_LIDAR_FR  = 0x10CB,
+    OTA_ECU_ID_SRR_FL    = 0x10C4,
+    OTA_ECU_ID_SRR_FR    = 0x10C7,
+    OTA_ECU_ID_SRR_RL    = 0X10C8,
+    OTA_ECU_ID_SRR_RR    = 0x10C9,
+    OTA_ECU_ID_LRR       = 0x10C5,
+    OTA_ECU_ID_USSC      = 0x10CC,
+    OTA_ECU_ID_IMU       = 0x10AC,
+    // not ecu but functional type def
+    OTA_CAN_FUNCTION     = 0x7DF,
+    OTA_ETH_FUNCTION     = 0xE400,
+    OTA_UPDATE_INTERFACE = 0x10F1,
+} ota_ecu_id_t;
+
+typedef enum {
+    /// only once in task queue at most.
+    OTA_NTTASK_INIT = eOperation_DefaultMax + 2,
+    OTA_NTTASK_RESET,
+    OTA_NTTASK_SEND_COMMANDS,
+    OTA_NTTASK_TRANSFER_FILE,
+    OTA_NTTASK_SECURITY_ACCESS,
+    OTA_NTTASK_INSTALLER          = 0,
+    OTA_NTTASK_INSTALLER_SOC1     = OTA_NTTASK_INSTALLER + OTA_ECU_ID_SOC1,
+    OTA_NTTASK_INSTALLER_SOC2     = OTA_NTTASK_INSTALLER + OTA_ECU_ID_SOC2,
+    OTA_NTTASK_INSTALLER_MDC      = OTA_NTTASK_INSTALLER + OTA_ECU_ID_MDC,
+    OTA_NTTASK_INSTALLER_LIDAR_FL = OTA_NTTASK_INSTALLER + OTA_ECU_ID_LIDAR_FL,
+    OTA_NTTASK_INSTALLER_LIDAR_FR = OTA_NTTASK_INSTALLER + OTA_ECU_ID_LIDAR_FR,
+    OTA_NTTASK_INSTALLER_MCU      = OTA_NTTASK_INSTALLER + OTA_ECU_ID_MCU,
+    OTA_NTTASK_INSTALLER_SRR_FL   = OTA_NTTASK_INSTALLER + OTA_ECU_ID_SRR_FL,
+    OTA_NTTASK_INSTALLER_SRR_FR   = OTA_NTTASK_INSTALLER + OTA_ECU_ID_SRR_FR,
+    OTA_NTTASK_INSTALLER_SRR_RL   = OTA_NTTASK_INSTALLER + OTA_ECU_ID_SRR_RL,
+    OTA_NTTASK_INSTALLER_SRR_RR   = OTA_NTTASK_INSTALLER + OTA_ECU_ID_SRR_RR,
+    OTA_NTTASK_INSTALLER_LRR      = OTA_NTTASK_INSTALLER + OTA_ECU_ID_LRR,
+    OTA_NTTASK_INSTALLER_USSC     = OTA_NTTASK_INSTALLER + OTA_ECU_ID_USSC,
+    OTA_NTTASK_INSTALLER_IMU      = OTA_NTTASK_INSTALLER + OTA_ECU_ID_IMU,
+} ota_normal_task_t;
+
+typedef enum {
+    OTA_TIMER_P2_CLIENT       = 100,
+    OTA_TIMER_P2START_CLIENT  = 5000,
+    OTA_TIMER_P3_CLIENT_PYH   = 2000,
+    OTA_TIMER_P3_CLIENT_FUNC  = 2000
+} ota_task_timer_t;
+
+typedef enum {
+    OTA_TASK_CHANNEL              = 0,
+    OTA_TASK_CHANNEL_SOC1         = OTA_TASK_CHANNEL + OTA_ECU_ID_SOC1,
+    OTA_TASK_CHANNEL_SOC2         = OTA_TASK_CHANNEL + OTA_ECU_ID_SOC2,
+    OTA_TASK_CHANNEL_MDC          = OTA_TASK_CHANNEL + OTA_ECU_ID_MDC,
+    OTA_TASK_CHANNEL_LIDAR_FL     = OTA_TASK_CHANNEL + OTA_ECU_ID_LIDAR_FL,
+    OTA_TASK_CHANNEL_LIDAR_FR     = OTA_TASK_CHANNEL + OTA_ECU_ID_LIDAR_FR,
+    OTA_TASK_CHANNEL_MCU          = OTA_TASK_CHANNEL + OTA_ECU_ID_MCU,
+    OTA_TASK_CHANNEL_SRR_FL       = OTA_TASK_CHANNEL + OTA_ECU_ID_SRR_FL,
+    OTA_TASK_CHANNEL_SRR_FR       = OTA_TASK_CHANNEL + OTA_ECU_ID_SRR_FR,
+    OTA_TASK_CHANNEL_SRR_RL       = OTA_TASK_CHANNEL + OTA_ECU_ID_SRR_RL,
+    OTA_TASK_CHANNEL_SRR_RR       = OTA_TASK_CHANNEL + OTA_ECU_ID_SRR_RR,
+    OTA_TASK_CHANNEL_LRR          = OTA_TASK_CHANNEL + OTA_ECU_ID_LRR,
+    OTA_TASK_CHANNEL_USSC         = OTA_TASK_CHANNEL + OTA_ECU_ID_USSC,
+    OTA_TASK_CHANNEL_IMU          = OTA_TASK_CHANNEL + OTA_ECU_ID_IMU,
+    OTA_TASK_CHANNEL_CAN_FUNCTION = OTA_TASK_CHANNEL + OTA_CAN_FUNCTION,
+    OTA_TASK_CHANNEL_ETH_FUNCTION = OTA_TASK_CHANNEL + OTA_ETH_FUNCTION,
+    OTA_TASK_CHANNEL_INTERFACE    = OTA_TASK_CHANNEL + OTA_UPDATE_INTERFACE,
+} ota_task_channel_t;
+
+typedef enum {
+    OTA_CTTASK_SEND_COMMAND              = 0,
+    OTA_CTTASK_SEND_COMMAND_SOC1         = OTA_CTTASK_SEND_COMMAND + OTA_ECU_ID_SOC1,
+    OTA_CTTASK_SEND_COMMAND_SOC2         = OTA_CTTASK_SEND_COMMAND + OTA_ECU_ID_SOC2,
+    OTA_CTTASK_SEND_COMMAND_MDC          = OTA_CTTASK_SEND_COMMAND + OTA_ECU_ID_MDC,
+    OTA_CTTASK_SEND_COMMAND_LIDAR_FL     = OTA_CTTASK_SEND_COMMAND + OTA_ECU_ID_LIDAR_FL,
+    OTA_CTTASK_SEND_COMMAND_LIDAR_FR     = OTA_CTTASK_SEND_COMMAND + OTA_ECU_ID_LIDAR_FR,
+    OTA_CTTASK_SEND_COMMAND_MCU          = OTA_CTTASK_SEND_COMMAND + OTA_ECU_ID_MCU,
+    OTA_CTTASK_SEND_COMMAND_SRR_FL       = OTA_CTTASK_SEND_COMMAND + OTA_ECU_ID_SRR_FL,
+    OTA_CTTASK_SEND_COMMAND_SRR_FR       = OTA_CTTASK_SEND_COMMAND + OTA_ECU_ID_SRR_FR,
+    OTA_CTTASK_SEND_COMMAND_SRR_RL       = OTA_CTTASK_SEND_COMMAND + OTA_ECU_ID_SRR_RL,
+    OTA_CTTASK_SEND_COMMAND_SRR_RR       = OTA_CTTASK_SEND_COMMAND + OTA_ECU_ID_SRR_RR,
+    OTA_CTTASK_SEND_COMMAND_LRR          = OTA_CTTASK_SEND_COMMAND + OTA_ECU_ID_LRR,
+    OTA_CTTASK_SEND_COMMAND_USSC         = OTA_CTTASK_SEND_COMMAND + OTA_ECU_ID_USSC,
+    OTA_CTTASK_SEND_COMMAND_IMU          = OTA_CTTASK_SEND_COMMAND + OTA_ECU_ID_IMU,
+    OTA_CTTASK_SEND_COMMAND_CAN_FUNCTION = OTA_CTTASK_SEND_COMMAND + OTA_CAN_FUNCTION,
+    OTA_CTTASK_SEND_COMMAND_ETH_FUNCTION = OTA_CTTASK_SEND_COMMAND + OTA_ETH_FUNCTION,
+    OTA_CTTASK_INTERFACE                 = 0,
+    OTA_CTTASK_INTERFACE_UPDATE          = OTA_CTTASK_INTERFACE    + OTA_UPDATE_INTERFACE,
+    OTA_CTTASK_INTERFACE_ACTIVATE,
+    OTA_CTTASK_INTERFACE_FINISH,
+    OTA_CTTASK_INTERFACE_WAIT,
+    TIMER_COMMANDS_DELAY                 = eDefaultMax + 2,
+    TIMER_UPDATE_RETRY_DELAY,
+    TIMER_INIT_DELAY,
+} ota_step_task_t;
+
+typedef enum {
+    TA_TYPE_PHYSICAL = 0,
+    TA_TYPE_FUNCTIONAL
+} TAtype_t;
+
+typedef enum {
+    N_OK  = eOK,
+    N_FIRST = eDefaultMax + 2,
+    N_ERROR,
+    N_TIMEOUT_P2_CLIENT,
+    N_TIMEOUT_P2START_CLIENT,
+    N_TIMEOUT_P3_CLIENT_PYH,
+    N_TIMEOUT_P3_CLIENT_FUNC,
+    N_WRONG_SN,
+    N_UNEXP_PDU,
+    N_WFT_OVRN,
+    N_BUFFER_OVFLW,
+    N_RX_ON,
+    N_WRONG_PARAMETER,
+    N_WRONG_VALUE,
+    N_USER_CANCEL,
+    N_WAIT,
+    N_RETRY_TIMES_LIMITED,
+    N_NRC,
+} N_Result_t;
+
+struct TaskReqInfo
+{
+    uint8_t                 reqUpdateType;  // 0: none, 1: docan, 2: doip, 3: update_if, 4: someip, 5: doip2docan
+    uint16_t                reqSa;
+    uint16_t                reqTa;
+    uint32_t                reqWaitTime;
+    std::vector<uint8_t>    reqContent;
+    std::vector<uint8_t>    reqExpectContent;
+};
+
+struct TaskResInfo
+{
+    uint16_t                resTotalSize;
+    uint16_t                resCompletedSize;
+    uint32_t                resResult;
+    std::vector<uint8_t>    resContent;
+};
+
+} // end of update
+} // end of netaos
+} // end of hozon
+#endif  // TASK_OBJECT_DEF_H_
+/* EOF */

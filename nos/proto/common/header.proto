@@ -1,0 +1,24 @@
+syntax = "proto2";
+
+package hozon.common;
+import "proto/common/error_code.proto";
+
+message SensorStamp {
+    optional double lidar_stamp = 1;
+    optional double radar_stamp = 2;
+    optional double uss_stamp = 3;
+    optional double chassis_stamp = 4;
+    optional double camera_stamp = 5;
+    optional double imuins_stamp = 6;
+    optional double gnss_stamp = 7;
+}
+
+message Header {
+    optional int32 seq = 1;
+    optional string frame_id = 2;
+    optional double publish_stamp = 3;  // topic数据发布时刻的系统时间，主要用于分析传输时延和处理时延
+    optional double gnss_stamp = 4;  // 管理面时间戳，基本可忽略
+    optional SensorStamp sensor_stamp = 5;  // 原始传感器的数据面时间戳，异源数据的时间戳
+    optional double data_stamp = 6;  // 算法同步、运算后时间戳(数据产生时刻的时间)，主要用于算法对异源数据做时间对齐和补偿
+    optional StatusPb status = 8;
+}

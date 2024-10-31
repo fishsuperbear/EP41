@@ -1,0 +1,107 @@
+[
+    {
+        "key": "describe",
+        "value": {
+            "string": "config server config"
+        },
+        "checksum": 2704349418
+    },
+    {
+        "key": "version",
+        "value": {
+            "string": "2.0.0"
+        },
+        "checksum": 2704349418
+    },
+    {
+        "key": "HostId",
+        "value": {
+            "uint32": 1
+        },
+        "checksum": 2704349418
+    },
+    {
+        "key": "SomeIpInstanceId",
+        "value": {
+            "uint32": 1
+        },
+        "checksum": 2704349418
+    },
+    {
+        "key": "BoxId",
+        "value": {
+            "uint32": 1
+        },
+        "checksum": 2704349418
+    },
+    {
+        "key": "ProcName",
+        "value": {
+            "string": "config_server"
+        },
+        "checksum": 2704349418
+    },
+    {
+        "key": "NodeId",
+        "value": {
+            "uint32": 8704
+        },
+        "checksum": 2704349418
+    },
+    {
+        "key": "LogId",
+        "value": {
+            "string": "CFG"
+        },
+        "checksum": 2704349418
+    },
+    {
+        "key": "LogLevel",
+        "value": {
+            "uint32": 4
+        },
+        "checksum": 2704349418
+    },
+    {
+        "key": "LogMode",
+        "value": {
+            "uint32": 1
+        },
+        "checksum": 2704349418
+    },
+    {
+        "key": "ParamStoreInterval",
+        "value": {
+            "uint32": 30
+        },
+        "checksum": 2704349418
+    },
+    {
+        "key": "Prefix",
+        "value": {
+            "string": "/opt/platform/mdc_platform/runtime_service/config_server/conf"
+        },
+        "checksum": 2704349418
+    },
+    {
+        "key": "StorageDir",
+        "value": {
+            "string": "/opt/cfg/conf_run/cfg"
+        },
+        "checksum": 2704349418
+    },
+    {
+        "key": "StorageBakDir",
+        "value": {
+            "string": "/opt/cfg/bak/cfg"
+        },
+        "checksum": 2704349418
+    },
+    {
+        "key": "FaultItemFile",
+        "value": {
+            "string": "cfg_fault_item.json"
+        },
+        "checksum": 2704349418
+    }
+]

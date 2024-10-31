@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+message UdsDataMethod {
+  map<string, string> meta_info = 1;
+  uint32 sid = 2;
+  uint32 subid = 3;
+  uint32 resp_ack = 4;
+  uint32 data_len = 5;
+  bytes data_vec = 6;
+}
+
+message UpdateStatusMethod {
+  uint32 update_status = 1;
+}
+
+message UdsRawDataReqMethod {
+  uint32 sa = 1;
+  uint32 ta = 2;
+  uint32 bus_type = 3;
+  bytes data_vec = 4;
+}
+
+message UdsRawDataRespMethod {
+  uint32 sa = 1;
+  uint32 ta = 2;
+  uint32 bus_type = 3;
+  uint32 result = 4;
+  bytes data_vec = 5;
+}

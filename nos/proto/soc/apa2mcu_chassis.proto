@@ -1,0 +1,326 @@
+syntax = "proto2";
+
+package hozon.soc;
+
+import "proto/common/header.proto";
+import "proto/common/types.proto";
+
+message Apa2Chassis {
+   optional AlgCANFD_Msg8F CANFD_Msg8F = 1;
+   optional AlgCANFD_MsgFE CANFD_MsgFE = 2;
+   optional AlgCANFD_Msg190 CANFD_Msg190 = 3;
+   optional AlgCANFD_Msg191 CANFD_Msg191 = 4;
+   optional AlgCANFD_Msg192 CANFD_Msg192 = 5;
+   optional AlgCANFD_Msg194 CANFD_Msg194 = 6;
+   optional AlgCANFD_Msg196 CANFD_Msg196 = 7;
+   optional AlgCANFD_Msg210 CANFD_Msg210 = 8;
+   optional AlgCANFD_Msg265 CANFD_Msg265 = 9;
+   optional AlgCANFD_Msg255 CANFD_Msg255 = 10;
+   optional AlgCANFD_Msg233 CANFD_Msg233 = 11;
+   
+}
+
+// match to mcu , all uint8 
+message AlgCANFD_MsgFE {
+    optional uint32 ADCS4_AVM_DayNightStatus = 1;
+    optional uint32 ADCS4_AVM_Sts =  2;
+    optional uint32 ADCS4_RPA_RemoteParkFinishReq =  3;
+    optional uint32 ADCS4_PA_failinfo =  4;
+    optional uint32 ADCS4_HPA_failinfo =  5;
+    optional uint32 ADCS4_AVM_SysSoundIndication = 6;
+    optional uint32 ADCS4_APA_FunctionMode = 7;
+    optional uint32 ADCS4_Text = 8;
+    optional uint32 ADCS4_ParkingswithReq = 9;
+    optional uint32 ADCS4_Slotavaliable = 10;
+    optional uint32 ADCS4_HPA_deleteMapSt = 11;
+    optional uint32 ADCS4_HPA_uploadMapSt = 12;
+    optional uint32 ADCS4_ParkingTime = 13;   // uint16
+    optional uint32 ADCS4_HPAWarningInfo = 14;
+    optional uint32 ADCS4_AVM_vedioReq = 15;
+    optional uint32 ADCS4_HPA_FunctionMode = 16;
+    optional uint32 ADCS4_NNS_FunctionMode = 17;
+    optional uint32 ADCS4_TractionswithReq = 18;
+    optional uint32 ADCS4_RPA_FunctionMode = 19;
+    optional uint32 ADCS4_GMWarnState = 20;
+    optional uint32 ADCS4_GMState = 21;
+    optional uint32 ADCS4_locationSt = 22;
+    optional uint32 ADCS4_GMWorkState = 23;
+    optional uint32 ADCS4_DCWworkSt = 24;
+    optional uint32 ADCS4_DCWposition = 25;
+    optional uint32 ADCS4_DCWlevel = 26;
+    optional uint32 ADCS4_DCWtext = 27;
+    optional uint32 ADCS4_GMS_text = 28;
+    optional uint32 ADCS4_GMS_Failinfo = 29;
+    optional uint32 ADCS4_TBA_Distance = 30;
+    optional uint32 ADCS4_FindCarAvmStatus = 31;
+}
+
+// match to mcu, all uint8
+message AlgCANFD_Msg255 {
+    optional uint32 ADCS13_HPA_ONPath_ID1 = 1;
+}
+
+// match to mcu, all uint8
+message AlgCANFD_Msg265 {
+    optional uint32 ADCS1_MOD_WorkSts = 1;
+    optional uint32 ADCS1_MOD_AlarmSts = 2;
+}
+
+// match to mcu, all uint8
+message AlgCANFD_Msg210 {
+    optional uint32 ADCS9_AVM_MODdetectionSts = 1;
+    optional uint32 ADCS9_HPA_OnOffSetSts = 2;
+    optional uint32 ADCS9_HPA_CrossingNumber = 3;
+}
+
+message AlgCANFD_Msg196 {
+    optional float ADCS5_RPA_slot_ID_10_P0_X = 1;
+    optional float ADCS5_RPA_slot_ID_10_P0_Y = 2;
+    optional float ADCS5_RPA_slot_ID_10_P1_X = 3;
+    optional float ADCS5_RPA_slot_ID_10_P1_Y = 4;
+    optional float ADCS5_RPA_slot_ID_10_P2_X = 5;
+    optional float ADCS5_RPA_slot_ID_10_P2_Y = 6;
+    optional float ADCS5_RPA_slot_ID_10_P3_X = 7;
+    optional float ADCS5_RPA_slot_ID_10_P3_Y = 8;
+    optional float ADCS5_RPA_slot_Angle10 = 9;
+    optional float ADCS5_RPA_ParkingSlotDepth10 = 10;
+    optional float ADCS5_RPA_ParkingSlotWidth10 = 11;
+    optional uint32 ADCS5_RPA_slot_ID_10_Status = 12;  // uint8
+    optional uint32 ADCS5_RPA_ParkingSlotType10 = 13;  // uint8
+    optional uint32 ADCS5_RPA_ParkingSlotDirection10 = 14;  // uint8
+    optional float ADCS5_RPA_slot_ID_11_P0_X = 15;
+    optional float ADCS5_RPA_slot_ID_11_P0_Y = 16;
+    optional float ADCS5_RPA_slot_ID_11_P1_X = 17;
+    optional float ADCS5_RPA_slot_ID_11_P1_Y = 18;
+    optional float ADCS5_RPA_slot_ID_11_P2_X = 19;
+    optional float ADCS5_RPA_slot_ID_11_P2_Y = 20;
+    optional float ADCS5_RPA_slot_ID_11_P3_X = 21;
+    optional float ADCS5_RPA_slot_ID_11_P3_Y = 22;
+    optional float ADCS5_RPA_slot_Angle11 = 23;
+    optional float ADCS5_RPA_ParkingSlotDepth11 = 24;
+    optional float ADCS5_RPA_ParkingSlotWidth11 = 25;
+    optional uint32 ADCS5_RPA_slot_ID_11_Status = 26;  // uint8
+    optional uint32 ADCS5_RPA_ParkingSlotType11 = 27;  // uint8
+    optional uint32 ADCS5_RPA_ParkingSlotDirection11 = 28;  // uint8
+    optional float ADCS5_RPA_slot_ID_12_P0_X = 29;
+    optional float ADCS5_RPA_slot_ID_12_P0_Y = 30;
+    optional float ADCS5_RPA_slot_ID_12_P1_X = 31;
+    optional float ADCS5_RPA_slot_ID_12_P1_Y = 32;
+    optional float ADCS5_RPA_slot_ID_12_P2_X = 33;
+    optional float ADCS5_RPA_slot_ID_12_P2_Y = 34;
+    optional float ADCS5_RPA_slot_ID_12_P3_X = 35;
+    optional float ADCS5_RPA_slot_ID_12_P3_Y = 36;
+    optional float ADCS5_RPA_slot_Angle12 = 37;
+    optional float ADCS5_RPA_ParkingSlotDepth12 = 38;
+    optional float ADCS5_RPA_ParkingSlotWidth12 = 39;
+    optional uint32 ADCS5_RPA_slot_ID_12_Status = 40;
+    optional uint32 ADCS5_RPA_ParkingSlotType12 = 41;
+    optional uint32 ADCS5_RPA_ParkingSlotDirection12 = 42;
+}
+// match statemachine ep40_canfd_adcs_soc_mcu_rx_cyc_232_t
+message AlgCANFD_Msg192 {
+    optional float ADCS7_RPA_slot_ID_7_P0_X = 1;
+    optional float ADCS7_RPA_slot_ID_7_P0_Y = 2;
+    optional float ADCS7_RPA_slot_ID_7_P1_X = 3;
+    optional float ADCS7_RPA_slot_ID_7_P1_Y = 4;
+    optional float ADCS7_RPA_slot_ID_7_P2_X = 5;
+    optional float ADCS7_RPA_slot_ID_7_P2_Y = 6;
+    optional float ADCS7_RPA_slot_ID_7_P3_X = 7;
+    optional float ADCS7_RPA_slot_ID_7_P3_Y = 8;
+    optional float ADCS7_RPA_slot_Angle7 = 9;
+    optional float ADCS7_RPA_ParkingSlotDepth7 = 10;
+    optional float ADCS7_RPA_ParkingSlotWidth7 = 11;
+    optional uint32 ADCS7_RPA_slot_ID_7_Status = 12;
+    optional uint32 ADCS7_RPA_ParkingSlotType7 = 13;
+    optional uint32 ADCS7_RPA_ParkingSlotDirection7 = 14;
+    optional float ADCS7_RPA_slot_ID_8_P0_X = 15;
+    optional float ADCS7_RPA_slot_ID_8_P0_Y = 16;
+    optional float ADCS7_RPA_slot_ID_8_P1_X = 17;
+    optional float ADCS7_RPA_slot_ID_8_P1_Y = 18;
+    optional float ADCS7_RPA_slot_ID_8_P2_X = 19;
+    optional float ADCS7_RPA_slot_ID_8_P2_Y = 20;
+    optional float ADCS7_RPA_slot_ID_8_P3_X = 21;
+    optional float ADCS7_RPA_slot_ID_8_P3_Y = 22;
+    optional float ADCS7_RPA_slot_Angle8 = 23;
+    optional float ADCS7_RPA_ParkingSlotDepth8 = 24;
+    optional float ADCS7_RPA_ParkingSlotWidth8 = 25;
+    optional uint32 ADCS7_RPA_slot_ID_8_Status = 26;
+    optional uint32 ADCS7_RPA_ParkingSlotType8 = 27;
+    optional uint32 ADCS7_RPA_ParkingSlotDirection8 = 28;
+}
+
+// match from AlgCANFD_Msg8F 
+message AlgCANFD_Msg8F {
+    optional uint32 ADCS11_Parking_WorkSts = 1;
+    optional uint32 ADCS11_PA_Recover = 2;
+    optional uint32 ADCS11_TurnLampReq = 3;
+    optional uint32 ADCS11_SetPathwayWorkSts = 4;
+    optional uint32 ADCS11_HPAGuideSts = 5;
+    optional uint32 ADCS11_HPA_WorkSts = 6;
+    optional uint32 ADCS11_APA_RemoteLockCtrl = 7;
+    optional uint32 ADCS11_APA_requestMirrorFoldSt = 8;
+    optional uint32 ADCS11_PrkngFctnModeReq = 9;
+    optional uint32 ADCS11_HPAPathlearning_WorkSts = 10;
+    optional uint32 ADCS11_HPAPathwaytoCloud_WorkSts = 11;
+    optional uint32 ADCS11_APA_RemoteStartReq = 12;
+    optional uint32 ADCS11_APA_RemoteShutdownReq = 13;
+    optional uint32 ADCS11_MirrorFoldrequest = 14;
+    optional uint32 ADCS11_PA_ParkingFnMd = 15;
+    optional uint32 ADCS11_HPA_PathlearningSt = 16;
+    optional uint32 ADCS11_HPA_Path_exist = 17;
+    optional uint32 ADCS11_PA_PickSt = 18;
+    optional uint32 ADCS11_PA_StopReq = 19;
+    optional uint32 ADCS11_HPA_Pathavailable_ID2 = 20;
+    optional uint32 ADCS11_HPA_Pathavailable_ID1 = 21;
+    optional uint32 ADCS11_Currentgear = 22;
+    optional uint32 ADCS11_HPA_learnpathdistance = 23;
+    optional uint32 ADCS11_PA_lampreq = 24;
+    optional uint32 ADCS11_HPA_BacktoEntrance = 25;
+    optional uint32 ADCS11_HPA_BacktoStart = 26;
+    optional uint32 ADCS11_HighBeam = 27;
+    optional uint32 ADCS11_LowBeam = 28;
+}
+
+// match from AlgCANFD_Msg190
+message  AlgCANFD_Msg190 {
+    optional float ADCS5_RPA_slot_ID_1_P0_X = 1;
+    optional float ADCS5_RPA_slot_ID_1_P0_Y = 2;
+    optional float ADCS5_RPA_slot_ID_1_P1_X = 3;
+    optional float ADCS5_RPA_slot_ID_1_P1_Y = 4;
+    optional float ADCS5_RPA_slot_ID_1_P2_X = 5;
+    optional float ADCS5_RPA_slot_ID_1_P2_Y = 6;
+    optional float ADCS5_RPA_slot_ID_1_P3_X = 7;
+    optional float ADCS5_RPA_slot_ID_1_P3_Y = 8;
+    optional float ADCS5_RPA_slot_Angle1 = 9;
+    optional float ADCS5_RPA_ParkingSlotDepth1 = 10;
+    optional float ADCS5_RPA_ParkingSlotWidth1 = 11;
+    optional uint32 ADCS5_RPA_slot_ID_1_Status = 12;
+    optional uint32 ADCS5_RPA_ParkingSlotType1 = 13;
+    optional uint32 ADCS5_RPA_ParkingSlotDirection1 = 14;
+    optional float ADCS5_RPA_slot_ID_2_P0_X = 15;
+    optional float ADCS5_RPA_slot_ID_2_P0_Y = 16;
+    optional float ADCS5_RPA_slot_ID_2_P1_X = 17;
+    optional float ADCS5_RPA_slot_ID_2_P1_Y = 18;
+    optional float ADCS5_RPA_slot_ID_2_P2_X = 19;
+    optional float ADCS5_RPA_slot_ID_2_P2_Y = 20;
+    optional float ADCS5_RPA_slot_ID_2_P3_X = 21;
+    optional float ADCS5_RPA_slot_ID_2_P3_Y = 22;
+    optional float ADCS5_RPA_slot_Angle2 = 23;
+    optional float ADCS5_RPA_ParkingSlotDepth2 = 24;
+    optional float ADCS5_RPA_ParkingSlotWidth2 = 25;
+    optional uint32 ADCS5_RPA_slot_ID_2_Status = 26;
+    optional uint32 ADCS5_RPA_ParkingSlotType2 = 27;
+    optional uint32 ADCS5_RPA_ParkingSlotDirection2 = 28;
+    optional float ADCS5_RPA_slot_ID_3_P0_X = 29;
+    optional float ADCS5_RPA_slot_ID_3_P0_Y = 30;
+    optional float ADCS5_RPA_slot_ID_3_P1_X = 31;
+    optional float ADCS5_RPA_slot_ID_3_P1_Y = 32;
+    optional float ADCS5_RPA_slot_ID_3_P2_X = 33;
+    optional float ADCS5_RPA_slot_ID_3_P2_Y = 34;
+    optional float ADCS5_RPA_slot_ID_3_P3_X = 35;
+    optional float ADCS5_RPA_slot_ID_3_P3_Y = 36;
+    optional float ADCS5_RPA_slot_Angle3 = 37;
+    optional float ADCS5_RPA_ParkingSlotDepth3 = 38;
+    optional float ADCS5_RPA_ParkingSlotWidth3 = 39;
+    optional uint32 ADCS5_RPA_slot_ID_3_Status = 40;
+    optional uint32 ADCS5_RPA_ParkingSlotType3 = 41;
+    optional uint32 ADCS5_RPA_ParkingSlotDirection3 = 42;
+} 
+// from mcu 
+message AlgCANFD_Msg194 {
+    optional float ADCS5_RPA_slot_ID_9_P0_X = 1;
+    optional float ADCS5_RPA_slot_ID_9_P0_Y = 2;
+    optional float ADCS5_RPA_slot_ID_9_P1_X = 3;
+    optional float ADCS5_RPA_slot_ID_9_P1_Y = 4;
+    optional float ADCS5_RPA_slot_ID_9_P2_X = 5;
+    optional float ADCS5_RPA_slot_ID_9_P2_Y = 6;
+    optional float ADCS5_RPA_slot_ID_9_P3_X = 8;
+    optional float ADCS5_RPA_slot_ID_9_P3_Y = 9;
+    optional float ADCS5_RPA_slot_Angle9 = 10;
+    optional float ADCS5_RPA_ParkingSlotDepth9 = 11;
+    optional float ADCS5_RPA_ParkingSlotWidth9 = 12;
+     // all uint8
+    optional uint32 ADCS5_RPA_slot_ID_9_Status = 13;
+    optional uint32 ADCS5_RPA_ParkingSlotType9 = 14;
+    optional uint32 ADCS5_RPA_ParkingSlotDirection9 = 15;
+    optional uint32 ADCS8_PA_warninginfo = 16;
+    optional uint32 ADCS8_PA_FPAS_SensorFaultStsFRC = 17;
+    optional uint32 ADCS8_PA_FPAS_SensorFaultStsFRM = 18;
+    optional uint32 ADCS8_PA_FPAS_SensorFaultStsFLM = 19;
+    optional uint32 ADCS8_PA_FPAS_SensorFaultStsFLC = 20;
+    optional uint32 ADCS8_PA_RPAS_SensorFaultStsSRR = 21;
+    optional uint32 ADCS8_PA_RPAS_SensorFaultStsSRL = 22;
+    optional uint32 ADCS8_PA_FPAS_SensorFaultStsSFR = 23;
+    optional uint32 ADCS8_PA_FPAS_SensorFaultStsSFL = 24;
+    optional uint32 ADCS8_PA_RPAS_SensorFaultStsRRC = 25;
+    optional uint32 ADCS8_PA_RPAS_SensorFaultStsRRM = 26;
+    optional uint32 ADCS8_PA_RPAS_SensorFaultStsRLM = 27;
+    optional uint32 ADCS8_PA_RPAS_SensorFaultStsRLC = 28;
+    optional uint32 ADCS8_Beepreq = 29;
+    optional uint32 ADCS8_PA_WarningType = 30;
+    optional uint32 ADCS8_Mod_Object_MovingDirection = 31;
+    optional uint32 ADCS8_TBA_text = 32;
+    optional uint32 ADCS8_AVM_MODWarning = 33;
+}
+
+//  match  ep40_canfd_adcs_soc_mcu_rx_cyc_231_t 
+message AlgCANFD_Msg191 {
+    optional float ADCS6_RPA_slot_ID_4_P0_X = 1;
+    optional float ADCS6_RPA_slot_ID_4_P0_Y = 2;
+    optional float ADCS6_RPA_slot_ID_4_P1_X = 3;
+    optional float ADCS6_RPA_slot_ID_4_P1_Y = 4;
+    optional float ADCS6_RPA_slot_ID_4_P2_X = 5;
+    optional float ADCS6_RPA_slot_ID_4_P2_Y = 6;
+    optional float ADCS6_RPA_slot_ID_4_P3_X = 7;
+    optional float ADCS6_RPA_slot_ID_4_P3_Y = 8;
+    optional float ADCS6_RPA_slot_Angle4 = 9;
+    optional float ADCS6_RPA_ParkingSlotDepth4 = 10;
+    optional float ADCS6_RPA_ParkingSlotWidth4 = 11;
+    optional uint32 ADCS6_RPA_slot_ID_4_Status = 12;
+    optional uint32 ADCS6_RPA_ParkingSlotType4 = 13;
+    optional uint32 ADCS6_RPA_ParkingSlotDirection4 = 14;
+    optional float ADCS6_RPA_slot_ID_5_P0_X = 15;
+    optional float ADCS6_RPA_slot_ID_5_P0_Y = 16;
+    optional float ADCS6_RPA_slot_ID_5_P1_X = 17;
+    optional float ADCS6_RPA_slot_ID_5_P1_Y = 18;
+    optional float ADCS6_RPA_slot_ID_5_P2_X = 19;
+    optional float ADCS6_RPA_slot_ID_5_P2_Y = 20;
+    optional float ADCS6_RPA_slot_ID_5_P3_X = 21;
+    optional float ADCS6_RPA_slot_ID_5_P3_Y = 22;
+    optional float ADCS6_RPA_slot_Angle5 = 23;
+    optional float ADCS6_RPA_ParkingSlotDepth5 = 24;
+    optional float ADCS6_RPA_ParkingSlotWidth5 = 25;
+    optional uint32 ADCS6_RPA_slot_ID_5_Status = 26;
+    optional uint32 ADCS6_RPA_ParkingSlotType5 = 27;
+    optional uint32 ADCS6_RPA_ParkingSlotDirection5 = 28;
+    optional float ADCS6_RPA_slot_ID_6_P0_X = 29;
+    optional float ADCS6_RPA_slot_ID_6_P0_Y = 30;
+    optional float ADCS6_RPA_slot_ID_6_P1_X = 31;
+    optional float ADCS6_RPA_slot_ID_6_P1_Y = 32;
+    optional float ADCS6_RPA_slot_ID_6_P2_X = 33;
+    optional float ADCS6_RPA_slot_ID_6_P2_Y = 34;
+    optional float ADCS6_RPA_slot_ID_6_P3_X = 35;
+    optional float ADCS6_RPA_slot_ID_6_P3_Y = 36;
+    optional float ADCS6_RPA_slot_Angle6 = 37;
+    optional float ADCS6_RPA_ParkingSlotDepth6 = 38;
+    optional float ADCS6_RPA_ParkingSlotWidth6 = 39;
+    optional uint32 ADCS6_RPA_slot_ID_6_Status = 40;
+    optional uint32 ADCS6_RPA_ParkingSlotType6 = 41;
+    optional uint32 ADCS6_RPA_ParkingSlotDirection6 = 42;
+} 
+//  match  ep40_canfd_mcu_soc_v4_1_adcs_soc_mcu_rx_cyc_233_t ,
+//  all type uint8_t
+message AlgCANFD_Msg233 {
+    optional uint32 soc_adas_ihbc_sys_state = 1;   // uint8_t
+    optional uint32 soc_adas_ihbc_stat = 2;  // uint8_t
+    optional uint32 soc_tsr_state = 3;     // uint8_t
+    optional uint32 soc_tsr_overspeed_on_off_set = 4;
+    optional uint32 soc_tsr_limit_overspeed_set = 5;
+    optional uint32 soc_tsr_speed_sign = 6;
+    optional uint32 soc_tsr_speed_warn_state = 7;
+    optional uint32 soc_tsr_forbidden_sign = 8;
+    optional uint32 soc_tsr_system_fault_status = 9;
+    optional uint32 soc_tsr_left_light_color = 10;
+    optional uint32 soc_tsr_str_light_color = 11;
+    optional uint32 soc_tsr_right_light_color = 12;
+}

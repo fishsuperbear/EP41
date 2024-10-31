@@ -1,0 +1,165 @@
+{
+    "services" :
+    [
+        {
+            "short_name" : "service_28673",
+            "service" : 28673,
+            "major_version" : 1,
+            "minor_version" : 0,
+            "events" :
+            [
+                {
+                    "short_name" : "event_16385",
+                    "event" : 16385,
+                    "serializer" : "SOMEIP",
+                    "segment_length" : 1408,
+                    "separation_time" : 0,
+                    "communication_type" : "UDP"
+                }
+            ],
+            "methods" :
+            [
+                {
+                    "short_name" : "method_12289",
+                    "method" : 12289,
+                    "segment_length_request" : 1400,
+                    "segment_length_response" : 1400,
+                    "separation_time_request" : 1000,
+                    "separation_time_response" : 2000,
+                    "communication_type" : "UDP",
+                    "fire_and_forget" : false
+                },
+                {
+                    "short_name" : "method_12290",
+                    "method" : 12290,
+                    "segment_length_request" : 1400,
+                    "segment_length_response" : 1400,
+                    "separation_time_request" : 1000,
+                    "separation_time_response" : 2000,
+                    "communication_type" : "UDP",
+                    "fire_and_forget" : true
+                }
+            ],
+            "eventgroups" :
+            [
+                {
+                    "short_name" : "eventgroup_4353",
+                    "eventgroup" : 4353,
+                    "events" : [16385]
+                }
+            ]
+        }
+    ],
+    "required_instances" :
+    [
+        {
+            "service" : 28673,
+            "major_version" : 1,
+            "short_name" : "required_instances_28673_1",
+            "instance" : 1,
+            "udp_port" : 30503,
+            "udp_reuse" : false,
+            "udp_collection" : 1408,
+            "find_time_reference" : "sd_client_find_times_1",
+            "ethernet_reference" : "network_eno1",
+            "method_attribute" :
+            [
+                {
+                    "method" : 12289,
+                    "udp_collection_buffer_timeout" : 0,
+                    "udp_collection_trigger" : "ALWAYS"
+                },
+                {
+                    "method" : 12290,
+                    "udp_collection_buffer_timeout" : 0,
+                    "udp_collection_trigger" : "ALWAYS"
+                }
+            ],
+            "e2e_method_protection_attribute" :
+            [
+                {
+                    "method" : 12289,
+                    "data_id" : 102
+                },
+                {
+                    "method" : 12290,
+                    "data_id" : 101
+                }
+            ],
+            "e2e_event_protection_attribute" :
+            [
+                {
+                    "event" : 16385,
+                    "data_id" : 1
+                }
+            ],
+            "required_eventgroups" :
+            [
+                {
+                    "eventgroup" : 4353,
+                    "subscribe_time_reference": "sd_client_subscribe_times_1"
+                }
+            ]
+        }
+    ],
+    "provided_instances" :
+    [
+    ],
+    "sd_server_offer_times" :
+    [
+        {
+            "sd_time_name" : "sd_server_offer_times_1",
+            "initial_delay_min" : 10,
+            "initial_delay_max" : 50,
+            "repetitions_base_delay" : 50,
+            "repetitions_max" : 3,
+            "ttl" : 5,
+            "cyclic_offer_delay" : 3000,
+            "request_response_delay_min" : 10,
+            "request_response_delay_max" : 50
+        }
+    ],
+    "sd_client_find_times" :
+    [
+        {
+            "sd_time_name" : "sd_client_find_times_1",
+            "initial_delay_min" : 10,
+            "initial_delay_max" : 50,
+            "repetitions_base_delay" : 50,
+            "repetitions_max" : 3,
+            "ttl" : 5
+        }
+    ],
+    "sd_client_subscribe_times" :
+    [
+        {
+            "sd_time_name" : "sd_client_subscribe_times_1",
+            "request_response_delay_min" : 10,
+            "request_response_delay_max" : 50,
+            "subscribe_retry_times" : 2,
+            "subscribe_retry_delay" : 3,
+            "subscribe_ttl" : 5
+        }
+    ],
+    "sd_server_subscribe_times" :
+    [
+        {
+            "sd_time_name" : "sd_server_subscribe_times_1",
+            "request_response_delay_min" : 10,
+            "request_response_delay_max" : 50
+        }
+    ],
+    "network_endpoints" :
+    [
+        {
+            "network_id" : "network_eno1",
+            "interface_name" : "eno1",
+            "ip_addr_type" : 4,
+            "subnet_mask" : "255.255.255.0",
+            "priority" : 1,
+            "ttl" : 255,
+            "multicast_ip_addr" : "237.127.3.1",
+            "multicast_port" : 30490
+        }
+    ]
+}

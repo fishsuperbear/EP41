@@ -1,0 +1,19 @@
+#ifndef CRYPTO_ERROR_CODE_H
+#define CRYPTO_ERROR_CODE_H
+
+
+namespace hozon {
+namespace netaos {
+namespace crypto {
+
+enum CryptoErrorCode {
+    CRYPTO_ERROR_BASE                    = 0X00,
+    CRYPTO_ERROR_MAX_LEN
+};
+
+
+
+}  // namespace crypto
+}  // namespace netaos
+}  // namespace hozon
+#endif  // CRYPTO_ERROR_CODE_H

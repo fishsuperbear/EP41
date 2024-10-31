@@ -1,0 +1,11 @@
+{
+    "path_for_upgrade":"/ota/",
+    "path_for_work":"/ota/hz_update/",
+    "path_for_unzip":"/ota/hz_update/package_unzip/",
+    "path_for_bin_files":"/ota/hz_update/bin_files/",
+    "path_for_update_tmp":"/ota/hz_update/tmp/",
+    "path_for_recovery": "/ota/recovery/",
+    "update_manager_logic_addr" : "0x0F00",
+    "use_double_compress" : false,
+    "same_version_update" : false
+}

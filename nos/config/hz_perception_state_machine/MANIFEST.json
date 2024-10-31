@@ -1,0 +1,16 @@
+{
+  "process_name": "hz_perception_state_machineProcess",
+  "executable": "hz_perception_state_machine",
+  "restart_attempt_num": "2",
+  "shall_run_ons": [],
+  "mode_of_order": [
+    "Normal.2"
+  ],
+  "scheduling_policy": "RR",
+  "scheduling_priority": "60",
+  "arguments": [],
+  "environments": [
+    "LD_LIBRARY_PATH=/app/lib",
+    "NETA_CM_QOS_PATH=/app/runtime_service/hz_perception_state_machine/etc/default_qos.json"
+  ]
+}

@@ -1,0 +1,26 @@
+rosbag2_bagfile_information:
+  version: 5
+  storage_identifier: mcap
+  duration:
+    nanoseconds: 601476182
+  starting_time:
+    nanoseconds_since_epoch: 46194360
+  message_count: 10
+  topics_with_message_count:
+    - topic_metadata:
+        name: HelloWorldTopic
+        type: HelloWorld
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 10
+  compression_format: ""
+  compression_mode: ""
+  relative_file_paths:
+    - my_bag_0.mcap
+  files:
+    - path: my_bag_0.mcap
+      starting_time:
+        nanoseconds_since_epoch: 46194360
+      duration:
+        nanoseconds: 601476182
+      message_count: 10

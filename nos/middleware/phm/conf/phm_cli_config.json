@@ -1,0 +1,9 @@
+{
+  "LogAppName": "PHM",
+  "LogAppDescription": "phm_client",
+  "LogContextName": "PHM",
+  "LogLevel": 3, // PHM_VERBOSE=0,PHM_DEBUG,PHM_INFO,PHM_WARN,PHM_ERROR,PHM_FATAL,PHM_OFF=6
+  "LogMode": 2, // PHM_CONSOLE=0,PHM_FILE,PHM_CONSOLE_FILE=2
+  "DebugSwitch": "off",
+  "SystemCheckTime": 60000
+}

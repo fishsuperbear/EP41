@@ -1,0 +1,157 @@
+syntax = "proto2";
+
+package hozon.functionmanager;
+
+message AVPDebugStr {
+  repeated string avp = 1;
+}
+
+message AvpFctIn{
+  enum StateType{
+    NOSTTYPE = 0; //default
+    APA = 1; // apa park
+    RPA = 2; // remote park 
+    DAPA = 3; // user-defined park
+    TBA = 4; //trace back 
+    LAPA_MAPPING = 5;//ALL_IN
+    LAPA = 6; // HPP
+    AVP = 7; // valet park
+    ISM = 8; //summom mode
+    NTP = 9; //NTP pick up mode
+    LOCALIZATION = 10; // Localization
+  }
+
+  enum SysCmdType{
+    NOCMDTYPE = 0; 
+    SYSTEMON = 1; 
+    PARKINPOLIT = 2; 
+    PARKINCONTROL = 3; 
+    PARKINGOUTSEARCH = 4;
+    QUITCONTROL = 5;   
+    LEFTPARKOUTCONTROL = 10; 
+    RIGHTPARKOUTCONTROL = 11;
+    FRONTPARKOUTCONTROL = 12;
+    BACKPARKOUTCONTROL = 13;
+    BRAKECONTROL = 14;
+    RECOVERCONTROL = 15;  
+    FORWARDCONTROL = 16;
+    BACKWARDCONTROL = 17;
+    TBACONTROL = 18;
+    NNSCONTROL = 19;
+    NTPCONTROL = 20;
+    TESTCONTROLMODE = 100;
+  }
+
+  enum SysRunState{
+    STOP = 0; 
+    PARKSTART = 1; 
+    PARKCONFIG = 2; 
+    PARKING = 3;
+    PAUSE = 4;
+    QUIT = 5;
+    PARKFINISH = 6;
+    COUNT = 7;
+    ERROR = 8;
+    CRUISESTART = 9;
+    CRUSING = 10;
+    CRUISINGFINISHED = 11;
+    STRAIGHTCONTROL = 12;
+    STRAIGHTBRAKE = 13;
+    TBASTART = 14;
+    TBAING = 15;
+    TBAFINISHED = 16;
+    NNSSTART = 17;
+    NNSING = 18;
+    NNSFINISHED = 19;
+    NTPSTART = 20;
+    NTPING = 21;
+    NTPFINISHED = 22;
+    INVERTIBLE = 23;
+  }
+
+  enum WarningInfoErrorType{
+    NO_ERROR = 0;
+    DOOR_NOT_CLOSED_0x1 = 1;
+    TRUNK_NOT_CLOSED_0x2 = 2;
+    CABIN_NOT_CLOSED_0x3 = 3;
+    SEAT_BELT_NOT_ON_0x4 = 4;
+    DOOR_IS_OPEN_0x5 = 5;
+    TRUNK_IS_OPEN_0x6 = 6;
+    CABIN_IS_OPEN_0x7 = 7;
+    SEAT_BELT_IS_OFF_0x8 = 8;
+    BRAKE_PRESSED_0x9 = 9;
+    WAIT_OBSTALE_0xA = 10;
+    PASUE_OVER_COUNTER_0xB = 11;
+    PAUSE_OVER_TIME_0xC = 12;
+    RELATED_SYSTEM_ERROR_0xD = 13;
+    PLANNING_ERROR_0xE = 14;
+    PARKING_OVER_SPEED_0xF = 15;
+    PARKING_OVER_TIME_0x10 = 16;
+    GEAR_SHIFT_OVER_COUNTER_0x11 = 17;
+    DRIVER_INTERVENTION_0x12 = 18;
+    ADAS_IS_ACTIVE_0x13 = 19;
+    SLOPE_OVER_RANGE_0x14 = 20;
+    HEAVY_RAINNING_0x15 = 21;
+    POWER_INSUFFICIENT_0x16 = 22;
+    PARKING_SPACE_ERROR_0x17 = 23;
+    MIRROR_IS_FOLDED_0x18 = 24;
+    BLUETOOTH_CONNECTION_ERROR_0x19 = 25;
+    PRA_BUTTON_OFF_0x1A = 26;
+    SYSTEM_QUIT_0x1B = 27;
+    TIRE_PRESSURE_WARNING_0x1C = 28;
+    NTP_PARKING_DOORISOPEN_0x1D = 29;
+    NTP_PARKING_TRUNKISOPEN_0x1E = 30;
+    NTP_PARKING_CABINISOPEN_0x1F = 31;
+    VEHICLE_CRASHED_0x2B = 43;
+    VEHICLE_BLOCKED_0x2C = 44;
+    ENVIRONMENT_ERROR_0x2F = 47;
+    UNINTENDED_ERROR_0x3A = 58;
+    NTP_MAPPING_DOORISOPEN_0x3D = 61;
+    NTP_MAPPING_TRUNKISOPEN_0x3E = 62;
+    NTP_MAPPING_CABINISOPEN_0x3F = 63;
+    NTP_PARKING_LATOVERRIDE_0x49 = 73;
+    NTP_PARKING_GEARINTERVENE_0x4A = 74;
+    NTP_SYSFAULT_0x4B = 75;
+    NTP_RELATEDSYSTEMERROR_0x4C = 76;
+    NTP_PARKING_TAKEOVERREQ_0x4F = 79;
+    NTP_PARKING_EPBINTERVENE_0x58 = 88;
+    NTP_PARKING_OVERSPEED_0x5A = 90;
+    NTP_PARKING_VEHICLEBLOCKED_0x5C = 92;
+    NTP_PARKING_ENVIRONMENTERROR_0x5D = 93;
+    NTP_PARKING_HANDSHAKEOVERTIME_0x5F = 95;
+    NTP_PARKING_CRUSINGERROR_0x60 = 96;
+    NTP_PARKING_SEATBELTOFF_0x61 = 97;
+  }
+
+  optional StateType sys_mode = 1;
+  optional SysCmdType sys_command = 2;
+  optional SysRunState sys_run_state = 3;
+  optional WarningInfoErrorType sys_warning_info = 4;
+  optional AVPDebugStr avp_debug_strs = 15;
+}
+message AvpFctOut{
+  enum ParkState{
+    NOSTATE = 0;
+    RUNNING = 1;  
+    RUNONCEFAILED = 3;  
+    PLANNINGFAILED = 4;    
+    WAITOBSTACLE = 6;
+    COLLISION = 7;
+    PARKINGNOSPACE = 8; 
+    PARKINGFINISHED = 10;  
+    CRUISINGFINISHED = 11;   
+    MISSIONFINISHED = 12; 
+  }
+  enum FsmStageType{
+    INIT = 0;
+    PARKING = 1;
+    CRUISING = 2;
+  }
+  optional fixed32 iuss_state_obs = 1 [default = 0]; // 0-default; 1-car following; 2-avoid pedestrain
+  optional bool need_replan_stop = 2;
+  optional bool plan_trigger = 3;
+  optional bool control_enable = 4;
+  optional ParkState parking_status = 5 [default = RUNNING];
+  optional AvpFctIn.StateType state_type = 6;
+  optional FsmStageType stage_type = 7 [default = INIT];
+}

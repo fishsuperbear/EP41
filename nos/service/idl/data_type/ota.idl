@@ -1,0 +1,15 @@
+struct uds_data_req_diag2ota
+{
+    map<string, string> meta_info; // sa, ta, ta_type, ip, port
+    uint16 sid;
+    uint16 subid;
+    uint32 data_len;
+    sequence<octet> data_vec;
+};
+
+struct uds_data_resp_ota2diag
+{
+    uint16 sid;
+    uint16 subid;
+    uint8 res_code;
+};

@@ -1,0 +1,53 @@
+%YAML: 1.0
+#该配置提供给用户对关注的故障列表进程注册，用于回调通知
+#支持原始故障/组合故障/自定义组合故障的注册
+#支持聚类的注册，聚类定义参考系统部定义的文档
+
+#app名称
+appName: planning
+
+#聚类故障
+cluster: [
+    r-camera
+]
+
+#故障
+fault:
+    4100: 0-27
+
+#组合
+combination:
+    470: 0
+
+#monitor task[alive|deadline|logic]
+phmMonitor:
+    - monitorType: alive
+      periodMs: 10000
+      expectedIndication: 10
+      minMargin: 1
+      maxMargin: 1
+      checkPointId: [0]
+      faultId: 8005
+      faultObj: 1
+
+    - monitorType: deadline
+      deadlineMinMs: 50
+      deadlineMaxMs: 500
+      checkPointId: [21, 22]
+      faultId: 8006
+      faultObj: 1
+    - monitorType: deadline
+      deadlineMinMs: 50
+      deadlineMaxMs: 500
+      checkPointId: [23, 24]
+      faultId: 8006
+      faultObj: 2
+
+    - monitorType: logic
+      checkPointId: [13, 14, 15]
+      faultId: 8007
+      faultObj: 1
+    - monitorType: logic
+      checkPointId: [16, 17, 18]
+      faultId: 8007
+      faultObj: 2

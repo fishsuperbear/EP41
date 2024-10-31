@@ -1,0 +1,8 @@
+#include "common.idl"
+
+struct CmProtoBuf : IDLBaseType{
+    string name;
+    sequence<char> str;
+};
+
+

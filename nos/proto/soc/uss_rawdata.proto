@@ -1,0 +1,38 @@
+syntax = "proto2";
+
+package hozon.soc;
+
+import "proto/common/header.proto";
+import "proto/common/types.proto";
+
+message UssEcho {
+  optional uint32 echo_num = 1;
+  repeated uint32 distance = 2 [packed = true];
+  repeated uint32 width = 3 [packed = true];
+  repeated uint32 peak = 4 [packed = true];
+  optional uint32 status_error = 5;
+  optional uint32 status_work = 6;
+  optional uint32 wTxSns_Ringtime = 7;
+  optional uint32 counter = 8;
+  optional double system_time = 9;
+  optional uint32 ReservedA = 10;
+  optional uint32 ReservedB = 11;
+}
+
+message UssRawDataSet {
+  optional hozon.common.Header header = 1;
+  optional uint32 counter = 2;
+  optional UssEcho fls_info = 3;
+  optional UssEcho frs_info = 4;
+  optional UssEcho rls_info = 5;
+  optional UssEcho rrs_info = 6;
+  optional UssEcho flc_info = 7;
+  optional UssEcho flm_info = 8;
+  optional UssEcho frm_info = 9;
+  optional UssEcho frc_info = 10;
+  optional UssEcho rlc_info = 11;
+  optional UssEcho rlm_info = 12;
+  optional UssEcho rrm_info = 13;
+  optional UssEcho rrc_info = 14;
+}
+

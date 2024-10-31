@@ -1,0 +1,173 @@
+%YAML:0.0
+
+recvInstances:
+    - name: ego_trajectory
+      type: cm_proxy
+      topic: ego_trajectory
+      domainId: 1
+    - name: ego_planning_dec
+      type: cm_proxy
+      topic: ego_planning_dec
+      domainId: 1
+    - name: ego_to_mcu
+      type: cm_proxy
+      topic: ego_to_mcu
+      domainId: 1
+    - name: warning_info
+      type: cm_proxy
+      topic: warning_info
+      domainId: 1
+    - name: planning_debug
+      type: cm_proxy
+      topic: planning_debug
+      domainId: 1
+    - name: low_spd_bsd
+      type: cm_proxy
+      topic: low_spd_bsd
+      domainId: 1
+
+sendInstances:
+    - name: chassis
+      type: cm_skeleton
+      topic: chassis
+      domainId: 1
+    - name: nnp_localization
+      type: cm_skeleton
+      topic: nnp_localization
+      domainId: 1
+    - name: hpp_localization
+      type: cm_skeleton
+      topic: hpp_localization
+      domainId: 1
+    - name: nnp_fusion_lane
+      type: cm_skeleton
+      topic: nnp_fusion_lane
+      domainId: 1
+    - name: hpp_lane
+      type: cm_skeleton
+      topic: hpp_lane
+      domainId: 1
+    - name: nnp_fusion_freespace
+      type: cm_skeleton
+      topic: nnp_fusion_freespace
+      domainId: 1
+    - name: hpp_freespace
+      type: cm_skeleton
+      topic: hpp_freespace
+      domainId: 1
+    - name: nnp_cam_obj_signal
+      type: cm_skeleton
+      topic: nnp_cam_obj_signal
+      domainId: 1
+    - name: hpp_obj_signal
+      type: cm_skeleton
+      topic: hpp_obj_signal
+      domainId: 1
+    - name: nnp_obj_fusion
+      type: cm_skeleton
+      topic: nnp_obj_fusion
+      domainId: 1
+    - name: hpp_obj_fusion
+      type: cm_skeleton
+      topic: hpp_obj_fusion
+      domainId: 1
+    - name: map_msg
+      type: cm_skeleton
+      topic: map_msg
+      domainId: 1
+    - name: parking_lot
+      type: cm_skeleton
+      topic: parking_lot
+      domainId: 1
+    - name: prediction
+      type: cm_skeleton
+      topic: prediction
+      domainId: 1
+    - name: mcu_to_ego
+      type: cm_skeleton
+      topic: mcu_to_ego
+      domainId: 1
+    - name: mcu_debug
+      type: cm_skeleton
+      topic: mcu_debug
+      domainId: 1
+    - name: aeb_to_ego
+      type: cm_skeleton
+      topic: aeb_to_ego
+      domainId: 1
+    - name: uss
+      type: cm_skeleton
+      topic: uss
+      domainId: 1
+    - name: uss_info
+      type: cm_skeleton
+      topic: uss_info
+      domainId: 1
+    - name: perception_info
+      type: cm_skeleton
+      topic: perception_info
+      domainId: 1
+    - name: hmi_to_location_hpp_per_in
+      type: cm_skeleton
+      topic: hmi_to_location_hpp_per_in
+      domainId: 1
+    - name: hmi_to_router_hpp_per_in
+      type: cm_skeleton
+      topic: hmi_to_router_hpp_per_in
+      domainId: 1
+    - name: mcu_adas_record
+      type: cm_skeleton
+      topic: mcu_adas_record
+      domainId: 1
+# resourceLimit:
+#     group: hz_state_machine
+#     cpu: 050
+#     memory: 200
+
+log:
+    mode: 3
+    file: ./
+    name: flcm
+    description: for_chassis
+    level: 0
+    adf:
+      level: 0
+# static const std::uint32_t HZ_LOG2CONSOLE = (0x00000000 << 0);
+# static const std::uint32_t HZ_LOG2FILE = (0x00000000 << 0);
+
+# LogLevel: 
+#   kOff = 0x00U,
+#   kCritical = 0x00U,
+#   kError = 0x02U,
+#   kWarn = 0x03U,
+#   kInfo = 0x04U,
+#   kDebug = 0x05U,
+#   kTrace = 0x06U
+
+# schedule:
+#     policy: RR
+#     priority: 99
+#     cpuAffinity: [0, 2 ,3]
+
+# # trigger二选一即可
+# trigger:
+#     type: EVENT
+#     mainSources: 
+#         - name: from_avm
+#           timeout: 5000
+#     auxSources: 
+#         - name: from_router
+#           multiFrame: 0
+
+# trigger二选一即可
+trigger:
+    - name: main
+      type: PERIOD
+      period: 100
+      auxSources:
+          - name: ego_trajectory
+          - name: ego_planning_dec
+          - name: ego_to_mcu
+          - name: warning_info
+          - name: planning_debug
+          - name: low_spd_bsd

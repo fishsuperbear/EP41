@@ -1,0 +1,29 @@
+syntax = "proto2";
+
+package hozon.canbus;
+// 整车配置字
+message VehicleConfigure {
+  optional int32 dow = 1 [default = 1] ;
+  optional int32 rcw = 3 [default = 1] ;
+  optional int32 lca = 5 [default = 1] ;
+  optional int32 fcta = 7 [default = 1] ;
+  optional int32 rcta = 9 [default = 1] ;
+}
+
+message WarningFault {
+  optional bool dow = 1 [default = false] ;
+  optional bool rcw = 3 [default = false] ;
+  optional bool lca = 5 [default = false] ;
+  optional bool fcta = 7 [default = false] ;
+  optional bool rcta = 9 [default = false] ;
+}
+
+message MonitorFault {
+  map<string, string> monitor_fault_clusters = 1;
+  repeated int32 monitor_fault_event = 3;
+}
+
+message MonitorFaultDebug {
+  optional WarningFault warning_fault = 1;
+  optional MonitorFault monitor_fault = 3;
+}

@@ -1,0 +1,4 @@
+mapping:
+    - triggerId: 0
+      task: dynamic
+      priority: 1

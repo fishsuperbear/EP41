@@ -1,0 +1,9 @@
+#include "servicebase.idl"
+
+struct avm_method : ServiceBase
+{
+    string name;
+    short data_array[5];
+    sequence<short> data_vec;
+    map<string, unsigned long> data_map;
+};

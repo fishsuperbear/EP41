@@ -1,0 +1,5 @@
+# add_subdirectory(gen)
+# add_subdirectory(soc_to_mcu)
+add_subdirectory(soc_to_hmi)
+add_subdirectory(sensor_trans)
+add_subdirectory(lidar)

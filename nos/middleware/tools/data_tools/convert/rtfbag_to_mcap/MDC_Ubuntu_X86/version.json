@@ -1,0 +1,17 @@
+{
+    "DocVersion":"1.0",
+    "ProductType":"MDC 610",
+    "ProductVersion":"1.190.017-B1900000T1.B010",
+    "vehicleManufactureBootVersion":null,
+    "ProductMode":"single",
+    "Compiler":"aos_gea_gcc",
+    "Usage":"develop",
+    "BootWithFault":"yes",
+    "BootAppfsMode":"partition",
+    "BootAppfs":"yes",
+    "VerifyAppfsSign":"no",
+    "PackageName":"MDC_X86-Ubuntu20-gcc-dev",
+    "Version":"MDC 610 1.190.017-B1900000T1",
+    "Checksum":"D8AAED3E",
+    "RunOsVersion":"Ubuntu20.04"
+}

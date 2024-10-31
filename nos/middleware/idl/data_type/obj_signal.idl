@@ -1,0 +1,22 @@
+#include "common.idl"
+#include "type.idl"
+
+struct RoadMark {
+    int32 id;
+    float longitude_dist;
+    float lateral_dist;
+    sequence<sequence<Point3f> > polygon;
+    sequence<sequence<Point2f> > imagerect;    // 道路标识在图像上的采集点
+    uint8 type;
+    float confidence;
+};
+
+/* ******************************************************************************
+    结构 名        :  AlgObjSignalArray
+    功能描述       :  各类信号 检测结果
+****************************************************************************** */
+struct AlgObjSignalArray : IDLBaseType {
+    sequence<RoadMark> roadMarks;
+    uint8 fusionType;
+    boolean isValid ;         // 该帧数据是否可用
+};

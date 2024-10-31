@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package hozon.dead_reckoning;
+
+message DeadReckoningConf {
+  // configs from gflags
+  optional bool use_imu = 1 [ default = false ];
+  optional double wheel_radius = 2 [ default = 0.35 ];
+  optional double neta_forward_coef = 3 [ default = 50 ];
+  optional double neta_backward_coef = 4 [ default = 50 ];
+  optional double rear_wheel_rot_arm = 5 [ default = 1.6 ];
+  optional double gain_yaw_count = 6 [ default = 0.0 ];
+  optional double gain_omg_z_count = 7 [ default = 0.0 ];
+}

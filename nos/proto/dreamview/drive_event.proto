@@ -1,0 +1,33 @@
+syntax = "proto2";
+
+package hozon.dreamview;
+
+import "proto/common/header.proto";
+import "proto/common/types.proto";
+
+message DriveEvent {
+  enum Type {
+    BRAKE = 0; // 点刹
+    EMERGENCY_BRAKE = 1; // 急刹
+    ABNORMAL_LC = 2; // 变道异常
+    EFFICIENCY_LC = 3;
+    IS_OBS = 4;
+    NO_OBS = 5;
+    CABIN_DISPLAY_ABNORMAL = 6;
+    ABNORMAL_SPEED_LIMIT = 7; // 限速异常
+    AVOID_BIG_CAR = 8;
+    SHAKE_IN_DRIVEWAY = 9;
+    SERIOUS_DRAGON_PAINTING = 10;
+    CUTIN = 11;
+    LOCATION_ERROR = 12; // 定位偏离
+    ABNORMAL_PERCEPTION = 13; // 感知异常
+    ABNORMAL_DOWNGRADE = 14; // 功能升降机
+  }
+
+  optional hozon.common.Header header = 1;
+  optional string event = 2;
+  optional hozon.common.Pose location = 3;
+  repeated Type type = 4;
+  optional bool is_reportable = 5;
+  optional double occurrence_time = 6;
+}

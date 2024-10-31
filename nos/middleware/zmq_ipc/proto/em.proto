@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package hozon.netaos.zmqipc;  // 命名空间
+
+message em_request {
+  uint32 type = 1;
+  string process_name = 2;
+  string target_process_name = 3;
+  int32 state = 4;
+}
+
+message em_reply {
+  uint32 type = 1;
+  string process_name = 2;
+  int32 state = 3;
+  int32 result = 4;
+}

@@ -1,0 +1,23 @@
+%YAML:1.0
+
+processName: Lite2
+
+appLog:
+    name: Lite2
+    description: parking-perception2
+    file: /opt/usr/log/soc_log/
+    mode: 3
+    level: 1
+    adfl_level: 2
+
+resourceLimit:
+    group: parking-perception
+    cpu: 300
+    memory: 500
+      
+executors:
+    #配置order字段的，按order数字顺序启动。数字相同的，按本文件书写顺序启动，其余的executor在所有顺序启动的executor启动完成后并行启动。
+    #顺序启动的executor应避免在启动时做耗时操作，否则会阻塞后续executor启动。取值范围[1，99]
+    - confFile: ${ADFLITE_ROOT_PATH}/conf/data_source_config_node2.yaml
+    - confFile: ${ADFLITE_ROOT_PATH}/conf/perception2.yaml
+    - confFile: ${ADFLITE_ROOT_PATH}/conf/aldbg_config.yaml # 必须放在最后

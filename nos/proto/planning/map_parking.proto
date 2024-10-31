@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+package hozon.planning;
+
+import "proto/common/types.proto";
+
+// ParkingSpace is a place designated to park a car.
+
+message ParkingSpace {
+  optional string id = 1;
+
+  optional common.Polygon polygon = 2;
+
+  optional double heading = 4;
+}
+
+// ParkingLot is a place for parking cars.
+message ParkingLot {
+  optional string id = 1;
+
+  optional common.Polygon polygon = 2;
+
+  repeated ParkingSpace parking_spaces= 3;
+
+  optional string selected_id = 4;
+}

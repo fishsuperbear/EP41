@@ -1,0 +1,327 @@
+/*
+ * Copyright (c) Hozon Auto Co., Ltd. 2021-2023. All rights reserved.
+ * Description:  Class DocanNetworkLayer Header
+ */
+
+
+#ifndef DOCAN_NETWORKLAYER_H_
+#define DOCAN_NETWORKLAYER_H_
+
+#include <list>
+#include <mutex>
+#include <stdint.h>
+#include <condition_variable>
+
+#include "docan_link_layer.h"
+
+
+/**
+ * @brief Message type
+ */
+typedef enum {
+    DIAGNOSTICS = 1,
+    REMOTE_DIAGNOSTICS
+} Mtype_t;
+
+/**
+ * @brief Network Source Address
+ */
+typedef uint8_t N_SA_t;
+
+/**
+ * @brief Network Target Address
+ */
+typedef uint8_t N_TA_t;
+
+/**
+ * @brief Network Extend Address
+ */
+typedef uint8_t N_AE_t;
+
+/**
+ * @brief Network Target Address type
+ */
+typedef enum {
+    N_TAtype_PHYSICAL,
+    N_TAtype_FUNCTIONAL
+} N_TAtype_t;
+
+/**
+* @brief Address Information for Mtype = diagnostics
+*/
+typedef struct {
+    N_SA_t     N_SA;
+    N_TA_t     N_TA;
+    N_TAtype_t N_TAtype;
+
+} N_AI_Diagnostics_t;
+
+/**
+* @brief Address Information for Mtype = remote diagnostics
+*/
+typedef struct {
+    N_SA_t     N_SA;
+    N_TA_t     N_TA;
+    N_TAtype_t N_TAtype;
+    N_AE_t     N_AE;
+
+} N_AI_RemoteDiagnostics_t;
+
+/**
+* @brief Address Information
+*/
+typedef union {
+    N_AI_Diagnostics_t       Diagnostics;
+    N_AI_RemoteDiagnostics_t RemoteDiagnostics;
+} N_AI_t;
+
+/**
+ * @brief
+ */
+typedef uint16_t Length_t;
+
+/**
+ * @brief
+ */
+typedef uint8_t * MessageData_t;
+
+/**
+ * @brief
+ */
+typedef enum {
+    STmin,
+    BS
+} Parameter_t;
+
+/**
+ * @brief
+ */
+typedef uint8_t Parameter_Value_t;
+
+/**
+ * @brief
+ */
+typedef enum {
+    N_RESULT_OK,
+    N_RESULT_TIMEOUT_A,
+    N_RESULT_TIMEOUT_Bs,
+    N_RESULT_TIMEOUT_Cr,
+    N_RESULT_WRONG_SN,
+    N_RESULT_INVALID_FS,
+    N_RESULT_UNEXP_PDU,
+    N_RESULT_WFT_OVRN,
+    N_RESULT_BUFFER_OVFLW,
+    N_RESULT_ERROR
+} N_Result_t;
+
+/**
+ * @brief
+ */
+typedef enum {
+    N_OK,
+    N_RX_ON,
+    N_WRONG_PARAMETER,
+    N_WRONG_VALUE
+} Result_ChangeParameter_t;
+
+
+/**
+* @brief network protocol control information type
+*/
+typedef enum {
+    N_PCItype_SF = 0,   //single frame
+    N_PCItype_FF = 1,   //first frame
+    N_PCItype_CF = 2,   //consecutive frame
+    N_PCItype_FC = 3,   //flow control
+} N_PCItype_t;
+
+/**
+* @brief FlowStatus
+*/
+typedef enum {
+    FS_CTS   = 0x0,
+    FS_WAIT  = 0x1,
+    FS_OVFLW = 0x2
+} FS_t;
+
+typedef enum {
+    N_STATUS_IDLE,
+    N_STATUS_TRANSMITTING,
+    N_STATUS_RECIVING,
+    N_STATUS_WAIT,
+} N_Status_t; /*networklayer status define */
+
+typedef enum {
+    TX_IDLE,
+    TX_WAIT_FF_CONF,
+    TX_WAIT_FC,
+    TX_WAIT_CF_REQ,
+    TX_WAIT_CF_CONF,
+} N_TxStep_t; /*网络层发送步骤 */
+
+typedef enum {
+    RX_IDLE,
+    RX_WAIT_FC_REQ,
+    RX_WAIT_FC_CONF,
+    RX_WAIT_CF,
+} N_RxStep_t; /*网络层接收步骤 */
+
+typedef enum {
+    N_TimerId_Tx,
+    N_TimerId_Rx,
+} N_TimerId_t;
+
+typedef struct {
+    Mtype_t Mtype;
+    N_TAtype_t N_TAtype;
+    N_SA_t N_SA;
+    N_TA_t N_TA;
+    N_AE_t N_AE;
+    uint32_t ID;
+    uint32_t SeqNo;
+    uint8_t DLC;
+    uint8_t RTR;
+    uint8_t IDE;
+    bool valid;
+    N_PCItype_t data0_N_PciType:4;
+    uint8_t data0_DL_DLhigh_SN_FS:4; //SF_DL ,FF_DL_HIGH ,TxParam.SN ,FS
+    uint8_t data1_DLlow_STmin;
+    uint8_t data2;
+    uint8_t data3;
+    uint8_t data4;
+    uint8_t data5;
+    uint8_t data6;
+    uint8_t data7;
+} N_PDU_t;
+
+typedef struct {
+    /* data */
+    uint32_t timerId;
+    uint32_t seqNo;
+    uint32_t msec;
+    uint32_t expiredTick;
+} N_Timer_t;
+
+
+typedef struct{
+    FS_t FS;
+    uint8_t BlockSize;
+    uint8_t CompletedNumberInBlock;
+    uint8_t STmin;
+    uint8_t SN;
+    uint16_t TotalDataNumber; /* CAN*/
+    uint16_t CompletedDataNumber;
+    uint16_t BuffSize; // uint16,i.e. 64kB
+} docan_commu_param_t;
+
+namespace hozon {
+namespace netaos {
+namespace diag {
+
+
+#define     MAX_FRAME_BUFF_SIZE       (10)
+
+
+typedef int32_t (*docan_network_FF_indication_callback_t)(Mtype_t, N_SA_t, N_TA_t, N_TAtype_t, N_AE_t, Length_t);
+typedef int32_t (*docan_network_indication_callback_t)(Mtype_t, N_SA_t, N_TA_t, N_TAtype_t, N_AE_t, MessageData_t, Length_t, N_Result_t);
+typedef int32_t (*docan_network_confirm_callback_t)(Mtype_t, N_SA_t, N_TA_t, N_TAtype_t, N_AE_t, N_Result_t);
+typedef int32_t (*docan_network_parameter_confirm_callback_t)(Mtype_t, N_SA_t, N_TA_t, N_TAtype_t, N_AE_t, Parameter_t, Result_ChangeParameter_t);
+
+class DocanNetworkLayer {
+public:
+    DocanNetworkLayer(docan_network_FF_indication_callback_t FF_indication_callback,
+                      docan_network_indication_callback_t indication_callback,
+                      docan_network_confirm_callback_t confirm_callback,
+                      docan_network_parameter_confirm_callback_t parameter_confirm_callback);
+    virtual ~DocanNetworkLayer();
+
+    int32_t Init();
+    int32_t Start();
+    int32_t Stop();
+
+    int32_t N_USData_Request(Mtype_t, N_SA_t, N_TA_t, N_TAtype_t, N_AE_t, MessageData_t, Length_t);
+
+    int32_t N_ChangeParameter_Request(Mtype_t, N_SA_t, N_TA_t, N_TAtype_t, N_AE_t, Parameter_t, Parameter_Value_t);
+
+protected:
+    int32_t Proc(void);
+
+private:
+    DocanNetworkLayer(const DocanNetworkLayer &);
+    DocanNetworkLayer& operator = (const DocanNetworkLayer &);
+
+    int32_t N_USData_FF_indication(Mtype_t, N_SA_t, N_TA_t, N_TAtype_t, N_AE_t, Length_t);
+    int32_t N_USData_Indication(Mtype_t, N_SA_t, N_TA_t, N_TAtype_t, N_AE_t, MessageData_t, Length_t, N_Result_t);
+    int32_t N_USData_confirm(Mtype_t, N_SA_t, N_TA_t, N_TAtype_t, N_AE_t, N_Result_t);
+    int32_t N_ChangeParameter_Confirm(Mtype_t, N_SA_t, N_TA_t, N_TAtype_t, N_AE_t, Parameter_t, Result_ChangeParameter_t);
+
+    int32_t L_Data_Confirm(Identifier_t Identifier, Transfer_Status_t Transfer_Status);
+    int32_t L_Data_Indication(Identifier_t Identifier, DLC_t DLC, Data_t Data);
+
+    int32_t RegisterTxTimer(uint32_t timerId, uint32_t mesc, N_PDU_t N_PDU);
+    int32_t UnregisterTxTimer(uint32_t timerId, uint32_t mesc);
+    int32_t RegisterRxTimer(uint32_t timerId, uint32_t mesc, N_PDU_t N_PDU);
+    int32_t UnregisterRxTimer(uint32_t timerId, uint32_t mesc);
+
+    uint32_t GenerateSeqNo();
+    uint32_t GetCurrentTick();
+
+
+    int32_t SendSF(Mtype_t, N_SA_t, N_TA_t, N_TAtype_t, N_AE_t, uint8_t length, uint8_t *data);
+    int32_t SendFF(Mtype_t, N_SA_t, N_TA_t, N_TAtype_t, N_AE_t, uint32_t length, uint8_t *data);
+    int32_t SendCF(Mtype_t, N_SA_t, N_TA_t, N_TAtype_t, N_AE_t);
+    int32_t SendFC(Mtype_t, N_SA_t, N_TA_t, N_TAtype_t, N_AE_t);
+
+
+    int32_t RxProc(void);
+    int32_t TxProc(void);
+    int32_t MainProc(void);
+
+
+    /************private function prototype*********/
+    inline uint8_t dlc2len(uint8_t dlc)
+    {
+        const uint8_t dlc_len_table[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 12, 16, 20, 24, 32, 48, 64 };
+        return dlc_len_table[dlc & 0xf];
+    }
+
+private:
+    static uint32_t         tx_seq_no = 0;
+    static uint32_t         rx_seq_no = 0;
+
+    std::list<N_PDU_t>      tx_buff_queue_;
+    std::list<N_PDU_t>      rx_buff_queue_;
+    std::list<N_Timer_t>    timer_queue_;
+
+    N_PDU_t                 tx_frame_buff_[MAX_FRAME_BUFF_SIZE];
+    N_PDU_t                 rx_frame_buff_[MAX_FRAME_BUFF_SIZE];
+    uint8_t                 tx_buff_in_index_;
+    uint8_t                 tx_buff_out_index_;
+    uint8_t                 rx_buff_in_index_;
+    uint8_t                 rx_buff_out_index_;
+
+    std::mutex               tx_mutex_;
+    std::mutex               rx_mutex_;
+
+    std::condition_variable  tx_cond_val_;
+    std::condition_variable  rx_cond_val_;
+
+    N_Status_t              status_;
+    N_RxStep_t              rx_step_; // IDLE -> FC_REQ -> FC_CONF ->CF
+    N_TxStep_t              tx_step_; //IDLE -> FF_CONF ->FC ->CF_REQ ->CF_CONF
+
+    docan_network_FF_indication_callback_t      FF_indication_callback_;
+    docan_network_indication_callback_t         indication_callback_;
+    docan_network_confirm_callback_t            confirm_callback_;
+    docan_network_parameter_confirm_callback_t  parameter_confirm_callback_;
+
+    DocanLinkLayer*  link_layer_ptr_;
+
+
+
+};
+
+} // end of diag
+} // end of netaos
+} // end of hozon
+#endif  //

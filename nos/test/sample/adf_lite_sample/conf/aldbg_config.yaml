@@ -1,0 +1,11 @@
+
+%YAML:1.0
+
+library: "${ADFLITE_ROOT_PATH}/lib/libadf-lite-dbg.so"
+executorName: Aldbg
+
+
+trigger:
+  - name: ReadFreq
+    type: PERIOD
+    period: 1000

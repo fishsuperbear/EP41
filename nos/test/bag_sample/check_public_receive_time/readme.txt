@@ -1,0 +1,1 @@
+reader_test.cpp演示从.mcap读取数据，并发序列化成所需的数据格式

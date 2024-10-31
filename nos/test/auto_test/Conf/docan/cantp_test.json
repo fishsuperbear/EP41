@@ -1,0 +1,54 @@
+{
+	"request_canid": "0x7c8",
+	"response_canid": "0x7c8",
+	"type": "PhysicAddr",
+	"test": [
+	{
+		"request": [
+			"10 10 31 01 02 00 00 00"
+		],
+		"response": [
+			"30 08 00 00 00 00 00 00"
+		],
+		"timeout": 100,
+		"retryCounts": 1,
+		"delayTime": 0,
+		"describe":"<case id 1234> 应答流控帧"
+	},
+	{
+		"request": [
+			"21 01 02 03 04 05 06 07",
+			"22 08 09 10 11 55 55 55"
+		],
+		"response": [
+			"03 7f 31 ..."
+		],
+		"timeout": 100,
+		"retryCounts": 1,
+		"delayTime": 5100,
+		"describe":"<case id 1235> 后续帧接收"
+	},
+	
+	{
+		"request": [
+			"03 22 f1 88 55 55 55 55"
+		],
+		"response": [
+			"10 0e 62 f1 88 31 31 31"
+		],
+		"delayTime": 0,
+		"describe":"<case id 1236> 单帧接收"
+	},
+	{
+		"request": [
+			"30 00 0A 00 00 00 00 00"
+		],
+		"response": [
+			"21 31 31 31 31 31 31 31",
+			"22 31 00 00 00 00 00 00"
+		],
+		"delayTime": 0,
+		"describe":"<case id 1237> 多帧应答"
+	}
+	]
+}

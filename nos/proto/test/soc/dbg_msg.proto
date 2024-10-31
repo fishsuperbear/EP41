@@ -1,0 +1,85 @@
+syntax = "proto2";
+
+package hozon.adf.lite.dbg;
+
+message FreqDebugMessage {
+    message Element {
+        optional string topic = 1;
+        optional uint64 samples = 2;
+        optional double freq = 3;
+        optional uint64 max_delta_us = 4;
+        optional uint64 min_delta_us = 5;
+        optional double std_dev_us = 6;
+        optional uint64 duration_us = 7;
+    }
+
+    repeated Element elements = 1;
+}
+
+message EchoDebugMessage {
+    message Element {
+        optional string topic = 1;
+        optional string content = 2;
+    }
+
+    repeated Element elements = 1;
+}
+
+message EchoCommand {
+    optional string topic = 1;
+    optional bool on = 2;
+}
+
+message ShowTopics {
+    optional string executor_name = 1;
+}
+
+message ShowExecutors {
+    optional string topic = 1;
+    optional bool on = 2;
+}
+
+message ShowExecutorsMessage {
+    repeated string elements = 1;
+}
+
+message TriggerMessage {
+    optional string name = 1;
+    optional bool pause_status = 2;
+}
+
+message TriggersMessage {
+    repeated TriggerMessage elements = 1;
+}
+
+message ShowAllMessage {
+    map<string, TriggersMessage> allinfo = 1;
+}
+
+message TopicMessage {
+    optional string message = 1;
+}
+
+message EchoRequest {
+    message Element {
+        optional string topic = 1;
+    }
+    optional string process = 1;
+    optional string cmd = 2;
+    repeated Element elements = 3;
+    optional bool status = 4;
+    optional string other = 5;
+}
+
+message GeneralResponse {
+    optional bool res = 1;
+    optional uint32 err = 2;
+    repeated string data = 3;
+}
+
+message LatencyInfo {
+    optional string instance_name = 1;
+    repeated string link_names = 2;
+    repeated double latencies = 3;
+    optional bool after_process = 4;
+}

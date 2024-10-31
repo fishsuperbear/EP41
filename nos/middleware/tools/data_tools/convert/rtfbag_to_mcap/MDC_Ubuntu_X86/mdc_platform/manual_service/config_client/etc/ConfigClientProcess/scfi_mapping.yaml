@@ -1,0 +1,9 @@
+identifier:
+  "MAPPING"
+description: "Mapping module"
+config_client:
+  sendInstanceID:
+  recvInstanceID:
+    ConfigServerServiceInterface:
+        instanceId: [1]
+        portName: ["ConfigAppFromServerRPort"]

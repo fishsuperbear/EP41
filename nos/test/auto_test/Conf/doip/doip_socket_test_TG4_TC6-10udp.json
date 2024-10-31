@@ -1,0 +1,114 @@
+
+{
+	"ip_addr":"172.16.50.11",
+	"port":13400,
+	"fname":"mgbe3_0.50",
+	"test":[
+	{
+		"protocol_type":"UDP",
+		"timeout":3000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0001",
+			"payload_len":0
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0004",
+			"payload_len":1,
+			"payload_data":"..."
+		}
+		],
+		"describe":"<TG4_TC6> 1.1 车辆信息请求报文测试"
+	},
+
+	// {
+	// 	"protocol_type":"UDP",
+	// 	"timeout":1000,
+	// 	"retryCounts":1,
+	// 	"doip_request":[
+	// 	{
+	// 		"version":"0x02",
+	// 		"ver_inverse":"0xFD",
+	// 		"payload_type":"0x0003",
+	// 		"payload_len":17,
+	// 		"payload_data":"01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 10 11"
+	// 	}
+	// 	],
+	// 	"doip_response":[
+	// 	{
+	// 		"version":"0x02",
+	// 		"ver_inverse":"0xFD",
+	// 		"payload_type":"0x0004",
+	// 		"payload_len":1,
+	// 		"payload_data":".."
+	// 	}
+	// 	],
+	// 	"describe":"<TG4_TC7> 1.1 车辆信息请求（携带正确的VIN）报文测试"
+	// },
+
+	// {
+	// 	"protocol_type":"UDP",
+	// 	"timeout":1000,
+	// 	"retryCounts":1,
+	// 	"doip_request":[
+	// 	{
+	// 		"version":"0x02",
+	// 		"ver_inverse":"0xFD",
+	// 		"payload_type":"0x0002",
+	// 		"payload_len":6,
+	// 		"payload_data":"02 48 5A 01 01 10"
+	// 	}
+	// 	],
+	// 	"doip_response":[
+	// 	{
+	// 		"version":"0x02",
+	// 		"ver_inverse":"0xFD",
+	// 		"payload_type":"0x0004",
+	// 		"payload_len":1,
+	// 		"payload_data":"..."
+	// 	}
+	// 	],
+	// 	"describe":"<TG4_TC8> 1.1 车辆信息请求（携带正确的EID）报文测试"
+	// },
+
+	{
+		"protocol_type":"UDP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0003",
+			"payload_len":17,
+			"payload_data":"0101010101010101010101010101010101"
+		}
+		],
+		"describe":"<TG4_TC9> 1.1 车辆信息请求（携带错误的VIN）报文测试",
+		"sever_close_wait":200
+	},
+	{
+		"protocol_type":"UDP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0002",
+			"payload_len":6,
+			"payload_data":"01 02 03 04 05 06"
+		}
+		],
+		"describe":"<TG4_TC10> 1.1 车辆信息请求（携带错误的EID）报文测试",
+		"sever_close_wait":200
+	}
+	]
+}

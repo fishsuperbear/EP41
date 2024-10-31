@@ -1,0 +1,12 @@
+#include "servicebase.idl"
+
+struct sensor_reattach : ServiceBase {
+    uint32 sensor_id;
+    uint32 index;
+    boolean isattach;
+    boolean isalive;
+};
+
+struct sensor_reattach_resp : ServiceBase {
+    uint32 ret;
+};

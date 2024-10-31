@@ -1,0 +1,106 @@
+%YAML:1.0
+
+recvInstances:
+    - name: workresult
+      type: proto_proxy
+      topic: /proto_sample_topic
+      domainId: 0
+    - name: fisheye_front
+      topic: Camera79
+      type: h265_to_yuv_proxy
+      domainId: 0
+    - name: fisheye_left
+      topic: Camera80
+      type: h265_to_yuv_proxy
+      domainId: 0
+    - name: fisheye_right
+      topic: Camera81
+      type: h265_to_yuv_proxy
+      domainId: 0
+    - name: fisheye_rear
+      topic: Camera82
+      type: h265_to_yuv_proxy
+      domainId: 0
+    # - name: camera_8
+    #   topic: Camera_8
+    #   type: camera_proxy
+    #   domainId: 8
+    # - name: camera_9
+    #   topic: Camera_9
+    #   type: camera_proxy
+    #   domainId: 9
+    # - name: camera_10
+    #   topic: Camera_10
+    #   type: camera_proxy
+    #   domainId: 10
+    # - name: camera_11
+    #   topic: Camera_11
+    #   type: camera_proxy
+    #   domainId: 11
+    # - name: camera_8
+    #   topic: cam8_recv0
+    #   type: nvs_cuda_proxy
+    #   domainId: 8
+    # - name: camera_9
+    #   topic: cam9_recv0
+    #   type: nvs_cuda_proxy
+    #   domainId: 9
+    # - name: camera_10
+    #   topic: cam10_recv0
+    #   type: nvs_cuda_proxy
+    #   domainId: 10
+    # - name: camera_11
+    #   topic: cam11_recv0
+    #   type: nvs_cuda_proxy
+    #   domainId: 11
+sendInstances:
+    - name: fisheye_front
+      topic: fisheye_front
+      type: proto_skeleton
+      domainId: 0
+    - name: fisheye_left
+      topic: fisheye_left
+      type: proto_skeleton
+      domainId: 0
+    - name: fisheye_right
+      topic: fisheye_right
+      type: proto_skeleton
+      domainId: 0
+    - name: fisheye_rear
+      topic: fisheye_rear
+      type: proto_skeleton
+      domainId: 0
+
+log:
+    mode: 3
+    file: ./
+    name: cmps
+    description: cm_proto_sample
+    level: 2  
+    adf:
+      level: 2
+
+# trigger二选一即可
+trigger:
+    - name: main
+      type: EVENT
+      mainSources:
+          - name: workresult
+            timeout: 1000
+
+    - name: image
+      type: EVENT
+      timeWindow: 60
+      mainSources: 
+          - name: fisheye_front
+            timeout: 1000
+          - name: fisheye_left
+            timeout: 1000
+          - name: fisheye_right
+            timeout: 1000
+          - name: fisheye_rear
+            timeout: 1000
+
+    - name: methodtest
+      type: PERIOD
+      period: 1000

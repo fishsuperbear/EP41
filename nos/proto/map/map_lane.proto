@@ -1,0 +1,192 @@
+syntax = "proto2";
+
+package hozon.hdmap;
+
+import "proto/map/map_id.proto";
+import "proto/map/map_geometry.proto";
+
+message LaneBoundaryType {
+  enum Type {
+    UNKNOWN       = 0;
+    DOTTED_YELLOW = 1;
+    DOTTED_WHITE  = 2;
+    SOLID_YELLOW  = 3;
+    SOLID_WHITE   = 4;
+    DOUBLE_YELLOW = 5;
+    CURB          = 6;
+    BARRIER       = 7;
+  };
+  
+  // Offset relative to the starting point of boundary
+  optional double s = 1;
+  // support multiple types
+  repeated Type types = 2;
+}
+
+message LaneBoundary {
+  optional Curve curve = 1;
+
+  optional double length = 2;
+  // indicate whether the lane boundary exists in real world
+  optional bool virtual = 3;
+  // in ascending order of s
+  repeated LaneBoundaryType boundary_type = 4;
+  
+  repeated Id id = 5;
+}
+
+// Association between central point to closest boundary.
+message LaneSampleAssociation {
+  optional double s     = 1;
+  optional double width = 2;
+}
+
+message MapLaneType {
+  optional bool unknow                   = 1 [default = false];
+  optional bool normal                   = 2 [default = false];   //普通车道（高速主路或匝道里没有其他属性的正常的车道会置normal）
+  optional bool emergency                = 3 [default = false];   //应急车道
+  optional bool restricted_forbidden     = 4 [default = false];   //公交车道
+  optional bool restricted_usable        = 5 [default = false];   //超车道
+  optional bool hov                      = 6 [default = false];   //HOV车道
+  optional bool express                  = 7 [default = false];   // 加速车道
+  optional bool reversible               = 8 [default = false];   // 掉头车道
+  optional bool slow                     = 9 [default = false];   // 减速车道
+  optional bool drivable_shoulder        = 10 [default = false];  // 路肩车道
+  optional bool intersection_lane        = 11 [default = false];  // 路口车道
+  optional bool non_motorized_lane       = 12 [default = false];  // 非机动车道
+  optional bool mixed_lane               = 13 [default = false];  // 机非混合车道
+  optional bool sidewalk                 = 14 [default = false];  // 人行道
+  optional bool motorcycle_lane          = 15 [default = false];  // 摩托车到
+  optional bool etc_lane                 = 16 [default = false];  // etc车道
+  optional bool toll_lane                = 17 [default = false];  // 收费站车道
+  optional bool checkpoint_driveway      = 18 [default = false];  // 检查站车道
+  optional bool divider_lane             = 19 [default = false];  // 隔离带车道
+  optional bool diversion_belt_driveway  = 20 [default = false];  // 导流带车道
+  optional bool emergency_stop_lane      = 21 [default = false];  // 紧急停车车道
+  optional bool dangerous_goods_lane     = 22 [default = false];  // 危险品专用车道
+  optional bool climbing_lane            = 23 [default = false];  // 爬坡车道
+  optional bool variable_steering_lane   = 24 [default = false];  // 可变导向车道
+  optional bool customs_supervision_lane = 25 [default = false];  // 海关监管车道
+  optional bool hazardous_lane_approach  = 26 [default = false];  // 避险车道引道
+  optional bool parking_lane             = 27 [default = false];  // 停车道
+  optional bool tidal_lane               = 28 [default = false];  // 潮汐车道
+  optional bool temporary_lane           = 29 [default = false];  // 临时车道
+  optional bool left_turn_waiting_lane   = 30 [default = false];  // 左转待转车道 
+  optional bool straight_ahead_lane      = 31 [default = false];  // 直行待行车道
+  optional bool acceleration_lane        = 32 [default = false];  // 加速车道
+  optional bool deceleration_lane        = 33 [default = false];  // 减速车道
+  optional bool service_area_lane        = 34 [default = false];  // 服务区车道
+  optional bool curb_strip               = 35 [default = false];  // 路缘带
+  optional bool rail_bus_lane            = 36 [default = false];  // 有轨公交车道
+  optional bool bus_stop_lane            = 37 [default = false];  // 公交车停靠车道
+  optional bool roundabout_drive         = 38 [default = false];  // 环岛车道
+  optional bool invalid_lane             = 39 [default = false];  // 无效车道
+  optional bool wide_lane                = 40 [default = false];  // 宽车道
+  optional bool virtual                  = 41 [default = false];  // 虚拟车道
+  optional bool tunnel_lane              = 42 [default = false];  // 隧道车道
+  optional bool other                    = 99 [default = false];  // 其他
+}
+
+// A lane is part of a roadway, that is designated for use by a single line of
+// vehicles.
+// Most public roads (include highways) have more than two lanes.
+message Lane {
+  optional Id id = 1;
+
+  // Central lane as reference trajectory, not necessary to be the geometry
+  // central.
+  optional Curve central_curve = 2;
+
+  // Lane boundary curve.
+  optional LaneBoundary left_boundary  = 3;
+  optional LaneBoundary right_boundary = 4;
+
+  // in meters.
+  optional double length = 5;
+
+  // Speed limit of the lane, in meters per second.
+  optional double speed_limit = 6;
+
+  repeated Id overlap_id = 7;
+
+  // All lanes can be driving into (or from).
+  repeated Id predecessor_id = 8;
+  repeated Id successor_id   = 9;
+
+  // Neighbor lanes on the same direction.
+  repeated Id left_neighbor_forward_lane_id  = 10;
+  repeated Id right_neighbor_forward_lane_id = 11;
+
+  enum LaneType {
+    NONE                   = 1;
+    CITY_DRIVING           = 2;
+    BIKING                 = 3;
+    SIDEWALK               = 4;
+    PARKING                = 5;
+    SHOULDER               = 6;
+    HIGHWAY_DRIVING        = 7;
+    LEFT_TURN_WAITING_ZONE = 8;
+    EMERGENCY_LANE         = 9;
+    ROUNDABOUT             = 10;
+    INVALID_LANE           = 11;
+    BUS_LANE               = 12;
+  };
+  optional LaneType type = 12;
+
+  enum LaneTurn {
+    NO_TURN    = 1;
+    LEFT_TURN  = 2;
+    RIGHT_TURN = 3;
+    U_TURN     = 4;
+    RIRHT_FRONT = 5; // PARKING
+    RIGHT_REAR   = 6;  // right rear
+    LEFT_FRONT   = 7;  // left front
+    LEFT_REAR    = 8;  // left rear
+  };
+  optional LaneTurn turn = 13;
+
+  repeated Id left_neighbor_reverse_lane_id  = 14;
+  repeated Id right_neighbor_reverse_lane_id = 15;
+
+  optional Id junction_id = 16;
+
+  // Association between central point to closest boundary.
+  repeated LaneSampleAssociation left_sample  = 17;
+  repeated LaneSampleAssociation right_sample = 18;
+
+  enum LaneDirection {
+    FORWARD     = 1;
+    BACKWARD    = 2;
+    BIDIRECTION = 3;
+  }
+  optional LaneDirection direction = 19;
+
+  // Association between central point to closest road boundary.
+  repeated LaneSampleAssociation left_road_sample  = 20;
+  repeated LaneSampleAssociation right_road_sample = 21;
+
+  repeated Id self_reverse_lane_id = 22;
+
+  enum LaneTransition {
+    UNKONOW  = 1;
+    CONTINUE = 2;
+    MERGING  = 3;
+    SPLITING = 4;
+  }
+  optional LaneTransition lane_transition = 24;
+
+  optional MapLaneType  map_lane_type = 25;
+  optional uint32       abnormal_point_index = 37;
+  enum LaneCurvature {
+    UNCHECK  = 1;
+    NORMAL  = 2;
+    ABNORMAL  = 3;
+  }
+  optional LaneCurvature  curvature_type = 38;
+  optional uint32       path_id = 39;
+  optional LineSegment  gcs_lane_point = 40;
+
+  optional LaneBoundary extra_left_boundary  = 41;
+  
+  optional LaneBoundary extra_right_boundary = 42;
+}

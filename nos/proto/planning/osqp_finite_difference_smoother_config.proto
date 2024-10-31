@@ -1,0 +1,60 @@
+syntax = "proto2";
+
+package hozon.planning;
+
+message OsqpFiniteDifferenceSmootherConfig {
+  optional OsqpConfig osqp_config_usual = 1;
+  optional OsqpConfig osqp_config_ntp = 2;
+}
+message OsqpConfig {
+  // // osqp settings
+  optional bool verbose = 1 [default = false];
+  optional double eps_abs = 2 [default = 5e-4];
+  optional double eps_rel = 3 [default = 5e-4];
+  optional double eps_prim_inf = 4 [default = 5e-4];
+  optional double eps_dual_inf = 5 [default = 5e-4];
+  optional bool scaled_termination = 6 [default = false];
+  optional bool adaptive_rho = 7 [default = true];
+  optional bool polish = 8 [default = true];
+  optional int32 polish_refine_iter = 9 [default = 20];
+  optional int32 max_iter = 10 [default = 500];
+  optional int32 adaptive_rho_interval = 11 [default = 0];
+  optional double alpha = 12 [default = 1.6];
+  optional double time_limit = 13 [default = 0.05];
+
+  // Weights in optimization cost function
+  optional double first_order_1st = 20 [default = 0.0];
+  optional double first_order_2nd = 21 [default = 0.0];
+  optional double first_order_4th = 22 [default = 0.0];
+  optional double second_order_2nd = 23 [default = 1e6];
+  optional double second_order_4th = 24 [default = 0.0];
+  optional double third_order_1st = 25 [default = 1e5];
+  optional double third_order_2nd = 26 [default = 0.0];
+  optional double fourth_order_2nd = 27 [default = 1e4];
+  optional double lat_deviation = 28 [default = 1.0];
+  optional double lon_deviation = 29 [default = 0.0];
+  optional double euler_deviation = 30 [default = 1.0];
+  optional double ct_weight = 31 [default = 0.0];
+  optional double curvature = 32 [default = 0.1];
+  optional double s_first_boundary = 33 [default = 0.0];
+  optional double s_end_boundary = 34 [default = 0.15];
+  optional double l_first_boundary = 35 [default = 0.0];
+  optional double l_end_boundary = 36 [default = 0.15];
+  optional double s_boundary = 37 [default = 0.15];
+  optional double l_boundary = 38 [default = 0.15];
+  optional int32 sqp_pen_max_iter = 39 [default = 5];
+  optional int32 sqp_sub_max_iter = 40 [default = 10];
+  optional double sqp_ftol = 41 [default = 0.0];
+
+  // Process Openspace Smooth
+  optional double s_second_boundary = 50 [default = 5e-3];
+  optional double s_second_end_boundary = 51 [default = 5e-3];
+  optional double l_second_boundary = 52 [default = 5e-3];
+  optional double l_second_end_boundary = 53 [default = 5e-3];
+  optional double s_third_boundary = 54 [default = 5e-3];
+  optional double l_third_boundary = 55 [default = 5e-3];
+  optional double front_extend_point_s_boundary = 56 [default = 0.0];
+  optional double front_extend_point_l_boundary = 57 [default = 0.0];
+  optional double back_extend_point_s_boundary = 58 [default = 0.0];
+  optional double back_extend_point_l_boundary = 59 [default = 0.0];
+}

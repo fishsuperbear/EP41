@@ -1,0 +1,18 @@
+{
+  "process_name": "config_serverProcess",
+  "executable": "config_server",
+  "restart_attempt_num": "2",
+  "shall_run_ons": [],
+  "mode_of_order": [
+    "Factory.1",
+    "Standby.1",
+    "Normal.1",
+    "Update.1"
+  ],
+  "scheduling_policy": "OTHER",
+  "scheduling_priority": "1",
+  "arguments": [],
+  "environments": [
+    "NETA_CM_QOS_PATH=/app/runtime_service/config_server/etc/default_qos.json"
+  ]
+}

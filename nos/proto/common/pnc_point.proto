@@ -1,0 +1,154 @@
+syntax = "proto2";
+
+// Defined Point types that are commonly used in PnC (Planning and Control)
+// modules.
+
+package hozon.common;
+import "proto/planning/path_bound.proto";
+
+message SLPoint {
+  optional double s = 1;
+  optional double l = 2;
+}
+
+message FrenetFramePoint {
+  optional double s = 1;
+  optional double l = 2;
+  optional double dl = 3;
+  optional double ddl = 4;
+  optional double l1 = 5;
+}
+
+message SpeedPoint {
+  optional double s = 1;
+  optional double t = 2;
+  // speed (m/s)
+  optional double v = 3;
+  // acceleration (m/s^2)
+  optional double a = 4;
+  // jerk (m/s^3)
+  optional double da = 5;
+  optional double obstacle_cost = 6;
+  optional double spatial_cost = 7;
+  optional double speed_cost = 8;
+  optional double acce_cost = 9;
+  optional double jerk_cost = 10;
+  optional double pre_point_cost = 11;
+  optional double total_cost = 12;
+  optional double big_car_lateral_cost = 13;
+}
+
+message PathPoint {
+  // coordinates
+  optional double x = 1;
+  optional double y = 2;
+  optional double z = 3;
+
+  // direction on the x-y plane
+  optional double theta = 4;
+  // curvature on the x-y planning
+  optional double kappa = 5;
+  // accumulated distance from beginning of the path
+  optional double s = 6;
+  optional double l = 7;
+
+  // derivative of kappa w.r.t s.
+  optional double dkappa = 8;
+  // derivative of derivative of kappa w.r.t s.
+  optional double ddkappa = 9;
+  // The lane ID where the path point is on
+  optional string lane_id = 10;
+
+  // derivative of x and y w.r.t parametric parameter t in CosThetareferenceline
+  optional double x_derivative = 11;
+  optional double y_derivative = 12;
+}
+
+message OsqpLData {
+  optional double optimize_l = 1;
+  optional double optimize_dl = 2;
+  optional double optimize_ddl = 3;
+  optional double s = 4;
+}
+
+message OsqpLDebug {
+  repeated OsqpLData regular_osqp_l_data = 1;
+  optional OsqpLData init_point = 2;
+}
+
+message Path {
+  optional string name = 1;
+  repeated PathPoint path_point = 2;
+  optional hozon.planning.PathBoundDebug path_bound_debug = 3;
+  optional OsqpLDebug osqp_l_debug = 4;
+  repeated FrenetFramePoint frenet_frame_point = 5;
+}
+
+message LaneWidth {
+  // coordinates
+  optional double left_width = 1;
+  optional double right_width = 2;
+}
+
+message ReferenceLine {
+  optional string name = 1;
+  repeated PathPoint raw_reference_line_point = 2;
+  repeated PathPoint smooth_reference_line_point = 3;
+  repeated PathPoint reference_line_point_after_smoother = 4;
+  repeated PathPoint reference_line_point = 5;
+  repeated LaneWidth ref_point_lane_width = 6;
+}
+
+message Var_name_value {
+  optional string varName = 1;
+  optional double varValue = 2;
+}
+
+
+message TrajectoryPoint {
+  // path point
+  optional PathPoint path_point = 1;
+  // linear velocity
+  optional double v = 2;  // in [m/s]
+  // linear acceleration
+  optional double a = 3;
+  // relative time from beginning of the trajectory
+  optional double relative_time = 4;
+  // longitudinal jerk
+  optional double da = 5;
+  // The angle between vehicle front wheel and vehicle longitudinal axis
+  optional double steer = 6;
+
+  // Gaussian probability information
+  optional GaussianInfo gaussian_info = 7;
+  //repeated Var_name_value Var_Value = 8;
+}
+
+message Trajectory {
+  optional string name = 1;
+  repeated TrajectoryPoint trajectory_point = 2;
+}
+
+message VehicleMotionPoint {
+  // trajectory point
+  optional TrajectoryPoint trajectory_point = 1;
+  // The angle between vehicle front wheel and vehicle longitudinal axis
+  optional double steer = 2;
+}
+
+message VehicleMotion {
+  optional string name = 1;
+  repeated VehicleMotionPoint vehicle_motion_point = 2;
+}
+
+message GaussianInfo {
+  // Information of gaussian distribution
+  optional double sigma_x = 1;
+  optional double sigma_y = 2;
+  optional double correlation = 3;
+  // Information of representative uncertainty area
+  optional double area_probability = 4;
+  optional double ellipse_a = 5;
+  optional double ellipse_b = 6;
+  optional double theta_a = 7;
+}

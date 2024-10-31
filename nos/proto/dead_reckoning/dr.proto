@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+package hozon.dead_reckoning;
+
+import "proto/common/header.proto";
+import "proto/common/types.proto";
+
+message DeadReckoning {
+    optional hozon.common.Header header = 1;
+    optional double gnss_timestamp = 2;
+    optional hozon.common.Point3f mounting_error = 3;
+    optional hozon.common.PoseWithCovariance pose = 4;
+    optional hozon.common.TwistWithCovariance velocity = 5;
+    optional hozon.common.AccelWithCovariance acceleration = 6;
+    optional int32 dr_status = 7;
+}

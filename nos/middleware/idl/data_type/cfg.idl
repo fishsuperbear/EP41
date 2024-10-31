@@ -1,0 +1,155 @@
+#include "servicebase.idl"
+
+struct cfg_initclient_req_method: ServiceBase
+{
+    string client_name;
+};
+
+struct cfg_initclient_res_method: ServiceBase
+{
+    int32 result;
+};
+
+struct cfg_deinitclient_req_method: ServiceBase
+{
+    string client_name;
+};
+
+struct cfg_deinitclient_res_method: ServiceBase
+{
+    int32 result;
+};
+
+struct cfg_setparam_req_method: ServiceBase
+{
+    string client_name;
+    string param_name;
+    sequence<octet> param_value;
+    uint8 param_type;
+    boolean isdefault_value;
+    uint8 persist_flag;
+};
+
+struct cfg_setparam_res_method: ServiceBase
+{
+    int32 result;
+};
+
+struct cfg_getparam_req_method: ServiceBase
+{
+    string client_name;
+    string param_name;
+};
+
+struct cfg_getparam_res_method: ServiceBase
+{
+    sequence<octet> param_value;
+    uint8 param_type;
+    int32 result;
+};
+
+struct cfg_resetparam_req_method: ServiceBase
+{
+    string client_name;
+    string param_name;
+
+};
+
+struct cfg_resetparam_res_method: ServiceBase
+{
+    int32 result;
+};
+
+struct cfg_monitorparam_req_method: ServiceBase
+{
+    string client_name;
+    string param_name;
+};
+
+struct cfg_monitorparam_res_method: ServiceBase
+{
+    int32 result;
+};
+
+struct cfg_unmonitorparam_req_method: ServiceBase
+{
+    string client_name;
+    string param_name;
+};
+
+struct cfg_unmonitorparam_res_method: ServiceBase
+{
+    int32 result;
+};
+
+struct cfg_delparam_req_method: ServiceBase
+{
+    string client_name;
+    string param_name;
+};
+
+struct cfg_delparam_res_method: ServiceBase
+{
+    int32 result;
+};
+
+struct cfg_paramupdatedatares_req_method: ServiceBase
+{
+    string client_name;
+    string param_name;
+
+};
+
+struct cfg_paramupdatedatares_res_method: ServiceBase
+{
+    int32 result;
+};
+
+struct cfg_getmonitorclients_req_method: ServiceBase
+{
+    string client_name;
+    string param_name;
+};
+
+struct cfg_getmonitorclients_res_method: ServiceBase
+{
+    sequence<string> monitor_clients;
+    int32 result;
+};
+
+struct cfg_getparaminfolist_req_method: ServiceBase
+{
+    string client_name;
+};
+
+struct cfg_paraminfo {
+    string param_name;
+    int32 data_type;
+    int32 data_size;
+    string lastupdate_clientname;
+    string lastupdate_time;
+    uint8 per_plag;
+
+};
+
+struct cfg_getparaminfolist_res_method: ServiceBase
+{
+    sequence<cfg_paraminfo> paramname_list;
+    int32 result;
+};
+
+
+struct cfg_paramupdatedata_event: ServiceBase
+{
+    string param_name;
+    sequence<octet> param_value;
+    uint8 param_type;
+    string client_name;
+};
+
+struct cfg_paramupdatedatares_event: ServiceBase
+{
+    string client_name;
+    string param_name;
+    int32 result;
+};

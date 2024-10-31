@@ -1,0 +1,35 @@
+%YAML: 1.0
+#该配置提供给用户对关注的故障列表进程注册，用于回调通知
+#支持原始故障/组合故障/自定义组合故障的注册
+#支持聚类的注册，聚类定义参考系统部定义的文档
+
+#app名称
+appName: extwdg
+
+#故障
+fault:
+    4920: 1-3
+
+
+#monitor task[alive|deadline|logic]
+phmMonitor:
+    - monitorType: alive
+      periodMs: 100
+      expectedIndication: 1
+      minMargin: 0
+      maxMargin: 0
+      checkPointId: [0]
+      faultId: 4920
+      faultObj: 1
+
+    - monitorType: deadline
+      deadlineMinMs: 50
+      deadlineMaxMs: 100
+      checkPointId: [1, 2]
+      faultId: 4920
+      faultObj: 2
+
+    - monitorType: logic
+      checkPointId: [7, 8, 10]
+      faultId: 4920
+      faultObj: 3

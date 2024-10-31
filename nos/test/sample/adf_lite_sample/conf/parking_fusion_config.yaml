@@ -1,0 +1,35 @@
+%YAML:1.0
+
+library: "${ADFLITE_ROOT_PATH}/lib/libparking_fusion_test.so"
+executorName: ParkingFusion
+
+
+input:
+    - topic: proto_sample_topic
+      capacity: 5
+    - topic: workresult1
+      capacity: 5
+trigger:
+  - name: receive_cm_topic
+    type: EVENT
+    mainSources:
+      - name: proto_sample_topic
+        timeout: 1000
+
+  - name: show_latest
+    type: PERIOD
+    period: 800
+
+  - name: free_data_topic
+    type: PERIOD
+    period: 800
+
+  - name: receive_workflow1
+    type: EVENT
+    mainSources:
+      - name: workresult1
+        timeout: 1000
+
+  # - name: recv_status_change
+  #   type: PERIOD
+  #   period: 9000

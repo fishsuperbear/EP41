@@ -1,0 +1,10 @@
+{
+  "servers": [
+    {
+      "user": "guest",
+      "serverId": "Default-Server",
+      "isDefault": true
+    }
+  ],
+  "version": "5"
+}

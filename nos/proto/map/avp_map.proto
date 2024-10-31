@@ -1,0 +1,38 @@
+
+syntax = "proto2";
+
+package hozon.hdmap;
+
+message PathPoint {
+     optional double x     = 1;
+     optional double y     = 2;
+     optional double z     = 3;
+     optional double theta = 4;
+     optional double s     = 5;
+     optional int32 gear   = 6;  // 0:N,1:R,2:D,3:P
+}
+
+
+message PathSegment {
+  optional PathPoint  start_point = 1;
+  optional PathPoint end_point    = 2;
+  repeated string lane_id         = 3;
+}
+
+message TargetTaskConfig  {
+      optional string park_lot_id = 1;
+      optional uint32 path_id     = 2;
+      repeated PathSegment path   = 3;
+}
+
+message AvpTaskInfo {
+    optional string map_id = 1;
+    oneof task_config {
+         TargetTaskConfig ntp_park_task_config   = 2;  // park in
+         TargetTaskConfig ntp_summon_task_config = 3;  // park out
+     }
+}
+
+ 
+
+

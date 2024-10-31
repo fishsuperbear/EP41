@@ -1,0 +1,32 @@
+#include "servicebase.idl"
+
+/* ******************************************************************************
+    结构 名        :  triggerInfo
+    功能描述       :  触发事件的
+****************************************************************************** */
+
+struct triggerInfo: ServiceBase
+{
+    string type;
+    string value;
+    uint8 priority;
+    string clientName;
+    string msg;
+};
+
+struct triggerUploadInfo: ServiceBase
+{
+    string type;
+    sequence<string> pathList;
+    string fileType;
+    string fileName;
+    uint16 cacheFileNum;
+    string clientName;
+    boolean deleteAfterCompress;
+};
+
+struct triggerResult: ServiceBase
+{
+    uint8 retCode;
+    string msg;
+};

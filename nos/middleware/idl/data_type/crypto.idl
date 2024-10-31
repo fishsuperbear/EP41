@@ -1,0 +1,609 @@
+#include "servicebase.idl"
+
+//////////////////////////////////////////////////////////////////////////////
+// 通用结构体定义
+
+struct CmPrimitiveIdInfo {
+	uint64     alg_id;
+};
+
+// Key property定义
+struct CmCryptoObjectInfo
+{
+	uint32 object_type;
+	uint32 dependency_type;
+    string object_uid;
+    string dependency_uid;
+    uint64 payload_size;
+    boolean is_exportable;
+	boolean is_session;
+};
+
+// struct CmRestrictedUseInfo {
+//      uint32 allowed_usage;
+// };
+
+// struct CmKeyInfo {
+//     uint64 key_type;
+// };
+
+// key(引用)定义
+struct CmCryptoKeyRef
+{
+    uint64 alg_id;       // alg_id可以确定算法类型
+    uint64 ref;         // 对server端key实体的引用。引用内容由server解释，client端不感知
+    CmPrimitiveIdInfo primitive_id_info;
+    CmCryptoObjectInfo crypto_object_info;
+    uint32 allowed_usage;
+    // CmKeyInfo key_info;
+};
+
+struct CmExtensionServiceInfo {
+    uint64 actual_key_bit_length;
+    string actual_key_uid;
+    uint32 allowed_usage;
+    uint64 max_key_bit_length;
+    uint64 min_key_bit_length;
+};
+
+struct CmCryptoServiceInfo {
+    uint64 block_size;
+    uint64 max_input_size;
+    uint64 max_output_size;
+};
+
+struct CmBlockServiceInfo {
+    uint64 block_size;
+    uint64 iv_size;
+    boolean is_valid_ivs_size;
+};
+
+// 密码学操作context引用定义
+struct CmCipherCtxRef
+{
+	uint64 alg_id;       // alg_id可以确定算法类型
+    uint32 ctx_type;
+	uint64 ref;         // 对server端context实体的引用。引用内容由server解释，client端不感知
+    uint32 transform;
+    boolean is_initialized;
+
+    CmCryptoServiceInfo crypto_service_info;
+};
+
+
+// Key slot定义
+struct CmCryptoSlot
+{
+	string uuid;
+};
+
+//////////////////////////////////////////////////////////////////////////////
+// cm method定义
+
+// GenerateKey请求
+struct GenerateKeyRequest : ServiceBase
+{
+    uint32 key_type;     // key_type. 0: none, 1: symmetric key, 2: public key, 3: private key.
+    uint64 alg_id;
+    uint32 allowed_usage;
+    boolean is_session;
+    boolean is_exportable;
+};
+
+// GenerateKey结果
+struct GenerateKeyResult : ServiceBase
+{
+    int32 code;
+    CmCryptoKeyRef key;
+};
+
+struct CreateCipherContextRequest : ServiceBase
+{
+    uint64 alg_id;
+    uint32 ctx_type;
+};
+
+struct CreateCipherContextResult : ServiceBase
+{
+    int32 code;
+    CmCipherCtxRef ctx_ref;
+};
+
+// 密码学变换请求
+struct CryptoRequest : ServiceBase
+{
+    CmCipherCtxRef ctx_ref;
+    sequence<octet> input;
+    @optional sequence<octet> input1;
+    boolean suppress_padding;
+};
+
+// 密码学变换结果
+struct CryptoResult : ServiceBase
+{
+    int32 code;
+    sequence<octet> output;
+};
+
+// Context设置key请求
+struct ContextSetKeyRequest : ServiceBase
+{
+    CmCipherCtxRef ctx_ref;
+    CmCryptoKeyRef key_ref;
+    uint32 transform;
+};
+
+// Context设置key结果
+struct ContextSetKeyResult : ServiceBase
+{
+    int32 code;
+};
+
+struct ReleaseObjectRequest : ServiceBase
+{
+    uint64 ref;
+};
+
+struct ReleaseObjectResult : ServiceBase
+{
+    int32 code;
+};
+
+
+struct GetPublicKeyFromPrivateKeyRequest : ServiceBase
+{
+    CmCryptoKeyRef private_key_ref;
+};
+
+struct LoadKeySlotRequest : ServiceBase
+{
+    string keySlotInstanceSpecifier;
+};
+
+struct Uuid : ServiceBase{
+    uint64 mQwordLs;
+    uint64 mQwordMs;
+};
+
+struct CmKeySlotPrototypeProps : ServiceBase {
+    uint64 mAlgId;
+    boolean mAllocateSpareSlot;
+    boolean mAllowContentTypeChange;
+    uint32 mContentAllowedUsage;
+    boolean mExportAllowed;
+    int32 mMaxUpdateAllowed;
+    uint32 mSlotType;
+    uint64 mSlotCapacity;
+    uint32 mObjectType;
+    uint32 mslotNum; //add by neta
+    Uuid mslotUuid; //add by neta
+};
+
+struct CryptoObjectUid : ServiceBase {
+    Uuid mGeneratorUid;
+    uint64 mVersionStamp;
+};
+
+struct CmKeySlotContentProps : ServiceBase {
+    uint64 mAlgId;
+    uint64 mObjectSize;
+    uint32 mObjectType;
+    CryptoObjectUid mObjectUid;
+    uint32 mContentAllowedUsage;
+};
+
+struct LoadKeySlotResult : ServiceBase
+{
+    int32 code;
+    uint64 keySlot_ref;
+};
+
+struct OpenKeySlotRequest : ServiceBase
+{
+    uint64 keySlot_ref;
+    boolean subscribeForUpdates;
+    boolean  writeable;
+};
+
+struct OpenKeySlotResult : ServiceBase
+{
+    int32 code;
+    uint64 iOInterface_ref;
+};
+
+struct SaveContainerRequest : ServiceBase
+{
+    CmCryptoKeyRef key_ref;
+    uint64 iOInterface_ref;
+};
+
+struct SaveContainerResult : ServiceBase
+{
+    int32 code;
+};
+
+struct SaveCopyRequest : ServiceBase
+{
+    uint64 keySlot_ref;
+    uint64 iOInterface_ref;
+};
+
+struct SaveCopyResult : ServiceBase
+{
+    int32 code;
+};
+
+struct LoadPrivateKeyRequest : ServiceBase
+{
+    uint64 iOInterface_ref;
+};
+
+struct LoadPrivateKeyResult : ServiceBase
+{
+    int32 code;
+    CmCryptoKeyRef key;
+};
+
+struct BeginTransactionRequest : ServiceBase
+{
+    sequence<uint64> transactionScope;
+};
+
+struct BeginTransactionResult : ServiceBase
+{
+    int32 code;
+    uint64 transactionId;
+};
+
+struct CommitTransactionRequest : ServiceBase
+{
+    uint64 transactionId;
+};
+
+struct CommitTransactionResult : ServiceBase
+{
+    int32 code;
+};
+
+//////////////////////////////////////////////////////////////////////////////
+// X509 common struct define
+enum AttributeId
+{
+    kCommonName, // Common Name.
+    kCountry, //Country.
+    kState, //State.
+    kLocality, //Locality.
+    kOrganization, // Organization.
+    kOrgUnit, // Organization Unit.
+    kStreet, // Street.
+    kPostalCode, // Postal Code.
+    kTitle, // Title.
+    kSurname, // Surname.
+    kGivenName, // Given Name.
+    kInitials, // Initials.
+    kPseudonym, // Pseudonym.
+    kGenerationQualifier, // Generation Qualifier.
+    kDomainComponent, // Domain Component.
+    kDnQualifier, // Distinguished Name Qualifier.
+    kEmail, // E-mail.
+    kUri, // URI.
+    kDns, // DNS.
+    kHostName, // Host Name (UNSTRUCTUREDNAME)
+    kIpAddress, // IP Address (UNSTRUCTUREDADDRESS)
+    kSerialNumbers, // Serial Numbers.
+    kUserId // User ID.
+};
+
+enum CertStatus
+{ 
+    kValid,
+    kInvalid,
+    kUnknown,
+    kNoTrust,
+    kExpired,
+    kFuture 
+};
+
+// DN(引用)定义
+struct CmX509DNRef
+{
+    uint64 ref;         // 对server端X509DN实体的引用。引用内容由server解释，client端不感知
+};
+
+struct X509_DN
+{
+    map<uint32, string> attributeMap;
+};
+
+struct CmX509_Ref
+{
+    uint64 ref;
+};
+
+struct CmCertInfo 
+{
+    string subjectName;
+    X509_DN x509dn;
+    X509_DN issuerDn;
+    uint32 formatId;
+};
+
+// X509 method define
+
+// ParseCert请求
+struct ParseCertRequest : ServiceBase
+{
+    uint32 formatId;     // key_type. 0: none, 1: symmetric key, 2: public key, 3: private key.
+    sequence<octet> certMem;
+};
+
+// ParseCert结果
+struct ParseCertResult : ServiceBase
+{
+    int32 code;
+    CmX509_Ref cert_ref;
+};
+
+
+struct CreateCertSignRequest : ServiceBase
+{
+    CmCipherCtxRef key;
+    CmX509DNRef x509dn_ref;
+    map<uint32,string> x509Extensions;
+    uint32 version;
+};
+
+struct CreateCSRResult : ServiceBase
+{
+    int32 code;
+    CmX509_Ref certSignRequest_ref;
+};
+
+struct ExportASN1CertSignRequest : ServiceBase {
+    CmX509_Ref certSignRequest_ref;
+};
+
+struct ExportASN1CertSignResult : ServiceBase {
+    int32 code;
+    sequence<octet> signature;
+};
+
+struct ImportCertRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+    string destCertPath;
+};
+
+struct ImportCertResult : ServiceBase
+{
+    boolean result;
+};
+
+struct VerifyCertRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+    string rootCertPath;
+};
+
+struct VerifyCertResult : ServiceBase
+{
+    CertStatus cert_status;
+};
+
+struct FindCertByDnRequest : ServiceBase
+{
+    X509_DN subjectDn;
+    X509_DN issuerDn;
+    long validityTimePoint;
+};
+
+struct FindCertByDnResult : ServiceBase
+{
+    int32 code;
+    CmX509_Ref cert_ref;
+};
+
+struct BuildDnRequest : ServiceBase
+{
+    string dn;
+};
+
+struct BuildDnResult : ServiceBase
+{
+    int32 code;
+    CmX509DNRef x509dn_ref;
+};
+
+struct SetDnRequest : ServiceBase
+{
+    string dn;
+    CmX509DNRef x509dn_ref;
+};
+
+struct SetDnResult : ServiceBase
+{
+    int32 code;
+    boolean Result;
+};
+
+struct DnCommonResult : ServiceBase
+{
+    int32 code;
+    string dn_result;
+};
+
+
+struct GetDnStringRequest : ServiceBase
+{
+    CmX509DNRef x509dn_ref;
+};
+
+struct GetAttributeRequest : ServiceBase
+{
+    AttributeId id;
+    CmX509DNRef x509dn_ref;
+};
+
+struct GetAttributeWithIndexRequest : ServiceBase
+{
+    AttributeId id;
+    uint32 index;
+    CmX509DNRef x509dn_ref;
+};
+
+struct SetAttributeRequest : ServiceBase
+{
+    AttributeId id;
+    string attr;
+    CmX509DNRef x509dn_ref;
+};
+
+struct SetAttributeResult : ServiceBase
+{
+    boolean result;
+};
+
+
+
+struct IsCaRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+};
+
+struct CertCommonResult : ServiceBase
+{
+    boolean result;
+};
+
+struct GetConstraintsRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+};
+
+struct GetConstraintsResult : ServiceBase
+{
+    uint32 constraint;
+};
+
+struct GetPathLimitRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+};
+
+struct GetPathLimitResult : ServiceBase
+{
+    uint32 count;
+};
+
+struct SubjectDnRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+};
+
+struct SubjectDnResult : ServiceBase
+{
+    CmX509DNRef  x509_dn_ref;
+};
+
+
+struct AuthorityKeyIdRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+};
+
+struct AuthorityKeyIdResult : ServiceBase
+{
+    string key_id;
+};
+
+
+struct StartTimeRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+};
+
+struct StartTimeResult : ServiceBase
+{
+    int64 time;
+};
+
+struct EndTimeRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+};
+
+struct EndTimeResult : ServiceBase
+{
+    int64 time;
+};
+
+struct GetStatusRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+};
+
+struct GetStatusResult : ServiceBase
+{
+    uint32 status;
+};
+
+struct IsRootRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+};
+
+struct IssuerDnRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+};
+
+struct IssuerDnResult : ServiceBase
+{
+    CmX509DNRef issuer_dn_ref;
+};
+
+struct SerialNumberRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+};
+
+struct SerialNumberResult : ServiceBase
+{
+    string  x509_dn;
+};
+
+struct SubjectKeyIdRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+};
+
+struct SubjectKeyIdResult : ServiceBase
+{
+    string  subjectkey_id;
+};
+
+struct VerifyMeRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+};
+
+struct X509VersionRequest : ServiceBase
+{
+    CmX509_Ref cert_ref;
+};
+
+struct X509VersionResult : ServiceBase
+{
+    uint32 version;
+};
+
+
+// struct MyProviderRequest : ServiceBase
+// {
+//     CmX509DNRef x509dn_ref;
+// }
+
+// struct MyProviderResult : ServiceBase
+// {
+//     CmX509DNRef x509dn_ref;
+// }

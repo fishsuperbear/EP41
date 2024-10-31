@@ -1,0 +1,72 @@
+%YAML:1.0
+
+processName: [nvs_producer]
+logAppName: [H011]
+logLevel: 2 
+logMode: 0 
+platform_name: XPC_MULTIPLE_CAMERA
+platform_mask: 0x0111 0x1111 0x1111 0x0000
+x8b40_f120_nito: XPC_F120_OX08B40_MAX96717
+x8b40_f30_nito: XPC_F30_OX08B40_MAX96717
+x3f_nito: CA_S100_OX03F10_MAX96717F_A
+sensorConfigs:
+  - sensorid: 0
+    enableICP: false
+    enableISP0: true
+    enableISP1: false
+    enableISP2: false
+  - sensorid: 1
+    enableICP: false
+    enableISP0: true
+    enableISP1: false
+    enableISP2: false
+  - sensorid: 2
+    enableICP: true
+    enableISP0: false
+    enableISP1: false
+    enableISP2: false
+  - sensorid: 3
+    enableICP: true
+    enableISP0: false
+    enableISP1: false
+    enableISP2: false
+  - sensorid: 4
+    enableICP: true
+    enableISP0: false
+    enableISP1: false
+    enableISP2: false
+  - sensorid: 5
+    enableICP: true
+    enableISP0: false
+    enableISP1: false
+    enableISP2: false
+  - sensorid: 6
+    enableICP: true
+    enableISP0: false
+    enableISP1: false
+    enableISP2: false
+  - sensorid: 7
+    enableICP: true
+    enableISP0: false
+    enableISP1: false
+    enableISP2: false
+  - sensorid: 8
+    enableICP: true
+    enableISP0: false
+    enableISP1: false
+    enableISP2: false
+  - sensorid: 9
+    enableICP: true
+    enableISP0: false
+    enableISP1: false
+    enableISP2: false
+  - sensorid: 10
+    enableICP: true
+    enableISP0: false
+    enableISP1: false
+    enableISP2: false
+  - sensorid: 11
+    enableICP: true
+    enableISP0: false
+    enableISP1: false
+    enableISP2: false

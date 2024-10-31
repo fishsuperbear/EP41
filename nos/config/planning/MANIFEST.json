@@ -1,0 +1,16 @@
+{
+  "process_name": "planningProcess",
+  "executable": "planning",
+  "restart_attempt_num": "2",
+  "shall_run_ons": [],
+  "mode_of_order":[
+    "Normal.2"
+  ],
+  "scheduling_policy":"RR",
+  "scheduling_priority":"60",
+  "arguments":["--flagfile=conf/planning/planning.conf"],
+  "environments":[
+    "NETA_CM_QOS_PATH=/app/runtime_service/planning/etc/default_qos.json"
+  ]
+}
+

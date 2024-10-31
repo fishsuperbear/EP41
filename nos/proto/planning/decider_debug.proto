@@ -1,0 +1,125 @@
+syntax = "proto2";
+
+package hozon.planning;
+
+import "proto/routing/routing.proto";
+
+/*
+  This file defines the data types that represents the internal state of the
+  planning decider module.
+  It will be refreshed in each planning cycle.
+*/
+
+message InteractiveObstacleInfo{
+  optional string id = 1;
+  optional double start_s = 2;
+  optional double end_s = 3;
+  optional double start_l = 4;
+  optional double end_l = 5;
+  optional double speed = 6;
+  optional double lane_left_width = 7;
+  optional double lane_right_width = 8;
+  optional bool is_influenced_adc = 9 [default = false];
+  optional double distance_to_adc_s = 10;
+  optional double delta_speed_adc_obstacle = 11;
+  optional double front_safe_distance = 12;
+  optional double back_safe_distance = 13;
+}
+
+message ReferenceLineDeciderInfo{
+  optional string reference_line_info_tag = 1;
+  repeated InteractiveObstacleInfo interactive_obstacles_info = 2;
+  optional double map_limit_speed = 3;
+  optional bool is_target_reference_line = 4;
+  optional bool is_drivable = 5 [default = false];
+  optional double adc_start_s = 6;
+  optional double adc_end_s = 7;
+  optional double adc_start_l = 8;
+  optional double adc_end_l = 9;
+  optional double adc_speed = 10;
+  optional double cost = 11;
+}
+
+message ReferenceLineInfoDeciderDebug{
+  optional bool is_change_lane = 1;
+  optional bool is_lane_change_triggered = 2;
+  repeated ReferenceLineDeciderInfo reference_line_info_deciders_info = 3;
+  optional uint32 out_reference_line_info_size = 4;
+  optional hozon.routing.ChangeLaneType change_lane_type = 5;
+  repeated InteractiveObstacleInfo risk_obstacles_info = 6;
+}
+
+message ObsInfo{
+  optional string id = 1;
+  optional double exist_time = 2;
+  optional double fulfil_time = 3;
+  optional double label_time = 4;
+  optional double obs_adc_s = 5;
+  optional double ttc = 6;
+}
+
+message AvoidBigCarMapInfo{
+  repeated ObsInfo obs_info = 1;
+  optional bool is_other_car_danger_for_stop = 2;
+  optional bool is_other_car_danger_for_trigger = 3;
+}
+
+enum AdcNudgeStatus {
+  NO_NUDGE = 1;
+  LEFT_NUDGE = 2;
+  RIGHT_NUDGE = 3; 
+}
+
+message AvoidAlongsideDeciderDebug{
+  optional bool is_adc_state_ok = 1;
+  optional AdcNudgeStatus adc_nudge_status = 2;
+  optional AvoidBigCarMapInfo left_obs_info = 3;
+  optional AvoidBigCarMapInfo right_obs_info = 4;
+}
+
+message ObstacleBehavior {
+  optional string obs_id = 1;
+  enum InitialBehavior {
+    Unknown = 0;
+    Follow = 1;
+    CutIn = 2;
+    Cross = 3;
+    Alongside_Left = 4;
+    Alongside_Right = 5;
+  }
+  optional InitialBehavior obs_initial_behavior = 2;
+}
+
+message InteractiveObsBehavior {
+  optional string interactive_obs_id = 1;
+  enum Behavior {
+    UnknownBehavior = 0;
+    ConstantSpeed = 1;
+    Accelerate = 2;
+    Decelerate = 3;
+  }
+  optional Behavior adc_behavior = 2;
+  optional Behavior obs_behavior = 3;
+  optional double min_cost = 4;
+  enum ObsDecision {
+    UnknownObsDecision = 0;
+    Ignore = 1;
+    Yield = 2;
+    Overtake = 3;
+  }
+  optional ObsDecision obs_decision = 5;
+}
+
+message ObstaclesDeciderDebug {
+  optional string nearest_follow_id = 1;
+  optional string cipv_id = 2;
+  repeated string interactive_id = 3;
+  repeated ObstacleBehavior obstacle_behavior_info = 4;
+  repeated InteractiveObsBehavior interactive_obs_behavior = 5;
+}
+
+message DeciderDebug {
+  optional ReferenceLineInfoDeciderDebug reference_line_info_decider_debug = 1;
+  optional AvoidAlongsideDeciderDebug avoid_alongside_decider_debug = 2;
+  optional ObstaclesDeciderDebug obstacles_decider_debug = 3;
+}

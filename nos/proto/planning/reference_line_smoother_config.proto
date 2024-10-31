@@ -1,0 +1,281 @@
+syntax = "proto2";
+
+package hozon.planning;
+
+import "proto/planning/cos_theta_smoother_config.proto";
+import "proto/planning/fem_pos_deviation_smoother_config.proto";
+import "proto/planning/osqp_finite_difference_smoother_config.proto";
+
+message ReferenceLineInfoConfig {
+  enum StageType{
+    INIT = 0;
+    PARKING = 1;
+    CRUISING = 2;
+  }
+  optional double forward_distance = 1;
+  optional double backward_distance = 2;
+  optional double backward_smooth_distance = 3;
+  optional double max_search_radius = 4;
+  optional double max_search_heading_difference = 5;
+  optional StageType stage_type = 6 [default = INIT];
+}
+
+message QpSplineSmootherConfig {
+  optional uint32 spline_order = 1 [default = 5];
+  optional double max_spline_length = 2 [default = 25];
+  optional double regularization_weight = 3 [default = 0.1];
+  optional double second_derivative_weight = 4 [default = 0.0];
+  optional double third_derivative_weight = 5 [default = 100];
+}
+
+message SpiralSmootherConfig {
+  // The max deviation of spiral reference line smoother.
+  optional double max_deviation = 1 [default = 0.1];
+
+  // The piecewise length of spiral smoother.
+  optional double piecewise_length = 2 [default = 10.0];
+
+  // The iteration num of spiral reference line smoother.");
+  optional uint32 max_iteration = 3 [default = 1000];
+
+  // The desired convergence tol for spiral opt;
+  optional double opt_tol = 4 [default = 1.0e-8];
+
+  // The acceptable convergence tol for spiral opt
+  optional double opt_acceptable_tol = 5 [default = 1e-6];
+
+  // The number of acceptable iters before termination for spiral opt;
+  optional uint32 opt_acceptable_iteration = 6 [default = 15];
+
+  // The weight of curve length term in objective function
+  optional double weight_curve_length = 7 [default = 1.0];
+
+  // The weight of kappa term in objective function
+  optional double weight_kappa = 8 [default = 1.0];
+
+  // The weight of dkappa term in objective function
+  optional double weight_dkappa = 9 [default = 100.0];
+}
+
+message DiscretePointsSmootherConfig {
+  enum SmoothingMethod {
+    NOT_DEFINED = 0;
+    COS_THETA_SMOOTHING = 1;
+    FEM_POS_DEVIATION_SMOOTHING = 2;
+    OSQP_FINITE_DIFFERENCE_SMOOTHING = 3;
+    OSQP_FINITE_DIFFERENCE_SMOOTHING_SPACE = 4;
+  }
+
+  optional SmoothingMethod smoothing_method = 3
+      [default = FEM_POS_DEVIATION_SMOOTHING];
+
+  oneof SmootherConfig {
+    CosThetaSmootherConfig cos_theta_smoothing = 4;
+    FemPosDeviationSmootherConfig fem_pos_deviation_smoothing = 5;
+    OsqpFiniteDifferenceSmootherConfig osqp_finite_difference_smoothing = 6;
+  }
+}
+
+message ConstraintIntervalSegmentConf {
+  repeated double speed_segment = 1;
+  repeated double constraint_interval_speed_segment = 2;
+}
+
+message BoundarySegmentConf {
+  // anchor point speed segment box 
+  repeated double speed_segment = 3;
+  repeated double s_boundary_speed_segment = 4;
+  repeated double l_boundary_speed_segment = 5;
+  repeated double s_first_end_boundary_speed_segment = 6;
+  repeated double l_first_end_boundary_speed_segment = 7;
+
+  // anchor point lane width segment box
+  repeated double lane_half_width_segment = 21;
+  repeated double l_boundary_width_segment = 22;
+  repeated double s_boundary_width_segment = 23;
+}
+
+message RoadLineBoundConf {
+  optional bool enable_solid_line_s_forward_extend = 1 [default = true];
+  optional bool enable_solid_line_s_backward_extend = 2 [default = true];
+  optional double solid_line_forward_extend_length = 3 [default = 5.0];
+  optional double solid_line_backward_extend_length = 4 [default = 5.0];
+  optional double virtual_line_forward_extend_length = 5 [default = 5.0];
+  optional double virtual_line_backward_extend_length = 6 [default = 5.0];
+  optional int32 virtual_line_extend_split_num = 7 [default = 3];
+  // line boundary
+  optional double normal_s_boundary = 10 [default = 0.1];
+  optional double normal_l_boundary = 19 [default = 0.1];
+  optional double normal_min_l_boundary = 11 [default = 0.1];
+  optional double curved_min_l_boundary = 12 [default = 0.1];
+  optional double normal_turn_min_l_boundary = 13 [default = 0.1];
+  optional double normal_turn_opposite_min_l_boundary = 14 [default = 0.1];
+  optional double normal_max_l_boundary = 15 [default = 0.1];
+  optional double normal_turn_max_l_boundary = 16 [default = 0.1];
+  optional double normal_turn_opposite_max_l_boundary = 17 [default = 0.1];
+  optional double curved_max_l_boundary = 18 [default = 0.1];
+  optional double solid_normal_line_buffer = 21 [default = 0.2];
+  optional double dotted_normal_line_buffer = 22 [default = 0.1];
+  optional double solid_curved_line_buffer = 23 [default = 0.2];
+  optional double dotted_curved_line_buffer = 24 [default = 0.1];
+  optional double virtual_normal_line_buffer = 25 [default = 0.0];
+  optional double virtual_curved_line_buffer = 26 [default = 0.0];
+  optional double normal_turn_solid_line_buffer = 27 [default = 0.0];
+  optional double normal_turn_dotted_line_buffer = 28 [default = 0.0];
+  optional double normal_turn_virtual_line_buffer = 29 [default = 0.0];
+}
+
+message CenterlineProcessConf {
+  optional bool enable_centerline_process = 1 [default = false];
+  optional bool enable_poor_centerline_process = 2 [default = false];
+  optional bool enable_lane_type_centerline_process = 3 [default = false];
+  optional bool enable_curb_centerline_process = 4 [default = false];
+  optional bool enable_solid_line_centerline_process = 5 [default = false];
+  optional double normal_center_point_to_lane_safe_buffer = 7 [default = 0.75];
+  optional double curved_center_point_to_lane_safe_buffer = 8 [default = 0.75];
+  optional double curb_shift_buffer = 9 [default = 0.2];
+  optional double correct_center_point_protect_buffer = 10 [default = 0.5];
+  optional double normal_solid_line_expect_shift_max_buffer = 11 [default = 0.5];
+  optional double normal_solid_line_safe_check_buffer = 12 [default = 0.6];
+  optional double normal_solid_line_min_avoid_buffer = 13 [default = 0.55];
+  optional double normal_dotted_line_min_avoid_buffer = 14 [default = 0.45];
+  optional double curved_solid_line_expect_shift_max_buffer = 15 [default = 0.5];
+  optional double curved_solid_line_safe_check_buffer = 16 [default = 0.6];
+  optional double curved_solid_line_min_avoid_buffer = 17 [default = 0.55];
+  optional double curved_dotted_line_min_avoid_buffer = 18 [default = 0.45];
+  optional double normal_turn_solid_line_expect_shift_max_buffer = 19 [default = 0.5];
+  optional double normal_turn_solid_line_safe_check_buffer = 20 [default = 0.6];
+  optional double normal_turn_solid_line_min_avoid_buffer = 21 [default = 0.45];
+  optional double normal_turn_dotted_line_min_avoid_buffer = 22 [default = 0.45];
+  optional bool enable_normal_turn_line_is_solid = 23 [default = true];
+  optional bool enable_normal_turn_poor_center_line_process = 24 [default = false];
+}
+
+message CenterlineConf {
+  optional CenterlineProcessConf ncp_center_line_conf = 1;
+  optional CenterlineProcessConf nnp_center_line_conf = 2;
+  optional CenterlineProcessConf avp_center_line_conf = 3;
+  optional CenterlineProcessConf perception_center_line_conf = 4;
+}
+
+message BoundaryConf {
+  enum RefPointBoundType {
+    ADC_SPEED = 0;
+    LANE_WIDTH = 1;
+  }
+  optional RefPointBoundType ref_point_bound_type = 1 [default = ADC_SPEED];
+  optional double normal_s_boundary = 2;
+  optional double normal_l_boundary = 3;
+  optional bool enable_s_segment = 4 [default = true];
+  optional bool enable_l_segment = 5 [default = true];
+  optional double first_end_l_boundary = 9 [default = 0.0];
+  optional double first_end_s_boundary = 10 [default = 0.0];
+  optional double second_end_l_boundary = 11 [default = 0.0];
+  optional double second_end_s_boundary = 12 [default = 0.0];
+  // Road info boundary process
+  // driving mode road line bound info conf
+  optional RoadLineBoundConf ncp_road_line_bound_conf = 21;
+  optional RoadLineBoundConf nnp_road_line_bound_conf = 22;
+  optional RoadLineBoundConf avp_road_line_bound_conf = 23;
+  optional RoadLineBoundConf ntp_road_line_bound_conf = 26;
+  optional RoadLineBoundConf perception_road_line_bound_conf = 24;
+  optional BoundarySegmentConf boundary_segment_conf = 25;
+}
+
+message IntervalConf {
+  // The output resolution for discrete point smoother reference line
+  optional double perception_constraint_interval = 1 [default = 5];
+  optional double avp_constraint_interval = 2 [default = 0.1];
+  optional double tba_constraint_interval = 5 [default = 0.1];
+  optional double stitch_constraint_interval = 3 [default = 0.1];
+  optional double normal_constraint_interval = 4 [default = 0.75];
+  optional bool enable_segment_interval = 11 [default = false];
+  optional ConstraintIntervalSegmentConf constraint_interval_segment_conf = 16;
+}
+
+message StitchConf { 
+  optional bool enable_forward_stitch = 1 [default = false];
+  optional double stitch_look_forward_min_extend_distance = 2 [default = 10.0];
+  optional double stitch_reference_line_different_check_step = 3 [default = 5.0];
+  optional double stitch_smoothed_reference_line_max_diff = 4 [default = 1.0];
+  optional double stitch_point_projection_diff = 5 [default = 1.0];
+  // reference line stitch parameters
+  optional double forward_stitch_overlap_distance = 6 [default = 10.0];
+  optional double backward_stitch_overlap_distance = 7 [default = 10.0];
+  optional double forward_stitch_anchor_start_point_ratio = 8 [default = 0.0];
+  optional double forward_stitch_anchor_end_point_ratio = 9 [default = 0.85];
+  optional double backward_stitch_anchor_start_point_ratio = 10 [default = 0.0];
+  optional double backward_stitch_anchor_end_point_ratio = 11 [default = 0.85];
+  // stitch point bound process
+  optional double stitch_anchor_point_lat_lower_bound = 12 [default = 0.25];
+  optional double stitch_anchor_point_lat_upper_bound = 13 [default = 0.25];
+  optional double stitch_anchor_point_lon_lower_bound = 14 [default = 0.2];
+  optional double stitch_anchor_point_lon_upper_bound = 15 [default = 0.2];
+  // reference line stitch protect parameters
+  optional int32 stitch_safe_point_number = 16 [default = 5];
+  optional double speed_stitch_safe_boundary_ratio = 17 [default = 2.0];
+  optional double road_stitch_safe_boundary_ratio = 18 [default = 1.0];
+  optional double stitch_interval_protect_ratio = 19 [default = 0.333333];
+  optional double stitch_add_point_lat_bound = 20 [default = 0.35];
+  optional double stitch_add_point_lon_bound = 21 [default = 0.35];
+}
+
+message CurvatureConf {
+  optional bool enable_curvature_smoother = 1 [default = false];
+  optional double curvature_smoother_threshold = 2 [default = 0.24];
+  optional double max_curvature = 3 [default = 0.2];
+  optional double l_bound = 4 [default = 0.333];
+  optional double ddl_bound = 5 [default = 0.1];
+  optional double dddl_bound = 6 [default = 1e-3];
+  optional CurvatureOsqpWeight curvature_osqp_weight = 7;
+  optional CurvatureOsqpSettings curvature_osqp_settings = 8;
+}
+
+message CurvatureOsqpWeight {
+  optional double l_weight = 1 [default = 1];
+  optional double dl_weight = 2 [default = 10];
+  optional double ddl_weight = 3 [default = 100];
+  optional double dddl_weight = 4 [default = 1000];
+  optional double weight_end_state = 5 [default = 1000];
+  optional double ddl_offset_weight = 6 [default = 0.0];
+}
+
+message CurvatureOsqpSettings {
+  optional bool verbose = 1 [default = false];
+  optional double eps_abs = 2 [default = 5e-1];
+  optional double eps_rel = 3 [default = 5e-1];
+  optional double eps_prim_inf = 4 [default = 5e-4];
+  optional double eps_dual_inf = 5 [default = 5e-4];
+  optional bool scaled_termination = 6 [default = true];
+  optional bool adaptive_rho = 7 [default = true];
+  optional int32 adaptive_rho_interval = 8 [default = 25];
+  optional bool polish = 9 [default = false];
+  optional int32 polish_refine_iter = 10 [default = 5];
+  optional int32 max_iter = 11 [default = 3000];
+  optional double alpha = 12 [default = 1.6];
+  optional double time_limit = 13 [default = 0];
+}
+message ReferenceLineSmootherConfig {
+  optional double longitudinal_boundary_bound = 2 [default = 1.0];
+  optional double max_lateral_boundary_bound = 3 [default = 0.5];
+  optional double min_lateral_boundary_bound = 4 [default = 0.2];
+  optional double road_boundary_buffer_lapa = 8 [default = 0.4];
+  // The output resolution for qp smoother reference line.
+  optional uint32 num_of_total_points = 6 [default = 500];
+  optional double lateral_buffer = 7 [default = 0.2];
+  // The output resolution for spiral smoother reference line.
+  optional double reference_line_different_check_step = 9 [default = 10.0];
+  optional double smoothed_reference_line_max_diff = 10 [default = 5.0];
+  
+  optional CenterlineConf centerline_conf = 20;
+  optional StitchConf stitch_conf = 21;
+  optional BoundaryConf boundary_conf = 22;
+  optional IntervalConf interval_conf = 23;
+  optional CurvatureConf curvature_conf = 24;
+
+  oneof SmootherConfig {
+    QpSplineSmootherConfig qp_spline = 31;
+    SpiralSmootherConfig spiral = 32;
+    DiscretePointsSmootherConfig discrete_points = 33;
+  }
+}

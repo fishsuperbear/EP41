@@ -1,0 +1,165 @@
+syntax = "proto2";
+package hozon.common;
+
+message Matrix3f {
+    repeated float array = 1; // 3 * 3
+}
+
+message Point3f {
+  optional float x = 1;
+  optional float y = 2;
+  optional float z = 3;
+}
+
+message Matrix3d {
+    repeated double array = 1; // 3 * 3
+}
+
+message Point2D {
+    optional double x = 1;
+    optional double y = 2;
+}
+
+message Point3D {
+    optional double x = 1;
+    optional double y = 2;
+    optional double z = 3;
+}
+
+message Rect2D {
+    optional Point2D topleft = 1;
+    optional Point2D size = 2;
+}
+
+message Rect3D {
+    optional Point3D center = 1;
+    optional Point3D center_std_dev = 2;
+    optional Point3D size_lwh = 3;
+    optional Point3D size_std_dev = 4;
+
+    optional double orientation  = 5;
+    optional double orientation_std_dev = 6;
+    repeated Point3D corners = 7;
+}
+
+message Quaternion {
+    optional float x = 1;
+    optional float y = 2;
+    optional float z = 3;
+    optional float w = 4;
+}
+
+message Pose {
+    optional PointENU position = 1;
+    optional Quaternion quaternion = 2;
+    optional Point3D euler_angle = 3;
+    optional Point3D rotation_vrf = 4;
+    optional float heading = 5;
+
+    // Linear velocity of the VRP in the vehicle reference frame.
+    // X/Y/Z in meters per second.
+    optional Point3D linear_velocity_vrf = 7;
+
+    // Linear acceleration of the VRP in the vehicle reference frame.
+    // Right/forward/up in meters per square second.
+    optional Point3D linear_acceleration_vrf = 8;
+
+    // Angular velocity of the VRP in the vehicle reference frame.
+    // Around right/forward/up axes in radians per second.
+    optional Point3D angular_velocity_vrf = 9;
+
+    // Roll/pitch/yaw that represents a rotation with intrinsic sequence z-x-y.
+    // in world coordinate (East/North/Up)
+    // The roll, in (-pi/2, pi/2), corresponds to a rotation around the y-axis.
+    // The pitch, in [-pi, pi), corresponds to a rotation around the x-axis.
+    // The yaw, in [-pi, pi), corresponds to a rotation around the z-axis.
+    // The direction of rotation follows the right-hand rule.
+    optional Point3D euler_angles = 10;
+
+    // Position of the vehicle in wgs84 coordinate system
+    optional PointENU wgs = 11;
+    // Position of the vehicle in gcj02 coordinate system
+    optional PointENU gcj02 = 12;
+    optional PointENU pos_utm_01 = 13;
+    optional PointENU pos_utm_02 = 14;
+    optional uint32 utm_zone_01 = 15;
+    optional uint32 utm_zone_02 = 16;
+    optional uint32 using_utm_zone = 17;
+    // 经纬度gcs坐标系下正北与utm坐标系下正北存在夹角，heading_gcs表达在gcs坐标系下的heading
+    optional double heading_gcs = 30;
+    // raw linear acceleration from imu
+    optional Point3D linear_acceleration_raw_vrf = 32;
+    // Linear velocity of the VRP in the map reference frame.
+    // East/north/up in meters per second.
+    optional Point3D linear_velocity = 33;
+
+    // Linear acceleration of the VRP in the map reference frame.
+    // East/north/up in meters per square second.
+    optional Point3D linear_acceleration = 34;
+
+    // Angular velocity of the vehicle in the map reference frame.
+    // Around east/north/up axes in radians per second.
+    optional Point3D angular_velocity = 35;
+
+    // pose in local map coord
+    optional PointENU local_pose = 36;
+
+    // raw angular velocity from imu
+    optional Point3D angular_velocity_raw_vrf = 37;
+
+    // Roll/pitch/yaw that represents a rotation in local map coordinate
+    optional Point3D euler_angles_local = 38;
+
+    // heading in local map_coord, True North is 0 degrees, rotating clockwise, 0-360 degrees
+    optional double local_heading = 39;
+}
+
+message PoseWithCovariance {
+    optional Pose pose_wgs = 1;
+    optional Pose pose_local = 2;
+    optional Pose pose_gcj02 = 3;
+    optional Pose pose_utm01 = 4;
+    optional Pose pose_utm02 = 5;
+    optional int32 utm_zone_id01 = 6;
+    optional int32 utm_zone_id02 = 7;
+    repeated float std = 8;  // size is 6 * 6
+}
+
+message Twist {
+    optional Point3f linear_vrf = 1;
+    optional Point3f angular_raw_vrf = 2;
+    optional Point3f angular_vrf = 3;
+}
+
+message TwistWithCovariance {
+    optional Twist twist_vrf = 1;
+    repeated float std = 2; //actual size is 6 * 6
+}
+
+message Accel {
+    optional Point3f linear_raw_vrf = 1;
+    optional Point3f linear_vrf = 2;
+    optional Point3f angular_vrf = 3;
+}
+
+message AccelWithCovariance {
+    optional Accel linear_vrf = 1;
+    repeated float std = 2; // actual size is 6 * 6
+}
+
+message Affine3D {
+    optional Quaternion quaternion = 1;
+    optional Point3D point3d = 2;
+}
+
+// A general polygon, points are counter clockwise
+message Polygon {
+    repeated Point3D point = 1;
+    optional bool is_closure = 2[default = false];
+}
+message PointENU {
+    optional double x = 1 [default = nan];  // East from the origin, in meters.
+    optional double y = 2 [default = nan];  // North from the origin, in meters.
+    optional double z = 3 [default = 0.0];  // Up from the WGS-84 ellipsoid, in
+                                            // meters.
+  }

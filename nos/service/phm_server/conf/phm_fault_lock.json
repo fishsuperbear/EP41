@@ -1,0 +1,47 @@
+{
+	"FaultLockList":
+	[
+		{
+			"FaultId": 4070,
+			"FaultObj": 1,
+			"LockCount": 1,
+			"RecoverCount": 3,
+			"FaultToHMIData": "0x1",
+			"LockFaultToHMIData": "0x2",
+			"IsBlockedFault": 0,
+			"FaultCount": 0,
+			"IsHandled": 0,
+			"LockedNumber": 0,
+			"FaultRecoverCount": 0,
+			"IsNeedToRecover": 0
+		},
+		{
+			"FaultId": 4100,
+			"FaultObj": 1,
+			"LockCount": 1,
+			"RecoverCount": 3,
+			"FaultToHMIData": "0x1",
+			"LockFaultToHMIData": "0x2",
+			"IsBlockedFault": 0,
+			"FaultCount": 0,
+			"IsHandled": 0,
+			"LockedNumber": 0,
+			"FaultRecoverCount": 0,
+			"IsNeedToRecover": 0
+		},
+		{
+			"FaultId": 4100,
+			"FaultObj": 2,
+			"LockCount": 1,
+			"RecoverCount": 3,
+			"FaultToHMIData": "0x1",
+			"LockFaultToHMIData": "0x2",
+			"IsBlockedFault": 0,
+			"FaultCount": 0,
+			"IsHandled": 0,
+			"LockedNumber": 0,
+			"FaultRecoverCount": 0,
+			"IsNeedToRecover": 0
+		}
+	]
+}

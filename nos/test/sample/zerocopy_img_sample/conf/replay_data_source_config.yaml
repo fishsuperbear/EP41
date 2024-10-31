@@ -1,0 +1,88 @@
+%YAML:1.0
+
+library: "./lib/libadf-lite-ds.so"
+executorName: DataSource
+
+log:
+    level: 2
+
+dataSourcesIn:
+    # - topic: /soc/zerocopy/camera_0
+    #   type: idl_cuda_proxy
+    #   cmTopic: /soc/zerocopy/camera_0
+    #   cmDomainId: 0
+    # - topic: /soc/zerocopy/camera_1
+    #   type: idl_cuda_proxy
+    #   cmTopic: /soc/zerocopy/camera_1
+    #   cmDomainId: 0
+    # - topic: /soc/zerocopy/camera_3
+    #   type: idl_cuda_proxy
+    #   cmTopic: /soc/zerocopy/camera_3
+    #   cmDomainId: 0
+    # - topic: /soc/zerocopy/camera_4
+    #   type: idl_cuda_proxy
+    #   cmTopic: /soc/zerocopy/camera_4
+    #   cmDomainId: 0
+    # - topic: /soc/zerocopy/camera_5
+    #   type: idl_cuda_proxy
+    #   cmTopic: /soc/zerocopy/camera_5
+    #   cmDomainId: 0
+    # - topic: /soc/zerocopy/camera_6
+    #   type: idl_cuda_proxy
+    #   cmTopic: /soc/zerocopy/camera_6
+    #   cmDomainId: 0
+    # - topic: /soc/zerocopy/camera_7
+    #   type: idl_cuda_proxy
+    #   cmTopic: /soc/zerocopy/camera_7
+    #   cmDomainId: 0
+    # - topic: /soc/zerocopy/camera_8
+    #   type: idl_cuda_proxy
+    #   cmTopic: /soc/zerocopy/camera_8
+    #   cmDomainId: 0
+    # - topic: /soc/zerocopy/camera_9
+    #   type: idl_cuda_proxy
+    #   cmTopic: /soc/zerocopy/camera_9
+    #   cmDomainId: 0
+    # - topic: /soc/zerocopy/camera_10
+    #   type: idl_cuda_proxy
+    #   cmTopic: /soc/zerocopy/camera_10
+    #   cmDomainId: 0
+    # - topic: /soc/zerocopy/camera_11
+    #   type: idl_cuda_proxy
+    #   cmTopic: /soc/zerocopy/camera_11
+    #   cmDomainId: 0
+    # for idl proxy
+    - topic: /idl/camera_0
+      type: idl_proxy
+      cmTopic: /soc/zerocopy/camera_0
+      cmDomainId: 0
+    - topic: /idl/camera_1
+      type: idl_proxy
+      cmTopic: /soc/zerocopy/camera_1
+      cmDomainId: 0
+    - topic: /idl/camera_2
+      type: idl_proxy
+      cmTopic: /soc/zerocopy/camera_2
+      cmDomainId: 0
+    - topic: /idl/camera_4
+      type: idl_proxy
+      cmTopic: /soc/zerocopy/camera_4
+      cmDomainId: 0
+    - topic: /idl/camera_5
+      type: idl_proxy
+      cmTopic: /soc/zerocopy/camera_5
+      cmDomainId: 0
+    - topic: /idl/camera_6
+      type: idl_proxy
+      cmTopic: /soc/zerocopy/camera_6
+      cmDomainId: 0
+    - topic: /idl/camera_7
+      type: idl_proxy
+      cmTopic: /soc/zerocopy/camera_7
+      cmDomainId: 0
+
+dataSourcesOut:
+    # - topic: workresult3
+    #   type: proto_skeleton
+    #   cmTopic: cm/workresult3
+    #   cmDomainId: 0

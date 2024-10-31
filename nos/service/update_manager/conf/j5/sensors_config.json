@@ -1,0 +1,29 @@
+{
+    "sensorsInfo" : [
+        {
+            "name" : "SRR_FL",
+            "logicAddr" :"0x10C4",
+            "busType" : 2
+        },
+        {
+            "name" : "SRR_FR",
+            "logicAddr" :"0x10C7",
+            "busType" : 2
+        },
+        {
+            "name" : "SRR_RL",
+            "logicAddr" :"0x10C8",
+            "busType" : 2
+        },
+        {
+            "name" : "SRR_RR",
+            "logicAddr" :"0x10C9",
+            "busType" : 2
+        },
+        {
+            "name" : "LIDAR",
+            "logicAddr" :"0x10CA",
+            "busType" : 2
+        }
+    ]
+}

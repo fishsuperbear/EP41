@@ -1,0 +1,6 @@
+#include "servicebase.idl"
+
+struct ProtoMethodBase : ServiceBase {
+    string name;
+    sequence<char> str;
+};

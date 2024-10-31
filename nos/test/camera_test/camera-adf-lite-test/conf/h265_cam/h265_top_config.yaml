@@ -1,0 +1,36 @@
+%YAML:1.0
+
+processName: nvs_sensor
+
+appLog:
+    name: PPER
+    description: nvs_sensor
+    file: ./
+    mode: 6
+    level: 2
+      
+schedule:
+    policy: RR
+    priority: 99
+    cpuAffinity: [1, 2 ,3]
+      
+resourceLimit:
+    group: nvs_sensor
+    cpu: 300
+    memory: 500
+      
+executors:
+    - confFile: ./conf/h265_cam/h265_data_source_config.yaml
+    - confFile: ./conf/h265_cam/h265_sensor_config.yaml
+
+    # - confFile: ./conf/nvs_sensor/avm_nvs_data_source_config.yaml
+    # - confFile: ./conf/nvs_sensor/avm_nvs_sensor_config.yaml
+
+    # - confFile: ./conf/nvs_sensor/front_nvs_data_source_config.yaml
+    # - confFile: ./conf/nvs_sensor/front_nvs_sensor_config.yaml
+
+    # - confFile: ./conf/nvs_sensor/side_nvs_data_source_config.yaml
+    # - confFile: ./conf/nvs_sensor/side_nvs_sensor_config.yaml
+
+    # - confFile: ./conf/nvs_sensor/dump_nvs_data_source_config.yaml
+    # - confFile: ./conf/nvs_sensor/dump_nvs_sensor_config.yaml

@@ -1,0 +1,7 @@
+add_subdirectory(testcase_SYSTEM_MONITOR_CPU_001)
+add_subdirectory(testcase_SYSTEM_MONITOR_DISK_001)
+add_subdirectory(testcase_SYSTEM_MONITOR_MEM_001)
+add_subdirectory(testcase_SYSTEM_MONITOR_MNAND_HS_001)
+add_subdirectory(testcase_SYSTEM_MONITOR_PROCESS_001)
+add_subdirectory(testcase_SYSTEM_MONITOR_TEMP_001)
+add_subdirectory(testcase_SYSTEM_MONITOR_VOLTAGE_001)

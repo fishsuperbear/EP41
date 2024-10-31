@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+package hozon.planning;
+
+message PathResult {
+  optional bool is_path_vaild = 1 [default = true];
+}

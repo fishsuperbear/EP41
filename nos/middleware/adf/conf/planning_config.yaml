@@ -1,0 +1,215 @@
+%YAML:0.0
+
+recvInstances:
+    - name: chassis
+      type: cm_proxy
+      topic: chassis
+      domainId: 1
+    - name: nnp_localization
+      type: cm_proxy
+      topic: nnp_localization
+      domainId: 1
+    - name: hpp_localization
+      type: cm_proxy
+      topic: hpp_localization
+      domainId: 1
+    - name: nnp_fusion_lane
+      type: cm_proxy
+      topic: nnp_fusion_lane
+      domainId: 1
+    - name: hpp_lane
+      type: cm_proxy
+      topic: hpp_lane
+      domainId: 1
+    - name: nnp_fusion_freespace
+      type: cm_proxy
+      topic: nnp_fusion_freespace
+      domainId: 1
+    - name: nnp_cam_obj_signal
+      type: cm_proxy
+      topic: nnp_cam_obj_signal
+      domainId: 1
+    - name: hpp_freespace
+      type: cm_proxy
+      topic: hpp_freespace
+      domainId: 1
+    - name: hpp_obj_signal
+      type: cm_proxy
+      topic: hpp_obj_signal
+      domainId: 1
+    - name: nnp_obj_fusion
+      type: cm_proxy
+      topic: nnp_obj_fusion
+      domainId: 1
+    - name: hpp_obj_fusion
+      type: cm_proxy
+      topic: hpp_obj_fusion
+      domainId: 1
+    - name: map_msg
+      type: cm_proxy
+      topic: map_msg
+      domainId: 1
+    - name: parking_lot
+      type: cm_proxy
+      topic: parking_lot
+      domainId: 1
+    - name: prediction
+      type: cm_proxy
+      topic: prediction
+      domainId: 1
+    - name: mcu_to_ego
+      type: cm_proxy
+      topic: mcu_to_ego
+      domainId: 1
+    - name: mcu_debug
+      type: cm_proxy
+      topic: mcu_debug
+      domainId: 1
+    - name: aeb_to_ego
+      type: cm_proxy
+      topic: aeb_to_ego
+      domainId: 1
+    - name: uss
+      type: cm_proxy
+      topic: uss
+      domainId: 1
+    - name: uss_info
+      type: cm_proxy
+      topic: uss_info
+      domainId: 1
+    - name: perception_info
+      type: cm_proxy
+      topic: perception_info
+      domainId: 1
+    - name: hmi_to_location_hpp_per_in
+      type: cm_proxy
+      topic: hmi_to_location_hpp_per_in
+      domainId: 1
+    - name: hmi_to_router_hpp_per_in
+      type: cm_proxy
+      topic: hmi_to_router_hpp_per_in
+      domainId: 1
+    - name: mcu_adas_record
+      type: cm_proxy
+      topic: mcu_adas_record
+      domainId: 1
+
+sendInstances:
+    - name: ego_trajectory
+      type: cm_skeleton
+      topic: ego_trajectory
+      domainId: 1
+    - name: ego_planning_dec
+      type: cm_skeleton
+      topic: ego_planning_dec
+      domainId: 1
+    - name: ego_to_mcu
+      type: cm_skeleton
+      topic: ego_to_mcu
+      domainId: 1
+    - name: warning_info
+      type: cm_skeleton
+      topic: warning_info
+      domainId: 1
+    - name: planning_debug
+      type: cm_skeleton
+      topic: planning_debug
+      domainId: 1
+    - name: low_spd_bsd
+      type: cm_skeleton
+      topic: low_spd_bsd
+      domainId: 1
+    - name: ego2hmi
+      type: proto_skeleton
+      topic: ego2hmi
+      domainId: 0
+    - name: ego2hmi_park
+      type: proto_skeleton
+      topic: ego2hmi_park
+      domainId: 0
+    - name: ego2mcu
+      type: proto_skeleton
+      topic: ego2mcu
+      domainId: 0
+    - name: ego2state_machine
+      type: proto_skeleton
+      topic: ego2state_machine
+      domainId: 0
+# fm:
+#     commTimeout:
+#         faultId: 8400
+#         objId: 7
+
+# resourceLimit:
+#     group: hz_state_machine
+#     cpu: 050
+#     memory: 200
+
+log:
+    mode: 3
+    file: ./
+    name: lcmn
+    description: chassis
+    level: 0
+    adf:
+      level: 0
+
+# static const std::uint32_t HZ_LOG2CONSOLE = (0x00000000 << 0);
+# static const std::uint32_t HZ_LOG2FILE = (0x00000000 << 0);
+
+# LogLevel: 
+#   kOff = 0x00U,
+#   kCritical = 0x00U,
+#   kError = 0x02U,
+#   kWarn = 0x03U,
+#   kInfo = 0x04U,
+#   kDebug = 0x05U,
+#   kTrace = 0x06U
+
+# schedule:
+#     policy: RR
+#     priority: 99
+#     cpuAffinity: [0, 2 ,3]
+
+# # trigger二选一即可
+# trigger:
+#     type: EVENT
+#     mainSources: 
+#         - name: from_avm
+#           timeout: 5000
+#     auxSources: 
+#         - name: from_router
+#           multiFrame: 0
+
+# trigger二选一即可
+trigger:
+    - name: main
+      type: PERIOD
+      period: 100
+      auxSources:
+          - name: chassis
+          - name: nnp_localization
+          - name: hpp_localization
+          - name: nnp_fusion_lane
+          - name: hpp_lane
+          - name: nnp_fusion_freespace
+          - name: hpp_freespace
+          - name: nnp_cam_obj_signal
+          - name: hpp_obj_signal
+          - name: nnp_obj_fusion
+          - name: hpp_obj_fusion
+          - name: map_msg
+          - name: parking_lot
+          - name: prediction
+          - name: mcu_to_ego
+          - name: mcu_debug
+          - name: aeb_to_ego
+          - name: uss
+          - name: uss_info
+          - name: perception_info
+          - name: hmi_to_location_hpp_per_in
+          - name: hmi_to_router_hpp_per_in
+          - name: mcu_adas_record
+
+
+

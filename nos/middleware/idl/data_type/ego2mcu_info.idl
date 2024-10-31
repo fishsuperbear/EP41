@@ -1,0 +1,64 @@
+#include "common.idl"
+#include "type.idl"
+
+struct AlgEgoMcuNNPMsg {
+    uint8 NNP_Active_OnOffSet;
+    uint8 Lanechangeinfor;
+    uint8 Lanechangedirection;
+    uint8 LCAudioPlay;
+    uint8 Lcsndrequest;
+    uint8 DCLCAudioplay;
+    uint8 LaneChangeWarning;
+    uint8 LightRequest;
+    uint8 LaneChangePendingAlert;
+    uint8 NNP_LightRemind;
+    uint8 lateralCtrtakeover;
+    uint8 NNP_Scenarios_AudioPlay;
+    uint8 NNP_Scenarios;
+    uint8 NNP_RINO_Status;
+    uint8 PayModeConfirmFeedBack;
+    uint8 SpdAdaptComfirmFeedback;
+    uint8 TSR_SpeedSign;
+    uint8 ALC_mode;
+    uint8 NNP_indx_HDMapLocationNavi_u8;
+    uint8 NNP_indx_CrrntLaneCond_u8;
+    uint32 NNP_d_Distance2OnRamp_sg;
+    uint32 NNP_d_Distance2DownRamp_sg;
+    uint32 NNP_d_DistanceIntoODD_sg;
+    uint32 NNP_d_DistanceOutofODD_sg;
+    float NNP_d_CrrntLaneWidth_sg;
+    float NNP_crv_CrrntLaneCurve_sg;
+    float NNP_rad_CrrntLaneHead_sg;
+    uint8 NNP_is_NNPMRMFlf_bl;
+    uint8 NNP_is_NNPMRMDoneFlf_bl;
+    uint8 NNP_is_NNPEMFlf_bl;
+    uint8 NNP_is_NNPEMDoneFlf_bl;
+    uint8 NNP_indx_NNPSoftwareFault_u8;
+    uint8 HighBeamReqSt;
+    uint8 LowBeamReqSt;
+    uint8 LowHighBeamReqSt;
+    uint8 HazardLampReqSt;
+    uint8 HornReqSt;
+};
+
+struct AlgEgoMcuAVPMsg {
+    uint8 m_iuss_state_obs;
+    boolean need_replan_stop;
+    boolean plan_trigger;
+    boolean control_enable;
+    uint8 parking_status;
+};
+/* ******************************************************************************
+    结构 名        :  AlgEgoToMcuFrame
+    功能描述       :  规控模块写到MCU的算法相关信息
+****************************************************************************** */
+struct AlgEgo2McuFrame : IDLBaseType {
+    boolean isValid;
+    AlgEgoMcuNNPMsg msg_ego_nnp;
+    AlgEgoMcuAVPMsg msg_ego_avp;
+    uint32 SOC2FCT_TBD_u32_01;
+    uint32 SOC2FCT_TBD_u32_02;
+    uint32 SOC2FCT_TBD_u32_03;
+    uint32 SOC2FCT_TBD_u32_04;
+    uint32 SOC2FCT_TBD_u32_05;
+};

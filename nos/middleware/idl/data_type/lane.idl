@@ -1,0 +1,62 @@
+#include "common.idl"
+#include "type.idl"
+
+/* *
+*  三次函数系数: x  + c * y + d;
+* */
+struct AlgLaneParam {
+    float a         ;
+    float b         ;
+    float c         ;
+    float d         ;
+    float dev_a     ;
+    float dev_b     ;
+    float dev_c     ;
+    float dev_d     ;
+};
+
+/*******************************************************************************
+    结构 名        :  AlgLanelineFit
+    功能描述       :  车道线描述
+*******************************************************************************/
+struct AlgLanelineFit {
+    float       xStartVRF;                  //
+    float       xEndVRF;                    //
+    AlgLaneParam    coefficients;           // 车
+};
+
+/*******************************************************************************
+    结构 名        :  AlgLaneDetectionOut
+    功能描述       :  车道线检测结果
+*******************************************************************************/
+struct AlgLaneDetectionOut {
+    int32                       lanelineSeq;                // 车道线id
+    float                       geometryConfidence;         // 车道线形状置信度
+    uint8                       cls;                        // 车道线类别
+    float                       typeConfidence;             // 车道线类别置信度
+    uint8                       color;
+    float                       colorConfidence;            // 车道线颜色置信度
+    float                       laneLineWidth;              // 车道线 宽度
+    sequence<Point3f>           keyPointVRF;    // 车道线关键点
+    sequence<Point3f>           pointVehicleCoord;    // 车辆坐标系下的采样点
+    sequence<Point2f>           pointImageCoord;    // 图像坐标系下的采样点
+    sequence<Point2f>           fitPointImageCoord;    // 图像坐标系下的拟合方程采样点
+    AlgLanelineFit              laneFit;        // 车道线多项式表达
+    HafTime                     timeCreation;               // 车道线被快门拍下的时间戳
+    AlgLanelineFit              imageLaneFit;        // 图像中，车道线拟合方程
+};
+
+
+/*******************************************************************************
+    结构 名        :  AlgLaneDetectionOutArray
+    功能描述       :  车道线列表检测结果
+*******************************************************************************/
+struct AlgLaneDetectionOutArray : IDLBaseType {
+    uint32                count;
+    uint32                locSeq;
+    sequence<sequence<AlgLaneDetectionOut> > laneDetectionFrontOut;
+    sequence<sequence<AlgLaneDetectionOut> > laneDetectionRearOut;
+    boolean               isLaneChangeToLeft ;                 //
+    boolean               isLaneChangeToRight ;                //
+    boolean               isValid ;                            // 该帧数据是否可用
+};

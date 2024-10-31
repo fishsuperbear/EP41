@@ -1,0 +1,11 @@
+{
+    "LogAppName": "LOGSV",
+    "LogAppDescription": "log_server",
+    "LogContextName": "LOGSV",
+    "LogLevel": 1, // TRACE=0,DEBUG,INFO,WARN,ERROR,CRITICAL,OFF=6
+    "LogMode": 2, // CONSOLE=1,FILE,CONSOLE_FILE=3
+    "LogFilePath": "/opt/usr/log/soc_log/",
+    "MaxLogFileNum": 10,
+    "MaxSizeOfLogFile": 20,
+    "DebugSwitch": "off"
+}

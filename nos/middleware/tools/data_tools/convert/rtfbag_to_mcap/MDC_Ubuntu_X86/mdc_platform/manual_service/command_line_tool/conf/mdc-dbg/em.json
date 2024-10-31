@@ -1,0 +1,26 @@
+[
+    {
+        "key" : "app",
+        "value" :
+        {
+            "string" : "em"
+        }
+    },
+    {
+        "key" : "command",
+        "value" :
+        {
+            "string[]" : [ "em query { mdcPlatformStatus | processStatus }",
+                           "em restart < ProcessName >" ]
+        }
+    },
+    {
+        "key" : "help",
+        "value" :
+        {
+            "string[]" : ["em query { mdcPlatformStatus | processStatus },    Query the MDC Platform start up status or the Process status.",
+                          "em restart < ProcessName >,                        Restart the Process."
+            ]
+        }
+    }
+]

@@ -1,0 +1,34 @@
+syntax = "proto2";
+
+package hozon.hmi;
+import "proto/common/types.proto";
+
+message AvpToHmi {
+
+optional int32 park_bar_percent = 1; 
+ //0x0：No request
+ //0x1：0%
+ //0x2：10%
+ //0x3：20%
+ //0x4：30%
+ //0x5：40%
+ //0x6：50%
+ //0x7：60%
+ //0x8：70%
+ //0x9：80%
+ //0xA：90%
+ //0xB：100%
+optional double guild_line_a = 2;
+optional double guild_line_b = 3;
+optional double guild_line_c = 4;
+optional double guild_line_d = 5;
+optional double guild_line_xmin = 6;
+optional double guild_line_xmax = 7;
+optional int32 hour_of_day = 8;
+optional int32 minute_of_hour = 9;
+optional int32 second_of_minute = 10;
+optional int32 nns_distance = 11;
+optional int32 hpa_distance = 12;
+optional int32 park_time_remaining = 13;
+repeated hozon.common.Point2D hmi_traj_local_coordinate = 14;
+}

@@ -1,0 +1,70 @@
+syntax = "proto2";
+
+package hozon.planning;
+
+enum PathBoundLaneBorrowInfo {
+  LEFT_FORWARD_BORROW = 1;
+  LEFT_BACKWARD_BORROW = 2;
+  NO_BORROW = 3;
+  RIGHT_FORWARD_BORROW = 4;
+  RIGHT_BACKWARD_BORROW = 5;
+};
+
+enum PathBoundType {
+  FALL_BACK_PATH_BOUND = 0;
+  PULL_OVER_PATH_BOUND = 1;
+  LANE_CHANGE_PATH_BOUND = 2;
+  LANE_KEEP_PATH_BOUND = 3;
+};
+
+message ObstacleEdgeInfo{
+  optional double lower_s = 1;
+  optional double l_min = 2;
+  optional double l_max = 3;
+  optional double upper_s = 4;
+  optional string id = 5;
+}
+
+message PathBoundPointDebug{
+  optional double s = 1;
+  optional double l_min = 2;
+  optional double l_max = 3;
+}
+
+message DynamicObstacleConstraintDebug{
+  repeated ObstacleEdgeInfo obstacle_edges = 1;
+  repeated PathBoundPointDebug origin_path_boundaries = 2;
+  repeated PathBoundPointDebug path_boundaries = 3;
+}
+
+message BoundaryFromLanesAndADC{
+  optional PathBoundType path_bound_type = 1;
+  optional double offset_to_map = 2;
+  optional double lane_left_width = 3;
+  optional double lane_right_width = 4;
+  optional PathBoundLaneBorrowInfo lane_borrow_info = 5;
+  optional double neighbor_lane_width = 6;
+  optional double adc_speed_buffer = 7;
+  optional double adc_buffer = 8;
+  optional double left_bound_lane = 9;
+  optional double right_bound_lane = 10;
+  optional double left_bound_adc = 11;
+  optional double right_bound_adc = 12;
+  optional PathBoundPointDebug path_boundaries_lanes_and_adc = 13;
+  optional PathBoundPointDebug static_obstacles_path_boundaries = 14;
+  optional PathBoundPointDebug dynamic_obstacles_path_boundaries = 15;
+  optional PathBoundPointDebug path_boundaries = 16;
+}
+
+message BoundaryFromObstacles{
+  optional uint32 obstacles_number = 1;
+  repeated ObstacleEdgeInfo static_obstacle_info = 2;
+}
+
+message PathBoundDebug {
+  optional PathBoundType path_bound_type = 1;
+  repeated BoundaryFromLanesAndADC fall_back_path_bound = 3;
+  repeated BoundaryFromLanesAndADC path_bound = 4;
+  optional BoundaryFromObstacles boundary_from_static_obstacles = 6;
+  optional BoundaryFromObstacles boundary_from_dynamic_obstacles = 7;
+}

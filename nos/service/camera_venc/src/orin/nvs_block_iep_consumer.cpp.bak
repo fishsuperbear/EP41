@@ -1,0 +1,639 @@
+#include "nvs_block_iep_consumer.h"
+
+namespace hozon {
+namespace netaos {
+namespace nv { 
+
+int32_t NVSBlockIEPConsumer::Create(NvSciStreamBlock pool, const std::string& endpoint_info) {
+    name = "IEP CONSUMER";
+
+    NvSciError err = NvSciStreamConsumerCreate(pool, &block);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Fail to create consumer block, ret " << LogHexNvErr(err); 
+        return -1;
+    }
+
+    err = NvSciStreamBlockUserInfoSet(block, ENDINFO_NAME_PROC, endpoint_info.size(), endpoint_info.c_str());
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Fail to setup consumer info, ret " << LogHexNvErr(err); 
+        return -2;
+    }
+
+    RegIntoEventService();
+
+    return 0;
+}
+
+void NVSBlockIEPConsumer::DeleteBlock() {
+    NvSciStreamBlockDelete(block);
+
+    for (auto& packet : _packets) {
+        NvSciBufObjFree(packet->nv_sci_buf);
+    }
+
+    NvSciSyncObjFree(_signal_obj);
+    NvSciSyncObjFree(_waiter_obj);
+}
+
+int32_t NVSBlockIEPConsumer::OnConnected() {
+    if (ConsumerInit() < 0) {
+        return -1;
+    }
+
+    if (ConsumerElemSupport() < 0) {
+        return -2;
+    }
+
+    // Sequence for getting signaler and waiter attributes from IEP:
+    // 1. Set buf attr of element to iep when NvSciStreamEventType_Elements.
+    // 2. create IEP encoder using buf attr.
+    // 3. fill signaler attribute and waiter attribute.
+
+    // Comment out. We need wait for NvSciStreamEventType_Elements.
+    // if (ConsumerSyncSupport() < 0) {
+    //     return -3;
+    // }
+
+    return 0;
+}
+
+int32_t NVSBlockIEPConsumer::OnElements() {
+    NvSciError err;
+
+    /*
+     * This application does not need to query the element count, because we
+     *   know it is always 1. But we do so anyways to show how it is done.
+     */
+    uint32_t count;
+    err = NvSciStreamBlockElementCountGet(block,
+                                          NvSciStreamBlockType_Pool,
+                                          &count);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Fail to query element count, ret " << LogHexNvErr(err); 
+        return -1;
+    }
+    if (2U != count) {
+        NVS_LOG_CRITICAL << "Consumer received unexpected element count " << count;
+        return -2;
+    }
+
+    NVS_LOG_INFO << "Consumer received element count " << count;
+
+    for (int32_t i = 0; i < 2; ++i) {
+        uint32_t type;
+        NvSciBufAttrList buf_attr;
+        err = NvSciStreamBlockElementAttrGet(block,
+                                            NvSciStreamBlockType_Pool, i,
+                                            &type, &buf_attr);
+        if (NvSciError_Success != err) {
+            NVS_LOG_CRITICAL << "Fail to query element attr, ret " << LogHexNvErr(err); 
+            return -3;
+        }
+
+        if (type == ELEMENT_NAME_IMAGE) {
+            int32_t res = IEPSetBufAttr(type, buf_attr);
+            if (res < 0) {
+                NVS_LOG_CRITICAL << "Fail to set iep buf attr."; 
+                return -4;
+            }
+            
+            res = ConsumerSyncSupport();
+            if (res < 0) {
+                NVS_LOG_CRITICAL << "Fail to ConsumerSyncSupport.";
+                return -5;
+            }
+
+            _image_ele_index = i;
+            /* Extract data size from attributes */
+            NvSciBufAttrKeyValuePair keyVals[] = {
+                {NvSciBufImageAttrKey_Size, NULL, 0}
+            };
+            err = NvSciBufAttrListGetAttrs(buf_attr, keyVals, 1);
+            if (NvSciError_Success != err) {
+                NVS_LOG_CRITICAL << "Consumer failed to obtain buffer size, ret" << LogHexNvErr(err);
+                return -6;
+            }
+            NVS_LOG_INFO << "NvSciBufImageAttrKey_Size: " << *((const uint64_t*)(keyVals[0].value));
+            _data_size = *((const uint64_t*)(keyVals[0].value));
+
+            /* Don't need to keep attribute list */
+            NvSciBufAttrListFree(buf_attr);
+
+            /* Set waiter attributes for the asynchronous element. */
+            err = NvSciStreamBlockElementWaiterAttrSet(block, _image_ele_index, _waiter_attr);
+            if (NvSciError_Success != err) {
+                NVS_LOG_CRITICAL << "Consumer failed to send waiter attrs, ret" << LogHexNvErr(err);
+                return -7;
+            }
+
+            /* Once sent, the waiting attributes are no longer needed */
+            NvSciSyncAttrListFree(_waiter_attr);
+            _waiter_attr = NULL;
+        }
+        else if (type == ELEMENT_NAME_METADATA) {
+            _metadata_ele_index = i;
+        }
+        else {
+            NVS_LOG_ERROR << "Received unknown element type " << log::loghex(type);
+        }
+        
+        err = NvSciStreamBlockElementUsageSet(block, i, true);
+        if (NvSciError_Success != err) {
+            NVS_LOG_CRITICAL << "Consumer failed to indicate element is used, ret" << LogHexNvErr(err);
+            return -8;
+        }
+    }
+
+    /* Indicate that element import is complete */
+    err = NvSciStreamBlockSetupStatusSet(block,
+                                        NvSciStreamSetup_ElementImport,
+                                        true);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to complete element import, ret" << LogHexNvErr(err);
+        return -9;
+    }
+
+    /* Indicate that waiter attribute export is done. */
+    err = NvSciStreamBlockSetupStatusSet(block,
+                                         NvSciStreamSetup_WaiterAttrExport,
+                                         true);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to complete waiter attrs export, ret" << LogHexNvErr(err);
+        return -10;
+    }
+
+    return 0;
+}
+
+int32_t NVSBlockIEPConsumer::OnPacketCreate() {
+    NvSciError err;
+
+    NVS_LOG_INFO << "Create NO." << _packets.size() << " packet.";
+
+    /* Retrieve handle for packet pending creation */
+    NvSciStreamPacket handle;
+    err = NvSciStreamBlockPacketNewHandleGet(block, &handle);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to retrieve handle for the new packet, ret" << LogHexNvErr(err);
+        return -1;
+    }
+
+    std::shared_ptr<IEPPacket> packet(new IEPPacket);
+    _packets.emplace_back(packet);
+    packet->handle = handle;
+
+    /* Retrieve all buffers and map into application
+     *   Consumers can skip querying elements that they don't use.
+     *   This use case has only 1 element.
+     */
+    err = NvSciStreamBlockPacketBufferGet(block,
+                                          handle,
+                                          _image_ele_index,
+                                          &packet->nv_sci_buf);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to retrieve buffer, ret " << LogHexNvErr(err);
+        return -2;
+    }
+
+    int res = IEPSetBufObj(packet->nv_sci_buf);
+    if (res < 0) {
+        NVS_LOG_CRITICAL << "Consumer failed to set buf object to IEP.";
+        return -2;
+    }
+
+    err = NvSciStreamBlockPacketBufferGet(block,
+                                          handle,
+                                          _metadata_ele_index,
+                                          &packet->metadata_buf_obj);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to retrieve metadata buffer, ret " << LogHexNvErr(err);
+        return -2;
+    }
+
+    /* Get a CPU pointer for the buffer from NvSci */
+    err = NvSciBufObjGetConstCpuPtr(packet->metadata_buf_obj, (void const**)&packet->metadata_local_ptr);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to map metadata buffer, ret " << LogHexNvErr(err);
+        return -1;
+    }
+
+    err = NvSciStreamBlockPacketStatusSet(block,
+                                          handle,
+                                          (NvSciStreamCookie)(packet.get()),
+                                          NvSciError_Success);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to inform pool of packet status, ret " << LogHexNvErr(err);
+        return -6;
+    }
+
+    return 0;
+}
+
+int32_t NVSBlockIEPConsumer::OnPacketsComplete() {
+    NvSciError err;
+    /* For this use case, nothing else to setup.
+        *   Inform the NvSciStream that the consumer has imported all packets.
+        */
+    err = NvSciStreamBlockSetupStatusSet(block,
+                                        NvSciStreamSetup_PacketImport,
+                                        true);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to inform pool of packet status, ret " << LogHexNvErr(err);
+        return -1;
+    }
+
+    return 0;
+}
+
+int32_t NVSBlockIEPConsumer::OnWaiterAttr() {
+    NvSciError err;
+
+    /* Process waiter attrs from all elements.
+     * This use case has only one element.
+     */
+    NvSciSyncAttrList prod_waiter_attr;
+    err = NvSciStreamBlockElementWaiterAttrGet(block, _image_ele_index, &prod_waiter_attr);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to query waiter attr, ret " << LogHexNvErr(err);
+        return -1;
+    }
+    if (NULL == prod_waiter_attr) {
+        NVS_LOG_CRITICAL << "Consumer received NULL waiter attr for data elem";
+        return -2;
+    }
+
+    /* Indicate that waiter attribute import is done. */
+    err = NvSciStreamBlockSetupStatusSet(block,
+                                        NvSciStreamSetup_WaiterAttrImport,
+                                        true);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to complete waiter attr import, ret " << LogHexNvErr(err);
+        return -3;
+    }
+
+    /*
+     * Merge and reconcile producer sync attrs with ours.
+     */
+    NvSciSyncAttrList unreconciled[2] = {
+        _signal_attr,
+        prod_waiter_attr
+    };
+    NvSciSyncAttrList reconciled = NULL;
+    NvSciSyncAttrList conflicts = NULL;
+    err = NvSciSyncAttrListReconcile(unreconciled, 2, &reconciled, &conflicts);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to reconcile sync attributes, ret " << LogHexNvErr(err);
+        return -4;
+    }
+
+    /* Allocate sync object */
+    err = NvSciSyncObjAlloc(reconciled, &_signal_obj);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to allocate sync object, ret " << LogHexNvErr(err);
+        return -5;
+    }
+
+    /* Free the attribute lists */
+    NvSciSyncAttrListFree(_signal_attr);
+    _signal_attr = NULL;
+    NvSciSyncAttrListFree(prod_waiter_attr);
+    NvSciSyncAttrListFree(reconciled);
+
+    /* Send the sync object for each element */
+    err = NvSciStreamBlockElementSignalObjSet(block, _image_ele_index, _signal_obj);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to send sync object, ret " << LogHexNvErr(err);
+        return -6;
+    }
+
+    int32_t res = IEPSetSignalObj(_signal_obj);
+    if (res < 0) {
+        NVS_LOG_CRITICAL << "Consumer failed to set signal object to IEP,";
+        return -7;
+    }
+
+    /* Indicate that sync object export is complete */
+    err = NvSciStreamBlockSetupStatusSet(block,
+                                            NvSciStreamSetup_SignalObjExport,
+                                            true);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to complete signal obj export, ret " << LogHexNvErr(err);
+        return -8;
+    }
+
+    return 0;
+}
+
+int32_t NVSBlockIEPConsumer::OnSignalObj() {
+    NvSciError        err;
+    /* Query sync object for asynchronous elements. */
+    err = NvSciStreamBlockElementSignalObjGet(block, 0U, _image_ele_index, &_waiter_obj);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to query sync object, ret " << LogHexNvErr(err);
+        return -1;
+    }
+
+    int32_t res = IEPSetWaiterObj(_waiter_obj);
+    if (res < 0) {
+        NVS_LOG_CRITICAL << "Consumer failed to query sync object,";
+        return -2;
+    }
+
+    /* Indicate that element import is complete */
+    err = NvSciStreamBlockSetupStatusSet(block,
+                                            NvSciStreamSetup_SignalObjImport,
+                                            true);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Consumer failed to complete signal obj import, ret " << LogHexNvErr(err);
+        return -2;
+    }
+
+    return 0;
+}
+
+int32_t NVSBlockIEPConsumer::PacketConsumed(IEPPacket *packet, NvSciSyncFence prefence, NvSciSyncFence eoffence) {
+    /* Update postfence for this element */
+    NvSciError sci_err = NvSciStreamBlockPacketFenceSet(block,
+                                            packet->handle,
+                                            0U,
+                                            &eoffence);
+    if (NvSciError_Success != sci_err) {
+        NVS_LOG_CRITICAL << "Failed to set fence, ret " << LogHexNvErr(sci_err);
+        return -1;
+    }
+
+    /* Release the packet back to the producer */
+    sci_err = NvSciStreamConsumerPacketRelease(block, packet->handle);
+    if (NvSciError_Success != sci_err) {
+        NVS_LOG_CRITICAL << "Failed to release packet, ret " << LogHexNvErr(sci_err);
+        return -1;
+    }
+
+    NvSciSyncFenceClear(&prefence);
+    NvSciSyncFenceClear(&eoffence);
+
+    return 0;
+}
+
+void NVSBlockIEPConsumer::SetCbs(IEPConsumerCbs& cbs) {
+    std::lock_guard<std::mutex> lock(_cbs_mutex);
+    _cbs = cbs;
+}
+
+int32_t NVSBlockIEPConsumer::OnPacketReady() {
+    NvSciError        sci_err;
+
+    /* Clear space to receive fence from producer for each element.
+     * This use case only has one element per packet.
+     */
+    NvSciSyncFence prefence = NvSciSyncFenceInitializer;
+    NvSciSyncFence eoffence = NvSciSyncFenceInitializer;
+
+    /* Obtain packet with the new payload */
+    NvSciStreamCookie cookie;
+    sci_err = NvSciStreamConsumerPacketAcquire(block, &cookie);
+    if (NvSciError_Success != sci_err) {
+        NVS_LOG_CRITICAL << "Failed to obtain packet for payload, ret " << LogHexNvErr(sci_err);
+        return -1;
+    }
+    IEPPacket* packet = (IEPPacket*)cookie;
+
+    sci_err = NvSciStreamBlockPacketFenceGet(block,
+                                            packet->handle,
+                                            0U, _image_ele_index,
+                                            &prefence);
+    if (NvSciError_Success != sci_err) {
+        NVS_LOG_CRITICAL << "Failed to query fence from producer, ret " << LogHexNvErr(sci_err);
+        return -2;
+    }
+
+    PacketConsumeState consume_state = static_cast<PacketConsumeState>(IEPUsePacket(packet, _signal_obj, prefence, eoffence));
+    if (consume_state == kPacketConsumeAsync) {
+        return 0;
+    }
+
+    /* Update postfence for this element */
+    sci_err = NvSciStreamBlockPacketFenceSet(block,
+                                            packet->handle,
+                                            0U,
+                                            &eoffence);
+    if (NvSciError_Success != sci_err) {
+        NVS_LOG_CRITICAL << "Failed to set fence, ret " << LogHexNvErr(sci_err);
+        return -1;
+    }
+
+    /* Release the packet back to the producer */
+    sci_err = NvSciStreamConsumerPacketRelease(block, packet->handle);
+    if (NvSciError_Success != sci_err) {
+        NVS_LOG_CRITICAL << "Failed to release packet, ret " << LogHexNvErr(sci_err);
+        return -1;
+    }
+
+    NvSciSyncFenceClear(&prefence);
+    NvSciSyncFenceClear(&eoffence);
+
+    return 0;
+}
+
+int32_t NVSBlockIEPConsumer::ConsumerInit() {
+    /* Query endpoint info from producer */
+    uint32_t size = 50;
+    char info[50];
+    NvSciError err = NvSciStreamBlockUserInfoGet(
+                        block,
+                        NvSciStreamBlockType_Producer, 0U,
+                        ENDINFO_NAME_PROC,
+                        &size, &info);
+    if (NvSciError_Success == err) {
+        NVS_LOG_INFO << "Producer info: " << info;
+    } 
+    else if (NvSciError_StreamInfoNotProvided == err) {
+        NVS_LOG_WARN << "Info not provided by the producer";
+    } 
+    else {
+        NVS_LOG_ERROR << "Failed (%x) to query the producer info, ret " << LogHexNvErr(err);
+    }
+
+    return 0;
+}
+
+int32_t NVSBlockIEPConsumer::ConsumerElemSupport() {
+    NvSciBufAttrList buf_attr = NULL;
+    int32_t ret = 0;
+
+    NvSciError err = NvSciBufAttrListCreate(NVSHelper::GetInstance().sci_buf_module, &buf_attr);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Fail to create data attribute list, ret " << LogHexNvErr(err);
+        return -1;
+    }
+
+    ret = IEPGetBufAttr(buf_attr);
+    if (ret < 0) {
+        NVS_LOG_CRITICAL << "Fail to get IEP buf attr, ret " << ret;
+        return -1;
+    }
+
+    /*
+     * Inform stream of the attributes
+     *   Once sent, the attribute list is no longer needed
+     */
+    err = NvSciStreamBlockElementAttrSet(block, ELEMENT_NAME_IMAGE, buf_attr);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Fail to send element attribute, ret " << LogHexNvErr(err);
+        return -1;
+    }
+    NvSciBufAttrListFree(buf_attr);
+
+    // metadata
+    NvSciBufAttrList metadata_buf_attr = NULL;
+    NvSciBufAttrValAccessPerm perm = NvSciBufAccessPerm_Readonly;
+    uint8_t cpu_access = 1U;
+    NvSciBufType buf_type = NvSciBufType_RawBuffer;
+    uint64_t size = sizeof(SIPLImageMetadata);
+    uint64_t align = 1U;
+    NvSciBufAttrKeyValuePair key_vals[] = {
+        { NvSciBufGeneralAttrKey_Types, &buf_type, sizeof(buf_type) },
+        { NvSciBufRawBufferAttrKey_Size, &size, sizeof(size) },
+        { NvSciBufRawBufferAttrKey_Align, &align, sizeof(align) },
+        { NvSciBufGeneralAttrKey_RequiredPerm, &perm, sizeof(perm) },
+        { NvSciBufGeneralAttrKey_NeedCpuAccess, &cpu_access, sizeof(cpu_access) }
+    };
+
+    /* Create and fill attribute list for data buffer */
+    err = NvSciBufAttrListCreate(NVSHelper::GetInstance().sci_buf_module, &metadata_buf_attr);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Fail to create metadata attribute list, ret " << LogHexNvErr(err);
+        return -1;
+    }
+
+    err = NvSciBufAttrListSetAttrs(metadata_buf_attr,
+                                    key_vals,
+                                    sizeof(key_vals) /
+                                    sizeof(NvSciBufAttrKeyValuePair));
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Fail to fill metadata attribute list, ret " << LogHexNvErr(err);
+        return -1;
+    }
+
+    err = NvSciStreamBlockElementAttrSet(block, ELEMENT_NAME_METADATA, metadata_buf_attr);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Fail to send metadata attribute, ret " << LogHexNvErr(err);
+        return -1;
+    }
+    NvSciBufAttrListFree(metadata_buf_attr);
+
+
+    /* Indicate that all element information has been exported */
+    err = NvSciStreamBlockSetupStatusSet(block, NvSciStreamSetup_ElementExport, true);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Fail to complete element export, ret " << LogHexNvErr(err);
+        return -1;
+    }
+
+    return 0;
+}
+
+int32_t NVSBlockIEPConsumer::ConsumerSyncSupport() {
+    NvSciError err;
+    int32_t ret = 0;
+
+    /*
+     * Create sync attribute list for signaling.
+     *   This will be saved until we receive the producer's attributes
+     */
+    err = NvSciSyncAttrListCreate(NVSHelper::GetInstance().sci_sync_module, &_signal_attr);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Fail to allocate signal sync attrs, ret " << LogHexNvErr(err);
+        return -1;
+    }
+
+    ret = IEPGetSignalAttr(_signal_attr);
+    if (ret < 0) {
+        NVS_LOG_CRITICAL << "Fail to get IEP signal attr, ret " << ret;
+        return -1;
+    }
+
+    /* Create sync attribute list for waiting. */
+    err = NvSciSyncAttrListCreate(NVSHelper::GetInstance().sci_sync_module, &_waiter_attr);
+    if (NvSciError_Success != err) {
+        NVS_LOG_CRITICAL << "Fail to allocate waiter sync attrs, ret " << LogHexNvErr(err);
+        return -1;
+    }
+
+    ret = IEPGetWaiterAttr(_waiter_attr);
+    if (ret < 0) {
+        NVS_LOG_CRITICAL << "Fail to get IEP waiter attr, ret " << ret;
+        return -1;
+    }
+
+    return 0;
+}
+
+int32_t NVSBlockIEPConsumer::IEPGetBufAttr(NvSciBufAttrList& buf_attr) {
+    std::lock_guard<std::mutex> lock(_cbs_mutex);
+    if (_cbs.get_buf_attr_cb) {
+        return _cbs.get_buf_attr_cb(buf_attr);
+    }
+    return -1;
+}
+
+int32_t NVSBlockIEPConsumer::IEPGetWaiterAttr(NvSciSyncAttrList& waiter_attr) {
+    std::lock_guard<std::mutex> lock(_cbs_mutex);
+    if (_cbs.get_waiter_attr_cb) {
+        return _cbs.get_waiter_attr_cb(waiter_attr);
+    }
+    return -1;
+}
+
+int32_t NVSBlockIEPConsumer::IEPGetSignalAttr(NvSciSyncAttrList& signal_attr) {
+    std::lock_guard<std::mutex> lock(_cbs_mutex);
+    if (_cbs.get_signaler_attr_cb) {
+        return _cbs.get_signaler_attr_cb(signal_attr);
+    }
+    return -1;
+}
+
+int32_t NVSBlockIEPConsumer::IEPUsePacket(IEPPacket* packet, NvSciSyncObj& signal_obj, NvSciSyncFence& prefence, NvSciSyncFence& fence) {
+    // std::lock_guard<std::mutex> lock(_cbs_mutex);
+
+    if (_cbs.packet_cb) {
+        return _cbs.packet_cb(packet, prefence, fence);
+    }
+    return kPacketConsumed;
+}
+
+int32_t NVSBlockIEPConsumer::IEPSetSignalObj(NvSciSyncObj signal_obj) {
+    std::lock_guard<std::mutex> lock(_cbs_mutex);
+    if (_cbs.set_signal_obj_cb) {
+        return _cbs.set_signal_obj_cb(signal_obj);
+    }
+    return -1;
+}
+
+int32_t NVSBlockIEPConsumer::IEPSetWaiterObj(NvSciSyncObj waiter_obj) {
+    std::lock_guard<std::mutex> lock(_cbs_mutex);
+    if (_cbs.set_waiter_obj_cb) {
+        return _cbs.set_waiter_obj_cb(waiter_obj);
+    }
+    return -1;
+}
+
+int32_t NVSBlockIEPConsumer::IEPSetBufAttr(int32_t elem_type, NvSciBufAttrList buf_attr) {
+    std::lock_guard<std::mutex> lock(_cbs_mutex);
+    if (_cbs.set_buf_attr_cb) {
+        return _cbs.set_buf_attr_cb(elem_type, buf_attr);
+    }
+    return -1;
+}
+
+int32_t NVSBlockIEPConsumer::IEPSetBufObj(NvSciBufObj buf_obj) {
+    std::lock_guard<std::mutex> lock(_cbs_mutex);
+    if (_cbs.set_buf_obj_cb) {
+        return _cbs.set_buf_obj_cb(buf_obj);
+    }
+    return -1;
+}
+
+}
+}
+}

@@ -1,0 +1,57 @@
+syntax = "proto2";
+package hozon.control;
+
+import "proto/common/header.proto";
+
+message AdasSomeipFromMCU {
+  optional hozon.common.Header header = 1;
+  repeated uint32 adas_someip = 2;
+  // 
+  optional uint32 Est_bend_flag_u8 = 3;
+  optional uint32 Est_standstill_flag_u8 = 4;
+  optional uint32 Est_straight_flag_u8 = 5;
+  optional uint32 Est_straight_spd_flag_u8 = 6;
+  optional uint32 Est_straight_condition_Est_straight_yawrate_flag_u8 = 7;
+  optional uint32 Est_straight_condition_Est_straight_steerfdbk_flag_u8 = 8;
+  optional uint32 Est_straight_condition_Est_straight_poserr_flag_u8 = 9;
+  optional uint32 Est_straight_condition_Est_straight_curv_flag_u8 = 10;
+  optional uint32 Est_straight_condition_Est_straight_ay_flag_u8 = 11;
+  optional uint32 Est_VehState = 12;
+  // 
+  optional uint32 condition_type_u16 = 13;
+  optional uint32 calibration_counter_u16 = 14;
+  optional uint32 estol_common_flag_u16 = 15;
+  optional uint32 lon_dtc_u16 = 16;
+  optional uint32 sensor_dtc_u16 = 17;
+  // 
+  optional float closeloop_steeroffset_sg = 18;
+  optional float closeloop_yawratebias_sg = 19;
+  optional float closeloop_heading_bias_sg = 20;
+  optional float lonctrl_mass_estimate = 21;
+  optional float lonctrl_slope_estimate = 22;
+  optional float Est_Original_SteerOffset_sg = 23;
+  optional float united_est_beta_sg = 24;
+  optional float united_est_vy_sg = 25;
+  optional float united_est_lat_vx_sg = 26;
+  optional float united_est_jerk_sg = 27;
+  optional float united_est_ax_sg = 28;
+  optional float united_est_lon_vx_sg = 29;
+  optional float united_est_mass_sg = 30;
+  optional float united_est_slope_sg = 31;
+  optional float united_est_pitch_sg = 32;
+  optional float united_est_roll_sg = 33;
+  optional float united_est_yaw_sg = 34;
+  optional float united_est_kappa_sg = 35;
+  optional float estol_steeroffset_r0_sg = 36;
+  optional float estol_steeroffset_r1_sg = 37;
+  optional float estol_steeroffset_r2_sg = 38;
+  optional float estol_steeroffset_r3_sg = 39;
+  optional float estol_steeroffset_r4_sg = 40;
+  optional float estol_steeroffset_r5_sg = 41;
+  optional float estol_steeroffset_r6_sg = 42;
+  optional float estol_steeroffset_r7_sg = 43;
+  optional float estol_steeroffset_r8_sg = 44;
+  optional float estol_steeroffset_r9_sg = 45;
+  optional float estol_original_steeroffset_sg = 46;
+  optional float estol_steerspd_sg = 47;
+}

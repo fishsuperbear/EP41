@@ -1,0 +1,18 @@
+{
+  "process_name": "sensor_transProcess",
+  "executable": "sensor_trans",
+  "restart_attempt_num": "2",
+  "shall_run_ons": [],
+  "mode_of_order":[
+    "Factory.2",
+    "Normal.2",
+    "Update.2"
+  ],
+  "scheduling_policy":"RR",
+  "scheduling_priority":"70",
+  "arguments":[],
+  "environments":[
+    "NETA_CM_QOS_PATH=/app/runtime_service/sensor_trans/etc/default_qos.json"
+  ]
+}
+

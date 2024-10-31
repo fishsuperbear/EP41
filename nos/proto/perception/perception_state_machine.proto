@@ -1,0 +1,184 @@
+syntax = "proto2";
+package hozon.perception.parking;
+
+import "proto/common/header.proto";
+
+enum ErrorCode {
+  PEC_DEFAULT = 0;
+  PEC_INPUT_IMAGE_STUCK = 1;
+  PEC_LOAD_MODEL_FAILED = 2;
+  PEC_OUTPUT_SLOT_OVERLAP = 3;
+  PEC_OUTPUT_SLOT_SIZE_ABNORMAL = 4;
+  PEC_OUTPUT_SLOT_POSITON_ABNORMAL = 5;
+  PEC_OUTPUT_DRIVEABLE_AREA_ABNORMAL = 6;
+  PEC_OUTPUT_TARGET_SIZE_ABNORMAL = 7;
+  PEC_OUTPUT_TARGET_POSITION_ABNORMAL = 8;
+  PEC_NO_VALID_SLOT_DETECTED = 9;
+  PEC_OVERSPEED_WHEN_SEARCHING = 10;
+  LEC_CAN_DATA_ABNORMAL = 11;
+  LEC_INPUT_IMAGE_STUCK = 12;
+  LEC_LONGTIME_NO_VISION_LOCALIZATION = 13;
+  LEC_LOADING_MAPPING_FAILED = 14;
+  LEC_INITIALIZE_LOCALIZATION_FAILED = 15;
+  SEC_CREAT_MAPPING_FAILED = 16;
+  SEC_OVERSPEED_WHEN_MAPPING = 17;
+  SEC_MAPPING_DISTANCE_TOO_LONG = 18;
+  SEC_OHTER_ABNORMAL = 19;
+}
+
+enum ParkingModule {
+  MODULE_PERCEPTION = 0;
+  MODULE_LOCALIZATION = 1;
+  MODULE_SLAM_CONTROL = 2;
+  MODULE_STATE_MACHINE = 3;
+}
+
+enum PSMEvent {
+  PSM_EVENT_FOUND_SLOTS = 0;
+  PSM_EVENT_SELECTED_SLOTS_ID = 1;
+  PSM_EVENT_TBA_AVAILABLE = 2; // SLAM
+  PSM_EVENT_MAPPING_FINISH = 3; // SLAM
+  PSM_EVENT_MAPPING_FAILED = 4;
+  PSM_EVENT_MANUAL_SLOT_AVAILABLE = 5;
+  PSM_EVENT_SPEED_LOWER_25 = 6;  // < 25 SLAM
+  PSM_EVENT_SPEED_BETWEEN_25_30 = 7; // >=25 && < 30 SLAM
+  PSM_EVENT_SPEED_HIGHER_30 = 8; // >= 30 SLAM
+  PSM_EVENT_FLDROPN = 9;  // front left door  0:lock, 1:unlock SLAM
+  PSM_EVENT_FRDROPN = 10;  // front right door,  0:lock, 1:unlock SLAM
+  PSM_EVENT_RLDROPN = 11;  // rear left door,  0:lock, 1:unlock SLAM
+  PSM_EVENT_RRDROPN = 12;  // rear right door,  0:lock, 1:unlock SLAM
+  PSM_EVENT_TGOPN = 13;  // Tail lip : 0x0：Fully Closed 0x1：Not Closed
+                        // 0x2：Open to Custon Height  0x3：Fully Open
+                        // 0x4：Cannot Close Area 0x5~0x6：Reserved 0x7：Unknow SLAM
+  PSM_EVENT_HODOPEN = 14;  // Engine lip, 0x0：Closed 0x1：Open SLAM
+  PSM_EVENT_TBA_DISTANCE = 15;  // TBA distance
+  PSM_EVENT_HPA_PATH_EXISTENCE = 16;  // 200米内是否有记忆路线, "1": 有，"0"：没有
+  PSM_EVENT_HPA_START_POINT = 17;  // 是否在记忆泊车起点上, "1": 有，"0"：没有
+  PSM_EVENT_HPA_PATH_MAXNUM = 18;  // 路线是否已满存图满足100张, "1": 有，"0"：没有
+  PSM_EVENT_ON_PUBLIC_ROAD = 19;  // 是否在公开道路上："1": 是，"0"：否
+
+  //TODO ZXF NEW NTP SIGNAL ALG TO EXTERN
+  PSM_EVENT_HPA = 20; // 0X00：No Available, 0x01：Available 感知自检，底层有问题时要上报问题
+  PSM_EVENT_HPA_PATH_ON_PARK_AREA = 21; // 0X00：No Available, 0x01：Available 是否在地下停车场区域
+  PSM_EVENT_HPA_PATH_STORE_STATUS = 22; // 发送学习路线id
+  PSM_EVENT_HPA_PATH_LEARN_STATUS = 23; // 0X00: Default  0x01: Available  0x02: Finish 感知反馈路线学习状态
+                                        // 0x03: Failure_StartPoint 0x04: Failure_BackGround
+  PSM_EVENT_HPA_POINT_IN_PARK_SLOT = 24; // 0x00:Not Enable, 0x01:Enable 后轴中心是否在库位内
+  PSM_EVENT_HPA_DISTANCE = 25; // 路线学习的距离
+  PSM_EVENT_HPA_CROSSING_NUMBER = 26; // 路线学习经过的路口
+  PSM_EVENT_PERCEPTION_ADCS4_HPA_FAILINFO = 27; // 0x0：Normal
+                      // 0x1：Please use the memory parking function in the underground car park
+                      // 0x2：Please turn on the Settings switch before using memory parking
+                      // 0x3：Please return to the basement from the ground and use the memory parking
+                      // 0x4：Lidar is unavailable, function cannot be turned on
+                      // 0x5：The function cannot be enabled because the associated system is limited
+                      // 0x6：Please use this feature when the vehicle is started
+                      // 0x7：The current environment cannot enable memory parking
+                      // 0x8：The system is limited and the function cannot be enabled
+                      // 0x9：Memory parking is temporarily unavailable
+  PSM_EVENT_HPA_LOCALIZATION_STATUS = 28; // 0x00：default  0x01：DR推算
+                                          // 0x02：relocationSuccess, 0x03：locating slam
+                                          // 0x04：relocationFail
+  PSM_EVENT_HPA_GUIDE_STATUS = 29; // 0x0：Normal  0x01：OnRamp  0x02：OutdoorFloor
+                                   // 0x03：OnParkArea  0x04：OnstartPoint
+  PSM_EVENT_SAVE_MAP_STATUS = 30; // 0x0：保存地图失败  0x01：保存地图成功 0x02 Normal
+  PSM_EVENT_MAP_BUILDING_UNRECOVERABLE_FAILED = 31; // 0x0：default  0x01：路线重叠
+                                    // 0x02：已超过最大学习里程1KM  0x03：倒车行驶10m
+                                    // 0x04：学习距离过短10M  0x05：位姿不连续，示教路线抖动 0x06：坡度异常
+  PSM_EVENT_CRUISE_MISS_START_POINT = 32; // TODO(0x0：default  0x01：未经过起点)
+  PSM_EVENT_CRUISE_LOCATION_OFFSET = 33; // 0x0：default  0x01：定位偏移
+  PSM_EVENT_CRUISE_DRIVE_OFF_ROUTE = 34; // 0x0：default  0x01：驶出路线
+  PSM_EVENT_CRUISE_MAP_LOADING_FAILED = 35; // 0x0：default  0x01：地图加载失败
+  PSM_EVENT_MAP_BUILDING_PRECONDITION = 36; // 0X0：default  0x01：车位语义要素不满足
+  PSM_EVENT_NSM_APPROACH_WARNING = 37; // 0x0：No Warning  0x1：Warning
+  PSM_EVENT_MOD_OBJECT_MOVING_DIRECTION = 38; // 0x0：No Object  0x1：Rear Side  0x2: Left Rear Side
+                                      // 0x3: Left Side  0x4: Left Front Side  0x5: Front Side
+                                      // 0x6: Right Front Side  0x7: Right Side  0x8: Right Rear Side
+  PSM_EVENT_MOD_WARNING = 39; // 0x0：No Warning  0x1：Warning
+
+}
+
+message ParkingEvent {
+  optional PSMEvent key = 1;
+  optional string value = 2;
+}
+
+enum PSMState {
+  INVALID = 0;  // 无效状态
+  INITIALIZE = 1;  // 初始化
+  STANDBY = 2;  // 挂起
+  RESUME = 3;  // 恢复
+  WORKING = 4;  // active，工作
+  RESET = 5;  // 重置
+  FAILURE = 6;  // 故障
+  GUARDMODE = 7; // 哨兵（拉起fisheye）
+}
+
+enum PSMSubState {
+  DONOTHING = 0;  // do nothing
+  SERACHING = 1;  // 寻库
+  PARKINGIN = 2;  // 泊入
+  PARKINGOUT = 3;  // 泊出
+  TBAWORKING = 4;  // tba working
+  MAPPING = 5;  // start mapping
+  OUTSERACHING = 6;  // 泊出检测
+  MANUALSELECTSLOT = 7;  // 自选车位
+  STRAIGHTCONTROL = 8;  // RPA直行控制
+  MAPPINGEND = 9;
+  MAPPINGCANCEL = 10;
+  STARTLOCALIZATION = 11;  // 下坡开启后台定位
+  SAVEMAP = 12;  // 保存地图
+  NAVIGATION = 13;  // 巡航
+  STARTGUARDMODE = 14; // 哨兵
+  STARTMODMODE = 15; // MOD
+}
+
+message ParkingInternalState {
+  optional ParkingModule module = 1;
+  optional PSMState state = 2;
+  optional PSMSubState sub_state = 3 [default = DONOTHING];
+  optional string description = 4;
+}
+
+enum ParkingFeature {
+  DEFAULT = 0;  // 0x00:default
+  APA = 1;  // 0x01:APA(自动泊车）
+  RPA = 2;  // 0x02:RPA(遥控泊车)
+  DAPA = 3; // 0x03:DAPA(自定义自动泊车)
+  TBA = 4;  // 0x04:TBA(循迹倒车)
+  LAPA_Mapping = 5;  // 0x05:LAPA_Mapping(记忆泊车建图）
+  LAPA = 6;  // 0x06:LAPA(记忆泊车巡航）
+  AVP = 7;  // 0x07:AVP(代客泊车）
+  ISM = 8;  // 0x08:ISM(召唤模式）
+  //TODO ZXF ADD NTP
+  NTPPICKUP = 0X09;  // 0X09: NTPPICKUP(记忆泊车定位中)
+  LOCALIZATION_CHECK = 0x0A;  // 0x0A: LOCALIZATION_CHECK(定位检测)
+  LOCALIZATION_OPEN = 0X0B;  // 0X0B: 下坡开启后台定位
+  NSM = 0x0C; // 0x0C:NSM(哨兵模式)
+  MOD = 0X0D; // 0X0D:MOD(MOD模式)
+}
+
+message AutopilotInfo {
+  optional ParkingFeature feature = 1;
+}
+
+message WorkingStatus {
+  optional ErrorCode error_code = 1;
+}
+
+message FaultInfo {
+  optional int32 fault_id = 1;
+  optional int32 fault_obj = 2;
+  optional int32 fault_status = 3;
+}
+
+message ParkingFsmInfo {
+  optional hozon.common.Header header = 1;
+  optional bool bvalid = 2;
+  optional ParkingInternalState internal_state = 3;
+  repeated ParkingEvent event = 4;
+  optional AutopilotInfo pilot_info = 5;
+  optional WorkingStatus working_status = 6;
+  optional FaultInfo fault_info = 7;
+  optional int32 ntp_map_id = 8;
+}

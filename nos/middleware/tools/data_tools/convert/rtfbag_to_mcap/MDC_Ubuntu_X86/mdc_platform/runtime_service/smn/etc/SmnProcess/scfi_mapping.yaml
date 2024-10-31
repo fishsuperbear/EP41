@@ -1,0 +1,12 @@
+identifier:
+  "MAPPING"
+description: "Mapping module"
+smn:
+  sendInstanceID:
+    SmnServiceInterface:
+        instanceId: [1]
+        portName: ["SmnToSmcPPort"]
+  recvInstanceID:
+    FmReportEventService:
+        instanceId: [1444]
+        portName: ["SmnReportEventRPort"]

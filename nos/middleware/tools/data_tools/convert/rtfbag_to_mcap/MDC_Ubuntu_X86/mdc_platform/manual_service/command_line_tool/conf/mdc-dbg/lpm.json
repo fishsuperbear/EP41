@@ -1,0 +1,25 @@
+[
+    {
+        "key" : "app",
+        "value" :
+        {
+            "string" : "lpm"
+        }
+    },
+    {
+        "key" : "command",
+        "value" :
+        {
+            "string[]" : ["lpm mock-cfg-proc < pre_val > < post_val >",
+                          "lpm set-enter-deep-sleep-time < time_val >"]
+        }
+    },
+    {
+        "key" : "help",
+        "value" :
+        {
+            "string[]" : ["lpm mock-cfg-proc < pre_val > < post_val >,      Mock cfg app response.",
+                          "lpm set-enter-deep-sleep-time < time_val >,      Set enter deep sleep time [1, 240] hours."]
+        }
+    }
+]

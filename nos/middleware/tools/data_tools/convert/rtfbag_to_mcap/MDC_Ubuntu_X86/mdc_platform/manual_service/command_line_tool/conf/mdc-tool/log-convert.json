@@ -1,0 +1,40 @@
+[
+    {
+        "key" : "app",
+        "value" :
+        {
+            "string" : "log-convert"
+        }
+    },
+    {
+        "key" : "command",
+        "value" :
+        {
+            "string[]" : [ "log-convert <filename> ",
+                           "log-convert datatime <filename>",
+                           "log-convert manatime <filename>",
+                           "log-convert continue <filename>",
+                           "log-convert datatime continue <filename>",
+                           "log-convert manatime continue <filename>",
+                           "log-convert continue <num> <filename>",
+                           "log-convert datatime continue <num> <filename>",
+                           "log-convert manatime continue <num> <filename>" ]
+        }
+    },
+    {
+        "key" : "help",
+        "value" :
+        {
+            "string[]" : ["log-convert <filename>,                          Read log file. Display all time",
+                          "log-convert datatime <filename>,                 Read log file. Display data plane time",
+                          "log-convert manatime <filename>,                 Read log file. Display management plane time",
+                          "log-convert continue <filename>,                 Continuously read log file and display last 10 logs. Display all time",
+                          "log-convert datatime continue <filename>,        Continuously read log file and display last 10 logs. Display data plane time",
+                          "log-convert manatime continue <filename>,        Continuously read log file and display last 10 logs. Display management plane time",
+                          "log-convert continue <num> <filename>,           Continuously read log file and display last < num> logs. Display all time",
+                          "log-convert datatime continue <num> <filename>,  Continuously read log file and display last < num> logs. Display data plane time",
+                          "log-convert manatime continue <num> <filename>,  Continuously read log file and display last < num> logs. Display management plane time"
+                        ]
+        }
+    }
+]

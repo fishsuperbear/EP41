@@ -1,0 +1,33 @@
+syntax = "proto2";
+
+package hozon.dreamview;
+
+import "proto/common/header.proto";
+// import "modules/monitor/hozon/system_status.proto";
+
+message HMIStatus {
+  optional hozon.common.Header header = 1;
+
+  repeated string modes = 2;
+  optional string current_mode = 3;
+
+  repeated string maps = 4;
+  optional string current_map = 5;
+
+  repeated string vehicles = 6;
+  optional string current_vehicle = 7;
+
+  // {module_name: is_running_or_not}
+  map<string, bool> modules = 8;
+  // {component_name: status}
+  //  map<string, hozon.monitor.ComponentStatus> monitored_components = 9;
+
+  optional string docker_image = 10;
+  optional int32 utm_zone_id = 11; // FLAGS_local_utm_zone_id
+
+  // Message which will be read aloud to drivers and passengers through
+  // Dreamview.
+  optional string passenger_msg = 12;
+  // {component_name: status}
+  // map<string, hozon.monitor.ComponentStatus> other_components = 13;
+}

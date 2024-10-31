@@ -1,0 +1,13 @@
+syntax = "proto2";
+package hozon.ehp;
+import "proto/common/header.proto";
+
+message EHPData{
+    optional int32 send_counter = 1 [default = -1];
+    repeated bytes data = 2;
+}
+
+message EHP {
+    optional hozon.common.Header header = 1;
+    repeated EHPData ehp_data = 2;
+}

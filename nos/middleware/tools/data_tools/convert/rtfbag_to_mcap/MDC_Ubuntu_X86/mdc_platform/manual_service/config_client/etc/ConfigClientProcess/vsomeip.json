@@ -1,0 +1,33 @@
+{
+  "logging": {
+    "level": "info",
+    "console": "false",
+    "syslog": {
+      "enable": "true"
+    }
+  },
+  "routing": "someipd",
+  "services": [],
+  "clients": [
+    {
+      "service": "3392",
+      "instance": "1",
+      "initial_delay_min": "10",
+      "initial_delay_max": "100",
+      "repetitions_base_delay": "200",
+      "repetitions_max": "3",
+      "ttl": "10",
+      "unreliable": [
+        "53400"
+      ],
+      "eventgroups": [
+        {
+          "eventgroup": "1"
+        },
+        {
+          "eventgroup": "2"
+        }
+      ]
+    }
+  ]
+}

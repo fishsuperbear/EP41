@@ -1,0 +1,23 @@
+struct monitor_notify_event
+{
+    uint8 monitor_id;
+    string notify_info;
+};
+
+struct monitor_alarm_event
+{
+    uint8 monitor_id;
+    string alarm_info;
+};
+
+struct monitor_control_event
+{
+    uint8 monitor_id;
+    uint8 control_type;
+    string control_value;
+};
+
+struct monitor_refresh_event
+{
+    string refresh_reason;
+};

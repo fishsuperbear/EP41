@@ -1,0 +1,65 @@
+%YAML:1.0
+
+library: "./lib/libnvs_sensor_test.so"
+executorName: nvs_sensor_test
+
+
+input:
+    - topic: camera_0
+      capacity: 5
+    - topic: camera_1
+      capacity: 5
+    - topic: camera_3
+      capacity: 5
+    - topic: camera_4
+      capacity: 5
+    - topic: camera_5
+      capacity: 5
+    - topic: camera_6
+      capacity: 5
+    - topic: camera_7
+      capacity: 5
+    - topic: camera_8
+      capacity: 5
+    - topic: camera_9
+      capacity: 5
+    - topic: camera_10
+      capacity: 5
+    - topic: camera_11
+      capacity: 5
+
+trigger:
+  - name: front_nvs_cam
+    type: EVENT
+    timeWindow: 60
+    mainSources:
+      - name: camera_0
+        timeout: 1000
+      - name: camera_1
+        timeout: 1000
+      - name: camera_3
+        timeout: 1000
+  - name: side_nvs_cam
+    type: EVENT
+    timeWindow: 60
+    mainSources:
+      - name: camera_4
+        timeout: 1000
+      - name: camera_5
+        timeout: 1000
+      - name: camera_6
+        timeout: 1000
+      - name: camera_7
+        timeout: 1000
+  - name: avm_nvs_cam
+    type: EVENT
+    timeWindow: 60
+    mainSources:
+      - name: camera_8
+        timeout: 1000
+      - name: camera_9
+        timeout: 1000
+      - name: camera_10
+        timeout: 1000
+      - name: camera_11
+        timeout: 1000

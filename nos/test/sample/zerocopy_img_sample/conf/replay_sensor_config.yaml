@@ -1,0 +1,91 @@
+%YAML:1.0
+
+library: "./lib/libzerocopy_image.so"
+executorName: idl_cuda_test
+
+
+input:
+    # - topic: /soc/zerocopy/camera_0
+    #   capacity: 5
+    # - topic: /soc/zerocopy/camera_1
+    #   capacity: 5
+    # - topic: /soc/zerocopy/camera_3
+    #   capacity: 5
+    # - topic: /soc/zerocopy/camera_4
+    #   capacity: 5
+    # - topic: /soc/zerocopy/camera_5
+    #   capacity: 5
+    # - topic: /soc/zerocopy/camera_6
+    #   capacity: 5
+    # - topic: /soc/zerocopy/camera_7
+    #   capacity: 5
+    # - topic: /soc/zerocopy/camera_8
+    #   capacity: 5
+    # - topic: /soc/zerocopy/camera_9
+    #   capacity: 5
+    # - topic: /soc/zerocopy/camera_10
+    #   capacity: 5
+    # - topic: /soc/zerocopy/camera_11
+    #   capacity: 5
+    # for idl proto
+    - topic: /idl/camera_0
+      capacity: 5
+    - topic: /idl/camera_1
+      capacity: 5
+    - topic: /idl/camera_2
+      capacity: 5
+    - topic: /idl/camera_4
+      capacity: 5
+    - topic: /idl/camera_5
+      capacity: 5
+    - topic: /idl/camera_6
+      capacity: 5
+    - topic: /idl/camera_7
+      capacity: 5
+
+
+trigger:
+  # - name: replay_cam
+  #   type: EVENT
+  #   timeWindow: 60
+  #   mainSources:
+  #     - name: /soc/zerocopy/camera_0
+  #       timeout: 1000
+  #     - name: /soc/zerocopy/camera_1
+  #       timeout: 1000
+  #     - name: /soc/zerocopy/camera_3
+  #       timeout: 1000
+  #     - name: /soc/zerocopy/camera_4
+  #       timeout: 1000
+  #     - name: /soc/zerocopy/camera_5
+  #       timeout: 1000
+  #     - name: /soc/zerocopy/camera_6
+  #       timeout: 1000
+  #     - name: /soc/zerocopy/camera_7
+  #       timeout: 1000
+  #     - name: /soc/zerocopy/camera_8
+  #       timeout: 1000
+  #     - name: /soc/zerocopy/camera_9
+  #       timeout: 1000
+  #     - name: /soc/zerocopy/camera_10
+  #       timeout: 1000
+  #     - name: /soc/zerocopy/camera_11
+  #       timeout: 1000
+  - name: replay_cam_idl
+    type: EVENT
+    timeWindow: 60
+    mainSources:
+      - name: /idl/camera_0
+        timeout: 1000
+      - name: /idl/camera_1
+        timeout: 1000
+      - name: /idl/camera_2
+        timeout: 1000
+      - name: /idl/camera_4
+        timeout: 1000
+      - name: /idl/camera_5
+        timeout: 1000
+      - name: /idl/camera_6
+        timeout: 1000
+      - name: /idl/camera_7
+        timeout: 1000

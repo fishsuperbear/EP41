@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package europa.layer;
+
+message LayerPoint{
+    optional double longitude = 1;
+    optional double latitude = 2;
+}
+
+message LayerStartEndPoint{
+    optional LayerPoint start_point = 1;
+    optional LayerPoint end_point = 2;
+}
+
+message LayerPoints{
+    repeated LayerStartEndPoint layer_start_end_points = 1;
+}

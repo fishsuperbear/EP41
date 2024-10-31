@@ -1,0 +1,29 @@
+syntax = "proto2";
+
+package hozon.metric;
+
+message MetricLatLon {
+  optional double lat_jerk_threshold = 1 [default = 2.6];
+  optional double lon_jerk_threshold = 2 [default = 4.0];
+}
+
+message MetricFilter {
+  optional double filter_cutoff_freq = 1 [default = 1.0];
+  optional double filter_ts = 2 [default = 0.1];
+}
+
+message NtpMetricLatLon {
+  optional double ntp_lat_jerk_threshold = 1 [default = 2.6];
+  optional double ntp_lon_jerk_threshold = 2 [default = 4.0];
+  optional double traj_acc_threshold = 3 [default = -2.0];  // 用于计算cruise_planning_dec_over_threshold_frame_set指标
+  optional double moving_spd = 4 [default = 0.05];  //  用于计算泊车中换挡次数的车速门限值以及is_running的判断条件
+  optional double modchg_moving_spd = 5 [default = 0.1];  // 用于计算cruise2parking_smooth_switch中车速的判断条件
+  optional double crtl_moving_spd= 6 [default = 0.05]; // 用于计算ntp控制误差的车速门限
+}
+
+
+message MetricConf {
+  optional MetricLatLon metric_lat_lon = 1;
+  optional MetricFilter metric_filter = 2;
+  optional NtpMetricLatLon ntp_metric_lat_lon = 3;
+}

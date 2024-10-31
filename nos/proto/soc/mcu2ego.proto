@@ -1,0 +1,52 @@
+syntax = "proto2";
+
+package hozon.soc;
+
+import "proto/common/header.proto";
+import "proto/common/types.proto";
+
+
+message msg_nnp {
+    optional uint32 LongitudCtrlDecToStopReq = 1;
+    optional uint32 LongitudCtrlDriveOff = 2;
+    optional uint32 DriveOffinhibition = 3;
+    optional uint32 DriveOffinhibitionObjType = 4;
+    optional uint32 Lcsndconfirm = 5;
+    optional uint32 TurnLightReqSt = 6;
+    optional uint32 Lcsndrequest = 7;
+    optional uint32 PayModeConfirm = 8;
+    optional uint32 SpdAdaptComfirm = 9;
+    optional uint32 ALC_mode = 10;
+    optional uint32 ADSDriving_mode = 11;
+    optional uint32 longitudCtrlSetSpeed = 12;
+    optional uint32 longitudCtrlSetDistance = 13;
+    optional uint32 LowBeamSt  = 14;
+    optional uint32 HighBeamSt  = 15;
+    optional uint32 HazardLampSt  = 16;
+    optional uint32 LowHighBeamSt  = 17;
+    optional uint32 HornSt  = 18;
+    optional uint32 NNPSysState = 19;
+    optional uint32 acc_target_id = 20;
+    optional uint32 alc_warnning_target_id = 21;
+    optional uint32 alc_warnning_state = 22;
+}
+message msg_avp {
+    optional uint32 AVPSysMode = 1;
+    optional uint32 system_command = 2;
+    optional uint32 avp_run_state = 3;
+    optional uint32 pnc_warninginfo = 4;
+}
+
+
+message mcuToego {
+  optional hozon.common.Header header = 1;
+  optional msg_nnp msg_mcu_nnp = 2;
+  optional msg_avp msg_mcu_avp = 3;
+  optional uint32 ta_pilot_mode = 4;
+  optional uint32 FCT2SOC_TBD_u32_01 = 5;
+  optional uint32 FCT2SOC_TBD_u32_02 = 6;
+  optional uint32 FCT2SOC_TBD_u32_03 = 7;
+  optional uint32 FCT2SOC_TBD_u32_04 = 8;
+  optional uint32 FCT2SOC_TBD_u32_05 = 9;
+  optional uint32 drive_mode = 10;
+}

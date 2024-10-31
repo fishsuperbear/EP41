@@ -1,0 +1,92 @@
+{
+    "ip": "172.16.50.11",
+    "port": 13400,
+    "ifname": "mgbe3_0.50",
+    "sourceAddress": 4194,
+    "targetAddress": 4291,
+    "canid":"0x1234",
+    "requestTest": [
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"22 F1 86","response":"62 F1 86 ..."},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> SID:0x22 Valid_Request_WDBI 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"22 F1 86 F1 D0","response":"62 F1 86 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> SID:0x22 Valid_Request_WDBI 02",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"22 F1 86","response":"62 F1 86 ..."},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> SID:0x22 Valid_Request_WDBI 03",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"22 F1","response":"7f 22 13"}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> SID:0x22 InvalidRequestMessageLength 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"22 F1 90 F1","response":"7f 22 13"}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> SID:0x22 InvalidRequestMessageLength 02",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"22 F1 90 F1 88 01 10","response":"7f 22 13"}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> SID:0x22 InvalidRequestMessageLength 03",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"22 11 11","response":"7f 22 31"}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> SID:0x22 NotSupportRequestDid 01",
+            "ignoreFail": true
+        }
+    ]
+}

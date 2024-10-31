@@ -1,0 +1,80 @@
+syntax = "proto2";
+
+package hozon.prediction;
+
+import "proto/common/error_code.proto";
+import "proto/common/header.proto";
+import "proto/prediction/scenario.proto";
+import "proto/perception/perception_obstacle.proto";
+import "proto/prediction/feature.proto";
+import "proto/prediction/vector_net.proto";
+
+// self driving car intent
+message Intent {
+  enum Type {
+    UNKNOWN = 0;
+    STOP = 1;
+    CRUISE = 2;
+    CHANGE_LANE = 3;
+  }
+  optional Type type = 1 [default = UNKNOWN];
+}
+
+message TrackStatus{
+  optional bool is_tracking = 1 [default = false];
+  optional double creation_time = 2 [default = 0.0];
+  optional double tracking_time = 3 [default = 0.0];
+  optional uint32 tracking_counter = 4 [default = 0];
+  optional double valid_tracking_time = 5 [default = 0.0];
+  optional uint32 valid_tracking_counter = 6 [default = 0];
+  optional double motion_tracking_time = 7 [default = 0.0];
+  optional uint32 motion_tracking_counter = 8 [default = 0];
+}
+
+message PredictionObstacle {
+  optional hozon.perception.PerceptionObstacle perception_obstacle = 1;
+  optional double timestamp = 2;  // GPS time in seconds
+  // the length of the time for this prediction (e.g. 10s)
+  optional double predicted_period = 3;
+  // can have multiple trajectories per obstacle
+  repeated Trajectory trajectory = 4;
+
+  // estimated obstacle intent
+  optional ObstacleIntent intent = 5;
+
+  optional ObstaclePriority priority = 6;
+
+  optional bool is_static = 7 [default = false];
+
+  // Feature history latest -> earliest sequence
+  repeated Feature feature = 8;
+
+  optional TrackStatus track_status = 9;
+}
+
+message PredictionObstacles {
+  // timestamp is included in header
+  optional hozon.common.Header header = 1;
+
+  // make prediction for multiple obstacles
+  repeated PredictionObstacle prediction_obstacle = 2;
+
+  // perception error code
+  optional hozon.common.ErrorCode perception_error_code = 3;
+
+  // start timestamp
+  optional double start_timestamp = 4;
+
+  // end timestamp
+  optional double end_timestamp = 5;
+
+  // self driving car intent
+  optional Intent intent = 6;
+
+  // Scenario
+  optional Scenario scenario = 7;
+
+  repeated Goal2D goals_2d = 9;
+
+  optional Feature feature = 10;
+}

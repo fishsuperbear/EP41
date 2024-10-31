@@ -1,0 +1,352 @@
+{
+	"test":[
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":1,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"..."
+		}
+		],
+		"tcp_close": true,
+		"describe":"<TG5_TC1> 1.1 路由激活请求报文格式测试",
+		"delay_timems": 10
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":1,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"..."
+		}
+		],
+		"tcp_close": true,
+		"describe":"<TG5_TC2> 1.1 路由激活响应报文格式测试",
+		"delay_timems": 10
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":1,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"..."
+		}
+		],
+		"tcp_close": true,
+		"describe":"<TG5_TC3> 1.1 激活类型为0x00的路由激活请求测试",
+		"delay_timems": 10
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0xE000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":1,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"..."
+		}
+		],
+		"tcp_close": true,
+		"describe":"<TG5_TC4> 1.1 激活类型为0xE0的路由激活请求测试",
+		"delay_timems": 10
+	},
+	{
+		"protocol_type":"UDP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"describe":"<TG5_TC5> 1.1 路由激活请求测试（UDP传输）",
+		"sever_close_wait":200
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":1,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"..."
+		}
+		],
+		"describe":"<TG5_TC6> 1.1 路由激活请求测试（重复发送）1"
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":1,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"..."
+		}
+		],
+		"tcp_close": true,
+		"describe":"<TG5_TC6> 1.2 路由激活请求测试（重复发送）2",
+		"delay_timems": 10
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x0001",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":9,
+			"source_addr":"0x0001",
+			"target_addr":"0x10c3",
+			"payload_data":"00 00 00 00 00"
+		}
+		],
+		"describe":"<TG5_TC7> 1.1 SA未知的路由激活请求测试",
+		"sever_close_wait": 100
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0xFFFF",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":9,
+			"source_addr":"0xFFFF",
+			"target_addr":"0x10c3",
+			"payload_data":"00 00 00 00 00"
+		}
+		],
+		"describe":"<TG5_TC7> 1.2 SA未知的路由激活请求测试",
+		"sever_close_wait": 100
+	},
+	
+    
+
+    
+    
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":9,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"..."
+		}
+		],
+		"describe":"<TG5_TC18> 1 激活类型未知的路由激活请求测试",
+		"delay_timems": 10
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0xE100",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":9,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"06 00 00 00 00"
+		}
+		],
+		"describe":"<TG5_TC18> 2 激活类型未知的路由激活请求测试E1",
+		"sever_close_wait": 100
+	},
+    {
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0200",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":9,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"06 00 00 00 00"
+		}
+		],
+		"describe":"<TG5_TC18> 3 激活类型未知的路由激活请求测试02",
+		"sever_close_wait": 100
+	}
+
+	]
+}
+

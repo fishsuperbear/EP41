@@ -1,0 +1,7 @@
+add_subdirectory(testcase_EM_001)
+add_subdirectory(testcase_EM_002)
+add_subdirectory(testcase_EM_003)
+add_subdirectory(testcase_EM_004)
+add_subdirectory(testcase_EM_005)
+add_subdirectory(testcase_EM_006)
+add_subdirectory(testcase_EM_007)

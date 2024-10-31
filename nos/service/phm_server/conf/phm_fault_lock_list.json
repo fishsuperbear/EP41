@@ -1,0 +1,26 @@
+[
+    {
+        "key": "LockFaultSignal",
+        "value": {
+            "str": "0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0"
+        }
+    },
+    {
+        "key": "LockFaultNumber",
+        "value": {
+            "ui64": 0
+        }
+    },
+    {
+        "key": "LockFaultData",
+        "value": {
+            "ui64": 4611686018427387904
+        }
+    },
+    {
+        "key": "FaultDataToHMI",
+        "value": {
+            "ui64": 4611686018427387904
+        }
+    }
+]

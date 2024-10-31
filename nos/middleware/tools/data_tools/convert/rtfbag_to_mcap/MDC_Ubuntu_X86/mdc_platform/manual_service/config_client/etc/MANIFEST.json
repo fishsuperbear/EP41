@@ -1,0 +1,53 @@
+[
+  {
+    "key": "application_name",
+    "value": {
+      "string": "config_client"
+    },
+    "checksum": 111
+  },
+  {
+    "key": "startup_configs",
+    "value": {
+      "object[]": [
+        {
+          "key": "ConfigClientProcess",
+          "value": {
+            "object[]": [
+              {
+                "key": "executable",
+                "value": {
+                  "string": "config_client"
+                },
+                "checksum": 333
+              },
+              {
+                "key": "restart_attempt_num",
+                "value": {
+                  "uint32": 0
+                },
+                "checksum": 333
+              },
+              {
+                "key": "shall_run_ons",
+                "value": {
+                  "string[]": []
+                },
+                "checksum": 333
+              },
+              {
+                "key": "shall_not_run_ons",
+                "value": {
+                  "string[]": []
+                },
+                "checksum": 333
+              }
+            ]
+          },
+          "checksum": 222
+        }
+      ]
+    },
+    "checksum": 111
+  }
+]

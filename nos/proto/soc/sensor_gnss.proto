@@ -1,0 +1,58 @@
+
+syntax = "proto2";
+
+package hozon.soc.gnss;
+
+import "proto/common/header.proto";
+
+message GNSSPosInfo {
+   optional uint32 pos_type = 1; // uint8
+   optional double latitude = 2;
+   optional double longitude = 3;
+   optional float undulation = 4;
+   optional float altitude  = 5;
+   optional float lat_std    = 6;
+   optional float lon_std    = 7;
+   optional float hgt_std    = 8;
+   optional uint32 svs  = 9;  // uint8
+   optional uint32 solnSVs  = 10; // uint8
+   optional uint32 diff_age  = 11; // uint8
+   optional float hdop  = 12;
+   optional float vdop  = 13;
+   optional float pdop  = 14;
+   optional float gdop  = 15;
+   optional float tdop  = 16;
+}
+
+message GNSSVelInfo {
+    optional uint32 sol_status   = 1; // uint8
+    optional float hor_spd   = 2;
+    optional float trk_gnd   = 3;
+    optional double vel_x    = 4;
+    optional double vel_y    = 5;
+    optional double vel_z    = 6;
+    optional double vel_x_std = 7;
+    optional double vel_y_std = 8;
+    optional double vel_z_std = 9;
+}
+
+message GNSSHeadingInfo {
+    optional uint32 svs = 1; // uint8
+    optional uint32 soln_svs = 2; // uint8
+    optional uint32 pos_type = 3; // uint8
+    optional float length = 4;
+    optional float heading = 5;
+    optional float pitch = 6;
+    optional float hdg_std  = 7;
+    optional float pitch_std = 8;
+}
+
+message GnssInfo {
+   optional hozon.common.Header header = 1;
+   optional double gnss_stamp_sec = 2;
+   optional uint32 gps_week = 3;
+   optional double gps_sec = 4;
+   optional GNSSPosInfo gnss_pos = 5;
+   optional GNSSVelInfo gnss_vel = 6;
+   optional GNSSHeadingInfo gnss_heading = 7;
+}

@@ -1,0 +1,93 @@
+# clt(Command Line Tool) completion script.
+#
+# This script is used to load all completion script of the command line tool's plugins.
+# 本脚本用于加载命令行工具命令插件的命令行bash联想、tab补全脚本。
+#
+# load bash completion of command line tool, including clt_plugin mdc-tool mdc-dbg
+function _get_clt_options() {
+    local clt_options=" -a -h -l -v"
+
+    echo "${clt_options}"
+}
+
+function _get_all_plugins() {
+    local plugin=""
+    local app_name=""
+
+    for file in "$1"/*
+    do
+        # check config file of application
+        if [ "${file##*.}"x = "json"x ]
+        then
+            # Subtract the file prefix
+            app_name=${file##*/}
+            # Subtract the file suffix
+            app_name=${app_name%%.*}
+            if [ "$app_name" = "mcu" ]
+            then
+                continue
+            fi
+            plugin=${plugin}" "${app_name}
+        fi
+    done
+
+    echo "${plugin}"
+}
+
+function _comp_clt() {
+    local clt_root_path
+    local clt_app_input
+    local clt_app_name
+    local plugin_app_name
+
+    clt_root_path="/opt/platform/mdc_platform/manual_service/command_line_tool"
+    clt_app_input=$1
+    clt_app_name=${COMP_WORDS[0]}
+    plugin_app_name=${COMP_WORDS[1]}
+
+    COMPREPLY=()
+    if [ ${#COMP_WORDS[@]} -eq 2 ] && [ "${clt_app_name}" = "${clt_app_input}" ] ; then
+        local cur_cmd
+        local clt_options
+        local plugins
+
+        cur_cmd=${COMP_WORDS[COMP_CWORD]}
+        clt_options=$(_get_clt_options)
+        plugins=$(_get_all_plugins "${clt_root_path}/conf/${clt_app_name}")
+
+        COMPREPLY=($(compgen -W "${clt_options}' '${plugins}" -- "$cur_cmd"))
+    elif [ ${#COMP_WORDS[@]} -gt 2 ] ; then
+        # 命令行输入多个命令元素时，已经包含模块名，此时的命令补全需要模块实现，
+        # 比如输入"mdc-tool 模块名 xxx"的命令，需要调用"模块名.bash"的函数进行补全
+        if [ -f "${clt_root_path}/conf/${clt_app_name}/${plugin_app_name}.bash" ] ; then
+            source "${clt_root_path}/conf/${clt_app_name}/${plugin_app_name}.bash"
+            # 调用模块补全脚本
+            # 某些模块的命令行支持文件名输入，而文件名支持空格，补全字符串包会含空格，通过函数返回或者使用compgen处理，
+            # 空格会当成分隔符处理，即使加了斜杠'\ '也会被转义，针对此场景需要模块进行特殊处理
+            if [ "${plugin_app_name}" = "log-convert" ] ; then
+                _log_convert
+            elif [ "${plugin_app_name}" = "log-control" ] ; then
+                _log_control
+            else
+                _"${plugin_app_name}"
+            fi
+        fi
+    fi
+
+    return 0
+}
+
+function _mdc_tool() {
+    _comp_clt "mdc-tool"
+
+    return 0
+}
+
+function _mdc_dbg() {
+    _comp_clt "mdc-dbg"
+
+    return 0
+}
+
+complete -F _mdc_tool mdc-tool
+complete -F _mdc_dbg mdc-dbg

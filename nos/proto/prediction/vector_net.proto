@@ -1,0 +1,36 @@
+syntax = "proto2";
+
+package hozon.prediction;
+
+import "proto/common/types.proto";
+import "proto/map/map_lane.proto";
+
+message Goal2D{
+  optional hozon.common.Point3D position = 1;
+  optional hozon.common.Point3D velocity = 2;
+  optional int32 lane_sequence_idx = 3;
+  optional double lane_sequence_s = 4;
+  optional double lane_sequence_l = 5;
+  optional double relative_time = 6;
+  optional double probability = 7;
+}
+
+message Vector{
+  optional hozon.common.Point3D start = 1;
+  optional hozon.common.Point3D end = 2;
+  repeated double feature = 3;
+}
+
+message Polyline {
+  repeated Vector vector = 1;
+  optional double obs_id = 2;
+  optional string lane_id = 3;
+  optional hozon.hdmap.Lane.LaneType lane_type = 4;
+}
+
+message VectorNetFeature {
+  optional hozon.common.Point3D center = 1;
+  optional double theta = 2;
+  repeated Polyline agents_polyline = 3;
+  repeated Polyline map_polyline = 4;
+}

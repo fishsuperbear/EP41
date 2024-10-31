@@ -1,0 +1,40 @@
+%YAML:1.0
+
+appName: H020
+description: pki service
+priority: 0    #{0 ... 12} not currently used
+scheduleFrequency: 30
+isDetermineSchedule: false    #{true, false}
+logFile: /opt/usr/log/soc_log/    #日志路径，当logMode配置有指定文件存储时，使用本路径存储日志，日志文件名为${appName}.log
+logMode: 0    #{0, 1, 2, 3, 4, 5, 6}, 0: 固定文件存储，异步日志 1: 打屏，同步日志，适合调试， 2: 指定文件存储，同步日志，适合调试，
+              #3：固定+打屏， 4：固定+指定， 5：打屏+指定， 6：固定+打屏+指定
+logLevel: 0    #{0，1，2，3，4，5, 6}， 0：verbose, 1：debug, 2：info, 3：warn, 4：error, 5：fatal, 6：off
+com:
+  domains:
+    certDomain: https://certapi-pki-uat.carobo.cn:18444
+    ecuDomain: https://adcsapi-pki-uat.carobo.cn:18444 
+  urlPaths:
+    remoteConfig: /pivot/mdc/api/strategyConfig/getCarStrategiesByVin
+    uploadToken: /pivot/file-service-api/adcsManage/applyUploadToken
+    uuid: /pivot/mds-api/virualVin/1.0/virtualVin
+    applyCert: /pivot/security-api/pki/cert/1.0/applyCert
+  certPaths:
+    deviceCertPath: /cfg/pki/certs/device.pem
+    rootCertPath: /app/runtime_service/pki_service/conf/root_ca/uat/ecu_ca.pem
+    rootCertPath_r: /etc/ssl/certs/hozon_uat_root_ca.pem
+    preintallPfx: /cfg/pki/certs/Preset.pfx
+  keyPaths:
+  slots:
+    slotA: 7094e2df-f9b1-489d-9db2-be2aea59be0e
+    slotB: f772b0fa-9f71-485b-a923-29051721eeb7
+  certUpdateThreshold: 730 # (days)
+runConfPath: "/app/conf/pki_service/pki_service.yaml"
+presetCertPath: "/app/runtime_service/pki_service/conf/preset/uat_preset_cert.pem"
+key_slot_cfg_file: "/app/runtime_service/pki_service/etc/cryptoslot_pki_serviceProcess.json"
+preset_key_slot_cfg_file: "/app/runtime_service/crypto_server/etc/cryptoslot_crypto_serverProcess.json"
+presetKeySlot: 20c271d2-ab0b-4025-9841-f12ee6c24b24
+#debug:
+#  enable: true
+#  tsyncbyManual: true  #：true ，手动同步时间，不采用hz_time 同步时间，仅用于台架测试
+#  dummyVin: LUZATEST177760484    # vin and sn see: https://hozonauto.feishu.cn/docx/doxcnJV3eBDnnLvm16LGrvwkm6X must match
+#  dummySn: AEP402022B502A0004

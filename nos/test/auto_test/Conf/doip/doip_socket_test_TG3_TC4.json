@@ -1,0 +1,118 @@
+
+{
+	"test":[
+	{
+		"protocol_type":"UDP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x00E1",
+			"payload_len":0
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"payload_data":"01"
+		}
+		],
+		"describe":"<TG3_TC4> UDP 未知负载类型否定响应测试",
+		"ignoreFail":true
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x00E1",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"00 00 00"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"payload_data":"01"
+		}
+		],
+		"tcp_close": true,
+		"describe":"<TG3_TC4> TCP 1未知负载类型否定响应测试"
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"00 00 00"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":1,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"..."
+		}
+		],
+		"describe":"<TG3_TC4> TCP 2未知负载类型否定响应测试"
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0xfff1",
+			"payload_len":6,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"10 01"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"01"
+		}
+		],
+		"tcp_close": true,
+		"describe":"<TG3_TC4> TCP 3未知负载类型否定响应测试",
+		"delay_timems": 50
+	}
+	]
+
+
+
+}
+

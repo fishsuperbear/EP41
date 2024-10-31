@@ -1,0 +1,39 @@
+#include "ego_trajectory.idl"
+/* ******************************************************************************
+    结构 名        :  AlgLaneChangeInfo
+    功能描述       :  换到信息
+****************************************************************************** */
+struct AlgLaneChangeInfo {
+    uint8 laneChangeStatus;  // 车道改变状态
+    uint8 laneChangeType;    // 车道改变类型
+};
+
+/* ******************************************************************************
+    结构 名        :  AlgWarnningInfo
+    功能描述       :  报警信息
+****************************************************************************** */
+struct AlgWarnningInfo {
+    uint32 obsID;
+    uint32 IsHighlight;
+};
+/* ******************************************************************************
+    结构 名        :  AlgDecisionInfo
+    功能描述       :  planning的决策信息
+****************************************************************************** */
+struct AlgDecisionInfo {
+    AlgLaneChangeInfo LaneChangeInfo;           // 换到信息
+    sequence<AlgWarnningInfo> WarnningInfo;  // 报警信息
+    uint8 drive_mode;                         //驾驶模式
+};
+
+/* ******************************************************************************
+    结构 名        :  AlgPlanningDecisionInfo
+    功能描述       :
+****************************************************************************** */
+struct AlgPlanningDecisionInfo : IDLBaseType {
+    AlgDecisionInfo decisionInfo;  // 决策信息
+    uint8 is_nnp_active;
+    uint8 spd_limit_hd_map;
+    boolean isValid;                  // 判断值是否有效
+    AlgEgoTrajectory ego;
+};

@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package hozon.netaos.zmqipc;  // 命名空间
+
+message process_info {
+  uint32 group = 1;
+  string procname = 2;
+  uint32 procstate = 3;
+  string mode_name = 4;
+}
+
+message sm_request {
+  uint32 type = 1;
+  string process_name = 2;
+  string old_mode = 3;
+  string new_mode = 4;
+  bool succ = 5;
+  string extra_data = 6;
+}
+
+message sm_reply {
+  uint32 type = 1;
+  string process_name = 2;
+  string curr_mode = 3;
+  repeated process_info data = 4;
+  repeated string mode_list = 5;
+  int32 result = 6;
+}
+
+message cm_request {
+  uint32 type = 1;
+  string process_name = 2;
+  int32 state = 3;
+}
+
+message cm_reply {
+  uint32 type = 1;
+  string process_name = 2;
+  int32 state = 3;
+  int32 result = 4;
+}

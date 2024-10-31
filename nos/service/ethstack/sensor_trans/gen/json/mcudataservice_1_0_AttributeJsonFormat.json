@@ -1,0 +1,15 @@
+{
+    "Attribute": [
+        {
+            "DataAlignment": "8",
+            "ByteOrderEnum": "BYTE_ORDER_BIG_ENDIAN",
+            "ArrayLengthFieldSize": "16",
+            "VectorLengthFieldSize": "16",
+            "StringLengthFieldSize": "8",
+            "StructLengthFieldSize": "32",
+            "UnionLengthFieldSize": "32",
+            "UnionTypeSelectorFieldSize": "32",
+            "StringEncoding": "UTF8"
+        }
+    ]
+}

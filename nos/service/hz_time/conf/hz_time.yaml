@@ -1,0 +1,8 @@
+%YAML:1.0
+
+server_ip: 172.16.90.11
+server_port: 23458
+
+logLevel: 2  #{0，1，2，3，4，5, 6}， 0：trace, 1：debug, 2：info, 3：warn, 4：error, 5：fatal, 6：off
+logMode: 2  #{0, 1, 2, 3, 4, 5, 6}, 0: 不打屏 1: 控制台打屏， 2: 记录日志，3：控制台+日志
+file: /opt/usr/log/soc_log/

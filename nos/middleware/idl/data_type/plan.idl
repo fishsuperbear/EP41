@@ -1,0 +1,4 @@
+struct plan
+{
+    string data;
+};

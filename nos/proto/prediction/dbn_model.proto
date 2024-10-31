@@ -1,0 +1,23 @@
+syntax = "proto2";
+
+package hozon.prediction;
+
+enum DBNIntention {
+    KEEP_LANE = 0;
+    TO_LANE = 1;
+    LEAVE_LANE = 2;
+    UNKNOWN = 3;
+}
+
+message DBNModel {
+    repeated int32 continuous_evidence_interval_num = 1;
+    repeated double continuous_evidence_interval = 2;
+    repeated double intention_switch_probability_table = 3;
+    repeated int32 intention_evidence_relation_table = 4;
+    repeated double evidence_intention_probability_table = 5;
+    repeated string causal_evidence = 6;
+    repeated string continuous_evidence = 7;
+    repeated string dbn_intention = 8;
+    optional int32 sample_size = 9;
+    optional string model_date = 10;
+}

@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+package hozon.perception;
+
+import "proto/common/header.proto";
+
+message PerceptionPreprocess {
+  optional hozon.common.Header header = 2;
+}

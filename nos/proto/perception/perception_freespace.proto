@@ -1,0 +1,100 @@
+syntax = "proto2";
+
+package hozon.perception;
+
+import "proto/common/types.proto";
+import "proto/common/header.proto";
+
+message FreeSpaceOut{
+   enum ClassType{
+       UNKOWN_CLASS = 0;
+       CONE_POLE = 1;
+       FREESPACE = 2;
+       CURBSTONE = 3;
+       OBSTACLE = 4;
+       OTHER_CLASS = 9;
+       ROAD_DELOITER = 10;
+       VEHICLE=11;
+       PEDESTRAIN = 12;
+       WALL = 13;
+       WATER_BARRIER = 14;
+    };
+
+    enum HeightType{
+      UNKOWN_HEIGHT = 0;
+      OBSTACLE_HEIGHT = 1;
+      OVERDRIVABLE = 2;
+      UNDERDRIVABLE = 3;
+      OTHER_HEIGHT = 4;
+    };
+
+    enum SensorType{
+      CAMERA = 0;
+      RADAR = 1;
+      LIDAR = 2;
+      HDMAP = 3;
+      LIDAR_CAM_FUSION = 4;
+      USS = 5;
+      USS_CAM_FUSSION = 6;
+      CAMERA_FRONT = 7;
+      CAMERA_REAR = 8;
+      CAMERA_LEFT = 9;
+      CAMERA_RIGHT = 10;
+      USS_LIDAR_FUSION = 11;
+      USS_LIDAR_CAM_FUSION = 12;
+    };
+
+    optional uint32 freespace_seq = 1;
+    optional ClassType cls = 2;
+    optional HeightType height_type = 3;
+    optional SensorType sensor_type = 4;
+    repeated hozon.common.Point3D freespace_point = 5;
+    optional double time_creation = 6;
+    repeated hozon.common.Point3D freespace_keypoint= 7;
+    optional bool isLinkObjFusion = 8;
+    optional uint32 obstacleId = 9;
+
+    message Grid {
+      // 行车bev下网格类型，每2bit表示一个网格值，左上->右的顺序，读写值: free:0/unknown:1/occupy:2
+      repeated uint32 type = 1;
+      optional uint32 grid_size_x = 2;
+      optional uint32 grid_size_y = 3;
+      optional double resolution_x = 4;
+      optional double resolution_y = 5;
+      optional double anchor_x = 6;     // 左上角的x世界坐标，坐标系方向和主车方向一致
+      optional double anchor_y = 7;     // 左上角的y世界坐标
+    }
+
+    optional Grid grid = 10;
+}
+
+message FreeSpace2DOut {
+  optional int32 freespace_seq = 1;
+
+  enum Space2DType {
+    ROAD_DELIMITER    = 0;
+    VEHICLE           = 1;
+    PEDESTRIAN        = 2;
+    TRAFFICCONES      = 3;
+    IGNORE            = 4;
+    WALL              = 5;
+  }
+  message Point2DInfo {
+    optional Space2DType type = 1;
+    optional hozon.common.Point2D free_space_2d_point_vrf = 2;
+  }
+  repeated Point2DInfo point2d_info = 3;
+  optional string sensor_name = 4;
+  optional double time_creation = 5;
+}
+
+message FreeSpaceOutArray{
+     optional int32 count = 1;
+     optional uint32 locSeq = 2;
+     repeated FreeSpaceOut freespace_out=3;
+     optional bool is_valid = 4 [default = false];
+     optional hozon.common.Header header=5;
+     repeated FreeSpaceOut freespace_out_vrf=6;
+     repeated FreeSpace2DOut freespace_2d_out = 7;
+}
+

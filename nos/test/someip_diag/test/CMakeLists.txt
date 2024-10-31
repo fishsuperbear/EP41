@@ -1,0 +1,4 @@
+add_subdirectory(someip_client)
+add_subdirectory(someip_server)
+add_subdirectory(someip_diag_tools)
+

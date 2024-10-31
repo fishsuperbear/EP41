@@ -1,0 +1,88 @@
+#include "common.idl"
+#include "type.idl"
+
+/* ******************************************************************************
+    结构 名        :  AlgWayPoint
+    功能描述       :  生成的Path点信息
+****************************************************************************** */
+struct AlgWayPoint {
+    double x;               // utm坐标系下x值
+    double y;               // utm坐标系下y值
+    double z;               // utm坐标系下z值
+    double theta;           // 该点处path切线方向与正东方向夹角
+    double curvature;       // path在该点处的曲率
+    double s;               // sl坐标系下的s值
+    double deltaCurvature;  // 该点处曲率的导数
+    string laneId;        // 该点所在的lane的ID
+    double deltaX;          // path在该点处x方向的导数
+    double deltaY;          // path在该点处y方向的导数
+};
+/* ******************************************************************************
+    结构 名        :  AlgEstop
+    功能描述       :  紧急停车信息
+****************************************************************************** */
+struct AlgEstop {
+    uint8 isEstop;          // 是否紧急停车
+    string description;  // 紧急停车原因
+};
+
+/* ******************************************************************************
+    结构 名        :  AlgTrajectoryPoint
+    功能描述       :  轨迹点信息
+****************************************************************************** */
+struct AlgTrajectoryPoint {
+    AlgWayPoint wayPoint;    // 轨迹上的path信息
+    double speed;         // 轨迹点的速度值
+    double acc;           // 轨迹点的加速度值
+    double timeRelative;  // 轨迹点的相对规划起始点的时间
+    double deltaAcc;      // 轨迹点的加加速度
+    double steerAngle;    // 当前时刻前轮转向角
+};
+
+/* ******************************************************************************
+    结构 名        :  EngageAdvice
+    功能描述       :  是否需要要驾驶员介入
+****************************************************************************** */
+struct AlgEngageAdvice {
+    uint8 advise;    // 驾驶员介入状态
+    string reason;  // 驾驶员介入状态原因
+};
+
+/* ******************************************************************************
+    结构 名        :  AlgVehicalSignal
+    功能描述       :  车辆信号灯控制
+****************************************************************************** */
+struct AlgVehicalSignal {
+    uint8 turnSignal;  //
+    boolean highBeam;
+    boolean lowBeam;
+    boolean horn;
+    boolean emergencyLight;
+};
+
+/* ******************************************************************************
+    结构 名        :  AlgEgoTrajectory
+    功能描述       :  轨迹信息
+****************************************************************************** */
+struct AlgEgoTrajectory : IDLBaseType {
+    uint32 locSeq;
+    double trajectoryLength;                        // path总长度
+    double trajectoryPeriod;                        // path总时长
+    sequence<AlgTrajectoryPoint> trajectoryPoints;  // 轨迹点集
+    uint32 validPoints;                              // 轨迹点有效长度
+    AlgEstop estop;                                    // 紧急停车
+    boolean isReplanning;                                 // 该轨迹的规划起始点是否是重新选择的
+    uint8 gear;                                      // 前进档/倒档
+    uint32 selfLaneId;                               // 自车所在的lane ID
+    uint32 trajectoryType;                           // 轨迹类型，unknown, normal等
+    uint32 targetLaneId;                             // lane change时的目标lane ID
+    AlgEngageAdvice engageState;                       // 是否需要驾驶员介入
+    AlgVehicalSignal vehicleSignal;                    // 转向灯控制信息
+    uint32 received_ehp_counter;
+    uint32 drivingMode;
+    uint32 functionMode;
+    uint16 utmZoneID;
+    double proj_heading_offset;
+    uint16 reserve[150];
+    boolean isValid ;
+};

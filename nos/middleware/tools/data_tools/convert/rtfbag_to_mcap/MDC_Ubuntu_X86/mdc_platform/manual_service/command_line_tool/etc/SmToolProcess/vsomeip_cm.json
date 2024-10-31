@@ -1,0 +1,101 @@
+{
+  "applicationName": "/HuaweiMDC/PlatformApplication/SmClientApplication/SwComponent/sm_client/SmClientProcess",
+  "services": [
+    {
+      "service": "/HuaweiMDC/PlatformServiceInterface/SmcServiceInterface/TriggerInOut",
+      "serviceId": 2980,
+      "protocolIdUsed": true,
+      "majorVersion": 1,
+      "minorVersion": 0,
+      "events": [],
+      "fields": [
+        {
+          "field": "Notifier",
+          "id": 54564,
+          "eventId": 33974,
+          "eventGroup": [
+            13455
+          ],
+          "reliable": true,
+          "getterId": 1205,
+          "getterreliable": true
+        },
+        {
+          "field": "Trigger",
+          "id": 24507,
+          "eventGroup": [],
+          "setterId": 1204,
+          "setterreliable": true
+        }
+      ],
+      "methods": [
+        {
+          "method": "AcquireFunctionGroupInfo",
+          "id": 36548,
+          "isFireAndForget": false,
+          "methodId": 2,
+          "reliable": true,
+          "requestDataType": [],
+          "replyDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/SmcMsgDataTypes/DataTypes/FunctionGroupInfoVec"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/SmcServiceInterface/TriggerInOut/AcquireFunctionGroupInfoOutput"
+        },
+        {
+          "method": "ProcessSyncRequest",
+          "id": 8148,
+          "isFireAndForget": false,
+          "methodId": 1,
+          "reliable": true,
+          "requestDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/SmcMsgDataTypes/DataTypes/StateTransitionVec"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/SmcServiceInterface/TriggerInOut/ProcessSyncRequestOutput"
+        },
+        {
+          "method": "ResetSystem",
+          "id": 43154,
+          "isFireAndForget": false,
+          "methodId": 3,
+          "reliable": true,
+          "requestDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/SmcMsgDataTypes/DataTypes/ResetCode",
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/PlatformServiceInterface/SmcMsgDataTypes/DataTypes/ResetCause"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/SmcServiceInterface/TriggerInOut/ResetSystemOutput"
+        },
+        {
+          "method": "ProcessAsyncRequest",
+          "id": 477,
+          "isFireAndForget": true,
+          "methodId": 4,
+          "reliable": true,
+          "requestDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/SmcMsgDataTypes/DataTypes/StateTransitionVec"
+          ],
+          "replyDataType": [],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/SmcServiceInterface/TriggerInOut/ProcessAsyncRequestOutput"
+        }
+      ],
+      "instances": [
+        {
+          "instance": "1",
+          "isClient": true,
+          "shortName": "/HuaweiMDC/PlatformApplication/SmClientApplication/Service/DP/Consumer/AppRequiredSmcSomeipServiceInstance",
+          "reliable": "52945",
+          "network": "Host0DpEthernetCommConnector",
+          "events": [],
+          "methods": [],
+          "fields": []
+        }
+      ]
+    }
+  ]
+}

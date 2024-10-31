@@ -1,0 +1,31 @@
+
+{
+	"ip_addr":"172.16.50.11",
+	"port":13400,
+	"fname":"mgbe3_0.50",
+	"test":[
+	{
+		"protocol_type":"UDP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x4001",
+			"payload_len":0
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x4002",
+			"payload_len":7,
+			"payload_data":"..."
+		}
+		],
+		"describe":"<TG8_TC1> 1.1 DoIP实体状态响应报文格式测试"
+	}
+	]
+}

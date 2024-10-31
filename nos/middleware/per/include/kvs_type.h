@@ -1,0 +1,51 @@
+/*
+ * Copyright (c) Hozon Auto Co., Ltd. 2023-2025. All rights reserved.
+ * Module: per
+ * Description: 数据类型
+ * Created on: Feb 7, 2023
+ *
+ */
+#ifndef MIDDLEWARE_PER_INCLUDE_KVS_TYPE_H_
+#define MIDDLEWARE_PER_INCLUDE_KVS_TYPE_H_
+#include "per_logger.h"
+
+namespace hozon {
+namespace netaos {
+namespace per {
+
+enum ProtoType {
+    PROTO_PER_TYPE_INT,
+    PROTO_PER_TYPE_UINT64,
+    PROTO_PER_TYPE_BOOL,
+    PROTO_PER_TYPE_FLOAT,
+    PROTO_PER_TYPE_STRING,
+    PROTO_PER_TYPE_DOUBLE,
+    PROTO_PER_TYPE_NESTED_MESSAGE,
+    PROTO_PER_TYPE_NESTED_KVS,
+    PROTO_PER_TYPE_VEC_INT,
+    PROTO_PER_TYPE_VEC_BOOL,
+    PROTO_PER_TYPE_VEC_FLOAT,
+    PROTO_PER_TYPE_VEC_STRING,
+    PROTO_PER_TYPE_VEC_DOUBLE
+};
+
+enum JsonType {
+    JSON_PER_TYPE_UNKOWN,
+    JSON_PER_TYPE_INT,
+    JSON_PER_TYPE_UINT64,
+    JSON_PER_TYPE_BOOL,
+    JSON_PER_TYPE_FLOAT,
+    JSON_PER_TYPE_STRING,
+    JSON_PER_TYPE_DOUBLE,
+    JSON_PER_TYPE_NESTED_MESSAGE,
+    JSON_PER_TYPE_VEC_UINT8,
+    JSON_PER_TYPE_VEC_INT,
+    JSON_PER_TYPE_VEC_BOOL,
+    JSON_PER_TYPE_VEC_FLOAT,
+    JSON_PER_TYPE_VEC_STRING,
+    JSON_PER_TYPE_VEC_DOUBLE
+};
+}  // namespace per
+}  // namespace netaos
+}  // namespace hozon
+#endif  // MIDDLEWARE_PER_INCLUDE_KVS_TYPE_H_

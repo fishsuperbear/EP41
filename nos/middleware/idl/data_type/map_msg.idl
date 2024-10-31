@@ -1,0 +1,12 @@
+#include "common.idl"
+#include "type.idl"
+
+struct AlgEhpData {
+    sequence<string> map_msg;
+    int32 send_counter;
+};
+
+struct AlgMapMessage : IDLBaseType {
+    sequence<AlgEhpData> msg_vec;
+    boolean isValid ;
+};

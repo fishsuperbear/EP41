@@ -1,0 +1,40 @@
+%YAML:1.0
+
+library: "/app/test/adf_lite_test/perf_test/lib/libfisheye_test.so"
+depLibPath: ["/app/lib", "/opt/app/1/lib"]
+executorName: FisheyeTest
+    
+input:
+    - topic: planning_test
+      capacity: 5
+
+trigger:
+  - name: hpp_freespace
+    type: PERIOD
+    period: 40
+  - name: avm_stitcher_image
+    type: PERIOD
+    period: 40
+  - name: fisheye_perception_obj_camera
+    type: PERIOD
+    period: 40
+  - name: avm_segmentation_image
+    type: PERIOD
+    period: 40
+  - name: hpp_lane
+    type: PERIOD
+    period: 40
+  - name: slot_det_parking_lot
+    type: PERIOD
+    period: 40
+  - name: ocr_info
+    type: PERIOD
+    period: 40
+  - name: state_machine_1
+    type: PERIOD
+    period: 40
+  - name: planning_test_recv
+    type: EVENT
+    mainSources:
+      - name: planning_test
+        timeout: 1000

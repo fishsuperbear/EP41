@@ -1,0 +1,123 @@
+#include "servicebase.idl"
+
+struct DevmReadDid : ServiceBase {
+    uint16 did;
+    string data_value;
+};
+
+struct common_req : ServiceBase
+{
+	uint32 platform;
+};
+
+struct update_status_resp : ServiceBase
+{
+	string update_status;
+	uint32 error_code;
+	string error_msg;
+};
+
+struct precheck_resp : ServiceBase
+{
+	boolean space;
+	boolean speed;
+	boolean gear;
+	uint32 error_code;
+	string error_msg;
+};
+
+struct progress_resp : ServiceBase
+{
+	uint32 progress;
+	uint32 error_code;
+	string error_msg;
+};
+
+struct start_update_req : ServiceBase
+{
+	boolean start_with_precheck;
+	uint32 ecu_mode;
+	string package_path;
+};
+
+struct start_update_resp : ServiceBase
+{
+	uint32 error_code;
+	string error_msg;
+};
+
+struct get_version_resp : ServiceBase
+{
+	string major_version;
+	string soc_version;
+	string mcu_version;
+	string dsv_version;
+	string swt_version;
+	map<string, string> sensor_version;
+	uint32 error_code;
+	string error_msg;
+};
+
+struct start_finish_resp : ServiceBase
+{
+	uint32 error_code;
+	string error_msg;
+};
+
+struct devm_req : ServiceBase{
+	string req_type;
+};
+
+struct devm_cpu_info : ServiceBase{
+	string architecture;
+	long cpus;
+	string online_cpus;
+	string offline_cpus;
+	string model_name;
+	float cpu_max_mhz;
+	float cpu_min_mhz;
+	long l1d_catch;
+	long l1i_catch;
+	long l2_catch;
+	long l3_catch;
+	float temp_cpu;
+	float temp_soc0;
+	float temp_soc1;
+	float temp_soc2;
+	sequence<float> cpus_usage;
+	map<string,string> cpu_binding;
+};
+
+struct devm_device_info : ServiceBase{
+	string soc_version;
+	string mcu_version;
+	string lsw_version;
+	string dsv_version;
+	string soc_type;
+	string mcu_type;
+	string switch_type;
+	string dsv_type;
+	map<string,string> sensor_version;
+};
+
+struct devm_device_status : ServiceBase{
+	string soc_status;
+	string mcu_status;
+	sequence<string> camera_status;
+	sequence<string> lidar_status;
+	sequence<string> radar_status;
+	sequence<string> imu_status;
+	sequence<string> uss_status;
+};
+
+struct devm_temperature : ServiceBase{
+	float temp_soc;
+	float temp_mcu;
+	float temp_ext0;
+	float temp_ext1;
+};
+
+struct devm_voltage : ServiceBase{
+	float kl15;
+	float kl30;
+};

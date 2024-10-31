@@ -1,0 +1,16 @@
+#include "servicebase.idl"
+#include "common.idl"
+
+struct ChassisOtaMethod : ServiceBase {
+    IDLTimestamp stamp;
+    IDLTimestamp gnss_stamp;
+    boolean VCU_ActGearPosition_Valid;
+    uint8 VCU_ActGearPosition;
+    boolean ESC_VehicleSpeedValid;
+    float ESC_VehicleSpeed;
+    boolean BDCS10_AC_OutsideTempValid;
+    float BDCS10_AC_OutsideTemp;
+    float ICU2_Odometer;
+    uint8 BDCS1_PowerManageMode;
+    uint8 Ignition_status;
+};

@@ -1,0 +1,316 @@
+{
+    "ip": "172.16.50.11",
+    "port": 13400,
+    "ifname": "mgbe3_0.50",
+    "sourceAddress": 4194,
+    "targetAddress": 4291,
+    "canid":"0x1234",
+    "requestTest": [
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 05 00 11 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 65","response":"7f 38 13"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> 38 InvalidRequestMessageLength 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 03 00 1e 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 65 2f 69 6e 73 74 61 6c 6c 2f 33 2e 74 78 74 00 02 00 06 00 06","response":"78 03 ..."},
+                {"request":"36","response":"7f 36 13"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> 38 InvalidRequestMessageLength 02",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 03 00 1e 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 65 2f 69 6e 73 74 61 6c 6c 2f 33 2e 74 78 74 00 02 00 06 00 06","response":"78 03 ..."},
+                {"request":"36 01 32 32 33 33 33 36","response":"76 01"},
+                {"request":"37 01","response":"7f 37 13"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> 38 InvalidRequestMessageLength 03",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 03 00 1e 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 65 2f 69 6e 73 74 61 6c 6c 2f 33 2e 74 78 74 00 02 00 06 00 06","response":"78 03 ..."},
+                {"request":"36 01 32 32 33 33 33 36","response":"76 01"},
+                {"request":"37","response":"77"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> 38 Valid_Request_WDBI 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 02 00 16 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 64 2f 31 2e 74 78 74","response":"7f 38 31"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> 38 Invalid_Request_WDBI 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 03 00 1e 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 65 2f 69 6e 73 74 61 6c 6c 2f 33 2e 74 78 74 00 02 00 06 00 06","response":"78 03 ..."},
+                {"request":"36 01 32 32 33 33 33 36","response":"76 01"},
+                {"request":"36 02","response":"7f 36 31"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> 38 Invalid_Request_WDBI 02",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 04 00 16 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 65 2f 39 2e 74 78 74 00","response":"7f 38 22"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> 38 Overwrite_Read_Only_Data_Identifier 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 04 00 16 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 65 2f 30 2e 74 78 74 00","response":"7f 38 22"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> 38 Overwrite_Read_Only_Data_Identifier 02",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"38 02 00 16 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 64 2f 31 2e 74 78 74","response":"7f 38 33"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> 38 InvalidSecurityState 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 03 00 1e 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 65 2f 69 6e 73 74 61 6c 6c 2f 33 2e 74 78 74 00 01 06 06","response":"78 03 ..."},
+                {"request":"36 01 32 32 33 33 33 36","response":"76 01"},
+                {"request":"37","response":"77"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> 38 validSecurityState 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 01 00 1e 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 65 2f 69 6e 73 74 61 6c 6c 2f 33 2e 74 78 74 00 01 06 06","response":"78 01 ..."},
+                {"request":"36 01 32 32 33 33 33 36","response":"76 01"},
+                {"request":"37","response":"77"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case FunctionalAddressing> 38 Simple_Request 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 02 00 1e 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 65 2f 69 6e 73 74 61 6c 6c 2f 33 2e 74 78 74","response":"78 02 ..."},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case FunctionalAddressing> 38 Simple_Request 02",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 03 00 1e 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 65 2f 69 6e 73 74 61 6c 6c 2f 33 2e 74 78 74 00 01 06 06","response":"78 03 ..."},
+                {"request":"36 01 32 32 33 33 33 36","response":"76 01"},
+                {"request":"37","response":"77"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case FunctionalAddressing> 38 Simple_Request 03",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 03 00 1e 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 65 2f 69 6e 73 74 61 6c 6c 2f 33 2e 74 78 74 00 01 06 06","response":"78 03 ..."},
+                {"request":"36 01 32 32 33","response":"76 01"},
+                {"request":"37","response":"7f 37 72"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> 38 completeness 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"37","response":"7f 37 24"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> 38 outofsequenceerror 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 03 00 1e 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 65 2f 69 6e 73 74 61 6c 6c 2f 33 2e 74 78 74 00 01 06 06","response":"78 03 ..."},
+                {"request":"36 02 32 32 33 34 35 36","response":"7f 36 73"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> 38 blockSequenceCounter 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 03 00 1e 2f 6f 70 74 2f 75 73 72 2f 75 70 67 72 61 64 65 2f 69 6e 73 74 61 6c 6c 2f 33 2e 74 78 74 00 01 06 06","response":"78 03 ..."},
+                {"request":"36 01 32 32 33 34 35 36","response":"76 01"},
+                {"request":"36","response":"7f 36 71"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> 38 DownloadlengthErr 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"10 02","response":"50 02 ..."},
+                {"request":"27 11","response":"67 11 ..."},
+                {"request":"27 12","response":"67 12 ..."},
+                {"request":"38 05 00 08 2f 6f 70 74 2f 75 73 72","response":"78 05 ..."},
+                {"request":"36 01","response":"76 01 ..."},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case FunctionalAddressing> 38 Simple_Request 05",
+            "ignoreFail": true
+        }
+    ]
+}
+

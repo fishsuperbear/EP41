@@ -1,0 +1,314 @@
+
+{
+	"ip_addr":"172.16.50.11",
+	"port":13400,
+	"fname":"mgbe3_0.50",
+	"test":[
+	{
+		"protocol_type":"UDP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0001",
+			"payload_len":0
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0004",
+			"payload_len":1,
+			"payload_data":"..."
+		}
+		],
+		"describe":"<TG2_TC1> UDP 有效协议版本号测试"
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":9,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"10 00 00 00 00"
+		}
+		],
+		"describe":"<TG2_TC1> 2.1 TCP 有效协议版本号测试",
+		"delay_timems": 50
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x8001",
+			"payload_len":6,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"3E 00"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x8002",
+			"payload_len":0,
+			"source_addr":"0x10c3",
+			"target_addr":"0x1062",
+			"payload_data":"..."
+		},
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x8001",
+			"payload_len":6,
+			"source_addr":"0x10c3",
+			"target_addr":"0x1062",
+			"payload_data":"7E 00"
+		}
+		],
+		"tcp_close": true,
+		"describe":"<TG2_TC1> 2.2 TCP 有效协议版本号测试",
+		"delay_timems": 50
+	},
+	
+
+	
+	{
+		"protocol_type":"UDP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x01",
+			"ver_inverse":"0xFE",
+			"payload_type":"0x0001",
+			"payload_len":0
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"payload_data":"00"
+		}
+		],
+		"describe":"<TG2_TC2> 1 UDP 无效协议版本号测试"
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x01",
+			"ver_inverse":"0xFE",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"source_addr":"0x0000",
+			"target_addr":"0x0000",
+			"payload_data":"..."
+		}
+		],
+		"describe":"<TG2_TC2> 1 TCP 无效协议版本号测试",
+		"sever_close_wait": 100
+	},
+	{
+		"protocol_type":"UDP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x03",
+			"ver_inverse":"0xFC",
+			"payload_type":"0x0001",
+			"payload_len":0
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"payload_data":"00"
+		}
+		],
+		"describe":"<TG2_TC2> 2 UDP 无效协议版本号测试"
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x03",
+			"ver_inverse":"0xFC",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"source_addr":"0x0000",
+			"target_addr":"0x0000",
+			"payload_data":"..."
+		}
+		],
+		"describe":"<TG2_TC2> 2 TCP 无效协议版本号测试",
+		"sever_close_wait": 100
+	},
+	{
+		"protocol_type":"UDP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x04",
+			"ver_inverse":"0xFB",
+			"payload_type":"0x0001",
+			"payload_len":0
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"payload_data":"00"
+		}
+		],
+		"describe":"<TG2_TC2> 3 UDP 无效协议版本号测试"
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x04",
+			"ver_inverse":"0xFB",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"source_addr":"0x0000",
+			"target_addr":"0x0000",
+			"payload_data":"..."
+		}
+		],
+		"describe":"<TG2_TC2> 3 TCP 无效协议版本号测试",
+		"sever_close_wait": 100
+	},
+	
+	
+
+	{
+		"protocol_type":"UDP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0xFF",
+			"ver_inverse":"0x00",
+			"payload_type":"0x0001",
+			"payload_len":0
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0004",
+			"payload_len":1,
+			"payload_data":"..."
+		}
+		],
+		"describe":"<TG2_TC3> UDP 默认协议版本号测试"
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0xFF",
+			"ver_inverse":"0x00",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":1,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"..."
+		}
+		],
+		"tcp_close": true,
+		"describe":"<TG2_TC3> TCP 默认协议版本号测试",
+		"delay_timems": 50
+	}
+	]
+}

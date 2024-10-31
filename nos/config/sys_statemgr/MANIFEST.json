@@ -1,0 +1,19 @@
+{
+  "process_name": "sys_statemgrProcess",
+  "executable": "sys_statemgr",
+  "restart_attempt_num": "2",
+  "shall_run_ons": [],
+  "mode_of_order":[
+    "Factory.2",
+    "Standby.2",
+    "Normal.2",
+    "Update.2"
+  ],
+  "scheduling_policy":"OTHER",
+  "scheduling_priority":"0",
+  "arguments":[],
+  "environments":[
+    "NETA_CM_QOS_PATH=/app/runtime_service/sys_statemgr/etc/default_qos.json"
+  ]
+}
+

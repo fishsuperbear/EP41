@@ -1,0 +1,20 @@
+%YAML:1.0
+
+library: "${ADFLITE_ROOT_PATH}/lib/libadf-lite-ds.so"
+executorName: DataSource
+
+log:
+    level: 2
+
+dataSourcesIn:
+    - topic: link_sample_topic4   #接到cm/link_sample_topic3后，转换为新的内部topic
+      type: proto_proxy
+      cmTopic: cm/link_sample_topic3
+      cmDomainId: 0
+
+dataSourcesOut:
+    - topic: workresult3
+      capacity: 5
+      type: proto_skeleton
+      cmTopic: cm/workresult3
+      cmDomainId: 0

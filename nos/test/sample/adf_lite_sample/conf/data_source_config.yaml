@@ -1,0 +1,55 @@
+%YAML:1.0
+
+library: "${ADFLITE_ROOT_PATH}/lib/libadf-lite-ds.so"
+executorName: DataSource
+
+log:
+    level: 2
+
+dataSourcesIn:
+    - topic: fisheye_front
+      type: proto_proxy
+      cmTopic: fisheye_front
+      cmDomainId: 0
+    - topic: fisheye_left
+      type: proto_proxy
+      cmTopic: fisheye_left
+      cmDomainId: 0
+    - topic: fisheye_right
+      type: proto_proxy
+      cmTopic: fisheye_right
+      cmDomainId: 0
+    - topic: fisheye_rear
+      type: proto_proxy
+      cmTopic: fisheye_rear
+      cmDomainId: 0
+    - topic: proto_sample_topic
+      type: proto_proxy
+      cmTopic: /proto_sample_topic
+      cmDomainId: 0
+    - topic: link_sample_topic
+      type: proto_proxy
+      cmTopic: workresult_pb
+      cmDomainId: 0
+
+dataSourcesOut:
+    - topic: workresult3
+      capacity: 5
+      type: proto_skeleton
+      cmTopic: cm/workresult3
+      cmDomainId: 0
+    - topic: fisheye_result1
+      capacity: 5
+      type: proto_skeleton
+      cmTopic: cm/fisheye_result1
+      cmDomainId: 0
+    - topic: fisheye_result2
+      capacity: 5
+      type: proto_skeleton
+      cmTopic: cm/fisheye_result2
+      cmDomainId: 0
+    - topic: link_sample_topic3
+      capacity: 5
+      type: proto_skeleton
+      cmTopic: cm/link_sample_topic3
+      cmDomainId: 0

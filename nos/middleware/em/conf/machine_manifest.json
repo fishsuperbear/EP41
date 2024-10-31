@@ -1,0 +1,9 @@
+{
+  "default_startup_mode":"Normal",
+  "default_app_enter_timeout": "5",
+  "default_app_exit_timeout": "5",
+  "restart_attempt_switch": "0",
+  "default_environments":[
+    "LD_LIBRARY_PATH=/app/lib:/usr/lib:/svp/lib:../lib:$LD_LIBRARY_PATH"
+  ]
+}

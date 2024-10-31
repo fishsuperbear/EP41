@@ -1,0 +1,9 @@
+{
+    "consumer_thread_num" : 2,
+    "LogAppName": "LOGCLTR",
+    "LogAppDescription": "log collector",
+    "LogContextName": "LOGCLTR",
+    "LogLevel": 1,                                                  // TRACE=0,DEBUG,INFO,WARN,ERROR,CRITICAL,OFF=6
+    "LogMode": 1,                                                   // CONSOLE=1,FILE,CONSOLE_FILE=3,LOGSERVICE=4
+    "GlobalLogConfigFile": "/app/conf/log_daemon_storage.json"
+}

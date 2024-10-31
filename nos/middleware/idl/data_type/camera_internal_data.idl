@@ -1,0 +1,13 @@
+#include "servicebase.idl"
+
+struct camera_internal_data_request: ServiceBase
+{
+    uint32 sensor_id;
+};
+
+struct camera_internal_data_reply : ServiceBase{
+    uint32 sensor_id;
+    boolean isvalid;
+    string module_name;
+    sequence<octet> data;
+};

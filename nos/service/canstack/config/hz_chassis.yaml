@@ -1,0 +1,16 @@
+%YAML:1.0
+
+debugOn: false
+analysysOn: false
+selectOn: false
+canPort: [can9]
+version_for_EP40_: true
+time_diff_: false
+isMock: false
+logAppName: [H004]
+logLevel: 2  #{0，1，2，3，4，5, 6}， 0：verbose, 1：debug, 2：info, 3：warn, 4>：error, 5：fatal, 6：off
+logMode: 1  #{0, 1, 2, 3, 4, 5, 6}, 0: 固定文件存储，异步日志 1: 打屏，同步日志>，适合调试， 2: 指定文件存储，同步日志，适合调试，
+            #3：固定+打屏， 4：固定+指定， 5：打屏+指定， 6：固定+打屏+指定
+            #
+            #
+file: true

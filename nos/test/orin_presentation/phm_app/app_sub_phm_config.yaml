@@ -1,0 +1,29 @@
+%YAML: 1.0
+#该配置提供给用户对关注的故障列表进程注册，用于回调通知
+#支持原始故障/组合故障/自定义组合故障的注册
+#支持聚类的注册，聚类定义参考系统部定义的文档
+
+#app名称
+appName: app_sub
+
+#聚类故障
+cluster: [
+]
+
+
+#故障
+fault:
+    6666: 66
+
+
+
+#monitor task[alive|deadline|logic]
+phmMonitor:
+    - monitorType: alive
+      periodMs: 1000
+      expectedIndication: 10
+      minMargin: 1
+      maxMargin: 1
+      checkPointId: [0]
+      faultId: 6666
+      faultObj: 66

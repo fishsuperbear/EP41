@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package hozon.netaos.per.proto;
+
+import "google/protobuf/descriptor.proto";
+
+message KeyValueStorageData {
+  map<string, Value> fields = 1;
+}
+
+message Value {
+  oneof value {
+    int32 int_value = 1;
+    uint64 uint64_value = 2;
+    float float_value = 3;
+    double double_value = 4;
+    bool bool_value = 5;
+    string string_value = 6;
+    bytes nested_message = 7;
+    KeyValueStorageData nested_kvs = 8;
+  }
+  repeated int32 vec_int_val = 9;
+  repeated float vec_float_val = 10;
+  repeated double vec_double_val = 11;
+  repeated bool vec_bool_val = 12;
+  repeated string vec_string_val = 13;
+}
+
+message TestSubMessage {
+  string string_value = 1;
+  int32 int_value = 2;
+  bool bool_value = 3;
+}
+

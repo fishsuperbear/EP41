@@ -1,0 +1,10 @@
+{
+    "name": "bufferlist",
+    "path": "system/extend/someip/src/base/bufferlist",
+
+    "dependencies": {
+    },
+
+    "devdependencies": {
+    }
+}

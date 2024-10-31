@@ -1,0 +1,248 @@
+[
+  {
+    "key": "7890abdde5667c38-231175d3e56b6c37",
+    "value": {
+      "object[]": [
+        {
+          "key": "KeySlotPrototypeProps",
+          "value": {
+            "object[]": [
+              {
+                "key": "SlotUid",
+                "value": {
+                  "string": "7890abdde5667c38-231175d3e56b6c37"
+                }
+              },
+              {
+                "key": "SlotNumber",
+                "value": {
+                  "uint32": 3
+                }
+              },
+              {
+                "key": "KeySlotType",
+                "value": {
+                  "uint32": 2
+                }
+              },
+              {
+                "key": "CryptoAlgType",
+                "value": {
+                  "string": "RSA2048-SHA384-PKCS"
+                }
+              },
+              {
+                "key": "CryptoObjectType",
+                "value": {
+                  "string": "PRIVATE-KEY"
+                }
+              },
+              {
+                "key": "SlotCapacity",
+                "value": {
+                  "uint32": 256
+                }
+              },
+              {
+                "key": "Exportability",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "AllowContentTypeChange",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "AllocateSpareSlot",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "ContentAllowedUsage",
+                "value": {
+                  "uint32": 20
+                }
+              },
+              {
+                "key": "MaxUpdateAllowed",
+                "value": {
+                  "int32": -1
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key": "KeySlotContentProps",
+          "value": {
+            "object[]": [
+              {
+                "key": "ObjectUid",
+                "value": {
+                  "string": "00000000-0000-0000-0000-000000000000"
+                }
+              },
+              {
+                "key": "AlgId",
+                "value": {
+                  "uint64": 0
+                }
+              },
+              {
+                "key": "ObjectSize",
+                "value": {
+                  "uint64": 0
+                }
+              },
+              {
+                "key": "AllowedUsage",
+                "value": {
+                  "uint32": 0
+                }
+              },
+              {
+                "key": "ObjectType",
+                "value": {
+                  "uint32": 0
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "key": "4560abddecd67234-567175d5d56b6a45",
+    "value": {
+      "object[]": [
+        {
+          "key": "KeySlotPrototypeProps",
+          "value": {
+            "object[]": [
+              {
+                "key": "SlotUid",
+                "value": {
+                  "string": "4560abddecd67234-567175d5d56b6a45"
+                }
+              },
+              {
+                "key": "SlotNumber",
+                "value": {
+                  "uint32": 4
+                }
+              },
+              {
+                "key": "CryptoAlgType",
+                "value": {
+                  "string": "RSA2048-SHA256-PKCS"
+                }
+              },
+              {
+                "key": "CryptoObjectType",
+                "value": {
+                  "string": "PRIVATE-KEY"
+                }
+              },
+              {
+                "key": "SlotCapacity",
+                "value": {
+                  "uint32": 256
+                }
+              },
+              {
+                "key": "Exportability",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "DependencySlotUid",
+                "value": {
+                  "string": "00000000-0000-0000-0000-000000000000"
+                }
+              },
+              {
+                "key": "DependencyType",
+                "value": {
+                  "string": ""
+                }
+              },
+              {
+                "key": "CryptoProviderType",
+                "value": {
+                  "string": "bdfa408d-3d4f-41ff-a33e-f65b05388078"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key": "KeySlotContentProps",
+          "value": {
+            "object[]": [
+              {
+                "key": "ObjectUid",
+                "value": {
+                  "string": "00000000-0000-0000-0000-000000000000"
+                }
+              },
+              {
+                "key": "DependencyUid",
+                "value": {
+                  "string": ""
+                }
+              },
+              {
+                "key": "AlgId",
+                "value": {
+                  "uint64": 0
+                }
+              },
+              {
+                "key": "DependencySlot",
+                "value": {
+                  "uint64": 0
+                }
+              },
+              {
+                "key": "ObjectSize",
+                "value": {
+                  "uint64": 0
+                }
+              },
+              {
+                "key": "AllowedUsage",
+                "value": {
+                  "uint32": 0
+                }
+              },
+              {
+                "key": "ObjectType",
+                "value": {
+                  "uint32": 0
+                }
+              },
+              {
+                "key": "Exportability",
+                "value": {
+                  "bool": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "key": "Checksum",
+    "value": {
+      "string": "2BA85E89F61DA1859A837934"
+    }
+  }
+]

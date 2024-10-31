@@ -1,0 +1,666 @@
+syntax = "proto2";
+
+package hozon.planning_internal;
+
+import "proto/common/types.proto";
+import "proto/common/header.proto";
+import "proto/soc/chassis.proto";
+import "proto/common/pnc_point.proto";
+import "proto/localization/localization.proto";
+import "proto/dreamview/chart.proto";
+import "proto/map/navigation.proto";
+import "proto/routing/routing.proto";
+import "proto/perception/transport_element.proto";
+import "proto/perception/perception_obstacle.proto";
+import "proto/perception/perception_freespace.proto";
+import "proto/planning/sl_boundary.proto";
+import "proto/planning/decision.proto";
+import "proto/planning/planning_config.proto";
+import "proto/planning/warning.proto";
+import "proto/planning/decider_debug.proto";
+import "proto/planning/planning_status.proto";
+import "proto/planning/speed_evaluator_config.proto";
+
+message RefPoint {
+  optional double x = 1;
+  optional double y = 2;
+  optional double theta = 3;
+  optional double kappa = 4;
+  optional double dkappa = 5;
+}
+
+message RefLine {
+  repeated RefPoint ref_points = 1;
+  optional double interval = 2;
+}
+
+message Debug {
+  optional PlanningData planning_data = 2;
+  optional RefLine ref_line = 4;
+  optional SafetyGuardInfo safety_guard_info = 20;
+  optional hozon.soc.MonitorFaultDebug monitor_fault_debug = 28;
+  // output related to Warning
+  optional planning.WarningOutput warning_output = 30;
+  optional hozon.localization.Localization localization = 40;
+  // output related to Astar Debug
+  optional AstarDeciderInfo astar_decider_info = 50;
+  optional AvoidAlongsiDedecierinfo avoid_alongside_decider_info = 60;
+}
+
+message AvoidAlongsiDedecierinfo {
+  message TrajectoryPoint {
+    optional double x = 1;
+    optional double y = 2;
+  }
+
+  message TrajectoryBox {
+    optional string id = 1;
+    repeated TrajectoryPoint point = 2;
+  }
+
+  message DecisionInfo {
+    optional string id = 1;
+    repeated string decision_tags = 3;
+    optional double decision_a = 4;
+    optional double decision_l = 5;
+    optional double parallel_time_cost = 6;
+    optional double safety_cost = 7;
+    optional double efficiency_cost = 8;
+    optional double lon_comfort_cost = 9;
+    optional double lat_offset_cost = 10;
+    optional double lat_stable_cost = 11;
+    optional double lon_stable_cost = 12;
+    optional double total_cost = 13;
+    repeated double adc_accelerate = 14;
+    repeated double adc_speed = 15;
+    repeated double adc_s = 16;
+    repeated double adc_l = 17;
+    repeated double adc_jerk = 18;
+  }
+
+  message DebugTimeDelay {
+    optional double obstacle_selector_time_delay = 1;
+    optional double init_state_time_delay = 2;
+    optional double trajectory_generator_time_delay = 3;
+    optional double make_obstacle_decision_time_delay = 4;
+    optional double conflict_resolution_time_delay = 5;
+    optional double debug_avoid_alongside_decision_time_delay = 6;
+    optional double all_time_delay = 7;
+  }
+  repeated TrajectoryBox obs_box = 1;
+  repeated TrajectoryBox adc_box = 2;
+  repeated DecisionInfo decision_info = 3;
+  optional DebugTimeDelay debug_time_delay = 4;
+}
+
+message AstarDeciderInfo {
+  repeated AstarNodeRow  astar_node_rows = 1;
+}
+
+message AstarNodeRow {
+  optional int32 row_index = 1;
+  repeated AstarNode astar_nodes = 2;
+}
+
+message AstarNode {
+  optional int32 grid_s = 1;
+  optional int32 grid_l = 2;
+  optional double x = 3;
+  optional double y = 4;
+  optional double s = 5;
+  optional double l = 6;
+  optional double phi = 7;
+               
+  optional double heuristic_cost = 9;           
+                    
+  optional double boundary_cost = 11;
+  optional double reference_line_cost = 12;
+  optional double dangerous_area_cost = 13;
+  optional double dynamic_obstacle_cost = 14;
+  optional double static_obstacle_cost = 15;
+  optional double smooth_cost = 16;
+  optional double similarity_cost = 17;
+}
+
+message SafetyGuardInfo {
+  enum TriggeredType {
+    NONE = 0;
+    USS = 1;
+    FREE_SPACE = 2;
+  }
+  enum StageType {
+    UNKNOWN = 0;
+    BRAKING = 1;
+    WAIT_REPLAN = 2;
+    WAIT_OBSTACLE = 3;
+    RUNNING = 4;
+  }
+  optional uint32 frame_num = 1;
+  optional double delay_ds = 2;
+  optional double press_up_ds = 3;
+  optional double compress_ds = 4;
+  optional double sensor_dead_zone_distance_with_buffer = 5;
+  optional double min_safe_distance = 6;
+  optional TriggeredType triggered_hold_type = 7;
+  optional double min_distance_to_uss = 8 [default = 100.0];
+  optional double min_distance_to_free_space = 9 [default = 100.0];
+  optional bool is_real_time_triggered_uss = 10 [default = false];
+  optional bool is_real_time_triggered_free_space = 11 [default = false];
+  optional double total_time_ms = 12;
+  optional double guard_disabled_confidence = 13 [default = 0.0];
+  optional StageType stage_type = 14;
+  optional string collision_uss_path_label = 15;
+  optional int32 collision_uss_id = 16;
+}
+
+message SpeedPlan {
+  optional string name = 1;
+  repeated hozon.common.SpeedPoint speed_point = 2;
+}
+
+message StGraphBoundaryDebug {
+  enum StBoundaryType {
+    ST_BOUNDARY_TYPE_UNKNOWN = 1;
+    ST_BOUNDARY_TYPE_STOP = 2;
+    ST_BOUNDARY_TYPE_FOLLOW = 3;
+    ST_BOUNDARY_TYPE_YIELD = 4;
+    ST_BOUNDARY_TYPE_OVERTAKE = 5;
+    ST_BOUNDARY_TYPE_KEEP_CLEAR = 6;
+    ST_BOUNDARY_TYPE_DRIVABLE_REGION = 7;
+  }
+  optional string name = 1;
+  repeated hozon.common.SpeedPoint point = 2;
+  optional StBoundaryType type = 3;
+}
+
+message SLFrameDebug {
+  optional string name = 1;
+  repeated double sampled_s = 2;
+  repeated double static_obstacle_lower_bound = 3;
+  repeated double dynamic_obstacle_lower_bound = 4;
+  repeated double static_obstacle_upper_bound = 5;
+  repeated double dynamic_obstacle_upper_bound = 6;
+  repeated double map_lower_bound = 7;
+  repeated double map_upper_bound = 8;
+  repeated hozon.common.SLPoint sl_path = 9;
+  repeated double aggregated_boundary_s = 10;
+  repeated double aggregated_boundary_low = 11;
+  repeated double aggregated_boundary_high = 12;
+}
+
+message STGraphDebug {
+  message STGraphSpeedConstraint {
+    repeated double t = 1;
+    repeated double lower_bound = 2;
+    repeated double upper_bound = 3;
+  }
+  message STGraphKernelCuiseRef {
+    repeated double t = 1;
+    repeated double cruise_line_s = 2;
+  }
+  message STGraphKernelFollowRef {
+    repeated double t = 1;
+    repeated double follow_line_s = 2;
+  }
+ message Cost_table{
+    optional double s = 1;
+    optional double t = 2;
+    optional double v = 3;
+    optional double obstacle_cost = 4;
+    optional double spatial_cost = 5;
+    optional double speed_cost = 6;
+    optional double acce_cost = 7;
+    optional double jerk_cost = 8;
+    optional double pre_point_cost = 9;
+    optional double total_cost = 10;
+    optional double lateral_big_car_cost = 11;
+    optional double optimal_speed = 23;
+    optional double optimal_acce = 24;
+    optional double pre_point_s = 25;
+  }
+
+  message Hexagon{
+    repeated hozon.common.PointENU polygon_point = 1;
+    optional string obs_id = 2;
+    optional double obs_speed = 3;
+  }
+
+
+  optional string name = 1;
+  repeated StGraphBoundaryDebug boundary = 2;
+  repeated hozon.common.SpeedPoint speed_limit = 3;
+  repeated hozon.common.SpeedPoint speed_profile = 4;
+  optional STGraphSpeedConstraint speed_constraint = 5;
+  optional STGraphKernelCuiseRef kernel_cruise_ref = 6;
+  optional STGraphKernelFollowRef kernel_follow_ref = 7;
+  repeated Cost_table cost_tables = 8;
+  repeated Hexagon hexagons = 9;
+}
+
+message SignalLightDebug {
+  message SignalDebug {
+    optional string light_id = 1;
+    optional hozon.perception.Color color = 2;
+    optional double light_stop_s = 3;
+    optional double adc_stop_deceleration = 4;
+    optional bool is_stop_wall_created = 5;
+  }
+  optional double adc_speed = 1;
+  optional double adc_front_s = 2;
+  repeated SignalDebug signal = 3;
+}
+
+message DecisionTag {
+  optional string decider_tag = 1;
+  optional hozon.planning.ObjectDecisionType decision = 2;
+}
+
+message ObstacleDebug {
+  optional string id = 1;
+  optional hozon.planning.SLBoundary sl_boundary = 2;
+  repeated DecisionTag decision_tag = 3;
+  repeated double vertices_x_coords = 4;
+  repeated double vertices_y_coords = 5;
+}
+
+message ReferenceLineDebug {
+  optional string id = 1;
+  optional double length = 2;
+  optional double cost = 3;
+  optional bool is_change_lane_path = 4;
+  optional bool is_drivable = 5;
+  optional bool is_protected = 6;
+  optional bool is_offroad = 7;
+  optional double minimum_boundary = 8;
+  optional double average_kappa = 9 [deprecated = true];
+  optional double average_dkappa = 10 [deprecated = true];
+  optional double kappa_rms = 11;
+  optional double dkappa_rms = 12;
+  optional double kappa_max_abs = 13;
+  optional double dkappa_max_abs = 14;
+  optional double average_offset = 15;
+}
+
+message ReferenceLineDebugInfo{
+  repeated hozon.common.ReferenceLine reference_line_debug = 1;
+}
+
+message SampleLayerDebug {
+  repeated hozon.common.SLPoint sl_point = 1;
+}
+
+message DpPolyGraphDebug {
+  repeated SampleLayerDebug sample_layer = 1;
+  repeated hozon.common.SLPoint min_cost_point = 2;
+}
+
+message ScenarioDebug {
+  optional hozon.planning.ScenarioConfig.ScenarioType scenario_type = 1;
+  optional hozon.planning.ScenarioConfig.StageType stage_type = 2;
+  optional string msg = 3;
+}
+
+message Trajectories {
+  repeated hozon.common.Trajectory trajectory = 1;
+}
+message Paths {
+  repeated hozon.common.Path path = 1;
+}
+message VehicleFollowError {
+  optional double lateral_offset = 1;
+  optional double longitudinal_offset = 2;
+  optional double angle_offset = 3;
+}
+
+message WarmStartPath {
+  repeated hozon.common.PathPoint warm_start_path_points =1;
+  optional hozon.common.PathPoint rs_connect_point =2;
+}
+
+message PathUpdateStatus {
+  enum UpdateStatus {
+    NONE = 0;
+    SUCCESS = 1;
+    PATH_SEGMENT_OVER_LIMIT = 2;
+    SEARCH_FAILED = 4;
+    OPTIMIZE_FAILED = 5;
+    START_POINT_MISMATCH = 6;
+    WAIT_RESULT = 7;
+    OVER_TIME = 100;
+  }
+  enum PathType {
+    DEFAULT = 0;
+    SEARCH_PATH = 1;
+    TRACE_PATH = 10;
+    GEOMETRY = 20;
+    GEOMETRY_ADJUST = 30;
+    CRUISE_PATH = 40;
+    SCS_GEOMETRY = 50;
+  }
+  optional UpdateStatus update_status = 1 [default = NONE];
+  optional uint32 path_gear_shift_time = 2;
+  optional PathType path_type = 3;
+}
+
+message STSampleDebug {
+  message SpeedLimitPoint {
+    optional double s = 1;
+    optional double limit_v = 2;
+  }
+
+  optional double start_v = 1;
+  optional double start_acc = 2;
+  optional double total_s = 3;
+  optional double end_s = 4;
+  optional double actual_v = 5;
+  optional double actual_acc = 6;
+  optional string message = 7;
+  optional string best_curve = 8;
+  optional string last_curve = 9;
+
+  repeated SpeedLimitPoint speed_limit_points = 50;
+}
+
+message AvpSpeedPlanCollisionInfo {
+  enum SpeedTaskInteractiveStage {
+    INIT = 0;
+    WAITREPLAN = 1;
+    WAITOBSTACLE = 2;
+    RUNNING = 3;
+  }
+  enum CollisionType {
+    NO_COLLISION = 0;
+    STATIC_OBSTACLE_COLLISION = 1;
+    MOVING_OBSTACLE_COLLISION = 2;
+    FREESPACE_POINT_COLLISION = 3;
+    FUSION_COLLISION = 4;
+  }
+
+  optional bool is_wheel_mask_valid = 1 [default = false];
+  optional bool is_stop_near_wheel_mask = 2 [default = false];
+  optional SpeedTaskInteractiveStage speed_task_inter_stage = 3 [default = INIT];
+  optional CollisionType collision_type = 4 [default = NO_COLLISION];
+  optional double collision_distance = 5;
+  optional int32 static_obstacle_id = 6;
+  optional perception.PerceptionObstacle.Type static_obstacle_type = 7;
+  optional int32 moving_obstacle_id = 8;
+  optional perception.PerceptionObstacle.Type moving_obstacle_type = 9;
+  optional int32 freespace_index_in_array = 10;
+  optional hozon.common.Point2D collision_fs_segment_start = 11;
+  optional hozon.common.Point2D collision_fs_segment_end = 12;
+  optional hozon.common.Point2D collision_fs_point_flu = 13;
+  optional hozon.perception.FreeSpaceOut.ClassType freespace_type = 14;
+  optional bool is_use_middle_buffer = 15;
+  optional int32 bigger_buffer_safe_count = 16;
+}
+
+message OpenSpaceDebug {
+  enum FinishStatus {
+    UNKNOWN = 0;
+    VEHICEL_MOVING = 1;
+    LARGE_ANGLE = 2;
+    FAR_AWAY = 3;
+    REACH_TARGET = 4;
+    REACH_WHEEL_MASK = 5;
+    COLLISION_FINISH = 6;
+    BLOCK_BY_CURB_IN_SPOT = 7;
+    BLOCK_BY_CAR_IN_SPOT = 8;
+    OUT_OF_PARK_LOT = 10;
+    PREFINISH_BRAKING = 11;
+    OVER_TIME = 100;
+  }
+  optional hozon.planning_internal.Trajectories trajectories = 1;
+  optional WarmStartPath warm_start_path = 2;
+  repeated hozon.common.PathPoint smoothed_path = 3;
+  repeated double warm_start_dual_lambda = 4;
+  repeated double warm_start_dual_miu = 5;
+  repeated double optimized_dual_lambda = 6;
+  repeated double optimized_dual_miu = 7;
+  repeated double xy_boundary = 8;
+  repeated hozon.planning_internal.ObstacleDebug obstacles = 9;
+  optional hozon.common.TrajectoryPoint roi_shift_point = 10;
+  optional hozon.common.TrajectoryPoint end_point = 11;
+  optional hozon.planning_internal.Paths partitioned_paths = 12;
+  repeated hozon.common.PathPoint chosen_path = 13;
+  optional bool is_speed_optimizer = 14;
+  optional hozon.planning_internal.Trajectories speed_optimizer_trajectory = 15;
+  optional hozon.common.TrajectoryPoint trajectory_stitching_point = 16;
+  optional hozon.common.TrajectoryPoint future_collision_point = 17;
+  optional double time_latency = 18 [default = 0.0];  // ms
+  optional hozon.common.PointENU origin_point = 19;  // meter
+  optional double origin_heading_rad = 20;
+  optional double check_near_desination_angle = 21;
+  optional double check_near_desination_distance = 22;
+  optional double switch_gear_angle = 23;
+  optional double switch_gear_distance = 24;
+  optional bool receive_parking_lot_ok = 25 [default = true];
+  optional double receive_location_distance = 26;
+  optional VehicleFollowError vehicle_follow_error = 27;
+  optional VehicleFollowError vehicle_to_current_end_error = 28;
+  repeated hozon.common.PointENU dest_polygon_point = 29;
+  optional PathUpdateStatus path_update_status = 30;
+  optional double target_lon_adjust_dis = 31;
+  optional double target_lat_adjust_dis = 32;
+  optional double target_yaw_adjust_rad = 33;
+  optional uint32 park_lot_loc_seq = 34;
+  optional double end_pose_lon_error = 35;
+  optional double end_pose_lat_error = 36;
+  optional double end_pose_yaw_error = 37;
+  optional FinishStatus finish_status = 40;
+  optional int32 partition_path_idx = 51;
+  optional int32 partition_path_point_idx = 52;
+  optional bool replan_triggered_by_speed_plan = 103 [default = false];
+  optional STSampleDebug st_sample_debug = 150;
+  optional AvpSpeedPlanCollisionInfo speed_plan_collision_info = 151;
+  repeated hozon.common.Path partition_smoothed_path = 152;
+  optional double smooth_total_time = 153;
+  optional double coarse_total_time = 154;
+  optional bool smoother_enable_init_kappa_constrain = 155;
+  optional double smoother_init_kappa = 156;
+  optional bool smoother_enable_dest_lat_constrain = 157;
+  optional double smoother_dest_lat_deviation = 158;
+  optional bool smoother_force_enable_dest_lat_constrain = 159;
+  optional string path_decision = 200;
+  optional string path_planner_type = 301;
+  optional uint32 search_node_num = 998 [default = 0];
+  optional string path_replan_reason = 999;
+}
+
+message SmootherDebug {
+  enum SmootherType {
+    SMOOTHER_NONE = 1;
+    SMOOTHER_CLOSE_STOP = 2;
+  }
+  optional bool is_smoothed = 1;
+
+  optional SmootherType type = 2 [default = SMOOTHER_NONE];
+  optional string reason = 3;
+}
+
+message PullOverDebug {
+  optional hozon.common.PointENU position = 1;
+  optional double theta = 2;
+  optional double length_front = 3;
+  optional double length_back = 4;
+  optional double width_left = 5;
+  optional double width_right = 6;
+}
+message SpeedPlanOptimizerDebug {
+  message SpeedBound {
+    optional double t = 1;
+    optional double v_upper_bound = 2;
+    optional double v_lower_bound = 3;
+  }
+
+  message SBound {
+    optional double t = 1;
+    optional double s_upper_bound = 2;
+    optional double s_lower_bound = 3;
+  }
+  optional double init_speed = 1;
+  optional double adc_speed = 2;
+  repeated SpeedBound v_bounds = 3;
+  repeated SBound s_bounds = 4;
+}
+
+
+// next ID: 30
+message PlanningData {
+  // input
+  optional hozon.localization.Localization adc_position = 5;
+  optional hozon.soc.Chassis chassis = 6;
+  optional hozon.routing.RoutingResponse routing = 7;
+  optional hozon.common.Header prediction_header = 8;
+  optional hozon.common.TrajectoryPoint init_point = 10;
+
+  repeated hozon.common.Path path = 11;
+  optional ReferenceLineDebugInfo reference_line_debug_info = 12;
+
+  repeated SpeedPlan speed_plan = 13;
+  repeated STGraphDebug st_graph = 14;
+  repeated SLFrameDebug sl_frame = 15;
+
+  optional SignalLightDebug signal_light = 17;
+
+  repeated ObstacleDebug obstacle = 18;
+  repeated ReferenceLineDebug reference_line_debug = 19;
+  optional DpPolyGraphDebug dp_poly_graph = 20;
+  optional LatticeStTraining lattice_st_image = 21;
+  optional hozon.navigation_hdmap.MapMsg navigation_hdmap = 22;
+  optional AutoTuningTrainingData auto_tuning_training_data = 23;
+  optional double front_clear_distance = 24;
+  repeated hozon.dreamview.Chart chart = 25;
+  optional ScenarioDebug scenario = 26;
+  optional OpenSpaceDebug open_space = 27;
+  optional SmootherDebug smoother = 28;
+  optional PullOverDebug pull_over = 29;
+  optional HybridModelDebug hybrid_model = 30;
+  optional SpeedPlanOptimizerDebug speed_plan_optimizer_debug = 31;
+  optional VTSampleDebug vt_sample_debug = 32;
+  optional hozon.planning.DeciderDebug decider_debug = 40;
+  optional hozon.planning.PlanningStatus planning_status = 41;
+  optional PNCMapDebug pncmap_debug = 50;
+  optional MdcCpuInfo mdc_cpu_info = 52;
+  optional SpeedDataOptimizerDebug speed_data_optimizer_debug = 53;
+}
+
+message LatticeStPixel {
+  optional int32 s = 1;
+  optional int32 t = 2;
+  optional uint32 r = 3;
+  optional uint32 g = 4;
+  optional uint32 b = 5;
+}
+
+message LatticeStTraining {
+  repeated LatticeStPixel pixel = 1;
+  optional double timestamp = 2;
+  optional string annotation = 3;
+  optional uint32 num_s_grids = 4;
+  optional uint32 num_t_grids = 5;
+  optional double s_resolution = 6;
+  optional double t_resolution = 7;
+}
+
+message CostComponents {
+  repeated double cost_component = 1;
+}
+
+message AutoTuningTrainingData {
+  optional CostComponents teacher_component = 1;
+  optional CostComponents student_component = 2;
+}
+
+message CloudReferenceLineRequest {
+  repeated hozon.routing.LaneSegment lane_segment = 1;
+}
+
+message CloudReferenceLineRoutingRequest {
+  optional hozon.routing.RoutingResponse routing = 1;
+}
+
+message CloudReferenceLineResponse {
+  repeated hozon.common.Path segment = 1;
+}
+
+message HybridModelDebug {
+  optional bool using_learning_model_output = 1 [default = false];
+  optional double learning_model_output_usage_ratio = 2;
+  optional string learning_model_output_fail_reason = 3;
+  optional hozon.common.Path evaluated_path_reference = 4;
+}
+
+message VTSampleDebug {
+  message SpeedLimitPoint {
+    optional double s = 1 [default = 0];
+    optional double map_speed_limit = 2 [default = 0.0];
+    optional double curvature_speed_limit = 3 [default = 0.0];
+    optional double decision_speed_limit = 4 [default = 0.0];
+    optional double cruise_speed_limit = 5 [default = 0.0];
+    optional bool allow_over_speed = 6 [default = false];
+    optional double origin_map_speed_limit = 7 [default = 0.0];
+  }
+  message NudgeInfo {
+    optional string id = 1;
+    optional hozon.planning.SpeedCacheConfig.NudgeState target_nudge_state = 2 [default = IGNORE];
+    optional hozon.planning.SpeedCacheConfig.NudgeState current_nudge_state = 3 [default = IGNORE];
+  }
+
+  repeated SpeedLimitPoint speed_limit_point = 1;
+  optional uint64 guide_curve_count = 2 [default = 0];
+  optional uint64 safe_curve_count = 3 [default = 0];
+  optional uint64 normal_curve_count = 4 [default = 0];
+  optional double expected_stop_s = 5 [default = 0.0];
+  optional string last_curve_info = 6 [default = ""];
+  optional string min_cost_curve_info = 7 [default = ""];
+  repeated string fallback_path_label = 8;
+  optional double follow_time = 9 [default = 1.5];
+  repeated NudgeInfo nudge_info = 10;
+}
+
+message SpeedDataOptimizerDebug {
+  message SpeedLimitPoint {
+    optional double s = 1 [default = 0];
+    optional double map_speed_limit = 2 [default = 0.0];
+    optional double curvature_speed_limit = 3 [default = 0.0];
+    optional double decision_speed_limit = 4 [default = 0.0];
+    optional double cruise_speed_limit = 5 [default = 0.0];
+    optional bool allow_over_speed = 6 [default = false];
+    optional double origin_map_speed_limit = 7 [default = 0.0];
+  }
+
+  message NudgeInfo {
+    optional string id = 1;
+    optional hozon.planning.SpeedCacheConfig.NudgeState target_nudge_state = 2 [default = IGNORE];
+    optional hozon.planning.SpeedCacheConfig.NudgeState current_nudge_state = 3 [default = IGNORE];
+  }
+
+  message VTSampleGeneratorDebug {
+    optional uint64 guide_curve_count = 2 [default = 0];
+    optional uint64 safe_curve_count = 3 [default = 0];
+    optional uint64 normal_curve_count = 4 [default = 0];
+    optional string last_curve_info = 6 [default = ""];
+    optional string min_cost_curve_info = 7 [default = ""];
+    repeated string fallback_path_label = 8;
+  }
+
+  optional hozon.planning.SpeedScenarioConfig.ScenarioType scenario_type = 1 [default = LANE_KEEP_SCENARIO];
+  optional hozon.planning.SpeedStageConfig.StageType stage_type = 2 [default = LANE_KEEP_STAGE];
+  repeated SpeedLimitPoint speed_limit_point = 3;
+  optional double follow_time = 4 [default = 1.5];
+  optional double expected_stop_s = 5 [default = 0.0];
+  repeated NudgeInfo nudge_info = 6;
+  optional VTSampleGeneratorDebug vt_sample_debug = 7;
+}
+
+message PNCMapDebug {
+  repeated string pnc_debug_info = 1;
+}
+
+message MdcCpuInfo {
+  optional double planning_cpu = 1 [default = 0.0];
+  optional double planning_mem = 3 [default = 0.0];
+  optional double all_cpu_used = 5 [default = 0.0];
+  optional double mem_free = 7 [default = 0.0];
+  optional double total_mem = 9 [default = 0.0];
+}

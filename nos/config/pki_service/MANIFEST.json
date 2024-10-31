@@ -1,0 +1,19 @@
+{
+  "process_name": "pki_serviceProcess",
+  "executable": "pki_service",
+  "restart_attempt_num": "2",
+  "shall_run_ons": [],
+  "mode_of_order": [
+    "Factory.2",
+    "Normal.2",
+    "Update.2"
+  ],
+  "scheduling_policy": "OTHER",
+  "scheduling_priority": "0",
+  "arguments": [],
+  "environments": [
+    "SSL_CERT_DIR=/etc/ssl/certs",
+    "NETA_CM_QOS_PATH=/app/runtime_service/pki_service/etc/default_qos.json"
+  ]
+}
+

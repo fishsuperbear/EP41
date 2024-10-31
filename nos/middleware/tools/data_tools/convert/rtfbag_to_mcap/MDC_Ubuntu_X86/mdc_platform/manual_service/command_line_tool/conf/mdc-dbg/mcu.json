@@ -1,0 +1,84 @@
+[
+    {
+        "key" : "app",
+        "value" :
+        {
+            "string" : "mcu"
+        }
+    },
+    {
+        "key" : "command",
+        "value" :
+        {
+            "string[]" : [ "mcu sysdrv getboardtype",
+                           "mcu sysdrv readreg < addr >",
+                           "mcu sysdrv writereg < addr > < value >",
+                           "mcu sysdrv getgpiolevel < para1Str >",
+                           "mcu sysdrv setgpiolevel < para1Str > < para2Value >",
+                           "mcu thm temperature { soc | ntc | mcu } < tempers >",
+                           "mcu thm temperature close",
+                           "mcu thm gettmsflow",
+                           "mcu thm settmsflow < flow >",
+                           "mcu thm gettmsrunflag",
+                           "mcu thm settmsstate < state >",
+                           "mcu thm settmstemp < temp >",
+                           "mcu thm setenvtemp < temp >",
+                           "mcu tsync < action >",
+                           "mcu devmd < action >",
+                           "mcu devmd < action > < para1 >",
+                           "mcu devmd < action > < para1 > < para2 >",
+                           "mcu devmd < action > < para1 > < para2 > < para3 >",
+                           "mcu devmd < action > < para1 > < para2 > < para3 > <para4>",
+                           "mcu exwdg < para1 > < para2 >",
+                           "mcu fm ftti < para1 >",
+                           "mcu fm < action > < action > < action > < action >",
+                           "mcu fm < para1 > < para2 > < para3 > < para4 > < para5 > < para6 >",
+                           "mcu sa < action >",
+                           "mcu sa < action > < action >",
+                           "mcu sa < action > < action > < action >",
+                           "mcu sm reqplatstate < type > < delay100msToWake >",
+                           "mcu sm reqplatstatedirect < target > < size > < data > < delay100msToWake >",
+                           "mcu sm reqplatstatedelay < type > < delay100msToDo >",
+                           "mcu sm setautopower < disable >",
+                           "mcu sm setplatstateswitch < disable >",
+                           "mcu sm getplatinfo",
+                           "mcu sm getplatevent",
+                           "mcu diag < action >",
+                           "mcu diag < action > < action >",
+                           "mcu diag < action > < action > < action >",
+                           "mcu diag < action > < action > < action > < action >",
+                           "mcu lpm < action > < action > < action > < action > < action >",
+                           "mcu lpm < action > < action >",
+                           "mcu lpm < action > < action > < action >",
+                           "mcu fi  testcase < para1 > < para2 >",
+                           "mcu fi  write < para1 > < para2 > < para3 > < para4 >",
+                           "mcu fi  read < para1 > < para2 > < para3 >",
+                           "mcu fi  reset",
+                           "mcu wdg timeout < para1 >",
+                           "mcu xcp SwitchXcpState { ON | OFF }",
+                           "mcu psm PsmSetCriticalFault < para1 >",
+                           "mcu psm PsmSetProhibitSwitch < para1 >",
+                           "mcu psm PsmSetStartSwitch",
+                           "mcu secoc rxverify < action >",
+                           "mcu secoc getfvidstatus",
+                           "mcu devmd setvincode < para1 > < para2 > < para3 >",
+                           "mcu boot < action >",
+                           "mcu boot < action > < action >"]
+        }
+    },
+    {
+        "key" : "help",
+        "value" :
+        {
+            "string[]" : [ "mcu sysdrv getboardtype,     Used to get board id.",
+                           "mcu sa < action >,           Used to do some sa action.",
+                           "mcu sm reqplatstate < type > < delay100msToWake >, Used to switch states",
+                           "mcu sm reqplatstatedirect < target > < size > < data > < delay100msToWake >, Used to switch states",
+                           "mcu sm reqplatstatedelay < type > < delay100msToDo >, Used to switch states with delay",
+                           "mcu sm setautopower < 0-enable auto | 1-disable auto >, Used to set auto power soc on",
+                           "mcu sm setplatstateswitch < 0-enable switch | 1-disable switch >, Used to set whether to allow switching",
+                           "mcu sm getplatinfo, Used to get sm plat info",
+                           "mcu sm getplatevent, Used to get sm current plat event" ]
+        }
+    }
+]

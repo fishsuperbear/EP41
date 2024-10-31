@@ -1,0 +1,128 @@
+/******************************************************************************
+ * Copyright (C) 2023 HOZON-AUTO Ltd. All rights reserved.
+ * Licensed Hozon
+ ******************************************************************************/
+#include "yuv_nvstream_receiver.h"
+#include "camera_venc_logger.h"
+
+namespace hozon {
+namespace netaos {
+namespace cameravenc {
+
+YuvBufWrapper::~YuvBufWrapper() {
+    // if (release) {
+    //     release(static_cast<hozon::netaos::nv::IEPPacket*>(packet), *static_cast<NvSciSyncFence*>(pre_fence), *static_cast<NvSciSyncFence*>(eof_fence));
+    // }
+}
+
+YuvNvStreamReceiver::YuvNvStreamReceiver() {
+
+    // front camera: front 0
+    topic_nvstream_channel_mapping_["/sensors/camera/camera_0"] = "cam0_recv0";
+    // front camera: front 1
+    topic_nvstream_channel_mapping_["/sensors/camera/camera_1"] = "cam1_recv0";
+    // rear camera: rear
+    topic_nvstream_channel_mapping_["/sensors/camera/camera_3"] = "cam3_recv0";
+
+    // side camera: front left
+    topic_nvstream_channel_mapping_["/sensors/camera/camera_4"] = "cam4_recv0";
+    // side camera: front right
+    topic_nvstream_channel_mapping_["/sensors/camera/camera_5"] = "cam5_recv0";
+    // side camera: rear left
+    topic_nvstream_channel_mapping_["/sensors/camera/camera_6"] = "cam6_recv0";
+    // side camera: rear right
+    topic_nvstream_channel_mapping_["/sensors/camera/camera_7"] = "cam7_recv0";
+
+    // fisheye camera: right
+    topic_nvstream_channel_mapping_["/sensors/camera/camera_8"] = "cam8_recv0";
+    // fisheye camera: left
+    topic_nvstream_channel_mapping_["/sensors/camera/camera_9"] = "cam9_recv0";
+    // fisheye camera: rear
+    topic_nvstream_channel_mapping_["/sensors/camera/camera_10"] = "cam10_recv0";
+    // fisheye camera: front
+    topic_nvstream_channel_mapping_["/sensors/camera/camera_11"] = "cam11_recv0";
+}
+
+YuvNvStreamReceiver::~YuvNvStreamReceiver() {
+
+}
+
+void YuvNvStreamReceiver::SetTopics(std::vector<std::string>& topics) {
+    for (auto& topic : topics) {
+        proxys_[topic] = nullptr;
+    }
+}
+
+void YuvNvStreamReceiver::SetCallbacks(std::string topic, hozon::netaos::nv::IEPConsumerCbs cbs) {
+    if (proxys_.find(topic) != proxys_.end() && proxys_[topic]) {
+        proxys_[topic]->_nvs_img_consumer.SetCbs(cbs);
+    }
+    else {
+        cbs_map_[topic] = cbs;
+    }
+}
+
+int YuvNvStreamReceiver::Init() {
+    for (auto& it : proxys_) {
+        if (!it.second) {
+            std::string channel = topic_nvstream_channel_mapping_[it.first];
+            std::string consumer_name = std::string("camera_venc_consumer_") + it.first;
+
+            it.second = std::make_shared<hozon::netaos::nv::NVSIEPAdapter>();
+
+            if (cbs_map_.find(it.first) != cbs_map_.end()) {
+                CAMV_INFO << "Set callback for nvstream channel: " << channel;
+                it.second->_nvs_img_consumer.SetCbs(cbs_map_[it.first]);
+            }
+
+            CAMV_INFO << "Init nvstream consumer on channel: " << channel
+                       << ", as consumer name: " <<  consumer_name << ", as topic: " << it.first;
+            if (it.second->Init(channel, std::string("camera_venc_consumer_") + it.first) < 0) {
+                CAMV_ERROR << "Init nvstream consumer failed on channel " << channel;
+                it.second.reset();
+            }
+        }
+    }
+}
+
+void YuvNvStreamReceiver::Deinit() {
+    for (auto& it : proxys_) {
+        if (!it.second) {
+            it.second->Deinit();
+            it.second.reset();
+        }
+    }
+}
+
+std::shared_ptr<struct YuvBufWrapper> YuvNvStreamReceiver::Get() {
+    return nullptr;
+}
+
+std::shared_ptr<YuvBufWrapper> YuvNvStreamReceiver::Get(std::string& topic) {
+
+    if (!proxys_[topic]) {
+        CAMV_WARN << "ns stream consumer is not inited. Topic: " << topic;
+        return nullptr;
+    }
+
+    // if (!proxys_[topic]->_nvs_img_consumer.Ready()) {
+    //     // CAMV_INFO << "Cm proxy is not matched yet. Topic: " << topic;
+    //     return false;
+    // }
+
+    std::shared_ptr<YuvBufWrapper> buf_wrapper;
+    // hozon::netaos::nv::IEPPacket* packet = proxys_[topic]->GetPacket();
+    // if (packet) {
+    //     buf_wrapper->packet = std::make_share<YuvBufWrapper>()
+    //     buf_wrapper->buf_obj = nullptr;
+    //     buf_wrapper->pre_fence = nullptr;
+    //     buf_wrapper->eof_fence = nullptr;
+    //     buf_wrapper->release = std::bind(&NVSBlockIEPConsumer::PacketConsumed, &proxys_[topic]->_nvs_img_consumer, std::placeholders::_1, std::placeholder::_2, std::placeholder::_3);
+    // }
+
+    return buf_wrapper;
+}
+
+}
+}
+}

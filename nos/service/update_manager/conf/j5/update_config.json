@@ -1,0 +1,11 @@
+{
+    "LogAppName": "UPMG",
+    "LogAppDescription": "update_manager",
+    "LogContextName": "UPMG",
+    "LogLevel": 1, // DIAG_TRACE=0,DIAG_DEBUG,DIAG_INFO,DIAG_WARN,DIAG_ERROR,DIAG_CRITICAL,DIAG_OFF=6
+    "LogMode": 2, // DIAG_CONSOLE=0,DIAG_FILE,DIAG_CONSOLE_FILE=2
+    "LogFilePath": "/userdata/",
+    "MaxLogFileNum": 10,
+    "MaxSizeOfLogFile": 20,
+    "DebugSwitch": "off"
+}

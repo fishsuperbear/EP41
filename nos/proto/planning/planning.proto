@@ -1,0 +1,143 @@
+syntax = "proto2";
+
+package hozon.planning;
+
+import "proto/soc/chassis.proto";
+import "proto/common/drive_state.proto";
+import "proto/common/types.proto";
+import "proto/common/header.proto";
+import "proto/common/pnc_point.proto";
+import "proto/map/map_id.proto";
+import "proto/planning/decision.proto";
+import "proto/planning/path.proto";
+import "proto/planning/planning_internal.proto";
+import "proto/planning/warning.proto";
+import "proto/planning/pad_msg.proto";
+import "proto/planning/trigger.proto";
+import "proto/hmi/avp.proto";
+import "proto/fsm/function_manager.proto";
+import "proto/hmi/nnp.proto";
+
+message DebugData {
+  optional hozon.common.Header header = 1;
+  optional bytes info = 10;
+}
+
+message EStop {
+  // is_estop == true when emergency stop is required
+  optional bool is_estop = 1;
+  optional string reason = 2;
+}
+
+message TaskStats {
+  optional string name = 1;
+  optional double time_ms = 2;
+}
+
+message LatencyStats {
+  optional double total_time_ms = 1;
+  repeated TaskStats task_stats = 2;
+  optional double init_frame_time_ms = 3;
+  repeated TaskStats var_name = 4;
+}
+
+message RSSInfo {
+  optional bool is_rss_safe = 1;
+  optional double cur_dist_lon = 2;
+  optional double rss_safe_dist_lon = 3;
+  optional double acc_lon_range_minimum = 4;
+  optional double acc_lon_range_maximum = 5;
+  optional double acc_lat_left_range_minimum = 6;
+  optional double acc_lat_left_range_maximum = 7;
+  optional double acc_lat_right_range_minimum = 8;
+  optional double acc_lat_right_range_maximum = 9;
+}
+
+// next id: 24
+message ADCTrajectory {
+  optional hozon.common.Header header = 1;
+
+  optional double total_path_length = 3;  // in meters
+  optional double total_path_time = 5;    // in seconds
+  // path data + speed data
+  repeated hozon.common.TrajectoryPoint trajectory_point = 7;
+
+  // path point without speed info
+
+  // is_replan == true mean replan triggered
+  optional bool is_replan = 14 [default = false];
+  optional uint32 replan_type = 15 [default = 0];
+  optional string replan_reason = 17;
+  optional double longitudinal_diff = 18;
+  optional double lateral_diff = 19;
+
+  // Specify trajectory gear
+  optional hozon.soc.Chassis.GearPosition gear = 20;
+  optional EStop estop = 23;
+  optional LatencyStats latency_stats = 26;
+  // output fct
+  optional hozon.functionmanager.FunctionManagerIn function_manager_in = 29;
+  optional hozon.functionmanager.FunctionManagerOut function_manager_out = 32;
+  // output avp hmi
+  optional hozon.hmi.AvpToHmi avp_to_hmi = 35;
+  // output nnp hmi
+  optional hozon.hmi.NNPHmiOutput nnp_hmi_output = 38;
+  optional hozon.planning.DecisionResult decision = 41;
+  optional hozon.planning.PathResult path = 42;
+  optional PadMessage pad_msg = 44;
+  // lane id along current reference line
+  repeated hozon.hdmap.Id lane_id = 47;
+  // lane id along target reference line
+  repeated hozon.hdmap.Id target_lane_id = 50;
+
+  enum RightOfWayStatus {
+    UNPROTECTED = 0;
+    PROTECTED = 1;
+  }
+  optional RightOfWayStatus right_of_way_status = 53;
+
+  // set the engage advice for based on current planning result.
+  optional hozon.common.EngageAdvice engage_advice = 56;
+
+  // the region where planning cares most
+  message CriticalRegion {
+    repeated hozon.common.Polygon region = 1;
+  }
+
+  // critical region will be empty when planning is NOT sure which region is
+  // critical
+  // critical regions may or may not overlap
+  optional CriticalRegion critical_region = 59;
+
+  enum TrajectoryType {
+    UNKNOWN = 0;
+    NORMAL = 1;
+    PATH_FALLBACK = 2;
+    SPEED_FALLBACK = 3;
+    PATH_REUSED = 4;
+    SHORT_PATH = 5;
+    PATH_LANE_KEEP = 6;
+    PATH_LANE_CHANGE = 7;
+    PATH_PULL_OVER = 8;
+  }
+  optional TrajectoryType trajectory_type = 62 [default = UNKNOWN];
+
+  // output relate to fault
+  optional PlanningFault planning_fault = 65;
+  // Output collection events
+  optional EventTrigger event_trigger = 68;
+
+  optional bool is_vehicle_reference_frame = 74;
+  optional int32 received_ehp_counter = 77 [default = -1];
+  optional uint32 utm_zone_id = 80;
+  optional double utm2gcs_heading_offset = 81;
+  // output in for debug
+  optional uint32 function_mode = 83;    // is using as HandShake mode in 0124demo
+  optional uint32 driving_mode = 86;         // is using as driving mode in 0124demo
+  optional WarningStatus warning_status = 90;
+  // output related to RSS
+  optional RSSInfo rss_info = 150;
+  optional double beijing_time = 151;
+  optional hozon.planning_internal.Debug debug = 1000;
+
+}

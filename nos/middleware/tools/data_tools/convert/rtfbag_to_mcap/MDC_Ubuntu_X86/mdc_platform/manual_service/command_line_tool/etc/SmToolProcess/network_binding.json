@@ -1,0 +1,24 @@
+{
+  "instanceSpecifiers": [
+    {
+      "instanceSpecifier": "sm_client/sm_client/AppFromSmcRPort",
+      "service": "/HuaweiMDC/PlatformServiceInterface/SmcServiceInterface/TriggerInOut",
+      "instanceIdentifiers": [
+        {
+          "protocol": "SOMEIP",
+          "instanceIdentifier": "1"
+        }
+      ]
+    },
+    {
+      "instanceSpecifier": "sm_client/sm_client/AppFromPlatformStateAgentRPort",
+      "service": "/HuaweiMDC/PlatformServiceInterface/PlatformStateAgentServiceInterface/PlatformStateAgent",
+      "instanceIdentifiers": [
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "1"
+        }
+      ]
+    }
+  ]
+}

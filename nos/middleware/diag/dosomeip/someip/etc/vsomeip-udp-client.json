@@ -1,0 +1,26 @@
+{
+    "unicast": "192.168.1.12",
+    "netmask": "255.255.255.0",
+    "logging": {
+        "level": "debug",
+        "console": "true",
+        "file": {
+            "enable": "true",
+            "path": "/userdata/ytx/log/do_someip_c.log"
+        },
+        "dlt": "false"
+    },
+    "applications": [
+        {
+            "name": "client-sample",
+            "id": "0x4321"
+        }
+    ],
+    "routing": "client-sample",
+    "service-discovery": {
+        "enable": "true",
+        "multicast": "239.192.255.123",
+        "port": "30490",
+        "protocol": "udp"
+    }
+}

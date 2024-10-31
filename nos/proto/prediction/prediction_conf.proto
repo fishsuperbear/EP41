@@ -1,0 +1,65 @@
+syntax = "proto2";
+
+package hozon.prediction;
+
+import "proto/prediction/scenario.proto";
+import "proto/perception/perception_obstacle.proto";
+import "proto/prediction/feature.proto";
+
+message ObstacleConf {
+  enum ObstacleStatus {
+    ON_LANE = 0;
+    OFF_LANE = 1;
+    STATIONARY = 3;
+    MOVING = 4;
+    IN_JUNCTION = 5;
+  }
+
+ 
+  enum PredictorType {
+    LANE_SEQUENCE_PREDICTOR = 0;
+    FREE_MOVE_PREDICTOR = 1;
+    REGIONAL_PREDICTOR = 2 [deprecated = true];
+    MOVE_SEQUENCE_PREDICTOR = 3;
+    EMPTY_PREDICTOR = 4;
+    SINGLE_LANE_PREDICTOR = 5;
+    JUNCTION_PREDICTOR = 6;
+    EXTRAPOLATION_PREDICTOR = 7;
+    INTERACTION_PREDICTOR = 8;
+    CYRA_PREDICTOR = 9;
+    FOLLOW_EGO_LANE_PREDICTOR = 10;
+    COST_PREDICTOR = 11;
+    VECTORNET_PREDICTOR = 12;
+    TNT_PREDICTOR = 13;
+    PEDESTRIAN_TRAJNET_PREDICTOR = 14;
+    STATIC_PREDICTOR = 15;
+    VEHICLE_PARTICLE_FILTER_PREDICTOR = 16;
+    FOLLOW_URBAN_EGO_LANE_PREDICTOR = 17;
+    DBN_PREDICTOR = 18;
+  }
+
+  optional hozon.perception.PerceptionObstacle.Type obstacle_type = 1;
+  optional hozon.perception.PerceptionObstacle.SubType obstacle_sub_type = 6;
+  optional ObstacleStatus obstacle_status = 2 [default = STATIONARY];
+  optional ObstaclePriority.Priority priority_type = 3;
+  repeated PredictorType predictor_type = 4;
+  optional Scenario.Type scenario_type = 5 [default = CRUISE_HIGHWAY];
+}
+
+message TopicConf {
+  optional string adccontainer_topic_name = 1;
+  optional string container_topic_name = 2;
+  optional string evaluator_topic_name = 3;
+  optional string localization_topic = 4;
+  optional string perception_obstacle_topic = 5;
+  optional string perception_obstacles_topic_name = 6;
+  optional string planning_trajectory_topic = 7;
+  optional string prediction_topic = 8;
+  optional string storytelling_topic = 9;
+  optional string navigation_hdmap_topic = 10;
+}
+
+message PredictionConf {
+  optional TopicConf topic_conf = 1;
+  repeated ObstacleConf obstacle_conf = 2;
+}

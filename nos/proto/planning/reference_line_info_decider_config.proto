@@ -1,0 +1,99 @@
+syntax = "proto2";
+
+package hozon.planning;
+
+message AudioLaneChangeConfig {
+  optional bool enable_cancel_audio_lane_change_by_turn_signal_switch = 1 [default = true];
+  optional double freezing_audio_request_time = 2 [default = 2.0]; // sec
+}
+
+message TurnSignalSwitchLaneChangeConfig {
+  optional bool enable_cancel_turn_signal_switch_lane_change_by_audio = 1 [default = true];
+  optional double check_turn_signal_switch_time = 2 [default = 2.0]; // sec
+  optional double freezing_time_cancel_lane_change = 3 [default = 2.0]; // sec
+}
+
+message EfficiencyLaneChangeConfig {
+  optional double min_front_safe_distance = 1 [default = 50.0]; // meter
+  // too short distance to destination, forbid to change lane.
+  optional double forbid_lane_change_distance = 2 [default = 20.0]; // meter
+  optional double min_back_safe_distance = 3 [default = 1.0]; // meter
+  optional double min_back_safe_distance_dynamic_obstacle = 4 [default = 200.0]; //meter
+  // in lane change, at least distance to front obstacle
+  optional double lane_change_limit_distance = 5 [default = 1.0]; // meter
+  // continuous same reference line info couter, which's cost is min.
+  optional uint32 continuous_ref_line_info_counter = 6 [default = 20]; // frame
+  // reference line info cost diff, when the diff of reference line info 
+  // and current reference line info cost is more than sensitivity_cost_diff, 
+  // reference line info may be setted the target.
+  optional double sensitivity_cost_diff = 7 [default = 0.05];
+  // it will cancel lane change if continuous cnt of min cost reference line is less than lane_change_return_cnt in lane change.
+  optional double lane_change_return_cnt = 8 [default = 10];
+  // it will cancel lane change if target reference line cost is less than current reference line cost in lane change.
+  optional double lane_change_return_cost_diff = 9 [default = 0.02];
+  // it will lane change if target reference line limit speed is more than ego speed.
+  optional double ego_limit_speed_diff = 10 [default = 4.0];
+  // calculate back safe distance by using obstacle_speed_coefficient.
+  optional double obstacle_speed_coefficient = 11 [default = 5.0];
+  // calculate back safe distance by using ego_speed_coefficient.
+  optional double ego_speed_coefficient = 12 [default = 3.5];
+  // avoid efficient lane change when adc is lower than the speed
+  optional double lowest_ego_speed_lane_change = 13 [default = 4.5];
+}
+
+message LimitLaneChangeConfig {
+  // reference line info cost diff, when the diff of target reference line info 
+  // and current reference line info cost is more than sensitivity_cost_diff, 
+  // will change lane.
+  optional double sensitivity_cost_diff = 1 [default = 0.01];
+}
+
+message RefLineInfoDeciderCommonConfig {
+  // when adc is lane change, min check distance solid lane.
+  optional double min_check_distance_solid_lane = 1 [default = 50.0]; // meter
+  // when adc is lane change, evaluate max lane change time.
+  optional double max_lane_change_time = 2 [default = 4.0]; // s
+
+  optional double obstacle_speed_error = 3 [default = 0.83]; // meter/s, = 3km/h
+  // too short distance to destination, forbid to change lane about limit speed .
+  optional double forbid_lane_change_distance_to_destination = 4 [default = 500.0]; // meter
+  // when adc is lane change, evaluate lane change lat distance puls buffer.
+  optional double lat_distance_buffer = 5 [default = 0.90]; // meter
+}
+
+message ReferenceLineInfoDeciderConfig {
+  optional AudioLaneChangeConfig audio_lane_change = 1;
+  optional TurnSignalSwitchLaneChangeConfig turn_signal_switch_lane_change = 2;
+  optional EfficiencyLaneChangeConfig efficiency_lane_change = 3;
+  optional LimitLaneChangeConfig limit_lane_change = 4;
+  optional RefLineInfoDeciderCommonConfig ref_line_info_decider_common = 5;
+  optional double lane_change_freezing_time = 6 [default = 8.0];
+  optional double lane_change_min_freezing_time = 7 [default = 1.0];
+  // when adc distance to route end point is less than min_distance_to_route_end_point, 
+  // lane_change_min_freezing_time is be used.
+  optional double min_distance_to_route_end_point = 8 [default = 500.0];
+  // when adc is lane change, the interval of check solid lane.
+  optional double check_interval = 9 [default = 5.0]; // meter
+  optional double cancel_lane_change_freezing_time = 10 [default = 15.0]; // second
+  // when lane change needs be confirmed, in this confirming time.
+  // In confirming time, to confirm lane change is useful.
+  optional double confirm_lane_change_time = 11 [default = 8.0]; // second
+  // when lane change is not confirmed, need lane change freezing.
+  optional double no_confirm_lane_change_freezing_time = 12 [default = 3.0]; // //second
+  // when lane change will begin, need send lane change start for some seconds.
+  optional double send_lane_change_start_time = 13 [default = 3.0]; // //second
+  // when to finish lane change, need delay to close turn signal for some seconds.
+  optional double delay_close_turn_signal_time = 14 [default = 3.0]; // //second
+  // lane change check overtime before lane change
+  optional double check_overtime_before_lane_change = 15 [default = 10.0]; //second
+  // estimate time about vehicle pose in future
+  optional double estimate_time_in_future_vehicle_pose = 16 [default = 1.0]; //second
+  // navigation lane change freezing time
+  optional double freezing_time_after_navigation_lane_change = 17 [default = 8.0]; //second
+  // along lane change freezing time
+  optional double along_navigation_lane_change_freezing_time = 18 [default = 7.0]; //second
+  // ttlc is used to forbid to cancel lane change
+  optional double ttlc = 19 [default = 1.0]; //second
+  // forbid_lane_change_time_after_manual is used to forbid to lane change when auto driver is coming
+  optional double forbid_lane_change_time_after_manual = 20 [default = 2.0]; //second
+}

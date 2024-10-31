@@ -1,0 +1,1495 @@
+{
+    "SoftwareCluster": [
+        {
+            "shortName": "DiagServer",
+            "id": "0x01",
+            "functionAddressList": ["0xE400"],
+            "physicAddress": "0x10c3",
+            "remoteAddressList": [],
+            "updateManagerAddress": "0x0F00",
+            "tpInstances": ["IsoDoip"]
+        }
+    ],
+
+    "ExternalServiceConfig": [
+        {
+            "shortName" : "diag_update",
+            "id": "0x01",
+            "supportSid": ["0x11", "0x22", "0x31", "0x28"],
+            "supportReadDid": ["0x0107", "0xF1C0", "0X0288"],
+            "supportWriteDid": ["0xF198", "0xF199"],
+            "supportRid": ["0x0201", "0x0203", "0x0205", "0x0206", "0xFF01", "0x0207"]
+        },
+        {
+            "shortName" : "diag_phm",
+            "id": "0x02",
+            "supportSid": ["0x31"],
+            "supportReadDid": [],
+            "supportWriteDid": [],
+            "supportRid": ["0xD000", "0xD001", "0xD002", "0xD003", "0xD004", "0xD005"]
+        },
+        {
+            "shortName" : "diag_sample",
+            "id": "0x03",
+            "supportSid": ["0x22", "0x2E", "0x31"],
+            "supportReadDid": ["0xA500", "0xA501", "0xFD14"],
+            "supportWriteDid": ["0xA501"],
+            "supportRid": ["0xD500", "0xFC88", "0xFD08", "0xFD10"]
+        }
+    ],
+
+    "DataTransferConfig":[
+        {
+            "shortName" : "UploadConfig",
+            "id": "0x01",
+            "transferSize": 4194300,
+            "pathWhiteList": [
+                "/opt/usr",
+                "/opt/usr/log/ota_log",
+                "/opt/usr/upgrade"
+            ]
+        },
+        {
+            "shortName" : "DownloadConfig",
+            "id": "0x02",
+            "transferSize": 4194300,
+            "pathWhiteList": [
+                "/opt/usr/upgrade/install",
+                "/cfg/pki"
+            ]
+        }
+    ],
+
+    "Session": [
+        {
+            "shortName": "DefaultSession",
+            "id": "0x01",
+            "p2Server": 50,
+            "p2ServerStar": 5000,
+            "s3": 5000
+        },
+        {
+            "shortName": "ProgrammingSession",
+            "id": "0x02",
+            "p2Server": 50,
+            "p2ServerStar": 5000,
+            "s3": 5000
+        },
+        {
+            "shortName": "ExtendSession",
+            "id": "0x03",
+            "p2Server": 50,
+            "p2ServerStar": 5000,
+            "s3": 5000
+        }
+    ],
+
+    "SecurityLevel": [
+        {
+            "shortName": "LevelNon",
+            "id": "0x00",
+            "mask": "0x00000000",
+            "seedSize": 0,
+            "keySize": 0,
+            "numFailedSecurityAccess": 0,
+            "securityDelayTime": 0
+        },
+        {
+            "shortName": "Level1",
+            "id": "0x03",
+            "mask": "0x23AEBEFD",
+            "seedSize": 4,
+            "keySize": 4,
+            "numFailedSecurityAccess": 3,
+            "securityDelayTime": 10
+        },
+        {
+            "shortName": "LevelTEST",
+            "id": "0x05",
+            "mask": "0x1F2E3D4C",
+            "seedSize": 4,
+            "keySize": 4,
+            "numFailedSecurityAccess": 3,
+            "securityDelayTime": 10
+        },
+        {
+            "shortName": "LevelFBL",
+            "id": "0x11",
+            "mask": "0xAB854A17",
+            "seedSize": 4,
+            "keySize": 4,
+            "numFailedSecurityAccess": 3,
+            "securityDelayTime": 10
+        }
+    ],
+
+    "AccessPermission": [
+        {
+            "shortName": "AllSessionAccessPermission",
+            "id": "0x01",
+            "allowedSessions": ["DefaultSession", "ProgrammingSession", "ExtendSession"],
+            "allowedSecurityLevels": ["LevelNon"]
+        },
+        {
+            "shortName": "OnlyExtendedSessionAccessPermission",
+            "id": "0x02",
+            "allowedSessions": ["ExtendSession"],
+            "allowedSecurityLevels": ["LevelNon"]
+        },
+        {
+            "shortName": "OnlyProgrammingSessionAccessPermission",
+            "id": "0x03",
+            "allowedSessions": ["ProgrammingSession"],
+            "allowedSecurityLevels": ["LevelNon"]
+        },
+        {
+            "shortName": "NonDefaultSessionAccessPermission",
+            "id": "0x04",
+            "allowedSessions": ["ProgrammingSession", "ExtendSession"],
+            "allowedSecurityLevels": ["LevelNon"]
+        },
+        {
+            "shortName": "NonProgrammingSessionAccessPermission",
+            "id": "0x05",
+            "allowedSessions": ["DefaultSession", "ExtendSession"],
+            "allowedSecurityLevels": ["LevelNon"]
+        },
+        {
+            "shortName": "NonDefaultSessionWithLevel1AndLevelFBLAccessPermission",
+            "id": "0x06",
+            "allowedSessions": ["ProgrammingSession", "ExtendSession"],
+            "allowedSecurityLevels": ["Level1", "LevelFBL"]
+        },
+        {
+            "shortName": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+            "id": "0x07",
+            "allowedSessions": ["ProgrammingSession"],
+            "allowedSecurityLevels": ["LevelFBL"]
+        },
+        {
+            "shortName": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "id": "0x08",
+            "allowedSessions": ["ExtendSession"],
+            "allowedSecurityLevels": ["Level1"]
+        },
+        {
+            "shortName": "OnlyExtendedSessionWithLevelTESTAccessPermission",
+            "id": "0x09",
+            "allowedSessions": ["ExtendSession"],
+            "allowedSecurityLevels": ["LevelTEST"]
+        }
+    ],
+
+    "SID": [
+        {
+            "shortName": "SessionControl",
+            "id": "0x10",
+            "isSupportFunctionAddr": true,
+            "accessPermission": "AllSessionAccessPermission",
+            "maxPendingNumber": 3,
+            "subFunctions":
+            [
+                {
+                    "shortName": "DefaultSession",
+                    "id": "0x01",
+                    "isSupportFunctionAddr": true,
+                    "isSupportSuppressPosMsgindication": true,
+                    "accessPermission": "AllSessionAccessPermission"
+                },
+                {
+                    "shortName": "ProgrammingSession",
+                    "id": "0x02",
+                    "isSupportFunctionAddr": false,
+                    "isSupportSuppressPosMsgindication": true,
+                    "accessPermission": "NonDefaultSessionAccessPermission"
+                },
+                {
+                    "shortName": "ExtendedSession",
+                    "id": "0x03",
+                    "isSupportFunctionAddr": true,
+                    "isSupportSuppressPosMsgindication": true,
+                    "accessPermission": "NonProgrammingSessionAccessPermission"
+                }
+            ]
+        },
+        {
+            "shortName": "ECUReset",
+            "id": "0x11",
+            "isSupportFunctionAddr": true,
+            "accessPermission": "NonDefaultSessionAccessPermission",
+            "maxPendingNumber": 10,
+            "subFunctions":
+            [
+                {
+                    "shortName": "HardReset",
+                    "id": "0x01",
+                    "isSupportFunctionAddr": true,
+                    "isSupportSuppressPosMsgindication": true,
+                    "accessPermission": "NonDefaultSessionAccessPermission"
+                },
+                {
+                    "shortName": "SoftReset",
+                    "id": "0x02",
+                    "isSupportFunctionAddr": true,
+                    "isSupportSuppressPosMsgindication": true,
+                    "accessPermission": "NonDefaultSessionAccessPermission"
+                }
+            ]
+        },
+        {
+            "shortName": "ReadDid",
+            "id": "0x22",
+            "isSupportFunctionAddr": true,
+            "accessPermission": "AllSessionAccessPermission",
+            "maxPendingNumber": 3
+        },
+        {
+            "shortName": "SecurityAccess",
+            "id": "0x27",
+            "isSupportFunctionAddr": false,
+            "accessPermission": "NonDefaultSessionAccessPermission",
+            "maxPendingNumber": 5,
+            "subFunctions":
+            [
+                {
+                    "shortName": "Level1RequestSeed",
+                    "id": "0x03",
+                    "isSupportFunctionAddr": false,
+                    "isSupportSuppressPosMsgindication": false,
+                    "accessPermission": "OnlyExtendedSessionAccessPermission"
+                },
+                {
+                    "shortName": "Level1RequestKeyCompare",
+                    "id": "0x04",
+                    "isSupportFunctionAddr": false,
+                    "isSupportSuppressPosMsgindication": false,
+                    "accessPermission": "OnlyExtendedSessionAccessPermission"
+                },
+                {
+                    "shortName": "LevelTestRequestSeed",
+                    "id": "0x05",
+                    "isSupportFunctionAddr": false,
+                    "isSupportSuppressPosMsgindication": false,
+                    "accessPermission": "OnlyExtendedSessionAccessPermission"
+                },
+                {
+                    "shortName": "LevelTestRequestKeyCompare",
+                    "id": "0x06",
+                    "isSupportFunctionAddr": false,
+                    "isSupportSuppressPosMsgindication": false,
+                    "accessPermission": "OnlyExtendedSessionAccessPermission"
+                },
+                {
+                    "shortName": "LevelFBLRequestSeed",
+                    "id": "0x11",
+                    "isSupportFunctionAddr": false,
+                    "isSupportSuppressPosMsgindication": false,
+                    "accessPermission": "OnlyProgrammingSessionAccessPermission"
+                },
+                {
+                    "shortName": "LevelFBLRequestKeyCompare",
+                    "id": "0x12",
+                    "isSupportFunctionAddr": false,
+                    "isSupportSuppressPosMsgindication": false,
+                    "accessPermission": "OnlyProgrammingSessionAccessPermission"
+                }
+            ]
+        },
+        {
+            "shortName": "CommunicationControl",
+            "id": "0x28",
+            "isSupportFunctionAddr": true,
+            "accessPermission": "NonDefaultSessionAccessPermission",
+            "maxPendingNumber": 3,
+            "subFunctions":
+            [
+                {
+                    "shortName": "EnableRXAndTX",
+                    "id": "0x00",
+                    "isSupportFunctionAddr": true,
+                    "isSupportSuppressPosMsgindication": true,
+                    "accessPermission": "NonDefaultSessionAccessPermission"
+                },
+                {
+                    "shortName": "DisableRXAndTX",
+                    "id": "0x03",
+                    "isSupportFunctionAddr": true,
+                    "isSupportSuppressPosMsgindication": true,
+                    "accessPermission": "NonDefaultSessionAccessPermission"
+                }
+            ]
+        },
+        {
+            "shortName": "WriteDid",
+            "id": "0x2E",
+            "isSupportFunctionAddr": false,
+            "accessPermission": "NonDefaultSessionAccessPermission",
+            "maxPendingNumber": 5
+        },
+        {
+            "shortName": "RoutineControl",
+            "id": "0x31",
+            "isSupportFunctionAddr": false,
+            "accessPermission": "NonDefaultSessionAccessPermission",
+            "maxPendingNumber": 240,
+            "subFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "isSupportFunctionAddr": false,
+                    "isSupportSuppressPosMsgindication": false,
+                    "accessPermission": "NonDefaultSessionAccessPermission"
+                },
+                {
+                    "shortName": "StopRoutine",
+                    "id": "0x02",
+                    "isSupportFunctionAddr": false,
+                    "isSupportSuppressPosMsgindication": false,
+                    "accessPermission": "NonDefaultSessionAccessPermission"
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "isSupportFunctionAddr": false,
+                    "isSupportSuppressPosMsgindication": false,
+                    "accessPermission": "NonDefaultSessionAccessPermission"
+                }
+            ]
+        },
+        {
+            "shortName": "RequestDownload",
+            "id": "0x34",
+            "isSupportFunctionAddr": false,
+            "accessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+            "maxPendingNumber": 3
+        },
+        {
+            "shortName": "TransferData",
+            "id": "0x36",
+            "isSupportFunctionAddr": false,
+            "accessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+            "maxPendingNumber": 3
+        },
+        {
+            "shortName": "RequestTransferExit",
+            "id": "0x37",
+            "isSupportFunctionAddr": false,
+            "accessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+            "maxPendingNumber": 3
+        },
+        {
+            "shortName": "RequestFileTransfer",
+            "id": "0x38",
+            "isSupportFunctionAddr": false,
+            "accessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+            "maxPendingNumber": 3
+        },
+        {
+            "shortName": "ControlDTCSetting",
+            "id": "0x85",
+            "isSupportFunctionAddr": true,
+            "accessPermission": "NonDefaultSessionAccessPermission",
+            "maxPendingNumber": 3,
+            "subFunctions":
+            [
+                {
+                    "shortName": "ControlDtcSettingOn",
+                    "id": "0x01",
+                    "isSupportFunctionAddr": true,
+                    "isSupportSuppressPosMsgindication": true,
+                    "accessPermission": "NonDefaultSessionAccessPermission"
+                },
+                {
+                    "shortName": "ControlDtcSettingOff",
+                    "id": "0x02",
+                    "isSupportFunctionAddr": true,
+                    "isSupportSuppressPosMsgindication": true,
+                    "accessPermission": "NonDefaultSessionAccessPermission"
+                }
+            ]
+        },
+        {
+            "shortName": "TestPresent",
+            "id": "0x3E",
+            "isSupportFunctionAddr": true,
+            "accessPermission": "AllSessionAccessPermission",
+            "maxPendingNumber": 3,
+            "subFunctions":
+            [
+                {
+                    "shortName": "ZeroSubFunction",
+                    "id": "0x00",
+                    "isSupportFunctionAddr": true,
+                    "isSupportSuppressPosMsgindication": true,
+                    "accessPermission": "AllSessionAccessPermission"
+                }
+            ]
+        },
+        {
+            "shortName": "ClearDTC",
+            "id": "0x14",
+            "isSupportFunctionAddr": true,
+            "accessPermission": "NonProgrammingSessionAccessPermission",
+            "maxPendingNumber": 3
+        },
+        {
+            "shortName": "ReadDTCInformation",
+            "id": "0x19",
+            "isSupportFunctionAddr": true,
+            "accessPermission": "NonProgrammingSessionAccessPermission",
+            "maxPendingNumber": 3,
+            "subFunctions":
+            [
+                {
+                    "shortName": "ReportNumberOfDTCByStatusMask",
+                    "id": "0x01",
+                    "isSupportFunctionAddr": true,
+                    "isSupportSuppressPosMsgindication": false,
+                    "accessPermission": "NonProgrammingSessionAccessPermission"
+                },
+                {
+                    "shortName": "ReportDTCByStatusMask",
+                    "id": "0x02",
+                    "isSupportFunctionAddr": true,
+                    "isSupportSuppressPosMsgindication": false,
+                    "accessPermission": "NonProgrammingSessionAccessPermission"
+                },
+                {
+                    "shortName": "ReportDTCSnapshotIdentification",
+                    "id": "0x03",
+                    "isSupportFunctionAddr": true,
+                    "isSupportSuppressPosMsgindication": false,
+                    "accessPermission": "NonProgrammingSessionAccessPermission"
+                },
+                {
+                    "shortName": "ReportDTCSnapshotRecordByDTCNumber",
+                    "id": "0x04",
+                    "isSupportFunctionAddr": true,
+                    "isSupportSuppressPosMsgindication": false,
+                    "accessPermission": "NonProgrammingSessionAccessPermission"
+                },
+                {
+                    "shortName": "ReportSupportedDTC",
+                    "id": "0x0A",
+                    "isSupportFunctionAddr": true,
+                    "isSupportSuppressPosMsgindication": false,
+                    "accessPermission": "NonProgrammingSessionAccessPermission"
+                }
+            ]
+        }
+    ],
+
+    "DID": [
+        {
+            "shortName": "VehicleConfigurationWord",
+            "id" : "0xF170",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": true,
+            "writeAccessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "dataSize": 58
+        },
+        {
+            "shortName": "ECUSoftwareVersion",
+            "id" : "0xF188",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 8
+        },
+        {
+            "shortName": "VIN",
+            "id" : "0xF190",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": true,
+            "writeAccessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "dataSize": 17
+        },
+        {
+            "shortName": "TesterSerialNumber",
+            "id" : "0xF198",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": true,
+            "writeAccessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+            "dataSize": 10
+        },
+        {
+            "shortName": "ProgrammingDate",
+            "id" : "0xF199",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": true,
+            "writeAccessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+            "dataSize": 4
+        },
+        {
+            "shortName": "ECUSoftwareAssemblyNumber",
+            "id" : "0xF1C0",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 8
+        },
+        {
+            "shortName": "InstallationStatus",
+            "id" : "0x0107",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 1
+        },
+        {
+            "shortName": "CheckECUType",
+            "id" : "0x0110",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 8
+        },
+        {
+            "shortName": "BootSWIdentifier",
+            "id" : "0xF180",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 8
+        },
+        {
+            "shortName": "ActiveDiagnosticSession",
+            "id" : "0xF186",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 1
+        },
+        {
+            "shortName": "VehicleManufacturerSparePartNumber",
+            "id" : "0xF187",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 13
+        },
+        {
+            "shortName": "ECUSoftwareNumber",
+            "id" : "0xF1B0",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 8
+        },
+        {
+            "shortName": "SystemSupplierIdentifier",
+            "id" : "0xF18A",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 3
+        },
+        {
+            "shortName": "ECUManufactureDate",
+            "id" : "0xF18B",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 4
+        },
+        {
+            "shortName": "ECUSerialNumber",
+            "id" : "0xF18C",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 18
+        },
+        {
+            "shortName": "ECUHardwareVersion",
+            "id" : "0xF191",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 5
+        },
+        {
+            "shortName": "ECUInstallationDate",
+            "id" : "0xF19D",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": true,
+            "writeAccessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "dataSize": 4
+        },
+        {
+            "shortName": " ECUHardwareNumber",
+            "id" : "0xF1BF",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 5
+        },
+        {
+            "shortName": "ECUSoftwareAssemblyPartNumber",
+            "id" : "0xF1D0",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 13
+        },
+        {
+            "shortName": "ESKNumber",
+            "id" : "0x900F",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": true,
+            "writeAccessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "dataSize": 16
+        },
+        {
+            "shortName": "DomainControllerAllSensorVersions",
+            "id" : "0xF1E0",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 96
+        },
+        {
+            "shortName": "OrinVersion",
+            "id" : "0xF1E1",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 32
+        },
+        {
+            "shortName": "SOCVersion",
+            "id" : "0xF1E2",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 41
+        },
+        {
+            "shortName": "MCUVersion",
+            "id" : "0xF1E3",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 40
+        },
+        {
+            "shortName": "FactoryMode",
+            "id" : "0x2910",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": true,
+            "writeAccessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "dataSize": 1
+        },
+        {
+            "shortName": "UpdateStatus",
+            "id" : "0x0288",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 80
+        },
+        {
+            "shortName": "PowerSupplyVoltage",
+            "id" : "0x0112",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 1
+        },
+        {
+            "shortName": "OdometerReading",
+            "id" : "0xE101",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 3
+        },
+        {
+            "shortName": "VehicleSpeed",
+            "id" : "0xB100",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 2
+        },
+        {
+            "shortName": "IgnitionStatus",
+            "id" : "0xD001",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 1
+        },
+        {
+            "shortName": "Time",
+            "id" : "0xF020",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 7
+        },
+        {
+            "shortName": "PKICertificateApplicationStatus",
+            "id" : "0x8001",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 1
+        },
+        {
+            "shortName": "ADASFront30CameraCalibrationStatus",
+            "id" : "0xF103",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 15
+        },
+        {
+            "shortName": "ADASFront120CameraCalibrationStatus",
+            "id" : "0xF104",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 15
+        },
+        {
+            "shortName": "ADASFLCameraCalibrationStatus",
+            "id" : "0xF105",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 15
+        },
+        {
+            "shortName": "ADASFRCameraCalibrationStatus",
+            "id" : "0xF106",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 15
+        },
+        {
+            "shortName": "ADASRLCameraCalibrationStatus",
+            "id" : "0xF107",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 15
+        },
+        {
+            "shortName": "ADASRRCameraCalibrationStatus",
+            "id" : "0xF108",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 15
+        },
+        {
+            "shortName": "ADASRearCameraCalibrationStatus",
+            "id" : "0xF109",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 15
+        },
+        {
+            "shortName": "ADASFront30AndFront120CameraCoordinatedCalibrationStatus",
+            "id" : "0xF117",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 3
+        },
+        {
+            "shortName": "ADASFront120AndRLCameraCoordinatedCalibrationStatus",
+            "id" : "0xF118",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 3
+        },
+        {
+            "shortName": "ADASFront120AndRRCameraCoordinatedCalibrationStatus",
+            "id" : "0xF119",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 3
+        },
+        {
+            "shortName": "ADASFLAndRLCameraCoordinatedCalibrationStatus",
+            "id" : "0xF120",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 3
+        },
+        {
+            "shortName": "ADASFRAndRRCameraCoordinatedCalibrationStatus",
+            "id" : "0xF121",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 3
+        },
+        {
+            "shortName": "AfterSalesADASFront30CameraCalibrationStatus",
+            "id" : "0xF110",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 15
+        },
+        {
+            "shortName": "AfterSalesADASFront120CameraCalibrationStatus",
+            "id" : "0xF111",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 15
+        },
+        {
+            "shortName": "AfterSalesADASFLCameraCalibrationStatus",
+            "id" : "0xF112",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 15
+        },
+        {
+            "shortName": "AfterSalesADASFRCameraCalibrationStatus",
+            "id" : "0xF113",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 15
+        },
+        {
+            "shortName": "AfterSalesADASRLCameraCalibrationStatus",
+            "id" : "0xF114",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 15
+        },
+        {
+            "shortName": "AfterSalesADASRRCameraCalibrationStatus",
+            "id" : "0xF115",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 15
+        },
+        {
+            "shortName": "AfterSalesADASRearCameraCalibrationStatus",
+            "id" : "0xF116",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 15
+        },
+        {
+            "shortName": "CalibrationFailedReason",
+            "id" : "0xF15A",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 4
+        },
+        {
+            "shortName": "LidarEOLCalibrationResult",
+            "id" : "0xFD13",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 45
+        },
+        {
+            "shortName": "LidarAfterSaleCalibrationResult",
+            "id" : "0xFD14",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 40
+        },
+        {
+            "shortName": "DiagSampleTestDid1",
+            "id" : "0xA500",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 3
+        },
+        {
+            "shortName": "DiagSampleTestDid2",
+            "id" : "0xA501",
+            "readAccessPermission": "AllSessionAccessPermission",
+            "isSupportWrite": true,
+            "writeAccessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+            "dataSize": 4
+        },
+        {
+            "shortName": "McuDidF1C1",
+            "id" : "0xF1C1",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 16
+        },
+        {
+            "shortName": "McuDidF1C2",
+            "id" : "0xF1C2",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 64
+        },
+        {
+            "shortName": "McuDidF1C3",
+            "id" : "0xF1C3",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 64
+        },
+        {
+            "shortName": "McuDidF1C4",
+            "id" : "0xF1C4",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 64
+        },
+        {
+            "shortName": "McuDidF1C5",
+            "id" : "0xF1C5",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 64
+        },
+        {
+            "shortName": "McuDidF1C6",
+            "id" : "0xF1C6",
+            "readAccessPermission": "NonProgrammingSessionAccessPermission",
+            "isSupportWrite": false,
+            "dataSize": 64
+        }
+    ],
+
+    "RID": [
+        {
+            "shortName": "example",
+            "id" : "0x6140",
+            "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "isSupportMultiStart": false,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "StopRoutine",
+                    "id": "0x02",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                }
+            ]
+        },
+        {
+            "shortName": "CheckUpdateSoftwareExist",
+            "id" : "0x0201",
+            "accessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+                    "requestLen": 144,
+                    "replyLen": 1
+                }
+            ]
+        },
+        {
+            "shortName": "CheckProgrammingPreconditions",
+            "id" : "0x0203",
+            "accessPermission": "OnlyExtendedSessionAccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionAccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                }
+            ]
+        },
+        {
+            "shortName": "StartInstallation",
+            "id" : "0x0205",
+            "accessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                }
+            ]
+        },
+        {
+            "shortName": "SwitchRunningPartition",
+            "id" : "0x0206",
+            "accessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+                    "requestLen": 1,
+                    "replyLen": 1
+                }
+            ]
+        },
+        {
+            "shortName": "RequestDownloadPackage",
+            "id" : "0x0207",
+            "accessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                }
+            ]
+        },
+        {
+            "shortName": "CheckProgrammingDependencies",
+            "id" : "0xFF01",
+            "accessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyProgrammingSessionWithLevelFBLAccessPermission",
+                    "requestLen": 144,
+                    "replyLen": 1
+                }
+            ]
+        },
+        {
+            "shortName": "FaultOccurOrRecoverOfFaultInjection",
+            "id" : "0xD000",
+            "accessPermission": "OnlyExtendedSessionWithLevelTESTAccessPermission",
+            "isSupportMultiStart": false,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevelTESTAccessPermission",
+                    "requestLen": 6,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "StopRoutine",
+                    "id": "0x02",
+                    "accessPermission": "OnlyExtendedSessionWithLevelTESTAccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                }
+            ]
+        },
+        {
+            "shortName": "FaultOccurAndRecoverOfFaultInjection",
+            "id" : "0xD001",
+            "accessPermission": "OnlyExtendedSessionWithLevelTESTAccessPermission",
+            "isSupportMultiStart": false,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevelTESTAccessPermission",
+                    "requestLen": 5,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "StopRoutine",
+                    "id": "0x02",
+                    "accessPermission": "OnlyExtendedSessionWithLevelTESTAccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                }
+            ]
+        },
+        {
+            "shortName": "QueryCurrentOccuredFault",
+            "id" : "0xD002",
+            "accessPermission": "OnlyExtendedSessionWithLevelTESTAccessPermission",
+            "isSupportMultiStart": false,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevelTESTAccessPermission",
+                    "requestLen": 4,
+                    "replyLen": 6
+                }
+            ]
+        },
+        {
+            "shortName": "QueryDTCOfFault",
+            "id" : "0xD003",
+            "accessPermission": "OnlyExtendedSessionWithLevelTESTAccessPermission",
+            "isSupportMultiStart": false,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevelTESTAccessPermission",
+                    "requestLen": 4,
+                    "replyLen": 3
+                }
+            ]
+        },
+        {
+            "shortName": "QueryFaultOfDTC",
+            "id" : "0xD004",
+            "accessPermission": "OnlyExtendedSessionWithLevelTESTAccessPermission",
+            "isSupportMultiStart": false,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevelTESTAccessPermission",
+                    "requestLen": 3,
+                    "replyLen": 4
+                }
+            ]
+        },
+        {
+            "shortName": "RefreshFaultFile",
+            "id" : "0xD005",
+            "accessPermission": "OnlyExtendedSessionWithLevelTESTAccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevelTESTAccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                }
+            ]
+        },
+        {
+            "shortName": "CheckPrecondition",
+            "id" : "0x34F0",
+            "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 6
+                }
+            ]
+        },
+        {
+            "shortName": "AllCameraCalibration",
+            "id" : "0x34F1",
+            "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 3,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 12
+                }
+            ]
+        },
+        {
+            "shortName": "ADASCameraCalibrationCheckPrecondition",
+            "id" : "0xFD17",
+            "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 6
+                }
+            ]
+        },
+        {
+            "shortName": "ADASCameraDataRecordOrOnlineCalibration",
+            "id" : "0xFD18",
+            "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 1,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 7
+                }
+            ]
+        },
+        {
+            "shortName": "ADASCameraOfflineCalibration",
+            "id" : "0xFD19",
+            "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 7
+                }
+            ]
+        },
+        {
+            "shortName": "APACameraCalibrationCheckPrecondition",
+            "id" : "0x5A01",
+            "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 5
+                }
+            ]
+        },
+        {
+            "shortName": "StartEOLCalibration",
+            "id" : "0x5A0C",
+            "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                }
+            ]
+        },
+        {
+            "shortName": "Start4SCalibration",
+            "id" : "0x5A06",
+            "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                }
+            ]
+        },
+        {
+            "shortName": "LidarEOLCalibrationCheckPrecondition",
+            "id" : "0xFD11",
+            "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 3
+                }
+            ]
+        },
+        {
+            "shortName": "LidarEOLCalibration",
+            "id" : "0xFD12",
+            "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 1,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 2
+                }
+            ]
+        },
+        {
+            "shortName": "LidarAfterSalesCalibrationCheckPrecondition",
+            "id" : "0xFD08",
+            "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 2,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 3
+                }
+            ]
+        },
+        {
+            "shortName": "LidarAfterSalesCalibration",
+            "id" : "0xFD10",
+            "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 2,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 2
+                }
+            ]
+        },
+        {
+            "shortName": "ReqCalibrationStatus",
+            "id" : "0xFC88",
+            "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 3,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                }
+            ]
+        },
+        {
+            "shortName": "DiagSampleTestRid",
+            "id" : "0xD500",
+            "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+            "isSupportMultiStart": false,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "StopRoutine",
+                    "id": "0x02",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "accessPermission": "OnlyExtendedSessionWithLevel1AccessPermission",
+                    "requestLen": 0,
+                    "replyLen": 1
+                }
+            ]
+        }
+    ]
+}

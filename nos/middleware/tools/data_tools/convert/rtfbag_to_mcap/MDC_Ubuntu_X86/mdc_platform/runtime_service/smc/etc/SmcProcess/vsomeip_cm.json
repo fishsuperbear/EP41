@@ -1,0 +1,962 @@
+{
+  "applicationName": "/HuaweiMDC/PlatformApplication/SmcApplication/SwComponent/smc/SmcProcess",
+  "services": [
+    {
+      "service": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface",
+      "serviceId": 3392,
+      "protocolIdUsed": true,
+      "majorVersion": 1,
+      "minorVersion": 0,
+      "events": [
+        {
+          "event": "ParamUpdateEvent",
+          "id": 35207,
+          "dataType": "/HuaweiMDC/MdcPlatformServices/ConfigServerMsgDataType/ImplementationDataTypes/ParamUpdateData",
+          "eventId": 33769,
+          "eventGroup": [
+            1
+          ],
+          "reliable": false
+        },
+        {
+          "event": "ServerNotifyEvent",
+          "id": 27155,
+          "dataType": "/HuaweiMDC/MdcPlatformServices/ConfigServerMsgDataType/ImplementationDataTypes/ServerNotifyData",
+          "eventId": 33770,
+          "eventGroup": [
+            2
+          ],
+          "reliable": false
+        }
+      ],
+      "fields": [],
+      "methods": [
+        {
+          "method": "AnswerAlive",
+          "id": 30329,
+          "isFireAndForget": false,
+          "methodId": 7,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/int32_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/AnswerAliveOutput"
+        },
+        {
+          "method": "DelParam",
+          "id": 56227,
+          "isFireAndForget": false,
+          "methodId": 3,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/DelParamOutput"
+        },
+        {
+          "method": "GetMonitorClients",
+          "id": 42802,
+          "isFireAndForget": false,
+          "methodId": 6,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/MdcPlatformServices/ConfigServerMsgDataType/ImplementationDataTypes/CfgStringList",
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/GetMonitorClientsOutput"
+        },
+        {
+          "method": "GetParam",
+          "id": 5505,
+          "isFireAndForget": false,
+          "methodId": 1,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/UInt8",
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/GetParamOutput"
+        },
+        {
+          "method": "MonitorParam",
+          "id": 3875,
+          "isFireAndForget": false,
+          "methodId": 4,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/MonitorParamOutput"
+        },
+        {
+          "method": "SetParam",
+          "id": 31959,
+          "isFireAndForget": false,
+          "methodId": 2,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/UInt8",
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/SetParamOutput"
+        },
+        {
+          "method": "UnMonitorParam",
+          "id": 36659,
+          "isFireAndForget": false,
+          "methodId": 5,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/UnMonitorParamOutput"
+        },
+        {
+          "method": "InitClient",
+          "id": 55067,
+          "isFireAndForget": false,
+          "methodId": 8,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/InitClientOutput"
+        }
+      ],
+      "instances": [
+        {
+          "instance": "1",
+          "isClient": true,
+          "shortName": "/HuaweiMDC/PlatformApplication/SmcApplication/Service/Dp/Consumer/SmcRequiredCfgSomeipServiceInstance",
+          "unreliable": "52946",
+          "network": "Host0DpEthernetCommConnector",
+          "events": [],
+          "methods": [],
+          "fields": []
+        }
+      ]
+    },
+    {
+      "service": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface",
+      "serviceId": 3456,
+      "protocolIdUsed": true,
+      "majorVersion": 1,
+      "minorVersion": 0,
+      "events": [],
+      "fields": [],
+      "methods": [
+        {
+          "method": "CanNetMgrCtrl",
+          "id": 34824,
+          "isFireAndForget": false,
+          "methodId": 408,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/int32_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/CanNetMgrCtrlOutput"
+        },
+        {
+          "method": "DidOperate",
+          "id": 57911,
+          "isFireAndForget": false,
+          "methodId": 409,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/UInt16",
+            "/HuaweiMDC/StdCppDataType/UInt8",
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/Uint8List"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/Uint8List",
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/DidOperateOutput"
+        },
+        {
+          "method": "DoSensorAction",
+          "id": 12021,
+          "isFireAndForget": false,
+          "methodId": 402,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/StringList",
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/DoSensorActionOutput"
+        },
+        {
+          "method": "DoSystemAction",
+          "id": 47289,
+          "isFireAndForget": false,
+          "methodId": 401,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8",
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/DoSystemActionOutput"
+        },
+        {
+          "method": "GetDevAttribute",
+          "id": 2317,
+          "isFireAndForget": false,
+          "methodId": 20,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetDevAttributeOutput"
+        },
+        {
+          "method": "GetConfig",
+          "id": 6396,
+          "isFireAndForget": false,
+          "methodId": 1209,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/Uint8List"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetConfigOutput"
+        },
+        {
+          "method": "GetDeviceInfo",
+          "id": 1421,
+          "isFireAndForget": false,
+          "methodId": 1,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/DeviceInfo",
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetDeviceInfoOutput"
+        },
+        {
+          "method": "GetDeviceList",
+          "id": 1107,
+          "isFireAndForget": false,
+          "methodId": 11,
+          "reliable": false,
+          "requestDataType": [],
+          "replyDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/DeviceList"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetDeviceListOutput"
+        },
+        {
+          "method": "GetMasterMode",
+          "id": 16509,
+          "isFireAndForget": false,
+          "methodId": 4,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetMasterModeOutput"
+        },
+        {
+          "method": "GetPowerOptType",
+          "id": 63831,
+          "isFireAndForget": false,
+          "methodId": 404,
+          "reliable": false,
+          "requestDataType": [],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t",
+            "/HuaweiMDC/StdCppBasicDataType/int32_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetPowerOptTypeOutput"
+        },
+        {
+          "method": "GetState",
+          "id": 64093,
+          "isFireAndForget": false,
+          "methodId": 2,
+          "reliable": false,
+          "requestDataType": [],
+          "replyDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/WorkStatusType"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetStateOutput"
+        },
+        {
+          "method": "GetStatisticsInfo",
+          "id": 20523,
+          "isFireAndForget": false,
+          "methodId": 301,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetStatisticsInfoOutput"
+        },
+        {
+          "method": "GetSysPowerOffInfo",
+          "id": 26982,
+          "isFireAndForget": false,
+          "methodId": 29,
+          "reliable": false,
+          "requestDataType": [],
+          "replyDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/PowerOffInfoType",
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetSysPowerOffInfoOutput"
+        },
+        {
+          "method": "GetTemperature",
+          "id": 29020,
+          "isFireAndForget": false,
+          "methodId": 203,
+          "reliable": false,
+          "requestDataType": [],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetTemperatureOutput"
+        },
+        {
+          "method": "GetUpdateState",
+          "id": 28103,
+          "isFireAndForget": false,
+          "methodId": 102,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8",
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetUpdateStateOutput"
+        },
+        {
+          "method": "GetUpgradableDeviceList",
+          "id": 45397,
+          "isFireAndForget": false,
+          "methodId": 107,
+          "reliable": false,
+          "requestDataType": [],
+          "replyDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/UpgradeDevList"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetUpgradableDeviceListOutput"
+        },
+        {
+          "method": "GetUpgradeInfo",
+          "id": 52553,
+          "isFireAndForget": false,
+          "methodId": 106,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/UpgradeInfo"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetUpgradeInfoOutput"
+        },
+        {
+          "method": "GetVoltage",
+          "id": 32576,
+          "isFireAndForget": false,
+          "methodId": 204,
+          "reliable": false,
+          "requestDataType": [],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetVoltageOutput"
+        },
+        {
+          "method": "GetWorkMode",
+          "id": 52134,
+          "isFireAndForget": false,
+          "methodId": 1203,
+          "reliable": false,
+          "requestDataType": [],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8",
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetWorkModeOutput"
+        },
+        {
+          "method": "SensorMsgProxy",
+          "id": 9755,
+          "isFireAndForget": false,
+          "methodId": 410,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/SensorInMsg"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/Uint8List",
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/SensorMsgProxyOutput"
+        },
+        {
+          "method": "SetCanCtrlConfig",
+          "id": 56119,
+          "isFireAndForget": false,
+          "methodId": 1128,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/CanCtrlConfig"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/SetCanCtrlConfigOutput"
+        },
+        {
+          "method": "SetConfig",
+          "id": 43974,
+          "isFireAndForget": false,
+          "methodId": 3,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/Items"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/SetConfigOutput"
+        },
+        {
+          "method": "SetMasterMode",
+          "id": 13507,
+          "isFireAndForget": false,
+          "methodId": 6,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8",
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/SetMasterModeOutput"
+        },
+        {
+          "method": "SetMcuSystemStatus",
+          "id": 20332,
+          "isFireAndForget": false,
+          "methodId": 120,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/SetMcuSystemStatusOutput"
+        },
+        {
+          "method": "SetSysPowerOffInfoReaded",
+          "id": 59997,
+          "isFireAndForget": false,
+          "methodId": 30,
+          "reliable": false,
+          "requestDataType": [],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/SetSysPowerOffInfoReadedOutput"
+        },
+        {
+          "method": "SetWorkMode",
+          "id": 50407,
+          "isFireAndForget": false,
+          "methodId": 1202,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/SetWorkModeOutput"
+        },
+        {
+          "method": "TranConfig",
+          "id": 27071,
+          "isFireAndForget": false,
+          "methodId": 1007,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/Uint8List"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/TranConfigOutput"
+        },
+        {
+          "method": "UpdateSyncStart",
+          "id": 63722,
+          "isFireAndForget": false,
+          "methodId": 105,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/UpdateSyncStartOutput"
+        },
+        {
+          "method": "Update",
+          "id": 64985,
+          "isFireAndForget": false,
+          "methodId": 101,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/UpdateOutput"
+        },
+        {
+          "method": "OpenWatchDog",
+          "id": 14570,
+          "isFireAndForget": false,
+          "methodId": 7,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt32"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/OpenWatchDogOutput"
+        },
+        {
+          "method": "GetEcuInfo",
+          "id": 60778,
+          "isFireAndForget": false,
+          "methodId": 1208,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/DevmCenterMsgDataType/DataTypes/Uint8List",
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface/GetEcuInfoOutput"
+        }
+      ],
+      "instances": [
+        {
+          "instance": "1",
+          "isClient": true,
+          "shortName": "/HuaweiMDC/PlatformApplication/SmcApplication/Service/Dp/Consumer/SmcRequiredDevmCenterSomeipServiceInstance",
+          "unreliable": "52947",
+          "network": "Host0DpEthernetCommConnector",
+          "events": [],
+          "methods": [],
+          "fields": []
+        }
+      ]
+    },
+    {
+      "service": "/HuaweiMDC/MdcPlatformServices/McuCanNetWorkServiceInterface/McuCanNetWorkServiceInterface",
+      "serviceId": 4800,
+      "protocolIdUsed": true,
+      "majorVersion": 1,
+      "minorVersion": 1,
+      "events": [
+        {
+          "event": "WorkModeEvent",
+          "id": 19493,
+          "dataType": "/HuaweiMDC/MdcPlatformServices/McuMsgDataType/DataTypes/WorkMode",
+          "eventId": 32771,
+          "eventGroup": [
+            1
+          ],
+          "reliable": false
+        }
+      ],
+      "fields": [],
+      "methods": [
+        {
+          "method": "CanNetMgrCtrl",
+          "id": 34824,
+          "isFireAndForget": false,
+          "methodId": 1,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/McuCanNetWorkServiceInterface/McuCanNetWorkServiceInterface/CanNetMgrCtrlOutput"
+        },
+        {
+          "method": "GetWorkMode",
+          "id": 52134,
+          "isFireAndForget": false,
+          "methodId": 4,
+          "reliable": false,
+          "requestDataType": [],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt32",
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/McuCanNetWorkServiceInterface/McuCanNetWorkServiceInterface/GetWorkModeOutput"
+        },
+        {
+          "method": "NotifySystemAction",
+          "id": 40499,
+          "isFireAndForget": false,
+          "methodId": 11,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8",
+            "/HuaweiMDC/StdCppDataType/UInt32",
+            "/HuaweiMDC/MdcPlatformServices/DevmMcuMsgDataType/DataTypes/BufArray64"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/McuCanNetWorkServiceInterface/McuCanNetWorkServiceInterface/NotifySystemActionOutput"
+        },
+        {
+          "method": "RequestWorkMode",
+          "id": 1678,
+          "isFireAndForget": false,
+          "methodId": 404,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt32",
+            "/HuaweiMDC/StdCppDataType/UInt32",
+            "/HuaweiMDC/MdcPlatformServices/McuMsgDataType/DataTypes/BufArray64"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/McuCanNetWorkServiceInterface/McuCanNetWorkServiceInterface/RequestWorkModeOutput"
+        },
+        {
+          "method": "SetMcuSystemStatus",
+          "id": 20332,
+          "isFireAndForget": false,
+          "methodId": 12,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/McuCanNetWorkServiceInterface/McuCanNetWorkServiceInterface/SetMcuSystemStatusOutput"
+        },
+        {
+          "method": "SetWorkMode",
+          "id": 50407,
+          "isFireAndForget": false,
+          "methodId": 2,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/McuCanNetWorkServiceInterface/McuCanNetWorkServiceInterface/SetWorkModeOutput"
+        }
+      ],
+      "instances": [
+        {
+          "instance": "1",
+          "isClient": true,
+          "shortName": "/HuaweiMDC/PlatformApplication/SmcApplication/Service/Dp/Consumer/SmcRequiredMcuSomeipServiceInstance",
+          "unreliable": "52948",
+          "network": "Host0DpEthernetCommConnector",
+          "events": [],
+          "methods": [],
+          "fields": []
+        }
+      ]
+    },
+    {
+      "service": "/HuaweiMDC/MdcPlatformServices/McuEventServiceInterface/McuEventServiceInterface",
+      "serviceId": 4802,
+      "protocolIdUsed": true,
+      "majorVersion": 1,
+      "minorVersion": 1,
+      "events": [
+        {
+          "event": "HeartbeatEvent",
+          "id": 62428,
+          "dataType": "/HuaweiMDC/MdcPlatformServices/McuMsgDataType/DataTypes/McuState",
+          "eventId": 32770,
+          "eventGroup": [
+            2
+          ],
+          "reliable": false
+        },
+        {
+          "event": "PlatformStateTrasitionEvent",
+          "id": 40697,
+          "dataType": "/HuaweiMDC/MdcPlatformServices/McuMsgDataType/DataTypes/PlatformStateParams",
+          "eventId": 32771,
+          "eventGroup": [
+            2
+          ],
+          "reliable": false
+        }
+      ],
+      "fields": [],
+      "methods": [],
+      "instances": [
+        {
+          "instance": "1",
+          "isClient": true,
+          "shortName": "/HuaweiMDC/PlatformApplication/SmcApplication/Service/Dp/Consumer/SmcRequiredMcuEventSomeipServiceInstance",
+          "unreliable": "52952",
+          "network": "Host0DpEthernetCommConnector",
+          "events": [],
+          "methods": [],
+          "fields": []
+        }
+      ]
+    },
+    {
+      "service": "/HuaweiMDC/PlatformServiceInterface/SmcServiceInterface/TriggerInOut",
+      "serviceId": 2980,
+      "protocolIdUsed": true,
+      "majorVersion": 1,
+      "minorVersion": 0,
+      "events": [],
+      "fields": [
+        {
+          "field": "Notifier",
+          "id": 54564,
+          "eventId": 33974,
+          "eventGroup": [
+            13455
+          ],
+          "reliable": true,
+          "getterId": 1205,
+          "getterreliable": true
+        },
+        {
+          "field": "Trigger",
+          "id": 24507,
+          "eventGroup": [],
+          "setterId": 1204,
+          "setterreliable": true
+        }
+      ],
+      "methods": [
+        {
+          "method": "AcquireFunctionGroupInfo",
+          "id": 36548,
+          "isFireAndForget": false,
+          "methodId": 2,
+          "reliable": true,
+          "requestDataType": [],
+          "replyDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/SmcMsgDataTypes/DataTypes/FunctionGroupInfoVec"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/SmcServiceInterface/TriggerInOut/AcquireFunctionGroupInfoOutput"
+        },
+        {
+          "method": "ProcessSyncRequest",
+          "id": 8148,
+          "isFireAndForget": false,
+          "methodId": 1,
+          "reliable": true,
+          "requestDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/SmcMsgDataTypes/DataTypes/StateTransitionVec"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/SmcServiceInterface/TriggerInOut/ProcessSyncRequestOutput"
+        },
+        {
+          "method": "ResetSystem",
+          "id": 43154,
+          "isFireAndForget": false,
+          "methodId": 3,
+          "reliable": true,
+          "requestDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/SmcMsgDataTypes/DataTypes/ResetCode",
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/PlatformServiceInterface/SmcMsgDataTypes/DataTypes/ResetCause"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/SmcServiceInterface/TriggerInOut/ResetSystemOutput"
+        },
+        {
+          "method": "ProcessAsyncRequest",
+          "id": 477,
+          "isFireAndForget": true,
+          "methodId": 4,
+          "reliable": true,
+          "requestDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/SmcMsgDataTypes/DataTypes/StateTransitionVec"
+          ],
+          "replyDataType": [],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/SmcServiceInterface/TriggerInOut/ProcessAsyncRequestOutput"
+        }
+      ],
+      "instances": [
+        {
+          "instance": "1",
+          "isClient": false,
+          "shortName": "/HuaweiMDC/PlatformApplication/SmcApplication/Service/Dp/Provider/SmcToAppProvidedSomeipServiceInstance",
+          "reliable": "52980",
+          "network": "Host0DpEthernetCommConnector",
+          "events": [],
+          "methods": [],
+          "fields": []
+        }
+      ]
+    },
+    {
+      "service": "/HuaweiMDC/PlatformServiceInterface/SmcInnerServiceInterface/SmCenter",
+      "serviceId": 2982,
+      "protocolIdUsed": true,
+      "majorVersion": 1,
+      "minorVersion": 0,
+      "events": [
+        {
+          "event": "HeartbeatEvent",
+          "id": 62428,
+          "dataType": "/HuaweiMDC/PlatformServiceInterface/SmcInnerMsgDataTypes/DataTypes/SmHeartbeatMsg",
+          "eventId": 32769,
+          "eventGroup": [
+            1
+          ],
+          "reliable": false
+        }
+      ],
+      "fields": [],
+      "methods": [
+        {
+          "method": "SyncMachineState",
+          "id": 4768,
+          "isFireAndForget": false,
+          "methodId": 10,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t",
+            "/HuaweiMDC/StdCppBasicDataType/uint32_t",
+            "/HuaweiMDC/PlatformServiceInterface/SmcInnerMsgDataTypes/DataTypes/Uint8Array64"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/SmcInnerServiceInterface/SmCenter/SyncMachineStateOutput"
+        },
+        {
+          "method": "RequestMachineState",
+          "id": 59698,
+          "isFireAndForget": false,
+          "methodId": 11,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t",
+            "/HuaweiMDC/StdCppBasicDataType/uint32_t",
+            "/HuaweiMDC/PlatformServiceInterface/SmcInnerMsgDataTypes/DataTypes/Uint8Array64"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/SmcInnerServiceInterface/SmCenter/RequestMachineStateOutput"
+        }
+      ],
+      "instances": [
+        {
+          "instance": "1",
+          "isClient": false,
+          "shortName": "/HuaweiMDC/PlatformApplication/SmcApplication/Service/Dp/Provider/SmcToMcuProvidedSomeipServiceInstance",
+          "unreliable": "52982",
+          "network": "Host0DpEthernetCommConnector",
+          "events": [],
+          "methods": [],
+          "fields": []
+        }
+      ]
+    }
+  ]
+}

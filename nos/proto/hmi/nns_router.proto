@@ -1,0 +1,46 @@
+syntax = "proto2";
+package hozon.hmi;
+import "proto/common/header.proto";
+import "proto/hmi/nns_location.proto";
+message PoseGCJ02{
+    optional float nns_lon = 1;
+    optional float nns_lat = 2;
+    optional float nns_high = 3;
+    optional float nns_heading = 4;
+    optional uint32 ns = 5; // uint8; north 0, south 1
+    optional uint32 ew = 6; // uint8; east 0, west 1
+}
+
+message PoseLocal{
+    optional float x = 1;
+    optional float y = 2;
+    optional float z = 3;
+    optional float heading = 4;
+    optional float s = 5;
+}
+
+message NNSRoute{
+    repeated PoseGCJ02 route_gcj02 = 1;
+    repeated PoseLocal route_local= 2;
+}
+
+enum MANEUVER{
+    STRAIGHT = 0;
+    TURN_LEFT = 1;
+    TURN_RIGHT = 2;
+}
+message NNSRouteInfo {
+    optional hozon.common.Header header = 1;
+    optional uint32 id = 2; // route serial num
+    optional uint32 loc_seq = 3;
+    optional bool is_public_road = 4;
+    optional float next_route_dis = 5; // distance to next road
+    optional MANEUVER next_maneuver_id = 6;
+    optional bool is_replan = 7;
+    optional uint32 route_point_size = 8;
+    optional NNSRoute nns_route = 9;
+}
+message NNSDebug{
+    optional NNSRouteInfo nns_route = 1;
+    optional hozon.hmi.NNSLocFrame nns_location = 2;
+}

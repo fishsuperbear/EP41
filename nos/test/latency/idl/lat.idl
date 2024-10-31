@@ -1,0 +1,44 @@
+struct Lat {
+    double timestamp_us;
+    int32 seq;
+};
+
+struct LatVar {
+    Lat lat;
+    sequence<uint8> payload;
+};
+
+struct Lat1K {
+    Lat lat;
+    uint8 payload[1024];
+};
+
+struct Lat10K {
+    Lat lat;
+    uint8 payload[10240];
+};
+
+struct Lat100K {
+    Lat lat;
+    uint8 payload[102400];
+};
+
+struct Lat200K {
+    Lat lat;
+    uint8 payload[204800];
+};
+
+struct Lat500K {
+    Lat lat;
+    uint8 payload[512000];
+};
+
+struct Lat1000K {
+    Lat lat;
+    uint8 payload[1024000];
+};
+
+struct Lat16m {
+    Lat lat;
+    uint8 payload[16777216];
+};

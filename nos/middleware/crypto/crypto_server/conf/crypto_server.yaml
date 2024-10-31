@@ -1,0 +1,24 @@
+%YAML:1.0
+
+appName: H020
+description: crypto server
+priority: 0    #{0 ... 12} not currently used
+logFile: /opt/usr/log/soc_log/   #日志路径，当logMode配置有指定文件存储时，使用本路径存储日志，日志文件名为${appName}.log
+logMode: 0    #{0, 1, 2, 3, 4, 5, 6}, 0: 固定文件存储，异步日志 1: 打屏，同步日志，适合调试， 2: 指定文件存储，同步日志，适合调试，
+              #3：固定+打屏， 4：固定+指定， 5：打屏+指定， 6：固定+打屏+指定
+logLevel: 0    #{0，1，2，3，4，5, 6}， 0：verbose, 1：debug, 2：info, 3：warn, 4：error, 5：fatal, 6：off
+storage:
+  keys:
+    oem_preset_key_file: "/preset/sec/oem_keys_preset.yaml"
+    oem_preset_key_file_en: "/preset/sec/oem_keys_preset.yaml.encrypted"
+    key_slot_cfg_file: "/app/runtime_service/crypto_server/etc/cryptoslot_crypto_serverProcess.json"
+    # crypto_key_path: "/cfg/pki/keys/"
+    keys_storage_path: "/cfg/sec/keys/"
+  x509:
+    device_cert_path: "/cfg/pki/certs/"
+  cryp:
+# debug:
+#   enable: true
+#   tsyncbyManual: true  #：true ，手动同步时间，不采用hz_time 同步时间，仅用于台架测试
+#   dummyVin:            # vin and sn see: https://hozonauto.feishu.cn/docx/doxcnJV3eBDnnLvm16LGrvwkm6X must match
+#   dummySn:

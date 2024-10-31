@@ -1,0 +1,337 @@
+/*
+ * Copyright (c) Hozon Auto Co., Ltd. 2021-2023. All rights reserved.
+ * Description:  Class DocanNetworkLayer implement
+ */
+
+#include "docan_nw_layer.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+namespace hozon {
+namespace netaos {
+namespace diag {
+
+DocanNetworkLayer::DocanNetworkLayer(docan_network_FF_indication_callback_t FF_indication_callback,
+                      docan_network_indication_callback_t indication_callback,
+                      docan_network_confirm_callback_t confirm_callback,
+                      docan_network_parameter_confirm_callback_t parameter_confirm_callback)
+    : FF_indication_callback_(FF_indication_callback)
+    , indication_callback_(indication_callback)
+    , confirm_callback_(confirm_callback)
+    , parameter_confirm_callback_(parameter_confirm_callback)
+    , link_layer_ptr_(new DocanLinkLayer(&L_Data_Confirm_callback, &L_Data_Indication_callback))
+{
+
+    memset(&can_source_, &canSource, sizeof(can_source_));
+    can_source_.address_functinal = 0x7DF;
+    /*网络层时间参数初始化*/
+    can_source_.docan_config.BS = 0;
+    can_source_.docan_config.STmin = 1;
+    can_source_.docan_config.N_As = 30;
+    can_source_.docan_config.N_Ar = 30;
+    can_source_.docan_config.N_Bs = 90;
+    can_source_.docan_config.N_Br = 50;
+    can_source_.docan_config.N_Cs = 50;
+    can_source_.docan_config.N_Cr = 150;
+    can_source_.docan_config.N_WFTmax = 5;
+
+    /*发送模块相关参数初始化*/
+    TxParam.FS_Type = CTS; 		/*continue to send */
+    TxParam.BlockSize = 20; 	/*total number of cf:20 */
+    TxParam.CompletedNumberInBlock = 0; /*已经接收的cf帧数 */
+    TxParam.STmin = 1; 			/*cf min:1ms */
+    TxParam.SN = 0; 			/* ff sn :0 */
+    TxParam.TotalDataNumber = 100; 	/*发送总字节数*/
+    TxParam.CompletedDataNumber = 0;
+
+    /*接收模块相关参数*/
+    RxParam.FS_Type = CTS;
+    RxParam.BlockSize = 0;/*00:不再发送fc,发送方可将剩余的cf发完*/
+    RxParam.CompletedNumberInBlock = 0;
+    RxParam.STmin = 0x01;
+
+    RxParam.SN = 0;
+    RxParam.TotalDataNumber = 0;
+    RxParam.CompletedDataNumber = 0;
+    RxParam.BuffSize = MAX_DTCDATA_BUF;
+}
+
+DocanNetworkLayer::~DocanNetworkLayer()
+{
+    FF_indication_callback_ = nullptr;
+    indication_callback_ = nullptr;
+    confirm_callback_ = nullptr;
+    parameter_confirm_callback_ = nullptr;
+}
+
+int32_t
+DocanNetworkLayer::N_USData_Request(Mtype_t Mtype, N_SA_t N_SA, N_TA_t N_TA, N_TAtype_t N_TAtype, N_AE_t N_AE, MessageData_t MessageData, Length_t Length)
+{
+    DOCAN_LOG_I("request Mtype: %X, N_SA: %X, N_TA: %X, N_TAType: %X, N_AE: %X, Length: %03X.", Mtype, N_SA, N_TA, N_TAtype, N_AE, Length);
+    int32_t ret = -1;
+    if (nullptr == MessageData) {
+        DOCAN_LOG_E("MessageData is nullptr");
+        return ret;
+    }
+
+    if (Length == 0 || Length > 4095) {
+        DOCAN_LOG_E("length is invalid");
+        return ret;
+    }
+
+    if (IDLE != status_) {
+        DOCAN_LOG_E("current is not IDLE, request can not be handled");
+        N_Result_t N_Result = N_ERROR;
+        N_USData_confirm(Mtype, N_SA, N_TA, N_TAtype, N_AE, N_Result);
+        return ret;
+    }
+
+    N_PDU_t N_PDU;
+    N_PDU.Mtype = Mtype;
+    N_PDU.N_SA = N_SA;
+    N_PDU.N_TA = N_TA;
+    N_PDU.N_TAtype = N_TAtype;
+    N_PDU.N_AE = N_AE;
+    N_PDU.SeqNo = GenerateSeqNo();
+
+    if (Length <= 7) {
+        /*SF frame*/
+        memset(&N_PDU.data0_N_PciType, 0x00, 8);
+        N_PDU.data0_N_PciType = N_PCItype_SF;  /* byte0 高4位置0 */
+        N_PDU.data0_DL_DLhigh_SN_FS = length;    /* byte0 低4位 SF_DL = length */
+        memcpy(&N_PDU.data1_DLlow_STmin, MessageData, Length);
+        {
+            std::lock_guard<std::mutex> lck(tx_mutex_);
+            tx_buff_queue_.push_back(N_PDU);
+            RegisterTxTimer(N_TimerId_Tx, can_source_.docan_config.N_As, N_PDU);
+        }
+    }
+    else {
+        /* multi Frame */
+        memset(&N_PDU.data0_N_PciType, 0x00, 8);
+        N_PDU.data0_N_PciType = N_PCItype_FF;  /* FF frame byte0 高4位置0 */
+        N_PDU.data0_DL_DLhigh_SN_FS = (uint8_t)(Length >> 8);
+        N_PDU.data1_DLlow_STmin = (uint8_t)(Length);
+        memcpy(&N_PDU.data2, MessageData, 6);
+        {
+            std::lock_guard<std::mutex> lck(tx_mutex_);
+            tx_buff_queue_.push_back(N_PDU);
+            RegisterRxTimer(N_TimerId_Rx, can_source_.docan_config.N_Br, N_PDU);
+
+            for (uint16_t index = 6, uint8_t sn = 0; index < Length; index += 7, sn = (++sn > 0x0F) ? 0:sn) {
+                /* CF frame */
+                N_PDU.data0_N_PciType = N_PCItype_CF;
+                N_PDU.data0_DL_DLhigh_SN_FS = sn;
+                memcpy(&N_PDU.data1_DLlow_STmin, MessageData + index, ((Length - index) > 7) ? 7: (Length - index));
+                tx_buff_queue_.push_back(N_PDU);
+            }
+        }
+    }
+    ret = tx_seq_no;
+    return ret;
+}
+
+int32_t
+DocanNetworkLayer::N_USData_FF_indication(Mtype_t Mtype, N_SA_t N_SA, N_TA_t N_TA, N_TAtype_t N_TAtype, N_AE_t N_AE, Length_t Length)
+{
+    int32_t ret = -1;
+    if (nullptr == FF_indication_callback_) {
+        DOCAN_LOG_E("FF_indication_callback_ is nullptr");
+        return ret;
+    }
+    ret = FF_indication_callback_(Mtype, N_SA, N_TA, N_TAtype, N_AE, Length);
+    return ret;
+}
+
+int32_t
+DocanNetworkLayer::N_USData_Indication(Mtype_t Mtype, N_SA_t N_SA, N_TA_t N_TA, N_TAtype_t N_TAtype, N_AE_t N_AE, MessageData_t MessageData, Length_t Length, N_Result_t N_Result)
+{
+    int32_t ret = -1;
+    if (nullptr == indication_callback_) {
+        DOCAN_LOG_E("indication_callback_ is nullptr");
+        return ret;
+    }
+    ret = indication_callback_(Mtype, N_SA, N_TA, N_TAtype, N_AE, MessageData, Length, N_Result);
+    return ret;
+}
+
+int32_t
+DocanNetworkLayer::N_USData_confirm(Mtype_t Mtype, N_SA_t N_SA, N_TA_t N_TA, N_TAtype_t N_TAtype, N_AE_t N_AE, N_Result_t N_Result)
+{
+    int32_t ret = -1;
+    if (nullptr == confirm_callback_) {
+        DOCAN_LOG_E("confirm_callback_ is nullptr");
+        return ret;
+    }
+    ret = confirm_callback_(Mtype, N_SA, N_TA, N_TAtype, N_AE, N_Result);
+    return ret;
+}
+
+int32_t
+DocanNetworkLayer::N_ChangeParameter_Request(Mtype_t Mtype, N_SA_t N_SA, N_TA_t N_TA, N_TAtype_t N_TAtype, N_AE_t N_AE, Parameter_t Parameter, Parameter_Value_t Parameter_Valu)
+{
+    Result_ChangeParameter_t result;
+    if (Parameter == STmin) {
+        if (Parameter_Value!= 0 && Parameter_Value > can_source_.docan_config.STmin) {
+            can_source_.docan_config.STmin = Parameter_Value;
+        }
+        result = N_CHANGE_OK;
+    }
+    else if (Parameter == BS) {
+        if (Parameter_Value != 0  && Parameter_Value < can_source_.docan_config.BS) {
+            can_source_.docan_config.BS = Parameter_Value;
+        }
+        result = N_CHANGE_OK;
+    }
+    else {
+        result = N_WRONG_PARAMETER;
+    }
+    N_ChangeParameter_confirm(Mtype, N_SA, N_TA, N_TAtype, N_AE, Parameter, result);
+    return 0;
+}
+
+int32_t
+DocanNetworkLayer::N_ChangeParameter_Confirm(Mtype_t Mtype, N_SA_t N_SA, N_TA_t N_TA, N_TAtype_t N_TAtype, N_AE_t N_AE, Parameter_t Parameter, Result_ChangeParameter_t Result_ChangeParameter)
+{
+    int32_t ret = -1;
+    if (nullptr == parameter_confirm_callback_) {
+        DOCAN_LOG_E("parameter_confirm_callback_ is nullptr");
+        return ret;
+    }
+    ret = parameter_confirm_callback_(Mtype, N_SA, N_TA, N_TAtype, N_AE, Parameter, Result_ChangeParameter);
+    return ret;
+}
+
+int32_t
+DocanNetworkLayer::L_Data_Confirm(Identifier_t Identifier, Transfer_Status_t Transfer_Status)
+{
+    return 0;
+}
+
+int32_t
+DocanNetworkLayer::L_Data_Indication(Identifier_t Identifier, DLC_t DLC, Data_t Data)
+{
+    int32_t ret = -1;
+    if (Identifier.Type != STANDARD) {
+        DOCAN_LOG_E("parameter_confirm_callback_ is nullptr!");
+        return ret;
+    }
+
+    if (nullptr == Data) {
+        DOCAN_LOG_E("Data is nullptr!");
+        return ret;
+    }
+
+    if (DLC > 8) {
+        DOCAN_LOG_E("DLC > 8 not standard classic can data!");
+        return ret;
+    }
+
+    N_PDU_t  N_PDU;
+    memset(&N_PDU, 0x00, sizeof(N_PDU));
+    N_PDU.N_TA = DocanConfig::Instance()->GetEcu((uint16_t)(Identifier & 0xFFF));
+    N_PDU.SeqNo = GenerateSeqNo();
+    memcpy(&N_PDU.data0_N_PciType, Data, DLC)
+    {
+        std::lock_guard<std::mutex> lck(rx_mutex_);
+        rx_buff_queue_.push_back(N_PDU);
+    }
+    return N_PDU.SeqNo;
+}
+
+int32_t
+DocanNetworkLayer::RegisterTxTimer(uint32_t timerId, uint32_t mesc, N_PDU_t N_PDU)
+{
+    N_Timer_t timer;
+    timer.seqNo = N_PDU.SeqNo;
+    timer.timerId = timerId;
+    timer.msec = mesc;
+    timer.expiredTick = GetCurrentTick() + mesc;
+    for (auto it = tx_timer_queue_.begin(); it != tx_timer_queue_.end(); ++it) {
+        if (timer.expiredTick < it->expiredTick) {
+            tx_timer_queue_.insert(timer);
+        }
+    }
+}
+
+int32_t
+DocanNetworkLayer::RegisterRxTimer(uint32_t timerId, uint32_t mesc, N_PDU_t N_PDU)
+{
+    N_Timer_t timer;
+    timer.seqNo = N_PDU.SeqNo;
+    timer.timerId = timerId;
+    timer.msec = mesc;
+    timer.expiredTick = GetCurrentTick() + mesc;
+    for (auto it = tx_timer_queue_.begin(); it != tx_timer_queue_.end(); ++it) {
+        if (timer.expiredTick < it->expiredTick) {
+            rx_timer_queue_.insert(timer);
+        }
+    }
+}
+
+uint32_t
+DocanNetworkLayer::GenerateSeqNo()
+{
+    return (0 != ++tx_seq_no) ? tx_seq_no : ++tx_seq_no;
+}
+
+uint32_t
+DocanNetworkLayer::GetCurrentTick()
+{
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return (ts.tv_sec * 1000 + ts.tv_nsec / 1000000);
+}
+
+int32_t
+DocanNetworkLayer::RxProc(void)
+{
+
+}
+
+int32_t
+DocanNetworkLayer::TxProc(void)
+{
+    N_PDU_t N_PDU_tx, N_PDU_rx;
+    {
+        std::lock_guard<std::mutex> lck_tx(tx_mutex_);
+        N_PDU_tx = tx_buff_queue_.front();
+        tx_buff_queue_.pop_front();
+    }
+
+    {
+        std::lock_guard<std::mutex> lck_rx(rx_mutex_);
+        N_PDU_rx = rx_buff_queue_.front();
+        rx_buff_queue_.pop_front();
+    }
+
+    if (IDLE == status_) {
+        if (N_PCItype_SF == N_PDU_tx.data0_N_PciType) {
+            status_ = RECIVING;
+            RegisterRxTimer(N_TimerId_Rx, ecu_info_.docan_config.N_Ar, N_PDU_tx);
+        }
+        else if (N_PCItype_FF == N_PDU_tx.data0_N_PciType) {
+            status_ = TRANSMITTING;
+            RegisterRxTimer(N_TimerId_Rx, ecu_info_.docan_config.N_Br, N_PDU_tx);
+        }
+        else {
+            // invalid frame in current status
+            DOCAN_LOG_E("invalid frame in current status, N_PciType: %x!", N_PDU_tx.data0_N_PciType);
+        }
+    }
+    else if (TRANSMITTING == status_) {
+    }
+    else if (RECIVING == status_) {
+
+    }
+    else if (WAIT == status_) {
+
+    }
+
+}
+
+
+} // end of diag
+} // end of netaos
+} // end of hozon
+/* EOF */

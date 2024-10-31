@@ -1,0 +1,132 @@
+syntax = "proto2";
+
+package hozon.mapping;
+
+import "proto/common/header.proto";
+import "proto/common/types.proto";
+
+message LocalMap {
+    optional hozon.common.Header header       = 1;           //头信息
+    optional double init_timestamp            = 2;           //坐标系初始化时间辍
+    repeated LaneLine lane_lines              = 3;           //车道边线
+    repeated LaneLine edge_lines              = 4;           //路沿
+    repeated StopLine stop_lines              = 5;           //停止线
+    repeated CrossWalk cross_walks            = 6;           //斑马线
+    repeated Arrow arrows                     = 7;           //路面箭头
+    repeated Lane lanes                       = 8;           //车道
+}
+
+//车道信息
+message Lane {
+    optional int32 lane_id                    = 1;           //车道编号
+    optional double width                     = 2;           //车道宽度
+    optional TurnType turn_type               = 3;           //车道转弯类型
+    optional LaneLine left_line               = 4;           //左侧车道线
+    optional LaneLine right_line              = 5;           //右侧车道线
+    optional CenterLine center_line           = 6;           //中心车道线
+    optional int32 left_lane_id               = 7;           //左侧车道id
+    optional int32 right_lane_id              = 8;           //右侧车道id
+}
+
+//车道线信息
+message LaneLine {
+    optional int32 track_id                   = 1;           //车道线踪编号
+    optional LaneType lanetype                = 2;           //车道线线型
+    optional LanePositionType lanepos         = 3;           //车道线相对ego位置
+    repeated hozon.common.Point3D points      = 4;           //车道线边线点坐标
+    optional LaneCubicSpline  lane_param      = 5;           //车道线参数
+    optional float            confidence      = 6;           //置信度
+    optional LaneUseType      use_type        = 7;           //车道线生成来源
+}
+
+//中心线信息
+message CenterLine {
+    repeated hozon.common.Point3D points      = 1;           //车道中心线点坐标
+    optional LaneCubicSpline  lane_param      = 2;           //车道线参数
+}
+
+enum TurnType {
+    UNKNOWN_TURN_TYPE                         = 0;           //未知转弯类型
+    FORWARD                                   = 1;           //直行
+    LEFT_TURN                                 = 2;           //左转
+    RIGHT_TURN                                = 3;           //右转
+    U_TURN                                    = 4;           //u形转弯
+    FORWARD_LEFT_TURN                         = 5;           //直行或左转
+    FORWARD_RIGHT_TURN                        = 6;           //直行或右转
+    FORWARD_U_TURN                            = 7;           //直行或u形转弯
+    FORWARD_LEFT_RIGHT_TURN                   = 8;           //直行或左转或右转
+    LEFT_U_TURN                               = 9;           //左转或u形转弯
+}
+
+//线类型
+enum LaneType {
+    LaneType_UNKNOWN                          = 0;           //未知
+    LaneType_SOLID                            = 1;           //单实线
+    LaneType_DASHED                           = 2;           //单虚线
+    LaneType_SHORT_DASHED                     = 3;           //短虚线
+    LaneType_DOUBLE_SOLID                     = 4;           //双实线
+    LaneType_DOUBLE_DASHED                    = 5;           //双虚线
+    LaneType_LEFT_SOLID_RIGHT_DASHED          = 6;           //左实右虚
+    LaneType_RIGHT_SOLID_LEFT_DASHED          = 7;           //右实左虚
+    LaneType_SHADED_AREA                      = 8;           //导流线
+    LaneType_LANE_VIRTUAL_MARKING             = 9;           //车道虚拟线
+    LaneType_INTERSECTION_VIRTUAL_MARKING     = 10;          //路口虚拟线
+    LaneType_CURB_VIRTUAL_MARKING             = 11;          //路边缘虚拟线
+    LaneType_UNCLOSED_ROAD                    = 12;          //非封闭路段线
+    LaneType_ROAD_VIRTUAL                     = 13;          //道路虚拟线
+    LaneType_LANE_CHANG_VIRTUAL               = 14;          //变道虚拟线
+    LaneType_OTHER                            = 99;          //其他
+}
+
+enum LanePositionType {
+    LanePositionType_BOLLARD_LEFT             = -5;
+    LanePositionType_FOURTH_LEFT              = -4;
+    LanePositionType_THIRD_LEFT               = -3;
+    LanePositionType_ADJACENT_LEFT            = -2;          //ego左边第二个
+    LanePositionType_EGO_LEFT                 = -1;          //ego左边
+    LanePositionType_EGO_RIGHT                = 1;           //ego右边
+    LanePositionType_ADJACENT_RIGHT           = 2;           //ego又边第二个
+    LanePositionType_THIRD_RIGHT              = 3;
+    LanePositionType_FOURTH_RIGHT             = 4;
+    LanePositionType_BOLLARD_RIGHT            = 5;
+    LanePositionType_OTHER                    = 99;
+}
+
+enum LaneUseType {
+    REAL                                     = 1;
+    VIRTUAL                                  = 2;
+}
+
+message LaneCubicSpline {
+    repeated hozon.common.Point3D control_point_set = 1;    //控制点
+    repeated LaneCubicCurve cubic_curve_set         = 2;    //分段三次曲线
+}
+
+message LaneCubicCurve {
+    optional float start_point_x              = 1;
+    optional float end_point_x                = 2;
+    optional float c0                         = 3;
+    optional float c1                         = 4;
+    optional float c2                         = 5;
+    optional float c3                         = 6;
+}
+
+//停止线
+message StopLine {
+    optional int32 track_id                    = 1;         //ID
+    optional hozon.common.Point3D  left_point  = 2;         //停止线左端3D点
+    optional hozon.common.Point3D  right_point = 3;         //停止线右端3D点
+}
+
+//斑马线
+message CrossWalk {
+    optional int32 track_id                   = 1;           //ID
+    optional hozon.common.Polygon points      = 2;           //斑马线几何信息
+}
+
+//路面箭头
+message Arrow {
+    optional int32 track_id                   = 1;           //ID
+    optional double heading                   = 2;           //路面箭头heading
+    optional hozon.common.Polygon points      = 3;           //路面箭头几何信息
+}

@@ -1,0 +1,61 @@
+/**
+ * * --------------------------------------------------------------------
+ * * |                                                                  |
+ * * |     _         _    _ _______ ____         _____ ____  __  __     |
+ * * |    (_)   /\  | |  | |__   __/ __ \       / ____/ __ \|  \/  |    |
+ * * |     _   /  \ | |  | |  | | | |  | |     | |   | |  | | \  / |    |
+ * * |    | | / /\ \| |  | |  | | | |  | |     | |   | |  | | |\/| |    |
+ * * |    | |/ ____ \ |__| |  | | | |__| |  _  | |___| |__| | |  | |    |
+ * * |    |_/_/    \_\____/   |_|  \____/  (_)  \_____\____/|_|  |_|    |
+ * * |                                                                  |
+ * * --------------------------------------------------------------------
+ *
+ *  * Copyright @ 2020 iAuto (Shanghai) Co., Ltd.
+ *  * All Rights Reserved.
+ *  *
+ *  * Redistribution and use in source and binary forms, with or without
+ *  * modification, are NOT permitted except as agreed by
+ *  * iAuto (Shanghai) Co., Ltd.
+ *  *
+ *  * Unless required by applicable law or agreed to in writing, software
+ *  * distributed under the License is distributed on an "AS IS" BASIS,
+ *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *
+ *
+ * @file impl_type_dtdebug_someiptp_txdata.h
+ * @brief 
+ * @date  
+ *
+ */
+#ifndef HOZON_NETAOS_IMPL_TYPE_DTDEBUG_SOMEIPTP_TXDATA_H_
+#define HOZON_NETAOS_IMPL_TYPE_DTDEBUG_SOMEIPTP_TXDATA_H_
+
+#ifndef __cplusplus
+#error ERROR: This file requires C++ compilation(use a .cpp suffix)
+#endif
+#include "ara/com/serializer/transformation_reflection.h"
+#include <cstdint>
+namespace hozon {
+namespace netaos {
+struct DtDebug_SomeIpTp_TxData {
+    std::uint8_t InitState;
+    std::uint16_t ReqTransmitLength;
+    std::uint16_t TransmitLength;
+    std::uint16_t SegmentLength;
+    std::uint16_t availableData;
+    std::uint16_t TP_Flag;
+    std::uint8_t RequestId;
+    std::uint16_t ProtocolVersion;
+    std::uint8_t InterfaceVersion;
+    std::uint8_t MessageType;
+    std::uint8_t ReturnCode;
+    std::uint32_t Offsetall;
+};
+} // namespace netaos
+} // namespace hozon
+
+
+STRUCTURE_REFLECTION_DEF(::hozon::netaos::DtDebug_SomeIpTp_TxData,InitState,ReqTransmitLength,TransmitLength,SegmentLength,availableData,TP_Flag,RequestId,ProtocolVersion,InterfaceVersion,MessageType,ReturnCode,Offsetall);
+
+#endif // HOZON_NETAOS_IMPL_TYPE_DTDEBUG_SOMEIPTP_TXDATA_H_
+/* EOF */

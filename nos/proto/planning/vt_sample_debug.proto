@@ -1,0 +1,41 @@
+syntax = "proto2";
+
+package hozon.planning;
+
+import "proto/common/pnc_point.proto";
+import "proto/planning/st_drivable_boundary.proto";
+
+message VtSampleConnectPoint {
+  required double t = 1;
+  required double v = 3;
+  required double a = 4;
+  required double j = 5;
+}
+
+message VtSampleCostPoint {
+  required double t = 1;
+  required double s = 2;
+  required double v = 3;
+  required double a = 4;
+  required double j = 5;
+  required double obstacle_cost = 6;
+  required double speed_cost = 7;
+  required double acc_cost = 8;
+  required double jerk_cost = 9;
+  required double total_cost = 10;
+  repeated double expected_distance = 11;
+  repeated double real_distance = 12;
+  repeated double s_lower = 13;
+  repeated double s_upper = 14;
+}
+
+message VtSampleCostDebug {
+  repeated VtSampleConnectPoint connect_point = 1; 
+  repeated VtSampleCostPoint point = 2;
+}
+
+message VTSampleDebug {
+  required hozon.common.TrajectoryPoint init_point = 1;
+  repeated VtSampleCostDebug cost = 2;
+  repeated hozon.planning.STDrivableBoundary st_boundary = 3;
+}

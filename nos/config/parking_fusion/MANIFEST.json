@@ -1,0 +1,16 @@
+{
+  "process_name": "parking_fusionProcess",
+  "executable": "parking_fusion",
+  "restart_attempt_num": "2",
+  "shall_run_ons": [],
+  "mode_of_order": [
+    "Normal.2"
+  ],
+  "scheduling_policy": "RR",
+  "scheduling_priority": "60",
+  "arguments": [],
+  "environments": [
+    "LD_LIBRARY_PATH=/app/lib",
+    "NETA_CM_QOS_PATH=/app/runtime_service/parking_fusion/etc/default_qos.json"
+  ]
+}

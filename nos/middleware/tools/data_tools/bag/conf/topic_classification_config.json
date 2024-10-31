@@ -1,0 +1,20 @@
+{
+    "pcd_topic_list": [
+        "/soc/pointcloud",
+        "/soc/rawpointcloud"
+    ],
+    "jpg_topic_list": [
+        "/soc/encoded_camera_0",
+        "/soc/encoded_camera_1",
+        "/soc/encoded_camera_2",
+        "/soc/encoded_camera_3",
+        "/soc/encoded_camera_4",
+        "/soc/encoded_camera_5",
+        "/soc/encoded_camera_6",
+        "/soc/encoded_camera_7",
+        "/soc/encoded_camera_8",
+        "/soc/encoded_camera_9",
+        "/soc/encoded_camera_10",
+        "/soc/encoded_camera_11"
+    ]
+}

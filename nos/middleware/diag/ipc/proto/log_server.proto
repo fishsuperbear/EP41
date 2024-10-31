@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+message ZipperInfo {
+  string file_path = 1;
+  string file_base_name = 2;
+  string filename = 3;
+  string basename = 4;
+}
+
+message LogoutInfo {
+  string app_id = 1;
+  string ctx_id = 2;
+  uint32 log_level = 3;
+  string message = 4;
+}

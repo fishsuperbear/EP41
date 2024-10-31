@@ -1,0 +1,140 @@
+syntax = "proto2";
+package hozon.functionmanager;
+
+import  "proto/fsm/avp_fct.proto";
+import  "proto/fsm/nnp_fct.proto";
+import "proto/common/header.proto";
+import "proto/map/map_road.proto";
+import "proto/routing/routing.proto";
+import "proto/fsm/metric.proto";
+import "proto/fsm/trigger_config.proto";
+import "proto/perception/transport_element.proto";
+
+// 感知内部状态
+enum PerceptionSubState{
+  SUB_INITIAL_TYPE = 0;
+  LANELINE_TYPE = 1;
+  NOLANE_TYPE = 2;
+  CRUISE_TYPE = 3;
+  LOCAL_MAP_TYPE = 4;
+}
+
+// 高精地图内部状态
+enum HdmapSubState{
+  HD_INITIAL_TYPE = 0;
+  LOCAL_HDMAP_TYPE = 1;
+  EHP_HDMAP_TYPE = 2;
+  MAP_FUSION_TYPE = 3;
+}
+
+// NNP状态
+enum MachineStateType{
+  INITIAL_TYPE = 0;
+  PERCEPTION_TYPE = 1;
+  HDMAP_TYPE = 2;
+  HDMAP_PERCEPTION_FUSION = 3;
+  APA_TYPE = 4;
+  HISTORY_TRACE_TYPE = 5;
+  HDMAP_AVP_TYPE = 6;
+  MAGIC_CALL_TYPE = 7;
+}
+
+// NNP状态下游使用
+enum MapRoadType{
+  INITIAL_ROADTYPE = 0;
+  NNP_ROADTYPE = 1;
+  NCP_ROADTYPE = 2;
+}
+
+
+message OddInfo{
+  optional hozon.routing.LaneWaypointType type = 1;
+  optional hozon.routing.LaneWaypointType next_type = 2;
+  optional hozon.routing.LaneWaypoint.ODDType odd_type = 3;
+  optional double to_next_len = 4;
+  optional double to_end_len = 5;
+}
+
+message CurvatureLimitSpeedInfo{
+  optional double curvature_r = 1;
+  optional double limit_speed = 2;
+}
+
+message LdpLdwWarningInfo {
+  optional string name = 1;
+  optional bool ldw_left_flag = 2;
+  optional bool ldw_right_flag = 3;
+  optional bool ldp_left_flag = 4;
+  optional bool ldp_right_flag = 5;
+  optional bool ldp_left_done = 6;
+  optional bool ldp_right_done = 7;
+}
+
+message FunctionManagerOut{
+  optional hozon.common.Header header = 1;
+  optional HdmapSubState hdmap_sub_state = 2;
+  optional OddInfo odd_info = 3;
+  optional MachineStateType fsm_state = 4;
+  optional PerceptionSubState perception_sub_state = 5;
+  // lane change debug
+  optional HmiLaneChangeDebug hmi_lane_change_debug = 6;
+  optional hozon.hdmap.RoadSection.Type road_type = 7;
+  optional NnpToFctOutput nnp_fct_out = 8;
+  optional RealHdmapDebug real_hdmap_debug = 13;
+  optional bool laneline_status = 9;
+  optional bool nolane_status = 10;
+  optional bool cruise_status = 11;
+  optional AvpFctOut avp_fct_out = 12;
+  optional CurvatureLimitSpeedInfo cur_limit_speed_info = 14;
+  optional bool hdmap_status = 15;
+  optional bool adc_is_in_tunnel = 16;
+  optional double adc_passage_remain_len = 17;
+  optional bool perception_status = 18;
+  optional bool avp_status = 19;
+  optional uint64 fsm_sequence_num = 20;
+  optional hozon.metric.NnpMetric nnp_metric = 21;
+  optional LocalHdmapDebug local_hdmap_debug = 22;
+
+  optional uint32 soc_2_fct_tbd_u32_01 = 23;
+  optional uint32 soc_2_fct_tbd_u32_02 = 24;
+  optional uint32 soc_2_fct_tbd_u32_03 = 25;
+  optional uint32 soc_2_fct_tbd_u32_04 = 26;
+  optional uint32 soc_2_fct_tbd_u32_05 = 27;
+  optional double cur_pos_in_ref_projection = 28;
+  optional string version = 29;
+
+  optional MapRoadType map_road_type = 34;
+  optional bool ehp_hdmap_status = 35;
+  optional bool local_hdmap_status = 36;
+  optional bool ori_ehp_hdmap_status = 37;
+  optional bool ori_local_hdmap_status = 38;
+  optional bool map_fusion_hdmap_status = 39;
+  optional bool local_map_hdmap_status = 40;
+  
+  optional LdpLdwWarningInfo ldp_ldw_warning_info = 50;
+}
+
+message FunctionManagerIn{
+  optional FctToNnpInput fct_nnp_in = 1;
+  optional AvpFctIn fct_avp_in = 2;
+  optional hozon.common.Header header = 3;
+  optional uint32 fct_2_soc_tbd_u32_01 = 4;
+  optional uint32 fct_2_soc_tbd_u32_02 = 5;
+  optional uint32 fct_2_soc_tbd_u32_03 = 6;
+  optional uint32 fct_2_soc_tbd_u32_04 = 7;
+  optional uint32 fct_2_soc_tbd_u32_05 = 8;
+  //ta_pilot_mode，当前功能状态
+  optional TaPilotMode ta_pilot_mode = 9;
+  // 驾驶模式,反应底盘握手的状态
+  optional DriveMode driver_mode = 10; 
+  optional NnpSwitchConditions nnp_switch_conditions = 11;
+  optional NnpSwitchConditions nnp_switch_conditions_delay = 12;
+  optional NnpHmiSignals nnp_hmi_signals = 13;
+  optional NnpHmiSignals nnp_hmi_signals_delay = 14;
+  optional ACCDisableReasons acc_disable_reasons = 15;
+  optional McuFmFault mcu_fm_fault = 16;
+  optional AdasMode adas_mode = 18;
+  optional hozon.trigger.TriggerConfig trigger_config = 19;
+  optional hozon.perception.TransportElement transport_element = 30;
+  optional hozon.routing.RoutingRequest routing_request = 32;
+}

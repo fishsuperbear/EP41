@@ -1,0 +1,173 @@
+{
+  "applicationName": "/HuaweiMDC/PlatformApplication/ConfigClientApplication/SwComponent/config_client/ConfigClientProcess",
+  "services": [
+    {
+      "service": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface",
+      "serviceId": 3392,
+      "protocolIdUsed": true,
+      "majorVersion": 1,
+      "minorVersion": 0,
+      "events": [
+        {
+          "event": "ParamUpdateEvent",
+          "id": 35207,
+          "dataType": "/HuaweiMDC/MdcPlatformServices/ConfigServerMsgDataType/ImplementationDataTypes/ParamUpdateData",
+          "eventId": 33769,
+          "eventGroup": [
+            1
+          ],
+          "reliable": false
+        },
+        {
+          "event": "ServerNotifyEvent",
+          "id": 27155,
+          "dataType": "/HuaweiMDC/MdcPlatformServices/ConfigServerMsgDataType/ImplementationDataTypes/ServerNotifyData",
+          "eventId": 33770,
+          "eventGroup": [
+            2
+          ],
+          "reliable": false
+        }
+      ],
+      "fields": [],
+      "methods": [
+        {
+          "method": "AnswerAlive",
+          "id": 30329,
+          "isFireAndForget": false,
+          "methodId": 7,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/int32_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/AnswerAliveOutput"
+        },
+        {
+          "method": "DelParam",
+          "id": 56227,
+          "isFireAndForget": false,
+          "methodId": 3,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/DelParamOutput"
+        },
+        {
+          "method": "GetMonitorClients",
+          "id": 42802,
+          "isFireAndForget": false,
+          "methodId": 6,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/MdcPlatformServices/ConfigServerMsgDataType/ImplementationDataTypes/CfgStringList",
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/GetMonitorClientsOutput"
+        },
+        {
+          "method": "GetParam",
+          "id": 5505,
+          "isFireAndForget": false,
+          "methodId": 1,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/UInt8",
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/GetParamOutput"
+        },
+        {
+          "method": "MonitorParam",
+          "id": 3875,
+          "isFireAndForget": false,
+          "methodId": 4,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/MonitorParamOutput"
+        },
+        {
+          "method": "SetParam",
+          "id": 31959,
+          "isFireAndForget": false,
+          "methodId": 2,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/UInt8",
+            "/HuaweiMDC/StdCppDataType/UInt8"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/SetParamOutput"
+        },
+        {
+          "method": "UnMonitorParam",
+          "id": 36659,
+          "isFireAndForget": false,
+          "methodId": 5,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/UnMonitorParamOutput"
+        },
+        {
+          "method": "InitClient",
+          "id": 55067,
+          "isFireAndForget": false,
+          "methodId": 8,
+          "reliable": false,
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface/InitClientOutput"
+        }
+      ],
+      "instances": [
+        {
+          "instance": "1",
+          "isClient": true,
+          "shortName": "/HuaweiMDC/PlatformApplication/ConfigClientApplication/Service/DP/Consumer/ConfigAppFromServerRequiredSomeipServiceInstance",
+          "unreliable": "53400",
+          "network": "Host0DpEthernetCommConnector",
+          "events": [],
+          "methods": [],
+          "fields": []
+        }
+      ]
+    }
+  ]
+}

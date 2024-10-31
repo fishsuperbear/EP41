@@ -1,0 +1,621 @@
+syntax = "proto2";
+
+package hozon.soc;
+
+import "proto/common/header.proto";
+import "proto/common/vehicle_signal.proto";
+import "proto/common/types.proto";
+import "proto/common/vehicle_config.proto";
+import "proto/common/drive_state.proto";
+
+// 整车配置字
+message VehicleConfigure {
+  optional int32 dow = 1 [default = 1] ;
+  optional int32 rcw = 3 [default = 1] ;
+  optional int32 lca = 5 [default = 1] ;
+  optional int32 fcta = 7 [default = 1] ;
+  optional int32 rcta = 9 [default = 1] ;
+}
+
+message WarningFault {
+  optional bool dow = 1 [default = false] ;
+  optional bool rcw = 3 [default = false] ;
+  optional bool lca = 5 [default = false] ;
+  optional bool fcta = 7 [default = false] ;
+  optional bool rcta = 9 [default = false] ;
+}
+
+message MonitorFault {
+  map<string, string> monitor_fault_clusters = 1;
+  repeated int32 monitor_fault_event = 3;
+}
+
+message MonitorFaultDebug {
+  optional WarningFault warning_fault = 1;
+  optional MonitorFault monitor_fault = 3;
+}
+
+// next id :31
+message Chassis {
+  enum DrivingMode {
+    COMPLETE_MANUAL = 0; // human drive
+    COMPLETE_AUTO_DRIVE = 1;
+    AUTO_STEER_ONLY = 2; // only steer
+    AUTO_SPEED_ONLY = 3; // include throttle and brake
+
+    // security mode when manual intervention happens, only response status
+    EMERGENCY_MODE = 4;
+  }
+
+  enum ErrorCode {
+    NO_ERROR = 0;
+
+    CMD_NOT_IN_PERIOD = 1; // control cmd not in period
+
+    // car chassis report error, like steer, brake, throttle, gear fault
+    CHASSIS_ERROR = 2;
+
+    // classify the types of the car chassis errors
+    CHASSIS_ERROR_ON_STEER = 6;
+    CHASSIS_ERROR_ON_BRAKE = 7;
+    CHASSIS_ERROR_ON_THROTTLE = 8;
+    CHASSIS_ERROR_ON_GEAR = 9;
+
+    MANUAL_INTERVENTION = 3; // human manual intervention
+
+    // receive car chassis can frame not in period
+    CHASSIS_CAN_NOT_IN_PERIOD = 4;
+
+    UNKNOWN_ERROR = 5;
+  }
+
+  enum GearPosition {
+    GEAR_NEUTRAL = 0;
+    GEAR_DRIVE = 1;
+    GEAR_REVERSE = 2;
+    GEAR_PARKING = 3;
+    GEAR_LOW = 4;
+    GEAR_INVALID = 5;
+    GEAR_NONE = 6;
+  }
+
+  optional bool engine_started = 3;
+
+  // Engine speed in RPM.
+  optional float engine_rpm = 4 [ default = nan ];
+
+  // Vehicle Speed in meters per second.
+  optional float speed_mps = 5 [ default = nan ];
+
+  // Vehicle odometer in meters.
+  optional float odometer_m = 6 [ default = nan ];
+
+  // Fuel range in meters.
+  optional int32 fuel_range_m = 7;
+
+  // Real throttle location in [%], ranging from 0 to 100.
+  optional float throttle_percentage = 8 [ default = nan ];
+
+  // Real brake location in [%], ranging from 0 to 100.
+  optional float brake_percentage = 9 [ default = nan ];
+
+  // Real steering location in [%], ranging from -100 to 100.
+  // steering_angle / max_steering_angle
+  // Clockwise: negative
+  // CountClockwise: positive
+  optional float steering_percentage = 11 [ default = nan ];
+
+  // Applied steering torque in [Nm].
+  optional float steering_torque_nm = 12 [ default = nan ];
+
+  // Parking brake status.
+  optional bool parking_brake = 13;
+
+  // Light signals.
+  optional bool high_beam_signal = 14 [ deprecated = true ];
+  optional bool low_beam_signal = 15 [ deprecated = true ];
+  optional bool left_turn_signal = 16 [ deprecated = true ];
+  optional bool right_turn_signal = 17 [ deprecated = true ];
+  optional bool horn = 18 [ deprecated = true ];
+
+  optional bool wiper = 19;
+  optional bool disengage_status = 20 [ deprecated = true ];
+  optional DrivingMode driving_mode = 21 [ default = COMPLETE_MANUAL ];
+  optional ErrorCode error_code = 22 [ default = NO_ERROR ];
+  optional GearPosition gear_location = 23;
+
+  // timestamp for steering module
+  optional double steering_timestamp = 24; // In seconds, with 1e-6 accuracy
+
+  // chassis also needs it own sending timestamp
+  optional hozon.common.Header header = 25;
+
+  optional int32 chassis_error_mask = 26 [ default = 0 ];
+
+  optional hozon.common.VehicleSignal signal = 27;
+
+  // Only available for Lincoln now
+  optional ChassisGPS chassis_gps = 28;
+
+  optional hozon.common.EngageAdvice engage_advice = 29;
+
+  optional WheelSpeed wheel_speed = 30;
+
+  optional Surround surround = 31;
+
+  // Vehicle registration information
+  optional License license = 32 [ deprecated = true ];
+
+  // Real gear location.
+  // optional int32 gear_location = 10 [deprecated = true]; deprecated use enum
+  // replace this [id 23]
+
+  optional hozon.common.VehicleID vehicle_id = 33;
+
+  optional int32 battery_soc_percentage = 34 [ default = -1 ];
+  optional double yaw_rate = 35;
+  optional double steering_angle = 36;
+  optional float steering_control_torque_nm = 37 [default = nan];
+  // imu raw angle rate, rad/s
+  optional hozon.common.Point3D imu_raw_ang_rate = 38;
+  // imu raw acceleration, m/s2
+  optional hozon.common.Point3D imu_raw_acc = 39;
+  // imu velocity in ENU coordinate, m/s
+  optional hozon.common.Point3D imu_vel = 40;
+  // imu acceleration in IMU coordinate(Right-Front-Up), m/s2
+  optional hozon.common.Point3D imu_acc = 41;
+  // imu roll and pitch in IMU coordinate, Heading or Yaw in ENU coordinate, rad
+  optional hozon.common.Point3D imu_ang = 42;
+  // imu angle rate in IMU coordinate(Right-Front-Up), rad/s
+  optional hozon.common.Point3D imu_ang_rate = 43;
+
+  optional WheelCounter wheel_counter = 44;
+
+  //TODO (gongshengbo) temp  enable planning signal,  remove in the future
+  optional bool enable_open_space_signal  = 45 [default = false];
+  // steering rate
+  optional double steering_rate = 46;
+  optional bool hpp_reset_signal  = 47 [default = false];
+  // FCW function trigger
+  optional bool fcw = 48 [default = false];
+  // AEB function trigger
+  optional bool aeb = 49 [default = false];
+  optional int32 speed_display = 50;
+  optional SwitchInfo switch_info = 53;
+  optional VehicleConfigure vehicle_cfg = 55; //整车配置字
+  optional ResetSwitch reset_switch = 59;//重置按钮信息
+  optional DoorStatus door_status = 61;//4门信息
+  optional WarningSwitchMemory warning_switch_mem = 63; //warning按键记忆
+  optional WarningSwitch warning_switch_from_cdcs = 65;//座舱warning按键信息
+  optional DoorLockStatus door_lock_status = 67; // 4门锁信息
+  optional IgState ig_state = 69; //上电信息
+  optional BackDoorStatus back_door_status = 71; //尾门信息
+  optional HoodAjarStatus hood_ajar_status = 73; //引擎盖信息
+  optional DriverBuckleStatus driver_buckle_status = 75; //驾驶员安全带
+  optional FrontWiperStatus front_wiper_status = 77 ; //前雨刮状态
+  optional double odometer = 79;
+  optional uint32 crash_status = 81;
+
+  optional bool vcu_act_gear_position_valid = 83 [default = false];
+  optional bool vcu_real_throttle_pos_valid = 85 [default = false];
+  optional bool steering_angle_valid = 87 [default = false];
+  optional bool steering_angle_speed_valid = 89  [default = false];
+
+  optional CenterConsoleInfo center_console_info = 91;
+  optional ParkInfo park_info = 93;
+  optional EscDrivingInfo esc_driving_info = 95;
+  optional AvmPdsInfo avm_pds_info = 97;
+  optional uint32 BDCS1_AlarmMode = 98;
+  optional uint32 BCM_TurnLightSW = 99;
+}
+
+message ChassisGPS {
+  optional double latitude = 1;
+  optional double longitude = 2;
+  optional bool gps_valid = 3;
+
+  optional int32 year = 4;
+  optional int32 month = 5;
+  optional int32 day = 6;
+  optional int32 hours = 7;
+  optional int32 minutes = 8;
+
+  optional double altitude = 14;
+  optional double heading = 15;
+  optional double hdop = 16;
+  optional double vdop = 17;
+  optional GpsQuality quality = 18;
+  optional int32 num_satellites = 19;
+  optional double gps_speed = 20;
+}
+
+enum GpsQuality {
+  FIX_NO = 0;
+  FIX_2D = 1;
+  FIX_3D = 2;
+  FIX_INVALID = 3;
+}
+
+message WheelSpeed {
+  enum WheelSpeedType {
+    FORWARD = 0;
+    BACKWARD = 1;
+    STANDSTILL = 2;
+    INVALID = 3;
+  }
+  optional bool is_wheel_spd_rr_valid = 1 [ default = false ];
+  optional WheelSpeedType wheel_direction_rr = 2 [ default = INVALID ];
+  optional double wheel_spd_rr = 3 [ default = 0.0 ];
+  optional bool is_wheel_spd_rl_valid = 4 [ default = false ];
+  optional WheelSpeedType wheel_direction_rl = 5 [ default = INVALID ];
+  optional double wheel_spd_rl = 6 [ default = 0.0 ];
+  optional bool is_wheel_spd_fr_valid = 7 [ default = false ];
+  optional WheelSpeedType wheel_direction_fr = 8 [ default = INVALID ];
+  optional double wheel_spd_fr = 9 [ default = 0.0 ];
+  optional bool is_wheel_spd_fl_valid = 10 [ default = false ];
+  optional WheelSpeedType wheel_direction_fl = 11 [ default = INVALID ];
+  optional double wheel_spd_fl = 12 [ default = 0.0 ];
+}
+
+message WheelCounter {
+  optional bool is_wheel_cnt_rr_valid = 1 [ default = false ];
+  optional double wheel_counter_rr = 2 [ default = 0.0 ];
+  optional bool is_wheel_cnt_rl_valid = 3 [ default = false ];
+  optional double wheel_counter_rl = 4 [ default = 0.0 ];
+  optional bool is_wheel_cnt_fr_valid = 5 [ default = false ];
+  optional double wheel_counter_fr = 6 [ default = 0.0 ];
+  optional bool is_wheel_cnt_fl_valid = 7 [ default = false ];
+  optional double wheel_counter_fl = 8 [ default = 0.0 ];
+}
+
+message Sonar {
+  optional double range = 1;                      // Meter
+  optional hozon.common.Point3D translation = 2; // Meter
+  optional hozon.common.Quaternion rotation = 3;
+}
+
+message Surround {
+  optional bool cross_traffic_alert_left = 1;
+  optional bool cross_traffic_alert_left_enabled = 2;
+  optional bool blind_spot_left_alert = 3;
+  optional bool blind_spot_left_alert_enabled = 4;
+  optional bool cross_traffic_alert_right = 5;
+  optional bool cross_traffic_alert_right_enabled = 6;
+  optional bool blind_spot_right_alert = 7;
+  optional bool blind_spot_right_alert_enabled = 8;
+  optional double sonar00 = 9;
+  optional double sonar01 = 10;
+  optional double sonar02 = 11;
+  optional double sonar03 = 12;
+  optional double sonar04 = 13;
+  optional double sonar05 = 14;
+  optional double sonar06 = 15;
+  optional double sonar07 = 16;
+  optional double sonar08 = 17;
+  optional double sonar09 = 18;
+  optional double sonar10 = 19;
+  optional double sonar11 = 20;
+  optional bool sonar_enabled = 21;
+  optional bool sonar_fault = 22;
+  repeated double sonar_range = 23;
+  repeated Sonar sonar = 24;
+}
+
+message License { optional string vin = 1 [ deprecated = true ]; }
+
+message SwitchInfo {
+  optional int32 cruise_speed_add = 1;
+  optional int32 cruise_speed_minus = 4;
+  optional int32 cruise_distance_add = 7;
+  optional int32 cruise_distance_minus = 10;
+  optional int32 swsm_mode = 12;
+  optional int32 gear_position_req_st = 14;
+  optional int32 sw_error = 16;
+  optional int32 swsm_a_cd_add_overtime = 18;
+  optional int32 swsm_a_cd_minus_overtime = 20;
+
+}
+
+message WarningSwitch {
+    enum Status {
+    NO_ACTION = 0;
+    ON = 1;
+    OFF = 2;
+    RESERVED = 3;
+  }
+
+  optional int32 voice_mode = 1;
+  optional Status rcta_on_off_set = 3;
+  optional Status fcta_on_off_set = 5;
+  optional Status dow_on_off_set = 7;
+  optional Status rcw_on_off_set = 9;
+  optional Status lca_on_off_set = 11;
+}
+
+message ResetSwitch{
+  enum Status {
+    NO_ACTION = 0;
+    RESET = 1;
+  }
+  optional Status factory_reset = 1;
+  optional Status reset_all_setup = 3;
+}
+
+message DoorStatus{
+  enum Status {
+    CLOSED = 0;
+    SECONDARY = 1;
+    OPEN = 2;
+    UNKNOW = 3;
+  }
+  optional Status fl_door = 1;
+  optional Status fr_door = 2;
+  optional Status rl_door = 3;
+  optional Status rr_door = 4;
+
+}
+
+message BackDoorStatus{
+  enum Status {
+    FULLY_CLOSED = 0;
+    NOT_CLOSED = 1;
+    OPEN_TO_CUSTON_HEIGHT = 2;
+    FULLY_OPEN = 3;
+    CANNOT_CLOSE_AREA = 4;
+    RESERVED_5 = 5;
+    RESERVED_6 = 6;
+    UNKNOW_STATUS = 7;
+  }
+  optional Status status = 1;
+}
+message HoodAjarStatus{
+  enum Status {
+    CLOSED = 0;
+    OPEN = 1;
+  }
+  optional Status status = 1;
+}
+
+message DriverBuckleStatus{
+  enum Status {
+    BUCKLED = 0;
+    UNBUCKLED = 1;
+    FAULT = 2;
+    NOT_AVALIABLE = 3;
+  }
+  optional Status status = 1;
+}
+
+message FrontWiperStatus{
+  enum Status {
+    OFF = 0;
+    LOW = 1;
+    HIGH = 2;
+    RESERVED = 3;
+  }
+  optional Status status = 1;
+}
+
+message DoorLockStatus{
+  enum Status {
+    LOCK = 0;
+    UNLOCK = 1;
+  }
+  optional Status fl_door_lock = 1;
+  optional Status fr_door_lock = 2;
+  optional Status rl_door_lock = 3;
+  optional Status rr_door_lock = 4;
+
+}
+
+message WarningSwitchMemory {
+  enum Status {
+    OFF = 0;
+    ON = 1;
+  }
+  optional Status rcta_on_off_set_mem = 1;
+  optional Status fcta_on_off_set_mem = 3;
+  optional Status dow_on_off_set_mem = 5;
+  optional Status rcw_on_off_set_mem = 7;
+  optional Status lca_on_off_set_mem = 9;
+}
+
+message IgState {
+  optional bool ig_off = 1;
+  optional bool acc = 3;
+  optional bool ig_on = 5;
+  optional bool start = 7;
+  optional bool remote_ig_on = 9;
+}
+
+message CenterConsoleInfo {
+  optional uint32 tsr_on_off_set = 1;    // uint8
+  optional uint32 tsr_overspeed_onoff_set = 2;  // uint8
+  optional uint32 tsr_limit_overspeed_set = 3;  // uint8
+  optional uint32 ihbc_sys_sw_state = 4;  // uint8
+}
+
+message ParkInfo {
+  optional bool tcs_active = 1;
+  optional bool abs_active = 2;
+  optional bool arp_active = 3;
+  optional bool esc_active = 4;
+  optional uint32 epb_status = 5; //uint8
+}
+
+message EscDrivingInfo {
+  optional float esc_vehicle_speed = 1;
+  optional bool esc_vehicle_speed_valid = 2;
+  optional bool esc_brake_pedal_switch_status = 3;
+  optional bool esc_brake_pedal_switch_valid = 4;
+  optional float brk_ped_val = 5;
+  optional bool esc_apa_stand_still = 6;
+  optional bool vehicle_spd_display_valid = 7;
+  optional bool esc_long_acc_value_valid = 8;
+  optional bool esc_lat_acc_value_valid = 9;
+  optional bool esc_yaw_rate_valid = 10;
+  optional float esc_yaw_rate = 11;
+}
+
+message AvmPdsInfo {
+  optional uint32 CDCS3_Xcoordinate = 1;
+  optional uint32 CDCS3_Ycoordinate = 2;
+  optional uint32 CDCS3_XGestureSpd = 3;
+  optional uint32 CDCS3_YGestureSpd = 4;
+  optional uint32 CDCS3_TouchEvtTyp = 5;
+  optional uint32 CDCS10_WorK_status = 6;
+  optional uint32 CDCS11_LowSpeedBSDSw = 7;
+  optional uint32 CDCS11_AVM_3DRotate = 8;
+  optional uint32 CDCS11_AVM_Turnlightstart = 9;
+  optional uint32 CDCS11_AVM_Steeringstart = 10;
+  optional uint32 CDCS11_AVM_Magnifiedview = 11;
+  optional uint32 CDCS11_AVM_MODdetection = 12;
+  optional uint32 CDCS11_GM_OnOffSet = 13;
+  optional uint32 CDCS11_AVM_auxiliaryline = 14;
+  optional uint32 CDCS11_AVM_Raderdisplay = 15;
+  optional uint32 CDCS11_AVM_Transparentchassis = 16;
+  optional uint32 CDCS11_GM_VidedIn = 17;
+  optional uint32 CDCS11_APA_FunctionMode = 18;
+  optional uint32 CDCS11_TrackreverseSW = 19;
+  optional uint32 CDCS11_SetPathwaySW = 20;
+  optional uint32 CDCS11_AVMSw = 21;
+  optional uint32 CDCS11_RPASw = 22;
+  optional uint32 CDCS11_SetSw = 23;
+  optional uint32 CDCS11_location_sw = 24;
+  optional uint32 CDCS11_Pathrefresh = 25;
+  optional uint32 CDCS11_HPAGuideSW = 26;
+  optional uint32 CDCS11_HPAPathwaytoCloudSW = 27;
+  optional uint32 CDCS11_PathlearningSw = 28;
+  optional uint32 CDCS11_PASw = 29;
+  optional uint32 CDCS11_PA_Recover = 30;
+  optional uint32 CDCS11_SelectSlotID = 31;
+  optional uint32 CDCS11_ParkingInReq = 32;
+  optional uint32 CDCS11_ParkingOutReq = 33;
+  optional uint32 CDCS11_AVM_ViewMode = 34;
+  optional uint32 CDCS11_RPA_FunctionMode = 35;
+  optional uint32 CDCS11_AVM_Initialization = 36;
+  optional uint32 CDCS11_AVM_SpeView = 37;
+  optional uint32 CDCS11_AVM_bodySync = 38;
+  optional uint32 CDCS11_AVM_licenseplateabbr = 39;
+  optional uint32 CDCS11_AVM_licenseplateArea = 40;
+  optional uint32 CDCS11_AVM_LicensePlateNO1 = 41;
+  optional uint32 CDCS11_AVM_LicensePlateNO2 = 42;
+  optional uint32 CDCS11_AVM_LicensePlateNO3 = 43;
+  optional uint32 CDCS11_AVM_LicensePlateNO4 = 44;
+  optional uint32 CDCS11_AVM_LicensePlateNO5 = 45;
+  optional uint32 CDCS11_AVM_LicensePlateNO6 = 46;
+  optional uint32 CDCS11_AVM_LicensePlateNO7 = 47;
+  optional uint32 CDCS11_AVM_LicensePlateNO8 = 48;
+  optional uint32 CDCS11_AVM_DiaphaneitySw = 49;
+  optional uint32 CDCS11_MOD_Sound_Sw = 50;
+  optional uint32 CDCS11_MOD_BSD_Sw = 51;
+  optional uint32 CDCS11_PA_FRS_OnOffSet = 52;
+  optional uint32 CDCS11_PA_3D_OnOffSet = 53;
+  optional uint32 CDCS11_PA_measure_OnOffSet = 54;
+  optional uint32 CDCS11_MODSw = 55;
+  optional uint32 CDCS11_HPASw = 56;
+  optional uint32 CDCS11_DeleteMapID = 57;
+  optional uint32 CDCS11_UploadMapID = 58;
+  optional uint32 CDCS11_HPApreparkingSw = 59;
+  optional uint32 CDCS11_HPAPathwaytoCloud_WorkSts = 60;
+  optional uint32 CDCS11_ParkingoutSlot_Type = 61;
+  optional uint32 CDCS11_ParkingoutSlot_Dire = 62;
+  optional uint32 CDCS11_OptionalSlot_Type = 63;
+  optional uint32 CDCS11_OptionalSlot_Dire = 64;
+  optional uint32 CDCS11_OptionalSlotAngle = 65;
+  optional uint32 CDCS11_OptionalSlotCoor_P0_X = 66;
+  optional uint32 CDCS11_OptionalSlotCoor_P0_Y = 67;
+  optional uint32 CDCS11_OptionalSlotCoor_P1_X = 68;
+  optional uint32 CDCS11_OptionalSlotCoor_P1_Y = 69;
+  optional uint32 CDCS11_OptionalSlotCoor_P2_X = 70;
+  optional uint32 CDCS11_OptionalSlotCoor_P2_Y = 71;
+  optional uint32 CDCS11_OptionalSlotCoor_P3_X = 72;
+  optional uint32 CDCS11_OptionalSlotCoor_P3_Y = 73;
+  optional uint32 DDCU1_FLDoorAjar = 74;
+  optional uint32 DDCU1_RLDoorAjar = 75;
+  optional uint32 PDCU1_FRDoorAjar = 76;
+  optional uint32 PDCU1_RRDoorAjar = 77;
+  optional uint32 BTM1_SecuritySts = 78;
+  optional uint32 BTM1_PhoneBatSts = 79;
+  optional uint32 BTM1_RemoteIntModSel = 80;
+  optional uint32 BTM1_SelectSlotID = 81;
+  optional uint32 BTM1_Retry = 82;
+  optional uint32 BTM1_Fixslot = 83;
+  optional uint32 BTM1_parkingoutSlot_Dire = 84;
+  optional uint32 BTM1_parkingoutSlotType = 85;
+  optional uint32 BTM1_Recover = 86;
+  optional uint32 BTM1_ParkingReq = 87;
+  optional uint32 BTM1_FunctionMode = 88;
+  optional uint32 BTM1_OptionalSlot_Dire = 89;
+  optional uint32 BTM1_OptionalSlotType = 90;
+  optional uint32 BTM1_RollingCounter = 91;
+  optional uint32 BTM1_RemoteParkReq = 92;
+  optional uint32 BTM1_Movectrl = 93;
+  optional uint32 BTM1_Checksum = 94;
+  optional uint32 BTM1_OptionalSlotAngle = 95;
+  optional uint32 BTM1_OptionalSlotCoor_P0_X = 96;
+  optional uint32 BTM1_OptionalSlotCoor_P0_Y = 97;
+  optional uint32 BTM1_OptionalSlotCoor_P1_X = 98;
+  optional uint32 BTM1_OptionalSlotCoor_P1_Y = 99;
+  optional uint32 BTM1_OptionalSlotCoor_P2_X = 100;
+  optional uint32 BTM1_OptionalSlotCoor_P2_Y = 101;
+  optional uint32 BTM1_OptionalSlotCoor_P3_X = 102;
+  optional uint32 BTM1_OptionalSlotCoor_P3_Y = 103;
+  optional uint32 TBOX2_AVMOnReq = 104;
+  optional uint32 TBOX2_RemoteParkStartPressReqSts = 105;
+  optional uint32 TBOX2_RemoteHPP = 106;
+  optional uint32 TBOX2_AVMviewReq = 107;
+  optional uint32 TBOX2_RemoteParkReq = 108;
+  optional uint32 TBOX2_SecuritySts = 109;
+  optional uint32 TBOX2_ConnectSts = 110;
+  optional uint32 TBOX2_PhoneInCar = 111;
+  optional uint32 TBOX2_RemoteParkAbortReq = 112;
+  optional uint32 TBOX2_RemoteParkStartPressReq = 113;
+  optional uint32 TBOX2_RemoteParkOutModSel = 114;
+  optional uint32 TBOX2_PhoneBatSts = 115;
+  optional uint32 TBOX2_RemoteIntModSel = 116;
+  optional uint32 TBOX2_RemoteSw = 117;
+  optional uint32 TBOX2_RemoteCtrModSel = 118;
+  optional uint32 TBOX2_RemoteCtrSw = 119;
+  optional uint32 TBOX2_Remotepick = 120;
+  optional uint32 TBOX2_NNSsuspend = 121;
+  optional uint32 TBOX2_RemoteVhpower = 122;
+  optional uint32 TBOX2_NRPReq = 123;
+  optional uint32 TBOX2_SDMapReq = 124;
+  optional uint32 TBOX2_NNSSW = 125;
+  optional uint32 TBOX2_RollingCounter = 126;
+  optional uint32 TBOX2_Checksum = 127;
+  optional uint32 TBOX2_GMOnreq = 128;
+  optional uint32 TBOX2_360viewReq = 129;
+  optional uint32 TBOX2_360SpecView = 130;
+  optional uint32 TBOX2_PA_PauseRecover_Req = 131;
+  optional uint32 CDCS11_tryHPP = 132;
+  optional uint32 CDCS11_AVM_Diaphaneity = 133;
+  optional uint32 CDCS11_HPA_ONPath_ID1 = 134;
+  optional uint32 CDCS11_HPA_ONPath_ID2 = 135;
+  optional uint32 CDCS11_HPA_ONPath_ID3 = 136;
+  optional uint32 CDCS11_HPA_ONPath_ID4 = 137;
+  optional uint32 BDCS1_PowerManageMode = 138;
+  optional uint32 BTM2_ConnectSts = 139;
+  optional uint32 BTM2_Key_Position = 140;
+  optional uint32 BTM3_RKECmd = 141;
+  optional uint32 BMS3_StateOfCharge = 142;
+  optional uint32 BMS3_Charge_State = 143;
+  optional uint32 BDCS13_RLS_RQ_WiperSPD = 144;
+  optional uint32 DDCU1_FL_WinPos = 145;
+  optional uint32 DDCU1_RL_WinPos = 146;
+  optional uint32 DDCU1_MirrorFoldSt = 147;
+  optional uint32 PDCU1_FR_WinPos = 148;
+  /**********
+  0x0      OFF
+  0x1      ACC
+  0x2       on
+  0x3      Crank
+  ************/
+  optional uint32 BDCS1_PowerMode = 149;
+  optional uint32 CDCS11_learnpath_St = 150;
+  optional uint32 CDCS15_USB_St = 151;
+  optional uint32 CDCS15_UserSceneMode = 152;
+  optional uint32 CDCS15_Storage_St = 153;
+}
+

@@ -1,0 +1,59 @@
+#include "common.idl"
+#include "type.idl"
+
+/* ******************************************************************************
+    结构 名        :  AlgHmiAvpLocFrame
+    功能描述       :  座舱经hmi-server传输到泊车定位的信号-频率 20HZ
+****************************************************************************** */
+struct AlgHmiAvpLocFrame : IDLBaseType {
+    boolean isValid;
+    uint32 gpsWeek;        // GPS时间，周数
+    double gpsSec;        // GPS时间，周内秒(s)
+    double wgsLatitude;   //纬度(degree)
+    double wgsLongitude;  //经度(degree)
+    double wgsAltitude;   //椭球面以上高度(m)
+    float wgsheading;    // ENU坐标系表示，以正北为0度，顺时针增加，取值[0,360)，degree
+    double j02Latitude;   //纬度(degree)
+    double j02Longitude;  //经度(degree)
+    double j02Altitude;   //椭球面以上高度(m)
+    float j02heading;    // J02坐标系下朝向角
+    Point3d sdPosition;      //纬度、经度和高度标准差(m)
+    uint16 sysStatus;      // 0：初始化;1：卫导模式;2：组合导航模式;3：纯惯导模式
+    uint16 gpsStatus;      // 0：不定位不定向；1：单点定位定向；2：伪距差分定位定向；3：组合推算；4：RTK
+                         // 稳定解定位定向；5：RTK浮点解定位定向；6：单点定位不定向；7：伪距差分定位不定向；8：RTK稳定解定位不定向；9：RTK浮点解定位不定向
+};
+
+struct AlgPoseGCJ02 {
+    float nns_Lon;      // 经度
+    float nns_Lat;      // 纬度
+    float nns_High;     // 高度
+    float nns_Heading;  // 方位角
+    uint8 ns;             // 0  = S南纬
+    uint8 ew;             // 0  = W西经
+};
+struct AlgPoseLocal {
+    float x;        //笛卡尔坐标x
+    float y;        //笛卡尔坐标y
+    float z;        //笛卡尔坐标z
+    float heading;  //笛卡尔坐标yaw
+    float s;        //累计长度s
+};
+struct AlgNNSRoute {
+    sequence<AlgPoseGCJ02> routeGCJ02;
+    sequence<AlgPoseLocal> routeLocal;
+};
+/* ******************************************************************************
+    结构 名        :  AlgNNSRouteInfo
+    功能描述       :  座舱经hmi-server传输到泊车定位的信号-频率 20HZ
+****************************************************************************** */
+struct AlgNNSRouteInfo : IDLBaseType {
+    boolean isValid;
+    uint32 id;              // 路线编号
+    uint32 locSeq;          // 当前时刻对应的融合定位帧序号
+    boolean isPublicRoad;        // 0  = 公开道路
+    float nextRouteDis;   // 下一路口距离
+    uint32 nextManeuverId;  // 0  = 右转
+    boolean isReplan;            // 0  = 触发重规划
+    uint32 routePointSize;  // 召唤路径点数
+    AlgNNSRoute nnsRoute;     // 召唤路线点集合
+};

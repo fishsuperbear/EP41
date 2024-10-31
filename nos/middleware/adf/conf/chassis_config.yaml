@@ -1,0 +1,79 @@
+%YAML:1.0
+
+module: 
+    className: Derived  
+    path: ./lib/libderived.so
+
+recvInstances:
+    - name: chassis
+      type: cm_proxy
+      topic: /hozon/chassis
+      domainId: 1
+    - name: chassis_ego_hmi
+      type: cm_proxy
+      topic: /hozon/chassis_ego_hmi
+      domainId: 1
+
+sendInstances:
+    - name: chassis
+      type: cm_skeleton
+      topic: /hozon/chassis
+      domainId: 0
+    - name: chassis_ego_hmi
+      type: cm_skeleton
+      topic: /hozon/chassis_ego_hmi
+      domainId: 0
+# fm:
+#     commTimeout:
+#         faultId: 8400
+#         objId: 7
+
+# resourceLimit:
+#     group: hz_state_machine
+#     cpu: 150
+#     memory: 200
+
+log:
+    mode: 3
+    file: ./
+    name: chss
+    description: chassis
+    level: 0   
+    adf:
+      level: 0
+
+# static const std::uint32_t HZ_LOG2CONSOLE = (0x00000001 << 0);
+# static const std::uint32_t HZ_LOG2FILE = (0x00000001 << 1);
+
+# LogLevel: 
+#   kOff = 0x00U,
+#   kCritical = 0x01U,
+#   kError = 0x02U,
+#   kWarn = 0x03U,
+#   kInfo = 0x04U,
+#   kDebug = 0x05U,
+#   kTrace = 0x06U
+
+# schedule:
+#     policy: RR
+#     priority: 99
+#     cpuAffinity: [1, 2 ,3]
+
+# # trigger二选一即可
+# trigger:
+#     type: EVENT
+#     mainSources: 
+#         - name: from_avm
+#           timeout: 5000
+#     auxSources: 
+#         - name: from_router
+#           multiFrame: 1
+
+# trigger二选一即可
+trigger:
+    - name: main
+      type: PERIOD
+      period: 1000
+      auxSources:
+          - name: chassis
+          - name: chassis_ego_hmi

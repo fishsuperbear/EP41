@@ -1,0 +1,128 @@
+{
+    "ip": "172.16.50.11",
+    "port": 13400,
+    "ifname": "mgbe3_0.50",
+    "sourceAddress": 4194,
+    "targetAddress": 4291,
+    "canid":"0x1234",
+    "requestTest": [
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"19 01 08 ","response":"59 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> SID:0x19 Valid_Request_WDBI 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"19 02 08 ","response":"59 02 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> SID:0x19 Valid_Request_WDBI 02",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"19 03","response":"59 03 ..."},
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"27 05","response":"67 05 ..."},
+                {"request":"27 06","response":"67 06 ..."},
+                {"request":"31 01 d0 00 00 00 41 00 01 01","response":"71 01 d0 00..."},
+                {"request":"31 02 d0 00","response":"71 02 d0 00 ..."},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> SID:0x19 Valid_Request_WDBI 03",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"19 04 56 10 04 01","response":"59 04 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> SID:0x19 Valid_Request_WDBI 04",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"19 0A","response":"59 0A ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> SID:0x19 Valid_Request_WDBI 05",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"19 01 ","response":"7f 19 13"}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> SID:0x19 InvalidRequestMessageLength 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"19 01 08 01","response":"7f 19 13"}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> SID:0x19 InvalidRequestMessageLength 02",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"19 04 92 34 56","response":"7f 19 13"}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> SID:0x19 InvalidRequestMessageLength 03",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"19 04 92 34 56 01 01","response":"7f 19 13"}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> SID:0x19 InvalidRequestMessageLength 04",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"19 04 11 22 33 01","response":"7f 19 31"}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> SID:0x19 NotSupportRequestDtc 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"19 05","response":"7f 19 12"}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> SID:0x19 NotSupportRequestSubFunction 01",
+            "ignoreFail": true
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+syntax = "proto2";
+
+package hozon.common;
+
+enum TurnLightSwitchStatus {
+    NONE_REQUEST = 0;
+    RIGHT_LEVEL_1 = 1;
+    RIGHT_LEVEL_2 = 2;
+    LEFT_LEVEL_1 = 3;
+    LEFT_LEVEL_2 = 4;
+    ERROR = 7;
+  };
+
+message VehicleSignal {
+  enum TurnSignal {
+    TURN_NONE = 0;
+    TURN_LEFT = 1;
+    TURN_RIGHT = 2;
+  };
+  optional TurnSignal turn_signal = 1;
+  // lights enable command
+  optional bool high_beam = 2;
+  optional bool low_beam = 3;
+  optional bool horn = 4;
+  optional bool emergency_light = 5;
+  optional TurnLightSwitchStatus turn_switch = 10;
+
+  optional uint32 cs1_high_beam_req_st = 11; //uint8
+  optional bool bcm_front_fog_lamp_st = 13 [default = false];
+  optional bool bcm_rear_fog_lamp_st = 15 [default = false];
+  optional uint32 bcm_front_lamp_st = 17; //uint8
+}

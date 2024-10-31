@@ -1,0 +1,41 @@
+syntax = "proto2";
+package hozon.hmi;
+import "proto/common/header.proto";
+import "proto/common/types.proto";
+
+enum SysStatus {
+    INIT = 0;
+    SATELLITE_MODE = 1;
+    COMBINED_MODE = 2;
+    PURE_INERTIAL_MODE = 3;
+}
+
+enum GPSStatus {
+    NO_POS_ORIENTATION = 0; // 不定位不定向
+    SINGLE_POINT_POS_ORIENTATION = 1;   // 单点定位定向
+    PSEUDO_RANGE_DIFFERENTICAL_POS_ORIENTATION = 2; // 伪距差分定位定向
+    CONMBIED_RECKON = 3;    // 组合推算
+    RTK_STABLE_SOLUTION_POS_ORIENTATION = 4;    // RTK稳定解定位定向
+    RTK_FLOAT_SOLUTION_POS_ORIENTATION = 5; // RTK浮点解定位定向
+    SINGLE_POINT_POS_NO_ORIENTATION  = 6;   // 单点定位不定向
+    PSEUDO_RANGE_DIFFERENTICAL_POS_NO_ORIENTATION = 7;  // 伪距差分定位不定向
+    RTK_STABLE_SOLUTION_POS_NO_ORIENTATION = 8; //  RTK稳定解定位不定向
+    RTK_FLOAT_SOLUTION_POS_NO_ORIENTATION = 9;  // RTK浮点解定位不定向
+}
+
+message NNSLocFrame {
+    optional hozon.common.Header header = 1;
+    optional uint32 gps_week = 2;
+    optional double gps_sec = 3;
+    optional double wgs_latitude = 4; // degree
+    optional double wgs_longitude = 5; // degree
+    optional double wgs_altitude = 6; // meter
+    optional float wgs_heading = 7; // ENU coordinate; north represent 0 deg, increase in clockwise. range in [0,360)
+    optional double j02_latitude = 8; // degree
+    optional double j02_longitude = 9;  // degree
+    optional double j02_altitude = 10;  // meter
+    optional float j02_heading = 11;    // heading in JO2 coodinate
+    optional hozon.common.Point3D sd_position =12;  // latitude, longitude and height standard deviation(meters)
+    optional SysStatus sys_status = 13;
+    optional GPSStatus gps_status = 14;
+}

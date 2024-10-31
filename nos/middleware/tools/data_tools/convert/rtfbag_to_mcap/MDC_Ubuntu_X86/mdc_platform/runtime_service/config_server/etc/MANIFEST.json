@@ -1,0 +1,111 @@
+[
+  {
+    "key": "application_name",
+    "value": {
+      "string": "config_server"
+    },
+    "checksum": 111
+  },
+  {
+    "key": "startup_configs",
+    "value": {
+      "object[]": [
+        {
+          "key": "ConfigServerProcess",
+          "value": {
+            "object[]": [
+              {
+                "key": "executable",
+                "value": {
+                  "string": "config_server"
+                },
+                "checksum": 333
+              },
+              {
+                "key": "restart_attempt_num",
+                "value": {
+                  "uint32": 0
+                },
+                "checksum": 333
+              },
+              {
+                "key": "shall_run_ons",
+                "value": {
+                  "string[]": []
+                },
+                "checksum": 333
+              },
+              {
+                "key": "shall_not_run_ons",
+                "value": {
+                  "string[]": []
+                },
+                "checksum": 333
+              },
+              {
+                "key": "depends",
+                "value": {
+                  "string[]": [
+                    "SomeipdProcess.Running"
+                  ]
+                },
+                "checksum": 333
+              },
+              {
+                "key": "machine_states",
+                "value": {
+                  "string[]": [
+                    "Startup",
+                    "Reset",
+                    "Restart",
+                    "Shutdown",
+                    "Standby",
+                    "Update",
+                    "Verify",
+                    "PreStartup"
+                  ]
+                },
+                "checksum": 333
+              },
+              {
+                "key": "function_group_states",
+                "value": {
+                  "string[]": []
+                },
+                "checksum": 333
+              },
+              {
+                "key": "arguments",
+                "value": {
+                  "string[]": [
+                    "/opt/platform/mdc_platform/runtime_service/config_server/conf/cfg_config.json"
+                  ]
+                },
+                "checksum": 333
+              },
+              {
+                "key": "environments",
+                "value": {
+                  "string[]": [
+                    "CM_CONFIG_FILE_PATH=/opt/platform/mdc_platform/runtime_service/config_server/etc/ConfigServerProcess/",
+                    "VSOMEIP_CONFIGURATION=/opt/platform/mdc_platform/runtime_service/config_server/etc/ConfigServerProcess/vsomeip.json"
+                  ]
+                },
+                "checksum": 333
+              },
+              {
+                "key": "resource_group",
+                "value": {
+                  "string": "ResourceLimit"
+                },
+                "checksum": 333
+              }
+            ]
+          },
+          "checksum": 222
+        }
+      ]
+    },
+    "checksum": 111
+  }
+]

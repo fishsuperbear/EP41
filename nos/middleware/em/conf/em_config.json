@@ -1,0 +1,9 @@
+{
+  "log_id":"EM",
+  "log_desc":"NETAOS EM",
+  "log_level":"2",
+  "log_mode":"3",
+  "log_path":"/opt/usr/log/soc_log/",
+  "log_max_num":"10",
+  "log_max_size":"10"
+}

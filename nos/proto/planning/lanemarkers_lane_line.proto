@@ -1,0 +1,257 @@
+syntax = "proto2";
+
+package hozon.planning;
+
+import "proto/common/header.proto";
+import "proto/perception/perception_obstacle.proto";
+import "proto/common/types.proto";
+import "proto/routing/routing.proto";
+
+message CombinationMg{
+  optional string name = 1;
+  oneof value{
+    bool value_b = 2;
+    int32 value_i = 3;
+    double value_d = 4;
+  }
+}
+enum Resetstate{
+    LS_update = 0;
+    LS_rstLowQlty = 1;
+    LS_laneChange = 2;
+}
+enum PredictState{
+  Init = 0;
+  Update = 1;
+  Coast = 2;
+  LftChange = 3;
+  RgtChange = 4;
+}
+message DeciderState {
+  optional string state_name = 1;
+  oneof state{
+    int32 now_state = 2;
+    PredictState pre_now_state = 3;
+    Resetstate re_now_state = 4;
+  }
+  optional double time = 8;
+  optional int32 count = 9;
+  repeated CombinationMg input_more = 10;
+  optional CombinationMg input_one = 11;
+  optional CombinationMg input_two = 12;
+  optional CombinationMg input_thr = 13;
+  repeated CombinationMg output_more = 14;
+  optional CombinationMg output_one = 15;
+  optional CombinationMg output_two = 16;
+  optional CombinationMg output_thr = 17;
+  repeated double threshold = 18;
+}
+
+message LanemarkersInfo {
+  optional string name = 1;
+  optional hozon.perception.LaneMarkers lanemarkers = 2;
+}
+// lane change info
+message LaneChange{
+  optional string name = 1;
+  optional bool is_coff_terrible = 7;
+  optional bool is_lane_wide_terrible = 8;
+  optional DeciderState width_state_info = 2;
+  optional DeciderState change_state_info = 3;
+  optional bool using_filter_points = 4;
+  optional double predict_pos_a0 = 5;
+  repeated CombinationMg extra_info = 6;
+}
+message LaneChangeInfo{
+  optional string name = 1;
+  optional bool left_lanechange_mnt_flag = 2;
+  optional bool right_lanechange_mnt_flag = 3;
+  repeated LaneChange lane_change = 4;
+  repeated CombinationMg extra_info = 5;
+}
+// filter info
+message LanePointsFilter{
+  optional string name = 1;
+  optional double view_range = 2;
+  repeated hozon.common.Point2D  history_esti_points = 3;
+  repeated hozon.common.Point2D  adjust_history_esti = 4;
+  repeated hozon.common.Point2D  predict_points = 5;
+  repeated hozon.common.Point2D  measure_points = 6;
+  optional double k_length = 7;
+  repeated double k_diff_length = 8;
+  repeated double kalman_gain = 9;
+  repeated hozon.common.Point2D  esti_points = 10;
+  repeated CombinationMg extra_info = 11;
+  optional bool has_history_points = 12;
+}
+message LanesPointsFilter{
+  optional double dx = 1;
+  optional double dy = 2;
+  optional double dphi = 3;
+  repeated LanePointsFilter lane_filter_info = 4;
+}
+// lane split info
+message LaneSplit{
+  optional string name  = 1;
+  optional bool width_split = 2;
+  optional bool quality_split = 3;
+  optional bool is_lane_width_terrible = 4;
+  optional DeciderState width_state = 5;
+  optional DeciderState quality_state = 6;
+  repeated DeciderState state_more = 7;
+  repeated CombinationMg input_info = 8;
+  repeated CombinationMg extra_info = 9;
+}
+message LaneSplitInfo{
+  optional bool is_left_split = 1;
+  optional bool is_right_split = 2;
+  optional bool is_next_left_split = 3;
+  optional bool is_next_right_split = 4;
+  repeated LaneSplit lane_split = 5;
+  repeated CombinationMg extra_info = 6;
+}
+// lane reset info
+message LaneReset{
+  optional string name  = 1;
+  optional DeciderState  state_info = 2;
+  optional bool is_lane_reset = 3;
+  optional double fusion_view_range = 4;
+  optional bool is_fusion_linecoast = 5;
+  repeated CombinationMg extra_info = 6;
+  optional bool is_quality_trig = 7;
+  optional Resetstate last_state = 8;
+  optional Resetstate now_state = 9;
+  optional double original_quality = 10;
+  optional double side_quality = 11;
+  optional bool is_lane_change = 12;
+  optional double quality_coast_time = 14;
+  optional double lane_change_coast_time = 15;
+  optional double time = 13;
+}
+message LanesResetInfo{
+  optional bool is_left_reset = 1;
+  optional bool is_right_reset = 2;
+  optional bool is_next_left_reset = 3;
+  optional bool is_next_right_reset = 4;
+  repeated LaneReset lane_reset = 5;
+  repeated CombinationMg extra_info = 6;
+}
+
+// LaneWidthPrecidt info
+message LaneWidthPrecidt {
+  optional string name = 1;
+  optional int32 lane_width_predict_valid = 2;
+  optional double lane_width_predict_value = 3;
+  repeated CombinationMg input = 4;
+  repeated CombinationMg valid_prerequisite = 5;
+  repeated DeciderState state_info = 6;
+  repeated double lane_width = 7;
+  repeated double dis_lane_width = 8;
+  optional bool quality_reset = 9;
+  optional bool pre_lane_wide_variance = 10;
+  optional bool is_lane_width_terrible = 11;
+  optional DeciderState lock_state = 12;
+  optional DeciderState normal_state = 13;
+  optional DeciderState valid_state = 14;
+  optional DeciderState value_state = 15;
+}
+message LanesWidthPrecidt{
+  optional int32 ego_lane_width_pre_valid = 1;
+  optional double ego_lane_width_pre_value = 2;
+  optional int32 left_lane_width_pre_valid = 3;
+  optional double left_lane_width_pre_value = 4;
+  optional int32 right_lane_width_pre_valid = 5;
+  optional double right_lane_width_pre_value = 6;
+  repeated LaneWidthPrecidt lane_width_predict_info = 7;
+  repeated CombinationMg extra_info = 8;
+}
+// lanemarker copy
+message LanemarkerCopy {
+  optional string name = 1;
+  optional double lanewidth_prediction_last = 2;
+  optional bool is_trigger_copy = 3;
+  optional bool do_is_bridge_copy = 4;
+  optional DeciderState state_info = 5;
+}
+message LaneMarkersCopy {
+  optional bool left_is_copy = 1;
+  optional bool right_is_copy = 2;
+  optional bool next_left_is_copy = 3;
+  optional bool next_right_is_copy = 4;
+  repeated LanemarkerCopy lanemarker_copy_info = 5;
+  repeated CombinationMg extra_info = 6;
+}
+
+message LdwWarningZone {
+  optional string name = 1;
+  optional double left_in = 2;
+  optional double left_out = 3;
+  optional double right_in = 4;
+  optional double right_out = 5;
+}
+
+message LdpLdwTire2Line {
+  optional string name = 1;
+  optional double dis_2_left = 2;
+  optional double dis_2_right = 3;
+}
+
+message LdpLdwWarningInfo {
+  optional string name = 1;
+  optional bool ldw_left_flag = 2;
+  optional bool ldw_right_flag = 3;
+  optional bool ldp_left_flag = 4;
+  optional bool ldp_right_flag = 5;
+  optional bool ldp_left_done = 6;
+  optional bool ldp_right_done = 7;
+  optional LdwWarningZone ldw_warning_zone = 8;
+  optional LdpLdwTire2Line ldp_ldw_tire_2_line = 9;
+}
+
+// next id: 24
+message LanemarkersDeciderDebug {
+  optional hozon.common.Header header = 1;
+  optional double vehicle_speed = 2;
+  optional double yaw_rate = 3;
+  optional bool is_lanechange_to_left = 4;
+  optional bool is_lanechange_to_right = 5;
+  optional double original_left_lane_quality = 6;
+  optional double original_right_lane_quality = 7;
+  optional double original_next_left_lane_quality = 8;
+  optional double original_next_right_lane_quality = 9;
+  repeated LanemarkersInfo lanemarkerinfo = 10;
+  optional LaneMarkersCopy lanemarkers_copy_info = 12;
+  optional LanesWidthPrecidt lanes_width_predict_info = 11;
+  optional LanesResetInfo lanes_reset_info = 13;
+  optional LaneSplitInfo lane_split_info = 14;
+  optional LaneChangeInfo lane_change_info = 15;
+  optional LanesPointsFilter lane_filter_info = 16;
+  repeated CombinationMg extra_info = 17;
+  optional hozon.perception.LaneMarker central_lanemarker = 18;
+}
+message OneLaneTime {
+  optional string name = 1;
+  optional double lane_point_time = 2;
+  optional double down_time = 3;
+  optional int32 lane_point_size = 4;
+}
+message CreatMapTime {
+  optional double all_time = 1;
+  repeated OneLaneTime lane_time = 2;
+}
+message ChangeLaneTypeInfo {
+  optional hozon.routing.PerceptionChangeLaneTypes input_change_lane_types = 1;
+  optional hozon.routing.PerceptionChangeLaneTypes cur_change_lane_types = 2;
+  optional int32 chang_lane_type_state = 3;
+  optional int32 count = 4;
+}
+message LanemarkersLaneLine {
+  optional hozon.common.Header header = 1;
+  optional LanemarkersDeciderDebug  lanemarker_decider_debug = 2;
+  optional double lanemarker_new_decider_time = 3;
+  optional double lane_path_generator_time = 4;
+  optional double lane_map_creator_time = 5;
+  optional CreatMapTime creat_map_time = 6;
+  optional ChangeLaneTypeInfo change_lane_type_info = 7;
+  optional LdpLdwWarningInfo ldp_ldw_warning_info = 8;
+}

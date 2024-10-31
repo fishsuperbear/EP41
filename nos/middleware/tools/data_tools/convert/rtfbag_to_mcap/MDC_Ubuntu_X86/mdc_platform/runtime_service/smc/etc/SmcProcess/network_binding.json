@@ -1,0 +1,104 @@
+{
+  "instanceSpecifiers": [
+    {
+      "instanceSpecifier": "smc/smc/",
+      "service": "/HuaweiMDC/PlatformServices/DiagComServer",
+      "instanceIdentifiers": [
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "3"
+        }
+      ]
+    },
+    {
+      "instanceSpecifier": "smc/smc/SmcFromCfgRPort",
+      "service": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface",
+      "instanceIdentifiers": [
+        {
+          "protocol": "SOMEIP",
+          "instanceIdentifier": "1"
+        }
+      ]
+    },
+    {
+      "instanceSpecifier": "smc/smc/SmcFromDevmCenterRPort",
+      "service": "/HuaweiMDC/PlatformServiceInterface/DevmCenterServiceInterface/DevmCenterServiceInterface",
+      "instanceIdentifiers": [
+        {
+          "protocol": "SOMEIP",
+          "instanceIdentifier": "1"
+        }
+      ]
+    },
+    {
+      "instanceSpecifier": "smc/smc/SmcFromMcuRPort",
+      "service": "/HuaweiMDC/MdcPlatformServices/McuCanNetWorkServiceInterface/McuCanNetWorkServiceInterface",
+      "instanceIdentifiers": [
+        {
+          "protocol": "SOMEIP",
+          "instanceIdentifier": "1"
+        }
+      ]
+    },
+    {
+      "instanceSpecifier": "smc/smc/SmcFromMcuEventRPort",
+      "service": "/HuaweiMDC/MdcPlatformServices/McuEventServiceInterface/McuEventServiceInterface",
+      "instanceIdentifiers": [
+        {
+          "protocol": "SOMEIP",
+          "instanceIdentifier": "1"
+        }
+      ]
+    },
+    {
+      "instanceSpecifier": "smc/smc/SmcFromSmnRPort",
+      "service": "/HuaweiMDC/PlatformServiceInterface/SmnServiceInterface/SmnServiceInterface",
+      "instanceIdentifiers": [
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "1"
+        }
+      ]
+    },
+    {
+      "instanceSpecifier": "smc/smc/SmcReportEventRPort",
+      "service": "/HuaweiMDC/MdcPlatformServices/PlatformServiceInterface/FmServiceInterface/FmReportEventService",
+      "instanceIdentifiers": [
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "1444"
+        }
+      ]
+    },
+    {
+      "instanceSpecifier": "smc/smc/SmcToAppPPort",
+      "service": "/HuaweiMDC/PlatformServiceInterface/SmcServiceInterface/TriggerInOut",
+      "instanceIdentifiers": [
+        {
+          "protocol": "SOMEIP",
+          "instanceIdentifier": "1"
+        }
+      ]
+    },
+    {
+      "instanceSpecifier": "smc/smc/SmcToMcuPPort",
+      "service": "/HuaweiMDC/PlatformServiceInterface/SmcInnerServiceInterface/SmCenter",
+      "instanceIdentifiers": [
+        {
+          "protocol": "SOMEIP",
+          "instanceIdentifier": "1"
+        }
+      ]
+    },
+    {
+      "instanceSpecifier": "smc/smc/PlatformStateAgentToAppPPort",
+      "service": "/HuaweiMDC/PlatformServiceInterface/PlatformStateAgentServiceInterface/PlatformStateAgent",
+      "instanceIdentifiers": [
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "1"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+#include "common.idl"
+#include "type.idl"
+
+/* *******************************************************************************
+    功能描述        :  AlgUssRawData_PDC数据
+******************************************************************************* */
+struct AlgUssRawData_PDC {
+    uint8 echo_num;
+    uint16 distance[10];
+    uint16 width[10];
+    uint8 peak[10];
+    uint8 status_error;
+    uint8 status_work;
+    uint8 counter;
+    uint64 system_time;
+    uint16 wTxSns_Ringtime;
+};
+
+/* ******************************************************************************
+    功能描述        :  AlgUssRawData_APA数据
+****************************************************************************** */
+struct AlgUssRawData_APA {
+    uint16 distance;
+    uint16 distance_2nd;
+    uint16 width;
+    uint8 peak;
+    uint16 Rest_Time;
+    uint8 Diagnosis;
+    uint64 system_time;
+    uint8 counter;
+};
+
+struct UssRawData_PdcIfo_AVM {
+    uint8 flc_distance;
+    uint8 flm_distance;
+    uint8 frc_distance;
+    uint8 frm_distance;
+    uint8 rlc_distance;
+    uint8 rlm_distance;
+    uint8 rrm_distance;
+    uint8 rrc_distance;
+    uint16 fls_distance;
+    uint16 frs_distance;
+    uint16 rls_distance;
+    uint16 rrs_distance;
+    uint8 flc_fault_status;
+    uint8 frm_fault_status;
+    uint8 frc_fault_status;
+    uint8 rlc_fault_status;
+    uint8 rlm_fault_status;
+    uint8 rrm_fault_status;
+    uint8 rrc_fault_status;
+    uint8 flm_fault_status;
+    uint8 fls_fault_status;
+    uint8 frs_fault_status;
+    uint8 rls_fault_status;
+    uint8 rrs_fault_status;
+    uint8 ls_distance;
+    uint8 rs_distance;
+    float fpa_min_dist;
+    float rpa_min_dist;
+    float pa_obstacles_mindist;
+    uint8 pa_obstacles_area;
+};
+
+/* ******************************************************************************
+    功能描述        :  AlgUssRawDataSet数据
+****************************************************************************** */
+struct AlgUssRawDataSet : IDLBaseType {
+    uint64 time_stamp;
+    AlgUssRawData_APA fls_info;
+    AlgUssRawData_APA frs_info;
+    AlgUssRawData_APA rls_info;
+    AlgUssRawData_APA rrs_info;
+    AlgUssRawData_PDC flc_info;
+    AlgUssRawData_PDC flm_info;
+    AlgUssRawData_PDC frm_info;
+    AlgUssRawData_PDC frc_info;
+    AlgUssRawData_PDC rlc_info;
+    AlgUssRawData_PDC rlm_info;
+    AlgUssRawData_PDC rrm_info;
+    AlgUssRawData_PDC rrc_info;
+    uint8 counter;
+    UssRawData_PdcIfo_AVM pdcinfo_avm;
+    UssRawData_PdcIfo_AVM pdcinfo_filter;
+    boolean isValid ;
+};

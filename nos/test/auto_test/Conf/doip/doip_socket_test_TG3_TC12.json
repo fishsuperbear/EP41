@@ -1,0 +1,141 @@
+{
+	"test":[
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":16,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"00 00 00"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"payload_data":"04"
+		}
+		],
+		"describe":"<TG3_TC12> 1 路由激活请求报文负载长度无效否定响应测试",
+		"sever_close_wait":100
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":0,
+			"payload_data":""
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"payload_data":"04"
+		}
+		],
+		"describe":"<TG3_TC12> 2 路由激活请求报文负载长度无效否定响应测试",
+		"sever_close_wait":100
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":1,
+			"payload_data":"10"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"payload_data":"04"
+		}
+		],
+		"describe":"<TG3_TC12> 3 路由激活请求报文负载长度无效否定响应测试",
+		"sever_close_wait":100
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":1,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"00 00 00"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"payload_data":"04"
+		}
+		],
+		"describe":"<TG3_TC12> 4 路由激活请求报文负载长度无效否定响应测试",
+		"sever_close_wait":100
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":9,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"10 00 00 00 00"
+		}
+		],
+		"tcp_close": true,
+		"describe":"<TG3_TC12> 5 路由激活请求报文负载长度无效否定响应测试-正常激活"
+	}
+	
+	
+	]
+}
+
+

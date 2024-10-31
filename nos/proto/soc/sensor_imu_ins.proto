@@ -1,0 +1,60 @@
+syntax = "proto2";
+
+package hozon.soc;
+
+import "proto/common/header.proto";
+import "proto/common/types.proto";
+
+message ImuPose {
+  optional hozon.common.Point3D imu_position = 1;
+  optional hozon.common.Point3D euler_angle = 2;
+}
+message ImuInfo {
+  optional hozon.common.Point3D angular_velocity = 1;
+  optional hozon.common.Point3D linear_acceleration = 2;
+  optional hozon.common.Point3D imuVB_angular_velocity = 3;
+  optional hozon.common.Point3D imuVB_linear_acceleration = 4;
+  optional uint32 imu_status = 5;
+  optional double temperature = 6;
+  optional hozon.common.Point3D gyro_offset = 7;
+  optional hozon.common.Point3D accel_offset = 8;
+  optional hozon.common.Point3D ins2antoffset = 9;
+  optional ImuPose imu2bodyosffet = 10;
+  optional float imuyaw = 11;
+}
+
+message InsInfo {
+  optional double latitude = 1;
+  optional double longitude = 2;
+  optional double altitude = 3;   // altitude
+  optional hozon.common.Point3D attitude = 4;
+  optional hozon.common.Point3D linear_velocity = 5;
+  optional hozon.common.Point3D augular_velocity = 6;
+  optional hozon.common.Point3D linear_acceleration = 7;
+  optional float heading  = 8;
+  optional hozon.common.Point3D mounting_error = 9;
+  optional hozon.common.Point3D sd_position = 10;
+  optional hozon.common.Point3D sd_attitude = 11;
+  optional hozon.common.Point3D sd_velocity = 12;
+  optional uint32 sys_status = 13;
+  optional uint32 gps_status = 14;
+  optional uint32 sensor_used  = 15;
+  optional float wheel_velocity  = 16;
+  optional float odo_sf  = 17;
+}
+
+message OffsetInfo {
+  optional hozon.common.Point3D gyo_bias = 1;
+  optional hozon.common.Point3D gyo_sf = 2;
+  optional hozon.common.Point3D acc_bias = 3;
+  optional hozon.common.Point3D acc_sf = 4;
+}
+
+message ImuIns {
+  optional hozon.common.Header header = 1;
+  optional uint32 gps_week = 2;
+  optional double gps_sec = 3;
+  optional ImuInfo imu_info = 4;
+  optional InsInfo ins_info = 5;
+  optional OffsetInfo offset_info = 6;
+}

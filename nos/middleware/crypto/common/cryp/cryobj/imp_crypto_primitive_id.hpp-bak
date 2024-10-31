@@ -1,0 +1,67 @@
+#ifndef ARA_CRYPTO_CRYP_IMP_CRYPTO_PRIMITEVED_ID_H_
+#define ARA_CRYPTO_CRYP_IMP_CRYPTO_PRIMITEVED_ID_H_
+
+#include "core/string_view.h"
+#include "common/entry_point.h"
+#include "common/base_id_types.h"
+#include "cryp/cryobj/crypto_primitive_id.h"
+#include "cryp/crypto_provider.h"
+
+namespace hozon {
+namespace netaos {
+namespace crypto {
+namespace cryp {
+class ImpCryptoPrimitiveId:public CryptoPrimitiveId {
+public:
+    struct PrimitiveIdInfo {
+        AlgId crypAlgId;
+        // Category              crypCategory;
+        // CryptoProvider*       crypProvider;
+        netaos::core::StringView primitiveName;
+        PrimitiveIdInfo(AlgId crypAlgId) : crypAlgId(crypAlgId) {
+            CryptoProvider::Uptr loadProvider = LoadCryptoProvider(); 
+            auto ret = loadProvider->ConvertToAlgName(crypAlgId);
+            if(ret.HasValue()){
+                netaos::core::StringView retSV(ret->data());
+                primitiveName  = retSV;
+            }
+        }
+    };
+
+    using Uptrc = std::unique_ptr<const ImpCryptoPrimitiveId>;
+    using Uptr = std::unique_ptr<ImpCryptoPrimitiveId>;
+    ~ImpCryptoPrimitiveId () noexcept=default;
+    // ImpCryptoPrimitiveId() = default;
+    ImpCryptoPrimitiveId(AlgId crypAlgId):primitiveIdInfo_(crypAlgId){}
+    AlgId GetPrimitiveId() const noexcept override{
+        return primitiveIdInfo_.crypAlgId;
+    }
+    const netaos::core::StringView GetPrimitiveName() const noexcept override {
+        // TODO
+        netaos::core::StringView name;
+        return name;
+        // return primitiveIdInfo_.primitiveName;
+    }
+
+    int setAlgid(AlgId algid){
+        primitiveIdInfo_.crypAlgId = algid;
+        return 0;
+    }
+
+    int setprimitiveName(netaos::core::StringView name){
+        primitiveIdInfo_.primitiveName = name;
+        return 0;
+    }
+
+    // CryptoPrimitiveId& operator= (const CryptoPrimitiveId &other)=default;
+    // CryptoPrimitiveId& operator= (CryptoPrimitiveId &&other)=default;
+
+private:
+ 
+};
+}  // namespace cryp
+}  // namespace crypto
+}  // namespace ara
+}  // namespace ara
+
+#endif  // #define ARA_CRYPTO_CRYP_IMP_CRYPTO_PRIMITEVED_ID_H_

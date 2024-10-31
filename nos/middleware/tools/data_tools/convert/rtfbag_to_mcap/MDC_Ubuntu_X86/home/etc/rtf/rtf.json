@@ -1,0 +1,34 @@
+{
+    "rtf_default_user": "mdc",
+    "rtf_default_group": "mdc",
+    "rtf_default_nic" : "",
+    "rtf_data_statistic": {
+        "enable": true,
+        "period": 20
+    },
+    "phm": {
+        "phm_notifier_instance": ""
+    },
+    "tools": {
+        "tools_instance": ""
+    },
+    "em": {
+        "em_instance": ""
+    },
+    "plugins": {
+        "fvm": ""
+    },
+    "dds" : {
+        "qos" : {
+            "transport_mode" : "transport_asynchronous_mode"
+        }
+    },
+    "snapshot": {
+        "threshold": 0,
+        "enable_sched_trace": false,
+        "time_delay":  false,
+        "cpu_usage": false,
+        "net_statistics": false,
+        "path": "/tmp"
+    }
+}

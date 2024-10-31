@@ -1,0 +1,36 @@
+{
+    "DoIpNetworkConfiguration": [
+        {
+            "netType": "IPv4",
+            "sourceType": "in",
+            "if_use": "doipclient",
+            "ifName": "enp0s31f6",
+            "localIp": "10.4.51.180",
+            "multicastIp": "255.255.255.255",
+            "tcpPort": 13400,
+            "udpPort": 13400
+        }
+    ],
+    "DoIpRoutingTable": [
+        {
+            "logicalAddress": 4291,
+            "Ip": "10.4.51.126",
+            "ifName": "enp0s31f6"
+        },
+        {
+            "logicalAddress": 1,
+            "Ip": "10.4.51.126",
+            "ifName": "enp0s31f6"
+        }
+    ],
+    "DoIpTimerConfiguration": {
+        "doipAckTimeout": 2000
+    },
+    "DoIpEntityConfiguration": {
+        "entity_type": "equip", /* edge_gateway, gateway, node, equip */
+        "logicalAddress": 4194,
+        "maxRequestBytes": 4194304
+    },
+    "DoIpSwitchConfiguration": {
+    }
+}

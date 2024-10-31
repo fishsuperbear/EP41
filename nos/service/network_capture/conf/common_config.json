@@ -1,0 +1,13 @@
+{
+    "LogAppName": "CAPTURE",
+    "LogAppDescription": "network_capture",
+    "LogContextName": "CAPTURE",
+    "LogLevel": 2, // TRACE=0,DEBUG,INFO,WARN,ERROR,CRITICAL,OFF=6
+    "LogMode": 2, // CONSOLE=1,FILE,CONSOLE_FILE=3
+    "LogFilePath": "/opt/usr/log/soc_log/",
+    "MaxLogFileNum": 10,
+    "MaxSizeOfLogFile": 20,
+    "DebugSwitch": "off",
+    "SomeipFlag": true, //if capture someip data from network? default false.
+    "CloudpointFlag": true //if capture cloud point data from network? default true.
+}

@@ -1,0 +1,85 @@
+%YAML:1.0
+
+recvInstances:
+    - name: camera_0
+      topic: /soc/zerocopy/camera_0
+      type: idl_cuda_proxy
+      domainId: 0
+    - name: camera_1
+      topic: /soc/zerocopy/camera_1
+      type: idl_cuda_proxy
+      domainId: 0
+    - name: camera_2
+      topic: /soc/zerocopy/camera_2
+      type: idl_cuda_proxy
+      domainId: 0
+    - name: camera_4
+      topic: /soc/zerocopy/camera_4
+      type: idl_cuda_proxy
+      domainId: 0
+    - name: camera_5
+      topic: /soc/zerocopy/camera_5
+      type: idl_cuda_proxy
+      domainId: 0
+    - name: camera_6
+      topic: /soc/zerocopy/camera_6
+      type: idl_cuda_proxy
+      domainId: 0
+    - name: camera_7
+      topic: /soc/zerocopy/camera_7
+      type: idl_cuda_proxy
+      domainId: 0
+    - name: camera_8
+      topic: /soc/zerocopy/camera_8
+      type: idl_cuda_proxy
+      domainId: 0
+    - name: camera_9
+      topic: /soc/zerocopy/camera_9
+      type: idl_cuda_proxy
+      domainId: 0
+    - name: camera_10
+      topic: /soc/zerocopy/camera_10
+      type: idl_cuda_proxy
+      domainId: 0
+    - name: camera_11
+      topic: /soc/zerocopy/camera_11
+      type: idl_cuda_proxy
+      domainId: 0
+
+log:
+    mode: 3
+    file: ./
+    name: cmps
+    description: cm_proto_sample
+    level: 2  
+    adf:
+      level: 2
+
+# trigger二选一即可
+trigger:
+    - name: nvs_cam
+      type: EVENT
+      timeWindow: 60
+      mainSources: 
+          - name: camera_0
+            timeout: 1000
+          - name: camera_1
+            timeout: 1000
+          - name: camera_2
+            timeout: 1000
+          - name: camera_4
+            timeout: 1000
+          - name: camera_5
+            timeout: 1000
+          - name: camera_6
+            timeout: 1000
+          - name: camera_7
+            timeout: 1000
+          - name: camera_8
+            timeout: 1000
+          - name: camera_9
+            timeout: 1000
+          - name: camera_10
+            timeout: 1000
+          - name: camera_11
+            timeout: 1000

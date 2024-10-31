@@ -1,0 +1,12 @@
+identifier:
+  "MAPPING"
+description: "Mapping module"
+sm_client:
+  sendInstanceID:
+  recvInstanceID:
+    TriggerInOut:
+        instanceId: [1]
+        portName: ["AppFromSmcRPort"]
+    PlatformStateAgent:
+        instanceId: [1]
+        portName: ["AppFromPlatformStateAgentRPort"]

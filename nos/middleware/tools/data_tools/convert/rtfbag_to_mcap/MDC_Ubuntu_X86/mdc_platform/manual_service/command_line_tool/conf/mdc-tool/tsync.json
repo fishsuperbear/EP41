@@ -1,0 +1,38 @@
+[
+    {
+        "key" : "app",
+        "value" :
+        {
+            "string" : "tsync"
+        }
+    },
+    {
+        "key" : "command",
+        "value" :
+        {
+            "string[]" : [
+                "tsync { MP | DP | DP_AND_MP | MPS | DPS } -g",
+                "tsync MP | DP  -s < SEC > < NSEC >"
+                ]
+        }
+    },
+    {
+        "key" : "help",
+        "value" :
+        {
+            "string[]" : [
+                "DP                                 data plane",
+                "MP                                 manage plane",
+                "DP_AND_MP                          data & manage time",
+                "DPS                                data plane status",
+                "MPS                                manage plane status",
+                "-g                                 get time",
+                "-s                                 set time",
+                "eg:",
+                "mdc-tool tsync DP|MP                       -s      sec             nsec",
+                "mdc-tool tsync DP|MP                       -s      1639120283      234512018",
+                "mdc-tool tsync DP|MP|DP_AND_MP|MPS|DPS     -g"
+                ]
+        }
+    }
+]

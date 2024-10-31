@@ -1,0 +1,15 @@
+#include "common.idl"
+#include "type.idl"
+
+struct objectInfo {
+    uint8 objectID;
+    uint8 objectZone;
+    uint8 objectDirection;
+    uint8 warningLevel;
+};
+
+struct Alglowspeedbsd : IDLBaseType {
+    objectInfo object[6];
+    uint8 ViewSide;
+    uint8 Workst;
+};

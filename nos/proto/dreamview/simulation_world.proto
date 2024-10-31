@@ -1,0 +1,569 @@
+syntax = "proto2";
+
+package hozon.dreamview;
+
+import "proto/soc/chassis.proto";
+import "proto/common/types.proto";
+// import "proto/common/monitor_log.proto";
+import "proto/common/pnc_point.proto";
+import "proto/perception/perception_obstacle.proto";
+import "proto/planning/planning_internal.proto";
+import "proto/prediction/feature.proto";
+import "proto/prediction/vector_net.proto";
+import "proto/routing/routing.proto";
+import "proto/planning/warning.proto";
+// import "proto/common/geometry.proto";
+import "proto/map/map_geometry.proto";
+import "proto/map/map.proto";
+import "proto/fsm/function_manager.proto";
+import "proto/fsm/metric.proto";
+// import "proto/dreamview/camera_update.proto";
+
+message Prediction2DChart{
+  repeated PolygonPoint history_position = 1;
+  repeated PolygonPoint filter_history_position = 2;
+  repeated PolygonPoint history_position_flu_x = 3;
+  repeated PolygonPoint history_position_flu_y = 4;
+  repeated PolygonPoint history_velocity = 5;
+  repeated PolygonPoint filter_history_velocity = 6;
+  repeated PolygonPoint history_velocity_flu_x = 7;
+  repeated PolygonPoint history_velocity_flu_y = 8;
+  repeated PolygonPoint history_accleration = 9;
+  repeated PolygonPoint filter_history_accleration = 10;
+}
+
+// Next-id: 4
+message PolygonPoint {
+  optional double x = 1;
+  optional double y = 2;
+  optional double z = 3 [ default = 0.0 ];
+
+  // Gaussian probability information
+  optional hozon.common.GaussianInfo gaussian_info = 4;
+  optional double theta = 5 [default = 0.0];
+}
+
+// Next-id: 3
+message Prediction {
+  optional double probability = 1;
+  repeated PolygonPoint predicted_trajectory = 2;
+}
+
+// Next-id: 13
+message Decision {
+  enum Type {
+    IGNORE = 0;   // Ignore the object
+    STOP = 1;     // Stop at a distance from the object
+    NUDGE = 2;    // Go around the object
+    YIELD = 3;    // Go after the object
+    OVERTAKE = 4; // Go before the object
+    FOLLOW = 5;   // Follow the object in the same lane
+    SIDEPASS = 6; // Pass the object in neighboring lane
+    ODD = 7;
+    STATICOBS = 8;
+    BIGCAROBS = 9;
+    ALCOBS = 10;
+    LON_AVILOD = 11;
+  }
+  optional Type type = 1 [ default = IGNORE ];
+
+  // Shape Info
+  // Can be used for corners of nudge region
+  repeated PolygonPoint polygon_point = 2;
+
+  // Position Info
+  // Can be used for stop fence
+  optional double heading = 3;
+  optional double latitude = 4;
+  optional double longitude = 5;
+  optional double position_x = 6;
+  optional double position_y = 7;
+  optional double length = 8 [ default = 2.8 ];
+  optional double width = 9 [ default = 1.4 ];
+  optional double height = 10 [ default = 1.8 ];
+
+  enum StopReasonCode {
+    STOP_REASON_HEAD_VEHICLE = 1;
+    STOP_REASON_DESTINATION = 2;
+    STOP_REASON_PEDESTRIAN = 3;
+    STOP_REASON_OBSTACLE = 4;
+    STOP_REASON_SIGNAL = 100;
+    STOP_REASON_STOP_SIGN = 101;
+    STOP_REASON_YIELD_SIGN = 102;
+    STOP_REASON_CLEAR_ZONE = 103;
+    STOP_REASON_CROSSWALK = 104;
+    STOP_REASON_EMERGENCY = 105;
+    STOP_REASON_NOT_READY = 106;
+    STOP_REASON_PULL_OVER = 107;
+    STOP_REASON_ODD_ABNOMAL = 200;
+    STOP_REASON_ODD_SPECIAL_AREA = 201;
+    STOP_REASON_ODD_CONSTRUCTION = 202;
+    STOP_REASON_ODD_TUNNEL = 203;
+    STOP_REASON_ODD_CURVATYRE = 204;
+    STOP_REASON_ODD_LON_SLOPE = 205;
+    STOP_REASON_ODD_SPECIAL_LANE = 206;
+    STOP_REASON_ODD_LANEWIDTH = 207;
+    STOP_REASON_ODD_NO_SEPARATE_AREA = 208;
+    STOP_REASON_ODD_LANE_LINE_INDISTINCT = 209;
+    STOP_REASON_ODD_TRAFFIC_LIGHT = 210;
+    STOP_REASON_ODD_ROAD_END = 211;
+    STOP_REASON_ODD_UNKONWN = 212;
+  }
+  optional StopReasonCode stopReason = 11;
+  optional hozon.routing.ChangeLaneType change_lane_type = 12;
+}
+
+// Next-id: 40
+message Object {
+  // ID
+  optional string id = 1; // primary identifier for each object
+
+  // Shape Info
+  repeated PolygonPoint polygon_point = 2; // corners of an object
+
+  // Position Info
+  optional double heading = 3;
+  optional double latitude = 4;
+  optional double longitude = 5;
+  optional double position_x = 6;
+  optional double position_y = 7;
+  optional double length = 8 [ default = 2.8 ];
+  optional double width = 9 [ default = 1.4 ];
+  optional double height = 10 [ default = 1.8 ];
+
+  // Motion Info
+  // For objects with motion info such as ADC.
+  optional double speed = 11;              // in m/s, can be negative
+  optional double speed_acceleration = 12; // in m/s^2
+  optional double speed_jerk = 13;
+  optional double spin = 14;
+  optional double spin_acceleration = 15;
+  optional double spin_jerk = 16;
+  optional double speed_heading = 17;
+  optional double kappa = 18;
+  optional double dkappa = 35;
+
+  // Signal Info
+  // For objects with signals set and current signal such as Traffic Light,
+  // Stop Sign, and Vehicle Signal.
+  repeated string signal_set = 19;
+  optional string current_signal = 20;
+
+  // Time Info
+  optional double timestamp_sec = 21;
+
+  // Decision Info
+  repeated Decision decision = 22;
+  optional bool yielded_obstacle = 32 [ default = false ];
+
+  // Chassis Info
+  // For ADC
+  optional double throttle_percentage = 23;
+  optional double brake_percentage = 24;
+  optional double steering_percentage = 25;
+  optional double steering_angle = 26;
+  optional double steering_ratio = 27;
+  optional int32 battery_percentage = 38;
+  optional hozon.soc.Chassis.GearPosition gear_location = 39;
+  enum DisengageType {
+    DISENGAGE_NONE = 0;
+    DISENGAGE_UNKNOWN = 1;
+    DISENGAGE_MANUAL = 2;
+    DISENGAGE_EMERGENCY = 3;
+    DISENGAGE_AUTO_STEER_ONLY = 4;
+    DISENGAGE_AUTO_SPEED_ONLY = 5;
+    DISENGAGE_CHASSIS_ERROR = 6;
+  };
+
+  optional DisengageType disengage_type = 28;
+
+  enum Type {
+    UNKNOWN = 0;
+    UNKNOWN_MOVABLE = 1;
+    UNKNOWN_UNMOVABLE = 2;
+    PEDESTRIAN = 3; // pedestrian, usually determined by moving behavior.
+    BICYCLE = 4;    // bike, motor bike.
+    VEHICLE = 5;    // passenger car or truck.
+    TRUCK = 6;
+    BUS = 7;
+    MOTORCYCLE = 8;
+    TRICYCLE = 9;
+    CONE = 10;
+    BAN = 11;
+    STOPBAR = 12;
+    SPEEDHUMP = 13;
+    SPECIAL = 14;
+    Minibus = 15;
+    SMALLANI = 16;
+    SHUIMA = 17;
+    SANJIAOBAN = 18;
+    LONGMENJIA = 19;
+    ZHUZI = 20;
+    GOUWUCHE = 21;
+    YINGERTUICHE = 22;
+    FANGUANGLIZHU = 23;
+    SHIQIU = 24;
+    LUNDANG = 25;
+    DISUO = 26;
+    VIRTUAL = 27;    // virtual object created by decision module.
+    CIPV = 28;       // closest in-path vehicle determined by perception module.
+  };
+
+  optional Type type = 29; // obstacle type
+  // obstacle sub-type
+  optional hozon.perception.PerceptionObstacle.SubType sub_type = 34;
+  repeated Prediction prediction = 30;
+  
+
+  // perception confidence level. Range: [0,1]
+  optional double confidence = 31 [ default = 1 ];
+  optional hozon.prediction.ObstaclePriority obstacle_priority = 33;
+  optional hozon.prediction.ObstacleIntent obstacle_intent = 43;
+
+  // v2x for perception obstacle
+  optional hozon.perception.PerceptionObstacle.Source source = 36
+      [ default = HOST_VEHICLE ]; // source type
+  // v2x use case info
+  // optional hozon.perception.V2XInformation v2x_info = 37;
+
+  repeated PolygonPoint history_position = 40;
+
+  // distinguish localization submodules
+  optional string module_name = 41;
+
+  repeated hozon.prediction.Goal2D goals_2d = 42;
+  optional Prediction2DChart prediction2d_chart = 44;
+}
+
+message DelaysInMs {
+  optional double chassis = 1;
+  optional double localization = 3;
+  optional double perception_obstacle = 4;
+  optional double planning = 5;
+  optional double prediction = 7;
+  optional double traffic_light = 8;
+  optional double control = 9;
+}
+
+message RoutePath { repeated PolygonPoint point = 1; }
+
+message Latency {
+  optional double timestamp_sec = 1;
+  optional double total_time_ms = 2;
+}
+
+message MapElementIds {
+  repeated string lane = 1;
+  repeated string crosswalk = 2;
+  repeated string junction = 3;
+  repeated string signal = 4;
+  repeated string stop_sign = 5;
+  repeated string yield = 6;
+  repeated string overlap = 7;
+  repeated string road = 8;
+  repeated string clear_area = 9;
+  repeated string parking_space = 10;
+  repeated string speed_bump = 11;
+  repeated string pnc_junction = 12;
+}
+
+message ControlData {
+  optional double timestamp_sec = 1;
+  optional double station_error = 2;
+  optional double lateral_error = 3;
+  optional double heading_error = 4;
+  optional hozon.common.TrajectoryPoint current_target_point = 5;
+}
+
+message Notification {
+  optional double timestamp_sec = 1;
+  // optional hozon.common.monitor.MonitorMessageItem item = 2;
+}
+
+message SensorMeasurements { repeated Object sensor_measurement = 1; }
+
+message WarningInfo {
+  optional hozon.planning.WarningLevel warningLevel = 1;
+  optional string msg = 2;
+}
+
+message DebugInfo {
+  enum DebugLevel {
+    SUCCESS = 0;
+    FAILED = 1;
+  };
+  optional DebugLevel debugLevel = 1;
+  optional string msg = 2;
+}
+
+// 可行驶区域边界
+message FreeSpaceRect {
+  optional uint32 id = 1;
+  repeated hozon.common.Point2D freespace_point_vrf = 2;
+}
+
+// 超声波及障碍物信息
+message DetectSensorObs {
+  enum SensorObsType {
+    OBS = 0;
+    SENSOR = 1;
+  };
+  optional hozon.common.Point2D pos=1;
+  optional SensorObsType type = 2;
+}
+
+message LineSegment2d {
+  repeated hozon.common.Point2D point=1;
+}
+
+message ParkingSpace {
+  enum ParkLevel {
+    NORMAL = 0;
+    WIDTH_ERROR = 1;
+    HIGH_ERROR = 2;
+  };
+  enum ParkStatus{
+    FREE=0;
+    OCCUPIED=1;
+    UNKOWN=2;
+  };
+  enum ParkShowLevel {
+    TARGET = 0;
+    LAST = 1;
+    PRE = 2;
+    OTHER = 3;
+    AVOIDOBS = 4;
+    AVOIDADC = 5;
+  };
+  optional ParkLevel park_level = 1;
+  optional ParkStatus park_status = 3;
+  optional ParkShowLevel park_show_level = 4;
+  repeated hozon.common.Point2D parking_lots = 5;
+  repeated LineSegment2d line_2d = 6;
+  optional string id = 7;
+}
+
+message KeyFreeSpace {
+  repeated hozon.common.Point3D key_free_space = 3;
+}
+
+message FreeSpace {
+  repeated hozon.common.Point2D original_freespace_point = 3;
+  repeated hozon.common.Point2D freespace_point = 5;
+  repeated hozon.common.Point2D curb_freespace_point = 7;
+  repeated hozon.common.Point2D underD_freespace_point = 9;
+  repeated hozon.common.Point2D other_freespace_point = 11;
+  repeated hozon.common.Point2D pedestrain_freespace_point = 13;
+  repeated hozon.common.Point2D vehicle_freespace_point = 15;
+  repeated KeyFreeSpace key_free_spaces = 17;
+}
+
+message TracedPath {
+  repeated hozon.common.Point2D traced_path = 1;
+}
+
+message CtlOutputDebug {
+  optional double ctrlout_throttle_cmd = 1;
+  optional double ctrlout_brake_cmd = 3;
+  optional double ctrlout_steer_cmd = 5;
+  optional uint32 ctrlout_gear_cmd = 7;
+  optional double ctrlout_acc_cmd = 9;
+}
+
+message LonCtlDebug {
+  optional uint32 lonctrl_modecmd = 1;
+  optional double lonctrl_sys_poserr = 3;
+  optional double lonctrl_sys_velff = 5;
+  optional double lonctrl_sys_accff = 7;
+  optional uint32 lonctrl_sys_gearcmd = 9;
+  optional double lonctrl_fdbk_vx = 11;
+  optional double lonctrl_fdbk_ax = 13;
+  optional double lonctrl_fdbk_pitch = 15;
+  optional double lonctrl_fdbk_gear = 17;
+  optional double lonctrl_fdbk_reverse = 19;
+  optional double lonctrl_vel_vel_err = 21;
+  optional double lonctrl_thrust_thr_accerr = 23;
+  optional double lonctrl_pos_pi_velcmd = 25;
+  optional double lonctrl_vel_pi_acc_cmd = 27;
+  optional double lonctrl_thrust_pi_thr_acc_cmd = 29;
+  optional double lonctrl_pos_poserr_filter = 31;
+}
+
+message LatCtlDebug {
+  optional double latctrl_modecmd = 1;
+  optional double latctrl_sys_poserr = 3;
+  optional double latctrl_sys_yawff = 5;
+  optional double latctrl_sys_velff = 7;
+  optional double latctrl_sys_curvff = 9;
+  optional double latictrl_fdbk_vxb = 11;
+  optional double latictrl_fdbk_heading = 13;
+  optional double latictrl_fdbk_yawrate = 15;
+  optional double latictrl_fdbk_steer = 17;
+  optional uint32 latictrl_fdbk_gear = 19;
+  optional double latictrl_fdbk_rvsflag = 21;
+  optional double latictrl_tors_pure_yawerr = 23;
+  optional double latictrl_tors_yawerr = 25;
+  optional double latictrl_offset_pi_torscmd = 27;
+  optional double latictrl_tors_pi_torsrate = 29;
+  optional double latictrl_rate_pi_steer = 31;
+}
+
+message MbdCtrlDecDebugFromMCU {
+  optional uint32 ctrldec_sysmode	= 1;
+  optional bool ctrldec_req_auto	= 2;
+}
+
+message ControlDebugFromMcu {
+  optional CtlOutputDebug ctl_output_debug = 1;
+  optional LatCtlDebug lat_ctl_debug = 3;
+  optional LonCtlDebug lon_ctl_debug = 5;
+  optional MbdCtrlDecDebugFromMCU ctrl_dec_debug = 7;
+}
+
+message RecordFiles {
+  repeated string files = 1;
+}
+
+message RecordDirs {
+  repeated string dirs = 1;
+  map<string, RecordFiles> dir_and_files = 2;
+} 
+
+message routing_response {
+  repeated hozon.common.Point3D point = 1;
+}
+
+message OriginalPose {
+  optional double heading = 1;
+  optional double position_x = 3;
+  optional double position_y = 5;
+}
+
+// Next-id: 31
+message SimulationWorld {
+  // Timestamp in milliseconds
+  optional double timestamp = 1;
+
+  // Sequence number
+  optional uint32 sequence_num = 2;
+
+  // Objects in the world and the associated predictions/decisions
+  repeated Object object = 3;
+
+  // Autonomous driving cars
+  optional Object auto_driving_car = 4;
+
+  // Planning signal
+  optional Object traffic_signal = 5;
+
+  // Routing request
+  repeated hozon.routing.LaneWaypoint request_waypoints = 6;
+  // Timestamp of latest routing
+  optional double routing_time = 7;
+
+  // Planned trajectory
+  repeated Object planning_trajectory = 8;
+
+  // Main decision
+  optional Object main_stop = 9 [ deprecated = true ];
+  optional Object main_decision = 10;
+
+  // Speed limit
+  optional double speed_limit = 11;
+
+  // Module delays
+  optional DelaysInMs delay = 12;
+
+  // Notification
+  //  optional hozon.common.monitor.MonitorMessage monitor = 13
+  //      [ deprecated = true ];
+  repeated Notification notification = 14;
+
+  // Engage advice from planning
+  optional string engage_advice = 15;
+
+  // Module latency
+  map<string, Latency> latency = 16;
+
+  optional MapElementIds map_element_ids = 17;
+  optional uint64 map_hash = 18;
+  optional double map_radius = 19;
+
+  // Planning data
+  optional hozon.planning_internal.PlanningData planning_data = 20;
+
+  // GPS
+  optional Object gps = 21;
+
+  // Lane Markers from perception
+  optional hozon.perception.LaneMarkers lane_marker = 22;
+
+  // Control data
+  optional ControlData control_data = 23;
+
+  // Relative Map
+  repeated hozon.common.Path navigation_path = 24;
+
+  // RSS info
+  optional bool is_rss_safe = 25 [ default = true ];
+  //optional hozon.planning.RSSInfo rss_info = 25;
+  // Shadow localization
+  optional Object shadow_localization = 26;
+
+  // Perception detected signals
+  repeated Object perceived_signal = 27;
+
+  // A map from a story name to whether it is on
+  map<string, bool> stories = 28;
+
+  // A map from a sensor_id to a group of sensor_measurements
+  map<string, SensorMeasurements> sensor_measurements = 29;
+
+  optional bool is_siren_on = 30 [ default = false ];
+  // repeated hozon.common.monitor.MonitorMessageItem monitorMsgitem = 31;
+  // optional hozon.common.monitor.MonitorMessage monitorMsg = 32;
+  optional WarningInfo warningInfo = 32;
+  optional DebugInfo debugInfo = 33;
+  optional string mapMode = 34;
+  optional FreeSpace free_space = 35;
+  repeated DetectSensorObs detect_sensor_obs  = 36;
+  optional string functionOut = 37;
+  optional string functionIn = 38;
+
+  repeated Object localization_modules = 39;
+  repeated hozon.hdmap.Curve without_lane_centrel_line = 40;
+  repeated routing_response routing_response_points = 41;
+  optional string error_code = 42;
+  optional string current_rendering_mode = 43;
+  repeated ParkingSpace parking_spaces = 44;
+  optional string nnp_sys_state = 46;
+  optional string fct_driver_mode = 48;
+  repeated hozon.common.Point2D uss_infos = 50;
+  optional string mdc_system_time = 52;
+  optional string mbd_control = 54;
+  optional hozon.hdmap.Map navi_map = 55;
+  optional ControlDebugFromMcu ctl_debug_from_mcu = 56;
+  optional hozon.metric.NnpMetric nnp_metric = 57;
+  optional RecordDirs record_files = 58;
+  optional string pnc_map_debug = 59;
+  optional hozon.common.Point3D collision_point = 60;
+  repeated hozon.planning_internal.AstarNode astar_nodes = 61;
+  optional hozon.common.Point3D location_point = 62;
+  optional OriginalPose original_pose = 64;
+  optional TracedPath traced_paths = 66;
+
+  /**
+  optional hozon.dreamview.CameraUpdate camera_front_narrow = 67;
+  optional hozon.dreamview.CameraUpdate camera_front_wide = 68;
+  optional hozon.dreamview.CameraUpdate camera_front_left = 69;
+  optional hozon.dreamview.CameraUpdate camera_front_right = 70;
+  optional hozon.dreamview.CameraUpdate camera_rear_left = 71;
+  optional hozon.dreamview.CameraUpdate camera_rear_right = 72;
+  optional hozon.dreamview.CameraUpdate camera_rear_narrow = 73;
+  optional hozon.dreamview.CameraUpdate camera_fisheye_stitcher = 74;
+  optional hozon.dreamview.CameraUpdate camera_fisheye_front = 75;
+  optional hozon.dreamview.CameraUpdate camera_fisheye_left = 76;
+  optional hozon.dreamview.CameraUpdate camera_fisheye_right = 77;
+  optional hozon.dreamview.CameraUpdate camera_fisheye_rear = 78;
+  **/
+}

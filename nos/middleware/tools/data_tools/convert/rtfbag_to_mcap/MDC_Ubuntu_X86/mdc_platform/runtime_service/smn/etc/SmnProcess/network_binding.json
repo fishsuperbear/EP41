@@ -1,0 +1,24 @@
+{
+  "instanceSpecifiers": [
+    {
+      "instanceSpecifier": "smn/smn/SmnToSmcPPort",
+      "service": "/HuaweiMDC/PlatformServiceInterface/SmnServiceInterface/SmnServiceInterface",
+      "instanceIdentifiers": [
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "1"
+        }
+      ]
+    },
+    {
+      "instanceSpecifier": "smn/smn/SmnReportEventRPort",
+      "service": "/HuaweiMDC/MdcPlatformServices/PlatformServiceInterface/FmServiceInterface/FmReportEventService",
+      "instanceIdentifiers": [
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "1444"
+        }
+      ]
+    }
+  ]
+}

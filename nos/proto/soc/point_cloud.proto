@@ -1,0 +1,110 @@
+syntax = "proto2";
+
+package hozon.soc;
+
+import "proto/common/header.proto";
+
+message PointField {
+  // 单位：nsec
+  // 取值范围：0ns~1000000000ns
+  // 分辨率（精度）：1
+  // 信号解析：无
+  optional uint32 time = 1;
+
+  // X轴坐标值。
+  // 取值范围：-200m~200m
+  // 分辨率（精度）：0.01m
+  // 信号解析：超过量程全部归0，按无效点计算。
+  optional double x = 2;
+
+  // Y轴坐标值。
+  // 取值范围：-200m~200m
+  // 分辨率（精度）：0.01m
+  // 信号解析：超过量程全部归0，按无效点计算。
+  optional double y = 3;
+
+  // Z轴坐标值。
+  // 取值范围：-200m~200m
+  // 分辨率（精度）：0.01m
+  // 信号解析：超过量程全部归0，按无效点计算。
+  optional double z = 4;
+
+  // 实际探测距离。
+  // 取值范围：0m~200m
+  // 分辨率（精度）：0.01m
+  // 信号解析：超过量程全部归0，按无效点计算。
+  optional double distance = 5;
+
+  //   实际俯仰角。
+  // 取值范围：-90度~90度
+  // 分辨率（精度）：0.01度
+  // 信号解析：代表该点云的俯仰角。
+  optional double pitch = 6;
+
+  //   实际水平角。
+  // 取值范围：0度~360度
+  // 分辨率（精度）：0.01度
+  // 信号解析：代表该点云的水平角。
+  // 不同激光雷达，取值和精度不同、
+  optional double yaw = 7;
+
+  // 点云强度信息。
+  // 取值范围：0~255
+  // 分辨率（精度）：1
+  // 信号解析：无
+  optional uint32 intensity = 8;
+
+  // 激光线束编号，根据实际设备线束而定。
+  // 分辨率（精度）：1
+  // 信号解析：无
+  optional uint32 ring = 9;
+
+  // 点云在激光雷达UDP包中的序号
+  // 分辨率（精度）：1
+  // 信号解析：无
+  optional uint32 block = 10;
+
+  optional uint32 label = 11;
+}
+message LidarEolCalibStatus {
+  optional uint32 calib_status = 1;  // EOL标定状态： 0x0=EOL未标定 0x1=EOL标定成功 0x2=EOL标定失败 0x3=EOL标定中
+  optional double rotationX = 2;  // 旋转四元数 单位：弧度
+  optional double rotationY = 3;
+  optional double rotationZ = 4;
+  optional double rotationW = 5;
+  optional double translationX = 6;   // 平移信息 单位：m
+  optional double translationY = 7;
+  optional double translationZ = 8;
+}
+
+message PointCloud {
+  optional hozon.common.Header header = 1;
+
+  optional bool is_valid = 2;
+
+  // 大小端格式编码
+  // 取值范围：
+  // 0：小端
+  // 非0：大端
+  optional uint32 is_big_endian = 3;
+
+  optional uint32 height = 4;  // 点云二维结构高度。
+
+  optional uint32 width = 5;  // 点云二维结构宽度，点云数量有效范围由具体传感器决定。
+
+  optional uint32 point_step = 6;  // 一个点云的长度。单位：字节
+
+  optional uint32 row_step = 7;  // 一行点云的长度。单位：字节
+
+  // 判断是否有无效点。
+  // 取值范围：
+  // 非0：没有无效点
+  // 0：有无效点
+  optional uint32 is_dense = 8;
+
+  repeated PointField points = 9;
+
+  optional string ecu_serial_number = 10;  // SN字符串
+
+  optional LidarEolCalibStatus eol_calib_status = 11;  // 标定状态
+}

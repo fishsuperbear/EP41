@@ -1,0 +1,11 @@
+syntax = "proto2";
+import "proto/common/header.proto";
+package adf.lite.dbg;
+
+message WorkflowResult {
+    optional hozon.common.Header header = 1;
+    optional int64 val1 = 2;
+    optional int64 val2 = 3;
+    optional int64 val3 = 4;
+    optional int64 val4 = 5;
+}

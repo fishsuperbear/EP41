@@ -1,0 +1,91 @@
+%YAML:1.0
+
+recvInstances:
+    - name: nnp_lane
+      type: proto_proxy
+      topic: /perception/fsd/transportelement_1
+      domainId: 0
+    - name: hpp_lane
+      type: proto_proxy
+      topic: /perception/parking/transportelement_2
+      domainId: 0
+    - name: location
+      type: proto_proxy
+      topic: /localization/location
+      domainId: 0
+    - name: fst_object
+      type: proto_proxy
+      topic: /perception/fsd/obj_fusion_1
+      domainId: 0
+    - name: parking_object
+      type: proto_proxy
+      topic: /perception/parking/obj_fusion_2
+      domainId: 0
+    - name: planning
+      type: proto_proxy
+      topic: /planning/ego_trajectory
+      domainId: 0
+    # - name: dvr_front_camera
+    #   type: camera_proxy
+    #   topic: /soc/camera_0
+    #   domainId: 0
+
+# sendInstances:
+    # - name: avm_stitcher_image
+    #   type: cm_skeleton
+    #   topic: /hozon/lane
+    #   domainId: 1
+# resourceLimit:
+#     group: hz_state_machine
+#     cpu: 150
+#     memory: 200
+
+log:
+    mode: 2
+    file: /opt/usr/log/soc_log
+    name: stoh
+    description: from_soc_to_hmi
+    level: 1
+    adf:
+      level: 4
+
+others:
+    isTest: false
+    model: 1
+
+trigger:
+    - name: nnp_lane
+      type: EVENT
+      mainSources:
+          - name: nnp_lane
+            timeout: 1000
+    - name: hpp_lane
+      type: EVENT
+      mainSources:
+          - name: hpp_lane
+            timeout: 1000
+    - name: location
+      type: EVENT
+      mainSources:
+          - name: location
+            timeout: 1000
+    - name: fst_object
+      type: EVENT
+      mainSources:
+          - name: fst_object
+            timeout: 1000
+    - name: parking_object
+      type: EVENT
+      mainSources:
+          - name: parking_object
+            timeout: 1000
+    - name: planning
+      type: EVENT
+      mainSources:
+          - name: planning
+            timeout: 1000
+    # - name: dvr_front_camera
+    #   type: EVENT
+    #   mainSources:
+    #       - name: dvr_front_camera
+    #         timeout: 1000

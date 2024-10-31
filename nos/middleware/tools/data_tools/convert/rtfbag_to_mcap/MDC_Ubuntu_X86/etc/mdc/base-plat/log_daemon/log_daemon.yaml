@@ -1,0 +1,14 @@
+log_daemon:
+  bin_path: "/usr/bin/mdc/base-plat/log_daemon/bin/log_daemon"
+  depends: [ ]
+  env: [ ]
+  uid: 1000
+  arguments: [ "-c", "/usr/bin/mdc/base-plat/log_daemon/conf/log_daemon.conf" ]
+  priority: 0
+  restart: "yes"
+  is_so: false
+  process_bind_path: ""
+  term_time_out: 10000
+  is_force_term: true
+  core_affinity: [0,1]
+  res_group_name: "OTHER"

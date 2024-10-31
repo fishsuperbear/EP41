@@ -1,0 +1,232 @@
+syntax = "proto2";
+
+package hozon.planning;
+
+message FaultInfo {
+    // id = fault_id * 100 + fault_obj
+    enum FaultType {
+        NO_FAULT = 0;
+        // EHP融合定位服务通讯丢失
+        EHP_FUSION_LOCATION_TIMEOUT = 1200101;
+        // EHP融合定位输入数据异常
+        EHP_FUSION_LOCATION_DATA_ERROR = 1200201;
+        // ehp配置文件加载失败
+        EHP_LOAD_CONFIG_FILE_ERROR = 1200301;
+        // ehp地图SDK加载异常
+        EHP_LOAD_MAP_SDK_ERROR = 1200401;
+        // ehp地图处理模块状态异常
+        EHP_MAP_MODULE_STATUS_ERROR = 1200501;
+        // 地图升级存储空间异常
+        MAP_UPGRADE_SIZE_ERROR = 1200601;
+        // 地图获取设备唯一标识失败
+        MAP_GET_FLAG_FAIL = 1200701;
+        // 高德内部故障
+        MAP_INNER_ERROR = 1200801;
+        // 地图数据存储路径异常
+        MAP_SAVE_PATH_ERROR = 1200901;
+        // 地图读写权限异常
+        MAP_RW_ERROR = 1201001;
+        // 设备未激活或者激活失败
+        MAP_NOACTIVE_ACTIVEFAIL = 1201101;
+        // 地图初始化失败
+        MAP_INIT_FAIL = 1201201;
+        // 行车融合定位输入通讯丢失
+        NNP_FUSION_LOCATION_TIMEOUT = 1210101;
+        // 行车融合定位输入数据异常
+        NNP_FUSION_LOCATION_DATA_ERROR = 1210201;
+        // 泊车融合定位输入通讯丢失
+        PARKING_FUSION_LOCATION_TIMEOUT = 1210102;
+        // 泊车融合定位输入数据异常
+        PARKING_FUSION_LOCATION_DATA_ERROR = 1210202;
+        // 车身抽象输入通讯丢失
+        CHASSIS_TIMEOUT = 1210103;
+        // 车身抽象输入数据异常
+        CHASSIS_DATA_ERROR = 1210203;
+        // 行车融合感知输入通讯丢失
+        NNP_FUSION_PERCEPTION_TIMEOUT = 1210104;
+        // 行车融合感知输入数据异常
+        NNP_FUSION_PERCEPTION_DATA_ERROR = 1210204;
+        // 泊车融合感知输入通讯丢失
+        PARKING_FUSION_PERCEPTION_TIMEOUT = 1210105;
+        // 泊车融合感知输入数据异常
+        PARKING_FUSION_PERCEPTION_DATA_ERROR = 1210205;
+        // 行车车道线输入通讯丢失
+        NNP_LANE_LINE_TIMEOUT = 1210106;
+        // 行车车道线输入数据异常
+        NNP_LANE_LINE_DATA_ERROR = 1210206;
+        // 泊车车道线输入通讯丢失
+        PARKING_LANE_LINE_TIMEOUT = 1210107;
+        // 泊车车道线输入数据异常
+        PARKING_LANE_LINE_DATA_ERROR = 1210207;
+        // 地图输入数据（ehp）通讯丢失
+        MAP_INPUT_DATA_TIMEOUT = 1210108;
+        // 地图输入数据（ehp）异常
+        MAP_INPUT_DATA_ERROR = 1210208;
+        // 泊车感知输入（Parking_lot）通讯丢失
+        PARKING_PERCEPTION_TIMEOUT = 1210109;
+        // 泊车感知输入数据（Parking_lot）异常
+        PARKING_PERCEPTION_DATA_ERROR = 1210209;
+        // 行车FreeSpace通讯丢失
+        NNP_FREESPACE_TIMEOUT = 1210110;
+        // 行车FreeSpace数据异常
+        NNP_FREESPACE_DATA_ERROR = 1210210;
+        // 泊车FreeSpace通讯丢失
+        PARKING_FREESPACE_TIMEOUT = 1210111;
+        // 泊车FreeSpace数据异常
+        PARKING_FREESPACE_DATA_ERROR = 1210211;
+        // 行车交通标示通讯丢失
+        NNP_TRAFFIC_SIGNS_DATA_TIMEOUT = 1210112;
+        // 行车交通标示数据异常
+        NNP_TRAFFIC_SIGNS_DATA_ERROR = 1210212;
+        // 泊车交通标示通讯丢失
+        PARKING_TRAFFIC_SIGNS_TIMEOUT = 1210113;
+        // 泊车交通标示数据异常
+        PARKING_TRAFFIC_SIGNS_DATA_ERROR = 1210213;
+        // 智能召唤轨迹通讯丢失
+        INTELLIGENT_CALLING_TRACK_TIMEOUT = 1210114;
+        // 智能召唤轨迹数据错误
+        INTELLIGENT_CALLING_TRACK_DATA_ERROR = 1210214;
+        // fct通讯丢失
+        FCT_TIMEOUT = 1210115;
+        // fct数据错误
+        FCT_DATA_ERROR = 1210215;
+        // 行车预测（minieye）通讯丢失
+        NNP_PREDICTION_TIMEOUT = 1210116;
+        // 行车预测（minieye）数据异常
+        NNP_PREDICTION_DATA_ERROR = 1210216;
+        // planning下发信息后下游control响应异常
+        PLANNING_DATA_CONTROL_RESPONSE_ERROR = 1210301;
+        // 配置文件加载异常
+        PLANNING_LOAD_CONFIG_FILE_ERROR = 1210401;
+        // 预测处理模块状态异常
+        PLANNING_PREDICTION_MODULE_ERROR = 1210501;
+        // 记忆泊车地图加载错误
+        PLANNING_HPP_MAP_LOAD_ERROR = 1210601;
+        // 地图处理模块错误
+        PLANNING_MAP_MODULE_STATUS_ERROR = 1210502;
+        // 参考线处理模块状态异常
+        PLANNING_REFERENCE_LINE_MODULE_ERROR = 1210503;
+        // path处理模块状态异常
+        PLANNING_PATH_MODULE_ERROR = 1210504;
+        // speed处理模块状态异常
+        PLANNING_SPEED_MODULE_ERROR = 1210505;
+        // Localview高精地图异常
+        LOCALVIEW_MAP_HD_ERROR = 1210701;
+        // Localview车道线融合异常
+        LOCALVIEW_MAP_LANEHDFUSION_ERROR = 1210702;
+        // Localview车道线异常
+        LOCALVIEW_MAP_LANE_ERROR = 1210703;
+        // Localview泊车地图异常
+        LOCALVIEW_MAP_PARK_ERROR = 1210704;
+        // Localview routing数据异常
+        LOCALVIEW_ROUTING_ERROR = 1210705;
+        // Localview EHR数据异常
+        LOCALVIEW_EHR_ERROR = 1210706;
+        // Localview 功能状态机异常
+        LOCALVIEW_FSM_ERROR = 1210707;
+        // OnLanePlanning算法异常
+        CORE_ONLANE_PLANNING_ERROR = 1210801;
+        // Frame初始化异常
+        CORE_FRAME_ERROR = 1210802;
+        // OnLanePlanning算法求解异常
+        CORE_PLANNING_SOLVEFAIL_ERROR = 1210803;
+        // OnLanePlanning场景创建异常
+        CORE_PLANNING_SCENARIOCREATE_ERROR = 1210804;
+        // OnLanePlanningStage创建异常
+        CORE_PLANNING_STAGECREATE_ERROR = 1210805;
+        // OnLanePlanning车道线跟随异常
+        CORE_PLANNING_LANEFOLLOWSTAGE_ERROR = 1210806;
+        // OnLanePlanning泊车cruisingStage异常
+        CORE_PLANNING_PARKINGCRUISINGSTAGE_ERROR = 1210807;
+        // OnLanePlanning泊车parkingStage异常
+        CORE_PLANNING_PARKINGPARKINGSTAGE_ERROR = 1210808;
+        // OnLanePlanning交规异常
+        CORE_TRAFFICRULE_ERROR = 1210809;
+        // OnLanePlanning泊车超声波模块异常
+        CORE_SAFETYGUARD_ERROR = 1210810;
+        // 决策处理模块状态异常
+        DECIDER_MODULE_ERROR = 1210901;
+        // 泊车path模块异常
+        PARKING_PATH_MODULE_ERROR = 1211001;
+        // 泊车speed模块异常
+        PARKING_SPEED_MODULE_ERROR = 1211002;
+    }
+    optional FaultType type = 1 [default = NO_FAULT];
+    optional string msg = 2;
+}
+
+message EhpFault {
+    repeated FaultInfo fault_info = 1;
+}
+
+message PlanningFault {
+    // map info
+    repeated FaultInfo fault_info = 2;
+}
+
+message EventInfo {
+    enum TriggerType {
+        NO_EVENT = 0;
+        AEB_EVENT = 2001;
+        // Driver emergency braking
+        DRIVER_EMERGENCY_BRAKING = 2002;
+        // Driver emergency steering
+        DRIVER_EMERGENCY_STEERING = 2003;
+        // NNP finally requests to take over and downgrade
+        ODD_DOWNDRAGE = 2004;
+        // The number of parking handles exceeds the limit
+        PARKING_NUM_EXCEED = 2005;
+        // Multiple parking takeover
+        MUTI_PARKING_TAKEOVER = 2006;
+        // Parking ability class failed to take over
+        PARKING_CAPABILITY_FAILURE_TAKEOVER = 2007;
+        // Parking function failure request takeover
+        PARKING_FUCTION_FAILURE_TAKEOVER = 2008;
+        // AVP finally requests to take over and downgrade
+        AVP_TAKEOVER_REQUEST_AND_DEMOTION = 2009;
+        // NNP function failure request takeover
+        NNP_FUCTION_FAULT = 2010;
+        // N-pilot function failure request takeover
+        TAKEOVER_REMIND = 2011;
+        // Algorithm running active request collection
+        ALGORITHM_TRIGGER_EVENT = 2012;
+        // 
+        COLLISION_EVENT = 2013;
+        // NNP function driver takes over actively
+        NNP_DRIVER_ACTIVE_TAKEOVER = 2014;
+        // Control deviation is too large, request to take over
+        EXCESSIVE_DEVIATION_TAKEOVER = 2015;
+        PARKING_COLLISION_EVENT = 2016;
+        FCW_EVENT = 2017;
+        QUICKLY_ACC = 2018;
+        // Parking Unintended Error which got from control or fm
+        PARKING_UNINTENDED_ERROR = 2020;
+        // Parking pause over time
+        PARKING_PAUSE_OVER_TIME = 2021;
+        // Parking takeover request with collision risk
+        PARKING_TAKEOVER_REQUEST_WITH_COLLISION_RISK = 2022;
+        CONTROL_FAULT_TAKEOVER = 2023;
+        NO_FUNCTION_COLLISION_EVENT = 2024;
+    }
+    optional TriggerType type = 1 [default = NO_EVENT];
+    optional string msg = 2;
+}
+
+message EventTrigger {
+    repeated EventInfo event_info = 1;
+}
+
+message WarningInhibition {
+    repeated string irreversible_inhibition_clusters = 1;
+    repeated string reversible_inhibition_clusters = 2;
+    repeated int32 irreversible_inhibition_events = 3;
+    repeated int32 reversible_inhibition_events = 4;
+}
+
+message WarningInhibitionMap {
+    map<string, WarningInhibition> warning_fault_map = 1;
+}
+
+message PlanningErrorCodeMap {
+    map<int32, int32> planning_error_code_map = 1;
+}

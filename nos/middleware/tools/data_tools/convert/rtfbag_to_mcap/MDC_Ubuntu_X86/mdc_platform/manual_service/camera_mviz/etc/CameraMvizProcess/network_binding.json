@@ -1,0 +1,70 @@
+{
+  "instanceSpecifiers": [
+    {
+      "instanceSpecifier": "camera_mviz_x86/CameraMvizRootSwComponent/CameraMvizEncodedMbufReceiveRPort",
+      "service": "/HuaweiMDC/X86PlatformServiceInterface/CameraServiceInterfacePkg/CameraEncodedMbufServiceInterface",
+      "instanceIdentifiers": [
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "71"
+        },
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "72"
+        },
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "73"
+        },
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "74"
+        },
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "85"
+        },
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "75"
+        },
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "76"
+        },
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "77"
+        },
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "78"
+        },
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "79"
+        },
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "80"
+        },
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "81"
+        },
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "82"
+        },
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "83"
+        },
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "84"
+        }
+      ]
+    }
+  ]
+}

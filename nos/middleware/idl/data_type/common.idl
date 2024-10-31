@@ -1,0 +1,24 @@
+struct IDLTimestamp {
+    uint64 sec;
+    uint64 nsec;
+};
+
+struct LinkInfo {
+    string link_name;
+    IDLTimestamp timestamp_real;
+};
+
+struct LatencyInfo {
+    sequence<LinkInfo> link_infos;
+};
+
+struct IDLBaseHeader {
+    uint64 seq;
+    IDLTimestamp timestamp_real;
+    IDLTimestamp timestamp_virt;
+    LatencyInfo latency_info;
+};
+
+struct IDLBaseType {
+    IDLBaseHeader header;
+};

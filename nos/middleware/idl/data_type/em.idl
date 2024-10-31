@@ -1,0 +1,16 @@
+#include "servicebase.idl"
+
+struct em_request: ServiceBase
+{
+    uint32 type;
+    string process_name;
+    string target_process_name;
+    int32 state;
+};
+
+struct em_reply : ServiceBase{
+    uint32 type;
+    string process_name;
+    int32 state;
+    int32 result;
+};

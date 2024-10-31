@@ -1,0 +1,37 @@
+@final
+struct ZeroCopyImageHeader {
+    int64 frame_count;
+    int64 pushlish_timestamp;
+    int64 sensor_timestamp;
+    int16 width;
+    int16 height;
+    int32 stride;
+    int16 align;
+    int8 sid;
+    int8 yuv_type;
+    uint32 length;
+};
+
+@final
+struct ZeroCopyImg8M420 : ZeroCopyImageHeader {
+    // plain mode is not support struct type.
+    // ZeroCopyImageHeader header;
+    // default 3840*2160*1.5
+    char data[13000000];
+};
+
+@final
+struct ZeroCopyImg2M422 : ZeroCopyImageHeader {
+    // plain mode is not support struct type.
+    // ZeroCopyImageHeader header;
+    // default 1920*1080*2
+    char data[5000000];
+};
+
+@final
+struct ZeroCopyImg3M422 : ZeroCopyImageHeader {
+    // plain mode is not support struct type.
+    // ZeroCopyImageHeader header;
+    // default 1920*1536*2
+    char data[6500000];
+};

@@ -1,0 +1,11 @@
+{
+    "LogAppName": "DIAG",
+    "LogAppDescription": "diag_server",
+    "LogContextName": "DIAG",
+    "LogLevel": 1, // DIAG_TRACE=0,DIAG_DEBUG,DIAG_INFO,DIAG_WARN,DIAG_ERROR,DIAG_CRITICAL,DIAG_OFF=6
+    "LogMode": 1, // DIAG_CONSOLE=0,DIAG_FILE,DIAG_CONSOLE_FILE=2
+    "LogFilePath": "/opt/usr/",
+    "MaxLogFileNum": 10,
+    "MaxSizeOfLogFile": 20,
+    "DebugSwitch": "off"
+}

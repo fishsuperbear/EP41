@@ -1,0 +1,7 @@
+add_subdirectory(provide_demo)
+add_subdirectory(required_demo)
+add_subdirectory(someip_base)
+#add_subdirectory(e2e_example)
+add_subdirectory(test_ets)
+add_subdirectory(test_tc8)
+add_subdirectory(test_svc)

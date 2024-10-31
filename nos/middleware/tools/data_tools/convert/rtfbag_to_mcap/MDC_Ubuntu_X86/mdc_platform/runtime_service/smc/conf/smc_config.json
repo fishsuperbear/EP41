@@ -1,0 +1,58 @@
+[
+    {
+        "key": "product_features",
+        "value": {
+            "object[]": [
+                {
+                    "key": "sm_cp",
+                    "value": {
+                        "string": "true"
+                    }
+                },
+                {
+                    "key": "node_cluster_style",
+                    "value": {
+                        "string": "all"
+                    }
+                },
+                {
+                    "key": "node_list",
+                    "value": {
+                        "uint32[]": [ 1 ]
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "key": "config_paths",
+        "value": {
+            "object[]": [
+                {
+                    "key": "manifest_path",
+                    "value": {
+                        "string": "/opt/platform/mdc_platform/machine/"
+                    }
+                },
+                {
+                    "key": "runtime_config_path",
+                    "value": {
+                        "string": "/opt/cfg/conf_run/sm/"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "key": "describe",
+        "value": {
+            "string": "state manager center config"
+        }
+    },
+    {
+        "key": "version",
+        "value": {
+            "string": "1.0.0"
+        }
+    }
+]

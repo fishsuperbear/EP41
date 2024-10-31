@@ -1,0 +1,27 @@
+%YAML:1.0
+
+processName: perf_test
+
+appLog:
+    name: PPER
+    description: parking-perception
+    file: ./
+    mode: 6
+    level: 2
+      
+schedule:
+    policy: RR
+    priority: 99
+    cpuAffinity: [1, 2 ,3]
+      
+resourceLimit:
+    group: parking-perception
+    cpu: 150
+    memory: 200
+
+executors:
+    #- confFile: /app/test/adf_lite_test/perf_test/conf/data_source_config.yaml
+    - confFile: /app/test/adf_lite_test/perf_test/conf/fisheye_test_config.yaml
+    - confFile: /app/test/adf_lite_test/perf_test/conf/uss_test_config.yaml
+    - confFile: /app/test/adf_lite_test/perf_test/conf/fusion_test_config.yaml
+    #- confFile: /app/test/adf_lite_test/perf_test/conf/aldbg_config.yaml # 必须放在最后

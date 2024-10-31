@@ -1,0 +1,200 @@
+
+{
+	"test":[
+	{
+		"protocol_type":"UDP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0001",
+			"payload_len":4194312,
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"payload_data":"02"
+		}
+		],
+		"describe":"<TG3_TC5> UDP 报文过大否定响应测试"
+	},
+	
+	
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":4194312,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000..."
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"payload_data":"02"
+		}
+		],
+		"tcp_close": true,
+		"describe":"<TG3_TC5> 2.1 报文过大否定响应测试"
+	},
+
+
+
+	
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":4194312,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0000",
+			"payload_len":1,
+			"payload_data":"02"
+		}
+		],
+		"tcp_close": true,
+		"describe":"<TG3_TC5> 2.2 报文过大否定响应测试"
+	},
+
+
+
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":9,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"10 00 00 00 00"
+		}
+		],
+		"describe":"<TG3_TC5> 3.1 报文过大否定响应测试-激活"
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x8001",
+			"payload_len":4194310,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"10 01 02 03 04 05 01 02 03 04 05 01 02 03 04 05 01 02 03 04 05 ..."
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x8003",
+			"payload_len":5,
+			"source_addr":"0x10c3",
+			"target_addr":"0x1062",
+			"payload_data":"04"
+		}
+		],
+		"tcp_close": true,
+		"describe":"<TG3_TC5> 3.2 报文过大否定响应测试"
+	}
+	
+	
+	,
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":9,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"10 00 00 00 00"
+		}
+		],
+		"describe":"<TG3_TC5> 4.1 格式错误否定响应测试-激活报文"
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x8001",
+			"payload_len":4194310,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"10 02 "
+		}
+		],
+		"tcp_close": true,
+		"describe":"<TG3_TC5> 4.2 格式错误否定响应测试",
+		"delay_timems": 50
+	}
+
+	]
+}

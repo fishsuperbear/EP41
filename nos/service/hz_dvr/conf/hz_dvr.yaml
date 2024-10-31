@@ -1,0 +1,10 @@
+%YAML:1.0
+
+width: 1920
+height: 1536
+sensor_id: 0
+channel_id: 4
+
+logLevel: 2  #{0，1，2，3，4，5, 6}， 0：trace, 1：debug, 2：info, 3：warn, 4：error, 5：fatal, 6：off
+logMode: 2  #{0, 1, 2, 3, 4, 5, 6}, 0: 不打屏 1: 控制台打屏， 2: 记录日志，3：控制台+日志
+file: /opt/usr/log/soc_log/

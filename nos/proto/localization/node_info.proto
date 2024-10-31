@@ -1,0 +1,63 @@
+/******************************************************************************
+ * Copyright 2017 The Hozon Authors. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *****************************************************************************/
+
+syntax = "proto2";
+
+package hozon.localization;
+
+import "proto/common/header.proto";
+import "proto/common/types.proto";
+
+// 定位子节点输出信息结构体
+message HafNodeInfo {
+  // 定位子节点类型
+  enum NodeType {
+    INS = 0;           // INS子节点
+    WO = 1;            // 轮速里程计子节点
+    VIO = 2;           // 视觉惯性里程计子节点
+    MapMatcher = 3;    // 地图匹配子节点
+    DR = 4;            // DR_FUSION
+    PoseEstimate = 5;  // PoseEstimate
+  }
+
+  optional NodeType type = 1;                                  // 节点类型
+  optional hozon.common.Header header = 2;          // 数据帧头信息
+  optional bool is_valid = 3;                                  // 数据有效性标志位(true为新接收数据，false为历史数据)
+  optional uint32 gps_week = 4;                                // GPS周
+  optional double gps_sec = 5;                                 // GPS周内秒
+  optional hozon.common.Point3D pos_wgs = 6;           // 三维位置信息  //车辆坐标系
+  optional hozon.common.Point3D attitude = 7;          // 三维姿态信息
+  optional hozon.common.Quaternion quaternion = 8;  // 四元数信息
+  optional hozon.common.Point3D linear_velocity = 9;   // 三维速度信息
+  optional hozon.common.Point3D gyro_bias = 10;        // 三维陀螺仪零偏
+  optional hozon.common.Point3D accel_bias = 11;       // 三维加速度计零偏
+  optional hozon.common.Point3D sd_position = 12;      // 三维位置标准差
+  optional hozon.common.Point3D sd_attitude = 13;      // 三维姿态标准差
+  optional hozon.common.Point3D sd_velocity = 14;      // 三维速度标准差
+  repeated float covariance = 15;                              // 6*6，前三维位置，后三维姿态，矩阵展开共36维，展开顺序先行后列
+  optional uint32 sys_status = 16;                             // 系统状态
+  optional uint32 gps_status = 17;                             // 卫导定位解状态
+  optional float heading = 18;                                 // GNSS多普勒测速运动方向
+  optional uint32 warn_info = 19;                              // 故障状态字
+  optional hozon.common.Point3D pos_gcj02 = 20;
+  optional hozon.common.Point3D angular_velocity = 21;
+  optional hozon.common.Point3D linear_acceleration = 22;
+  optional hozon.common.Point3D mounting_error = 23;
+  optional uint32 sensor_used = 24;
+  optional float wheel_velocity = 25;
+  optional float odo_sf = 26;
+  optional bool valid_estimate = 27;
+}

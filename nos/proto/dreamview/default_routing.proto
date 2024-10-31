@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+package hozon.dreamview;
+
+import "proto/common/types.proto";
+
+message DefaultRouting {
+  optional string name = 1;
+  repeated hozon.common.PointENU point = 2;
+}
+
+message DefaultRoutings { repeated DefaultRouting defaultrouting = 1; }

@@ -1,0 +1,158 @@
+%YAML:1.0
+
+debugOn: true
+analysysOn: false
+selectOn: false
+canPort: [can7]
+logAppName: [H005]
+logLevel: 2  #{0，1，2，3，4，5, 6}， 0：verbose, 1：debug, 2：info, 3：warn, 4：error, 5：fatal, 6：off
+logMode: 3  # 大屏，存文件
+file: ./
+
+# E2E Settings
+e2eEnabled: false 
+
+e2eCommonSettings:
+  profileComSettings: &profileComSettings
+    profile: 22
+    offset: 0 
+    maxDeltaCounter: 1
+    enableTimeout: false
+    timeout: 0
+  smComSettings: &smComSettings
+    windowSizeInit: 15
+    windowSizeInvalid: 15
+    windowSizeValid: 15
+    maxErrorStateInit: 10
+    minOkStateInit: 1
+    maxErrorStateInvalid: 10
+    minOkStateInvalid: 1
+    maxErrorStateValid: 10
+    minOkStateValid: 1
+    clearToInvalid: false
+e2eFaultSettings:
+  e2eFault_FL: &e2eFault
+    id: 8105
+    obj: 6
+canMsgsSettings:
+  -
+    canMsgId: 0x381
+    proSettings:
+        dataLength: 264
+        dataIdList: [87,57,114,13,81,177,37,40,90,82,133,184,56,248,43,107]
+        disableE2ECheck: false
+        <<: *profileComSettings
+    smSettings:
+        <<: *smComSettings
+    faultSettings:
+        <<: *e2eFault
+  -
+    canMsgId: 0x382
+    proSettings:
+        dataLength: 264
+        dataIdList: [144,225,26,198,220,4,215,153,157,188,104,65,60,102,171,162]
+        disableE2ECheck: false
+        <<: *profileComSettings
+    smSettings:
+        <<: *smComSettings
+    faultSettings:
+        <<: *e2eFault
+  -
+    canMsgId: 0x383
+    proSettings:
+        dataLength: 264   
+        dataIdList: [172,238,182,104,77,105,31,14,134,52,111,70,237,56,17,30]
+        disableE2ECheck: false
+        <<: *profileComSettings
+    smSettings:
+        <<: *smComSettings
+    faultSettings:
+        <<: *e2eFault
+  -
+    canMsgId: 0x384
+    proSettings:
+        dataLength: 264
+        dataIdList: [116,111,102,7,151,244,35,81,168,2,118,200,8,72,187,82]
+        disableE2ECheck: false
+        <<: *profileComSettings
+    smSettings:
+        <<: *smComSettings
+    faultSettings:
+        <<: *e2eFault
+  -
+    canMsgId: 0x385
+    proSettings:
+        dataLength: 264
+        dataIdList: [169,149,79,178,85,48,137,27,99,29,188,185,115,17,163,203]
+        disableE2ECheck: false 
+        <<: *profileComSettings
+    smSettings:
+        <<: *smComSettings
+    faultSettings:
+        <<: *e2eFault
+  -
+    canMsgId: 0x386
+    proSettings:
+        dataLength: 264
+        dataIdList: [202,34,196,207,27,246,70,201,218,203,162,35,212,191,36,190]
+        disableE2ECheck: false 
+        <<: *profileComSettings
+    smSettings:
+        <<: *smComSettings
+    faultSettings:
+        <<: *e2eFault
+  -
+    canMsgId: 0x387
+    proSettings:
+        dataLength: 264
+        dataIdList: [70,191,176,250,59,138,64,60,160,146,43,120,235,222,38,89]
+        disableE2ECheck: false 
+        <<: *profileComSettings
+    smSettings:
+        <<: *smComSettings
+    faultSettings:
+        <<: *e2eFault
+  -
+    canMsgId: 0x388
+    proSettings:
+        dataLength: 264
+        dataIdList: [148,221,7,229,19,81,190,49,200,67,41,82,170,169,230,197]
+        disableE2ECheck: false 
+        <<: *profileComSettings
+    smSettings:
+        <<: *smComSettings
+    faultSettings:
+        <<: *e2eFault
+  -
+    canMsgId: 0x389
+    proSettings:
+        dataLength: 264
+        dataIdList: [73,86,14,103,129,30,118,159,191,193,229,108,150,131,127,194]
+        disableE2ECheck: false 
+        <<: *profileComSettings
+    smSettings:
+        <<: *smComSettings
+    faultSettings:
+        <<: *e2eFault
+  -
+    canMsgId: 0x38C
+    proSettings:
+        dataLength: 264
+        dataIdList: [15,209,107,99,158,116,34,148,215,161,231,111,156,207,150,221]
+        disableE2ECheck: false 
+        <<: *profileComSettings
+    smSettings:
+        <<: *smComSettings
+    faultSettings:
+        <<: *e2eFault
+  -
+    canMsgId: 0x38D
+    proSettings:
+        dataLength: 264
+        dataIdList: [172,238,182,104,77,105,31,14,134,52,111,70,237,56,17,30]
+        disableE2ECheck: false 
+        <<: *profileComSettings
+    smSettings:
+        <<: *smComSettings
+    faultSettings:
+        <<: *e2eFault

@@ -1,0 +1,277 @@
+{
+  "applicationName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizSwComponent/CameraMvizSwComponent/CameraMvizProcess",
+  "services": [
+    {
+      "service": "/HuaweiMDC/X86PlatformServiceInterface/CameraServiceInterfacePkg/CameraEncodedMbufServiceInterface",
+      "serviceId": 2435,
+      "events": [
+        {
+          "event": "cameraEncodedMbufEvent",
+          "id": 27111,
+          "isDpRawData": false,
+          "dataType": "/HuaweiMDC/X86PlatformServiceInterface/CameraMsgDataType/CameraEncodedMbufStruct",
+          "topicName": "CameraEncodedDdsEvent"
+        }
+      ],
+      "fields": [],
+      "methods": [],
+      "instances": [
+        {
+          "shortName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizService/CameraServiceRequirder/Camera_Mviz_Encoded_Mbuf_71",
+          "instance": "71",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "/var/domainqos.xml",
+          "events": [
+            {
+              "id": 27111,
+              "qosProfile": "/var/eventsqos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": []
+        },
+        {
+          "shortName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizService/CameraServiceRequirder/Camera_Mviz_Encoded_Mbuf_72",
+          "instance": "72",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "/var/domainqos.xml",
+          "events": [
+            {
+              "id": 27111,
+              "qosProfile": "/var/eventsqos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": []
+        },
+        {
+          "shortName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizService/CameraServiceRequirder/Camera_Mviz_Encoded_Mbuf_73",
+          "instance": "73",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "/var/domainqos.xml",
+          "events": [
+            {
+              "id": 27111,
+              "qosProfile": "/var/eventsqos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": []
+        },
+        {
+          "shortName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizService/CameraServiceRequirder/Camera_Mviz_Encoded_Mbuf_74",
+          "instance": "74",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "/var/domainqos.xml",
+          "events": [
+            {
+              "id": 27111,
+              "qosProfile": "/var/eventsqos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": []
+        },
+        {
+          "shortName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizService/CameraServiceRequirder/Camera_Mviz_Encoded_Mbuf_85",
+          "instance": "85",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "/var/domainqos.xml",
+          "events": [
+            {
+              "id": 27111,
+              "qosProfile": "/var/eventsqos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": []
+        },
+        {
+          "shortName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizService/CameraServiceRequirder/Camera_Mviz_Encoded_Mbuf_75",
+          "instance": "75",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "/var/domainqos.xml",
+          "events": [
+            {
+              "id": 27111,
+              "qosProfile": "/var/eventsqos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": []
+        },
+        {
+          "shortName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizService/CameraServiceRequirder/Camera_Mviz_Encoded_Mbuf_76",
+          "instance": "76",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "/var/domainqos.xml",
+          "events": [
+            {
+              "id": 27111,
+              "qosProfile": "/var/eventsqos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": []
+        },
+        {
+          "shortName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizService/CameraServiceRequirder/Camera_Mviz_Encoded_Mbuf_77",
+          "instance": "77",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "/var/domainqos.xml",
+          "events": [
+            {
+              "id": 27111,
+              "qosProfile": "/var/eventsqos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": []
+        },
+        {
+          "shortName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizService/CameraServiceRequirder/Camera_Mviz_Encoded_Mbuf_78",
+          "instance": "78",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "/var/domainqos.xml",
+          "events": [
+            {
+              "id": 27111,
+              "qosProfile": "/var/eventsqos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": []
+        },
+        {
+          "shortName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizService/CameraServiceRequirder/Camera_Mviz_Encoded_Mbuf_79",
+          "instance": "79",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "/var/domainqos.xml",
+          "events": [
+            {
+              "id": 27111,
+              "qosProfile": "/var/eventsqos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": []
+        },
+        {
+          "shortName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizService/CameraServiceRequirder/Camera_Mviz_Encoded_Mbuf_80",
+          "instance": "80",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "/var/domainqos.xml",
+          "events": [
+            {
+              "id": 27111,
+              "qosProfile": "/var/eventsqos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": []
+        },
+        {
+          "shortName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizService/CameraServiceRequirder/Camera_Mviz_Encoded_Mbuf_81",
+          "instance": "81",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "/var/domainqos.xml",
+          "events": [
+            {
+              "id": 27111,
+              "qosProfile": "/var/eventsqos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": []
+        },
+        {
+          "shortName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizService/CameraServiceRequirder/Camera_Mviz_Encoded_Mbuf_82",
+          "instance": "82",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "/var/domainqos.xml",
+          "events": [
+            {
+              "id": 27111,
+              "qosProfile": "/var/eventsqos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": []
+        },
+        {
+          "shortName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizService/CameraServiceRequirder/Camera_Mviz_Encoded_Mbuf_83",
+          "instance": "83",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "/var/domainqos.xml",
+          "events": [
+            {
+              "id": 27111,
+              "qosProfile": "/var/eventsqos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": []
+        },
+        {
+          "shortName": "/HuaweiMDC/X86PlatformApplication/CameraMvizCenterApplication/CameraMvizService/CameraServiceRequirder/Camera_Mviz_Encoded_Mbuf_84",
+          "instance": "84",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "/var/domainqos.xml",
+          "events": [
+            {
+              "id": 27111,
+              "qosProfile": "/var/eventsqos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": []
+        }
+      ]
+    }
+  ]
+}

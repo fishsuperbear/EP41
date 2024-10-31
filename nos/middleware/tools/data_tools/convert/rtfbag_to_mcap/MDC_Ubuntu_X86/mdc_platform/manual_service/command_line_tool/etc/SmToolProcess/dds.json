@@ -1,0 +1,78 @@
+{
+  "applicationName": "/HuaweiMDC/PlatformApplication/SmClientApplication/SwComponent/sm_client/SmClientProcess",
+  "services": [
+    {
+      "service": "/HuaweiMDC/PlatformServiceInterface/PlatformStateAgentServiceInterface/PlatformStateAgent",
+      "serviceId": 2983,
+      "events": [
+        {
+          "event": "PlatformStateEvent",
+          "id": 43376,
+          "isDpRawData": false,
+          "dataType": "/HuaweiMDC/PlatformServiceInterface/PlatformStateAgentMsgDataTypes/DataTypes/PlatformStateMsg",
+          "topicName": "PlatformStateEventDdsDeployment"
+        }
+      ],
+      "fields": [],
+      "methods": [
+        {
+          "method": "QueryPlatformState",
+          "id": 44471,
+          "isFireAndForget": false,
+          "requestTopicName": "RequestRpcQueryPlatformStateDdsDeployment",
+          "replyTopicName": "ReplyRpcQueryPlatformStateDdsDeployment",
+          "requestDataType": [],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/PlatformStateAgentServiceInterface/PlatformStateAgent/QueryPlatformStateOutput"
+        },
+        {
+          "method": "RequestPlatformState",
+          "id": 37348,
+          "isFireAndForget": false,
+          "requestTopicName": "RequestRpcRequestPlatformStateDdsDeployment",
+          "replyTopicName": "ReplyRpcRequestPlatformStateDdsDeployment",
+          "requestDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t",
+            "/HuaweiMDC/ApplicationDataType/Uint32Vector"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/PlatformStateAgentServiceInterface/PlatformStateAgent/RequestPlatformStateOutput"
+        }
+      ],
+      "instances": [
+        {
+          "shortName": "/HuaweiMDC/PlatformApplication/SmClientApplication/Service/DP/Consumer/AppRequiredPlatformStateAgentDdsServiceInstance",
+          "instance": "1",
+          "domainId": 12,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "small_buffer_qos.xml",
+          "events": [
+            {
+              "id": 43376,
+              "qosProfile": "small_buffer_qos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": [
+            {
+              "id": 44471,
+              "methodQosProfile": "small_buffer_qos.xml",
+              "dataIds": []
+            },
+            {
+              "id": 37348,
+              "methodQosProfile": "default_qos.xml",
+              "dataIds": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

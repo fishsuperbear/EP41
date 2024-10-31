@@ -1,0 +1,9 @@
+identifier:
+  "MAPPING"
+description: "Mapping module"
+CameraMvizSwComponent:
+  sendInstanceID:
+  recvInstanceID:
+    CameraEncodedMbufServiceInterface:
+        instanceId: [71,72,73,74,85,75,76,77,78,79,80,81,82,83,84]
+        portName: ["CameraMvizEncodedMbufReceiveRPort","CameraMvizEncodedMbufReceiveRPort","CameraMvizEncodedMbufReceiveRPort","CameraMvizEncodedMbufReceiveRPort","CameraMvizEncodedMbufReceiveRPort","CameraMvizEncodedMbufReceiveRPort","CameraMvizEncodedMbufReceiveRPort","CameraMvizEncodedMbufReceiveRPort","CameraMvizEncodedMbufReceiveRPort","CameraMvizEncodedMbufReceiveRPort","CameraMvizEncodedMbufReceiveRPort","CameraMvizEncodedMbufReceiveRPort","CameraMvizEncodedMbufReceiveRPort","CameraMvizEncodedMbufReceiveRPort","CameraMvizEncodedMbufReceiveRPort"]

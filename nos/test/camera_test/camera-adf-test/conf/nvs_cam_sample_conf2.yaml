@@ -1,0 +1,99 @@
+%YAML:1.0
+
+recvInstances:
+    - name: camera_0
+      topic: cam0_recv2
+      type: nvs_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: camera_1
+      topic: cam1_recv2
+      type: nvs_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: camera_3
+      topic: cam3_recv2
+      type: nvs_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: camera_4
+      topic: cam4_recv2
+      type: nvs_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: camera_5
+      topic: cam5_recv2
+      type: nvs_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: camera_6
+      topic: cam6_recv2
+      type: nvs_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: camera_7
+      topic: cam7_recv2
+      type: nvs_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: camera_8
+      topic: cam8_recv2
+      type: nvs_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: camera_9
+      topic: cam9_recv2
+      type: nvs_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: camera_10
+      topic: cam10_recv2
+      type: nvs_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: camera_11
+      topic: cam11_recv2
+      type: nvs_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+
+monitor:
+  printPeriodMs: 1000
+
+log:
+    mode: 3
+    file: ./
+    name: cmps
+    description: cm_proto_sample
+    level: 2  
+    adf:
+      level: 2
+
+# trigger二选一即可
+trigger:
+    - name: nvs_cam
+      type: EVENT
+      timeWindow: 60
+      mainSources: 
+          - name: camera_0
+            timeout: 1000
+          - name: camera_1
+            timeout: 1000
+          - name: camera_3
+            timeout: 1000
+          - name: camera_4
+            timeout: 1000
+          - name: camera_5
+            timeout: 1000
+          - name: camera_6
+            timeout: 1000
+          - name: camera_7
+            timeout: 1000
+          - name: camera_8
+            timeout: 1000
+          - name: camera_9
+            timeout: 1000
+          - name: camera_10
+            timeout: 1000
+          - name: camera_11
+            timeout: 1000

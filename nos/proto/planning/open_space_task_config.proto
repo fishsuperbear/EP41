@@ -1,0 +1,334 @@
+syntax = "proto2";
+
+package hozon.planning;
+
+import "proto/planning/planner_open_space_config.proto";
+
+//////////////////////////////////
+// OpenSpaceSpeedOptimizer
+
+message OpenSpaceSpeedOptimizerConfig {
+  message CollisionBufferInfo {
+    optional double front_longitudinal_buffer = 1 [default = 0.4];
+    optional double rear_longitudinal_buffer = 2 [default = 0.05];
+    
+    optional double front_longitudinal_buffer_lidar = 3 [default = 0.25];
+    optional double rear_longitudinal_buffer_lidar = 4 [default = 0.05];
+
+    optional double front_longitudinal_buffer_low_curb = 5 [default = 0.25];
+    optional double rear_longitudinal_buffer_low_curb = 6 [default = 0.05];
+
+    optional double left_lateral_buffer = 100 [default = 0.1];
+    optional double right_lateral_buffer = 101 [default = 0.1];
+
+    optional double left_lateral_buffer_bigger = 102 [default = 0.20];
+    optional double right_lateral_buffer_bigger = 103 [default = 0.20];
+
+    optional double left_lateral_buffer_middle = 104 [default = 0.15];
+    optional double right_lateral_buffer_middle = 105 [default = 0.15];
+
+    optional double left_lateral_buffer_low_curb = 106 [default = 0.05];
+    optional double right_lateral_buffer_low_curb = 107 [default = 0.15];
+  }
+
+  message SpeedBoundInfo {
+    optional double max_sample_speed = 1 [default = 0.5];
+    optional double min_sample_speed = 2 [default = 0.3];
+    optional double max_sample_acc = 3 [default = 0.2];
+    optional double min_sample_acc = 4 [default = 0.1];
+    optional double max_sample_dec = 5 [default = -0.2];
+    optional double min_sample_dec = 6 [default = -0.1];
+  }
+
+  message ScenarioSpeedBoundInfo {
+    optional SpeedBoundInfo forward_info = 1;
+    optional SpeedBoundInfo reverse_info = 2;
+  }
+
+  // prediction time horizon for prediction obstacles
+  optional double prediction_time_period = 1 [default = 5.0];
+  optional double prediction_unit_t = 2 [default = 0.2];
+
+  //collision check buffer for freespace point
+  optional CollisionBufferInfo vertical_forward_collision_buffer = 3;
+  optional CollisionBufferInfo vertical_backward_collision_buffer = 4;
+  optional CollisionBufferInfo parallel_forward_collision_buffer = 5;
+  optional CollisionBufferInfo parallel_backward_collision_buffer = 6;
+  optional bool is_consider_control_diff = 7 [default = true];
+  optional int32 bigger_buffer_safe_min_count = 8 [default = 30];
+
+  // collision check buffer for static obstacle
+  optional double collision_buffer_for_static_pedestrian = 30 [default = 0.5];
+  optional double collision_buffer_for_static_vehicle  = 31 [default = 0.3];
+  optional double collision_buffer_for_other = 32 [default = 0.15];
+
+  optional double longitudinal_filter_distance = 33 [default = 0.5];
+  optional double lateral_filter_distance = 34 [default = 0.8];
+
+  // hmi interactive
+  optional double restore_dis_buffer = 60 [default = 0.3];
+  optional bool enable_wait_for_replan = 61 [default = false];
+  optional double max_wait_time_for_replan = 62 [default = 5.0];
+  optional double wait_obstacle_min_count = 63 [default = 30];
+  optional double min_wait_obstacle_state_time = 64 [default = 0.3];
+  optional double max_wait_time_for_replan_rpa_direct = 65 [default = 1.0];
+  optional double min_wait_replan_state_time = 66 [default = 0.3];
+
+  // st sample
+  optional ScenarioSpeedBoundInfo rpa_direct_speed_bound_info = 89;
+  optional ScenarioSpeedBoundInfo rpa_speed_bound_info = 90;
+  optional ScenarioSpeedBoundInfo apa_speed_bound_info = 91;
+  optional double tarjectory_unit_t = 104 [default = 0.1];
+  optional double speed_limit_unit_s = 105 [default = 0.2];
+  optional double sample_unit_acc = 116 [default = 0.02];
+  optional double sample_unit_max_v = 118 [default = 0.1];
+  optional uint64 sample_thread_size = 120 [default = 4];
+  optional double efficiency_cost = 121 [default = 10];
+  optional double acc_cost = 122 [default = 1];
+  optional double jerk_cost = 123 [default = 10];
+  optional double over_speed_cost = 124 [default = 50];
+  optional double diff_cost = 125 [default = 10];
+
+  // others
+  optional double wheel_mask_stop_accuracy = 500 [default = 0.1];
+  optional double wheel_mask_to_wheel_base_distance = 501 [default = 0.2];
+}
+
+//////////////////////////////////
+// OpenSpacePreStopDeciderConfig
+
+message OpenSpacePreStopDeciderConfig {
+  // roi scenario definitions
+  enum StopType {
+    NOT_DEFINED = 0;
+    PARKING = 1;
+    PULL_OVER = 2;
+    NARROW_STREET_U_TURN = 3;
+  }
+  optional StopType stop_type = 1;
+  optional double rightaway_stop_distance = 2 [default = 2.0];  // meter
+  optional double stop_distance_to_target = 3 [default = 5.0];  // second
+}
+
+message ObstacleFilterDeciderConfig {
+  optional double dynamic_obstacle_check_interval_time = 1 [default = 0.2];  // second
+  optional uint64 dynamic_obstacle_check_point_count = 2 [default = 10];
+  optional double check_static_obs_distance = 3 [default = 5.0];
+  optional double check_dynamic_obs_distance =  4 [default = 5.0];
+  optional double check_dynamic_lateral_speed = 5 [default = 1.0];
+  optional double consider_bound_front_distance= 6 [default = 5.0];
+  optional double consider_adc_back_distance = 7 [default = 30.0];
+}
+
+message AttitudeParameters {
+  optional double horizontal = 1 [default = 0.0];
+  optional double vertical = 2 [default = 0.0];
+  optional double angle = 3 [default = 0.0];
+}
+
+message VerticalParkInVirtualObsLatConstraintParameters {
+  repeated double lat_dist = 1;
+  repeated double obs_length = 2;
+}
+
+message VerticalParkInVirtualObsLonConstraintParameters {
+  repeated double height_dist = 1;
+  repeated double obs_length = 2;
+}
+
+message ParkLotAttitudeConfTable {
+  // top edge length
+  repeated double park_lot_size = 1;
+  repeated double horizontal = 2;
+  repeated double vertical = 3;
+  repeated double angle = 4;
+}
+
+message OpenSpaceRoiDeciderConfig {
+  // roi scenario definitions
+  enum RoiType {
+    NOT_DEFINED = 0;
+    PARKING = 1;
+    PULL_OVER = 2;
+    PARK_AND_GO = 3;
+    NARROW_STREET_U_TURN = 4;
+  }
+  optional RoiType roi_type = 1;
+  // longitudinal range of parking roi start
+  optional double roi_longitudinal_range_start = 2 [default = 10.0];
+  // longitudinal range of parking roi end
+  optional double roi_longitudinal_range_end = 3 [default = 10.0];
+  // parking spot range detection threshold
+  optional double parking_start_range = 4 [default = 7.0];
+  // Parking orientation for reverse parking
+  optional bool parking_inwards = 5 [default = false];
+  // wrap previous gflags
+  optional bool enable_perception_obstacles = 6;
+  // buffer distance from vehicle's edge to parking spot end line
+  // min angle difference to stitch a new segment in roi representation
+  optional double roi_line_segment_min_angle = 8 [default = 0.3];
+  optional double roi_line_segment_length = 9 [default = 1.0];
+  // roi line segment length when getting road boundary from map
+  optional double roi_line_segment_length_from_map = 10 [default = 10.0];
+  // relative distance threshold to filter out ignored obstacle
+  optional double perception_obstacle_filtering_distance = 11
+      [default = 1000.0];
+  // buffer distance for perception obstacle
+  optional double perception_obstacle_buffer = 12;
+  // tolerance limit for road_bound_width abnormal changes
+  optional double curb_heading_tangent_change_upper_limit = 13 [default = 1.0];
+  // end pose s distance to current vehicle
+  optional double end_pose_s_distance = 14 [default = 10.0];
+  // destination domain relax region
+  optional AttitudeParameters park_in_vertical_end_pose_relax = 15;
+  optional AttitudeParameters park_in_lateral_end_pose_relax = 16;
+  // parking lot vertical longitudinal length buffer
+  optional double vertical_slot_longitudinal_buffer = 17 [default = 0.20];
+  // parking lot lateral longitudinal length buffer
+  optional double lateral_slot_longitudinal_buffer = 18 [default = 0.80];
+  // roi edge slack distance
+  optional double roi_slack_distance = 20 [default = 1.0];
+  // buffer distance from ego car to roi edge
+  optional double roi_edge_buffer = 21 [default = 0.20];
+  // proper normal distance to detect parking lot and update
+  optional double update_slot_normal_distance = 22 [default = 1.0];
+  // proper tangent distance to detect parking lot and update
+  optional double update_slot_tangent_distance = 23 [default = 1.0];
+  // proper angle to detect parking lot and update
+  optional double update_slot_angle = 24 [default = 0.2];
+  // left park out min height
+  optional double park_out_left_min_height = 25 [default = 1.2];
+  // right park out min height
+  optional double park_out_right_min_height = 26 [default = 1.0];
+  // angle(rad) diff between adc and refline
+  optional double park_out_angle_limit = 27 [default = 0.174];
+  // uss virtual wall width
+  optional double uss_wall_width = 28 [default=0.6];
+  // uss inflat buffer
+  optional double uss_inflat_buffer = 29 [default=0.01];
+  // lateral parking spot expand buffer
+  optional double lateral_expand_buffer = 30 [default=1.0];
+  // lateral parking spot expand buffer
+  optional double vertical_expand_buffer = 31 [default=1.0];
+  // vertical parking spot expand buffer
+  optional double vertical_park_in_virtual_obstacle_lon_dis = 32 [default=2.0];
+  // vertical parking spot expand buffer
+  optional double vertical_park_in_virtual_obstacle_lat_dis = 33 [default=0.1];
+  optional VerticalParkInVirtualObsLatConstraintParameters vertical_park_in_virtual_obs_lat_constraint = 34;
+  optional VerticalParkInVirtualObsLonConstraintParameters vertical_park_in_virtual_obs_lon_constraint = 35;
+  optional double vertical_park_in_virtual_obs_lon_filter_height_min = 36 [default=3.5];
+  optional double vertical_park_in_virtual_obs_lon_filter_height_max = 37 [default=6.0];
+  optional double vertical_park_in_virtual_obs_lon_filter_width = 38 [default=4.0];
+  // vertical parking spot expand buffer
+  optional double vertical_park_out_virtual_obstacle_bottom_dis = 40 [default=0.1];
+  // freespace obs segment enable flag
+  optional bool enable_freespace_obs_segment = 41 [default=false];
+  //ignore unknown freespace class point num threhold
+  optional uint64 ignore_unknown_point_num = 42 [default=3];
+  //ignore too long segment length threhold
+  optional double ignore_length_threhold = 43 [default=0.5];
+  //ignore too long segment length threhold
+  optional bool enable_consider_obstacle_box = 44 [default=false];
+  // wheel mask width to generate bbox used in speed optimizer
+  optional double wheel_mask_box_width = 51 [default=0.05];
+  // lateral parking spot bottom adjust buffer
+  optional double lat_spot_bottom_adjust_buffer = 61 [default=0.3];
+  optional AttitudeParameters vertical_park_in_target_thresold = 71;
+  optional AttitudeParameters lateral_park_in_target_thresold = 72;
+  optional double lateral_park_out_height = 74 [default=2.5];
+  optional double lateral_park_out_distance = 75 [default=7.5];
+  optional double vertical_park_out_height = 76 [default=3.0];
+  optional double vertical_park_out_distance = 77 [default=5.5];
+  optional double park_in_lateral_ignore_bottom_fs_threhold = 83 [default=0.5];
+  optional double park_in_vertical_target_lon_adjust_threshold = 85 [default=0.5];
+  optional double park_in_lateral_target_lon_adjust_threshold = 87 [default=0.5];
+  optional double park_out_vertical_expand_buffer = 95 [default=1.62];
+  // free space virtual wall width
+  optional double freespace_virtual_wall_width = 96 [default=0.3];
+  // free space inflat buffer
+  optional double freespace_virtual_wall_dis_to_adc = 97 [default=0.2];
+  // vertical/oblique park in slot lateral fs filter buffer
+  optional double vertical_park_in_lateral_fs_filter_dist = 101 [default=0.5];
+  // lateral expand roi at bottom buffer
+  optional double lateral_expand_bottom_buffer = 110 [default=0.3];
+  // lateral vertical parking lot lateral length buffer
+  optional double lateral_min_parklot_lateral_buffer = 111 [default=-0.25];
+  // vertical parking lot lateral length buffer
+  optional double vertical_min_parklot_lateral_buffer = 112 [default=0.1];
+  // turn side virtual obs
+  optional double turn_side_filter_length = 120 [default=0.2];
+  optional double park_in_turn_side_filter_length = 121 [default=0.2];
+  optional double turn_side_above_slot_height_limit = 123 [default=0.5];
+  optional double non_lateral_park_out_turn_side_filter_length = 124 [default=0.5];
+  optional double lateral_park_out_turn_side_filter_length = 125 [default=0.2];
+  // switch to support apa extreme ability
+  optional bool enable_adapt_lidar_sensor_roi = 131 [default=false];
+  optional bool enable_recognize_deadend_scenario = 132 [default=false];
+  // parking depth
+  optional double vertical_parking_depth_buffer = 140 [default = 0.1];
+  optional double oblique_parking_depth_buffer = 141 [default = 0.1];
+  optional double lateral_parking_depth_buffer = 142 [default = 0.1];
+  // parking lot attitude table
+  optional ParkLotAttitudeConfTable vertical_park_lot_attitude_conf_table = 150;
+  optional ParkLotAttitudeConfTable lateral_park_lot_attitude_conf_table = 151;
+}
+
+//////////////////////////////////
+// OpenSpacePathPartitionConfig
+
+message OpenSpacePathPartitionConfig {
+  // Gear shift trajectory parameter
+  optional double gear_shift_max_t = 1;
+  optional double gear_shift_unit_t = 2;
+  optional double gear_shift_period_duration = 3;
+  optional uint64 interpolated_pieces_num = 4;
+  optional uint64 initial_gear_check_horizon = 5;
+  // @brief heading search range is the range to filter out too large
+  // angle difference between vehicle heading and pathpoint heading
+  optional double heading_search_range = 6;
+  // @brief heading_track_range is the range to filter out too large
+  // angle difference between vehicle heading and vehicle to pathpoint vector
+  optional double heading_track_range = 7;
+  optional double distance_search_range = 8 [default = 1.0e-6];
+  // @brief IOU, intersection over union
+  optional double heading_offset_to_midpoint = 9;
+  optional double lateral_offset_to_midpoint = 10 [default = 0.1];
+  optional double longitudinal_offset_to_midpoint = 11 [default = 0.1];
+  optional double vehicle_box_iou_threshold_to_midpoint = 12 [default = 0.95];
+  optional double linear_velocity_threshold_on_ego = 13 [default = 0.2];
+  optional double rough_heading_offset_to_midpoint = 14;
+  optional double rough_lateral_offset_to_midpoint = 15 [default = 0.2];
+  optional double rough_longitudinal_offset_to_midpoint = 16 [default = 0.2];
+  optional double warm_start_response_time_threshold = 17 [default = 3.5];
+  optional double cold_start_response_time_threshold = 18 [default = 0.5];
+  optional double point_match_iou_threshold = 19 [default = 0.5];
+  optional double is_earily_finish_theta_threshold = 30 [default = 0.027];
+  optional double is_near_destination_distance_threshold = 31 [default = 0.001];
+  optional double is_near_destination_theta_threshold = 32 [default = 0.05];
+  optional uint32 destination_long_time_count = 33 [default = 50];
+  optional uint32 parkout_destination_long_time_count = 34 [default = 80];
+  optional double early_blocked_replan_time_threshold = 35 [default = 5.0];
+  optional double yaw_error_replan_time_threshold = 36 [default = 3.0];
+  optional double is_precisely_arrive_theta_threshold = 37 [default = 0.05];
+  // reach ideal pose threshold (polygon iou)
+  optional double reach_ideal_pose_threshold = 40 [default = 0.5];
+  optional double lon_distance_to_wheel_mask_threshold = 41 [default = 0.1];
+  optional double convergence_trend_yaw_error_threshold = 50 [default = 0.0262];
+  optional double divergent_trend_yaw_error_threshold = 51 [default = 0.0088];
+}
+
+//////////////////////////////////
+// OpenSpacePathProviderConfig
+message OpenSpacePathProviderConfig {
+  optional WarmStartConfig warm_start_config = 1;
+  optional NlpPathSmootherConfig nlp_path_smoother_config = 2;
+  // acceptable cost time of path optimizer
+  optional double path_generate_max_time = 11 [default = 20];
+  optional double dead_end_scenario_path_generate_max_time = 12 [default = 30];
+  optional double lat_spot_park_out_bottom_distance_threshold = 21 [default=0.2];
+  optional double replan_time_estimation = 31 [default=0.5];
+  optional double geometry_vertical_park_in_above_target_threhold = 41 [default=0.3];
+}
+
+message OpenSpaceStraightPathConfig {
+}

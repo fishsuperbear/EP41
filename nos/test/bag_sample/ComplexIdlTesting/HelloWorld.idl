@@ -1,0 +1,60 @@
+struct BaseHeader {
+    uint32 seq;
+    uint64 data_timestamp_us;
+    uint64 send_timestamp_us;
+};
+
+struct Time {
+    uint64 sec;
+    uint64 nsec;
+};
+
+struct Point3DFloat {
+    float x;
+    float y;
+    float z;
+};
+
+struct Point3DDouble {
+    double x;
+    double y;
+    double z;
+};
+
+struct AlgRect3D {
+    Point3DFloat center;
+    Point3DDouble centerstddev;
+    Point3DFloat sizelwh;
+    Point3DDouble sizestddev;
+    double orientation;
+    double orientationstddev;
+    sequence<Point3DFloat> corners;
+};
+
+struct ObjectInfo {
+    BaseHeader header;
+    uint32 objectid;
+    uint32 type;
+    uint32 detectsensor_current;
+    uint32 detectsensor_history;
+    uint32 maintenancestatus;
+    float typeconfidence;
+    float existenceprobability;
+    AlgRect3D rectinfo;
+    Point3DFloat velocityabs;
+    Point3DFloat accelerationabs;
+    Time timecreation;
+    Time lastupdatedtime;
+    sequence<uint32> sensorid;
+    uint32 motionpattern;
+    uint32 motionpatternhistory;
+    uint32 brakelightst;
+    uint32 turnlightst;
+    uint32 nearside;
+    sequence<float> associatedconf;
+    uint32 age;
+};
+
+struct ObjectVec {
+    sequence<ObjectInfo> obj;
+};

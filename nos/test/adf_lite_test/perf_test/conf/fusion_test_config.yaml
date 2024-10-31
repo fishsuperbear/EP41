@@ -1,0 +1,88 @@
+%YAML:1.0
+
+library: "/app/test/adf_lite_test/perf_test/lib/libfusion_test.so"
+depLibPath: ["/app/lib", "/opt/app/1/lib"]
+executorName: FusionTest
+    
+input:
+    - topic: Object_Info
+      capacity: 5
+    - topic: UPA_Info_T
+      capacity: 5
+    - topic: UssRawDataSet
+      capacity: 5
+    - topic: chassis_ego_hmi_send
+      capacity: 5
+    - topic: hpp_freespace
+      capacity: 5
+    - topic: avm_stitcher_image
+      capacity: 5
+    - topic: fisheye_perception_obj_camera
+      capacity: 5
+    - topic: avm_segmentation_image
+      capacity: 5
+    - topic: hpp_lane
+      capacity: 5
+    - topic: slot_det_parking_lot
+      capacity: 5
+    - topic: ocr_info
+      capacity: 5
+    - topic: state_machine_1
+      capacity: 5
+
+trigger:
+  - name: hpp_freespace
+    type: EVENT
+    mainSources:
+      - name: hpp_freespace
+        timeout: 1000
+  - name: avm_stitcher_image
+    type: EVENT
+    mainSources:
+      - name: avm_stitcher_image
+        timeout: 1000
+  - name: fisheye_perception_obj_camera
+    type: EVENT
+    mainSources:
+      - name: fisheye_perception_obj_camera
+        timeout: 1000
+  - name: avm_segmentation_image
+    type: EVENT
+    mainSources:
+      - name: avm_segmentation_image
+        timeout: 1000
+  - name: hpp_lane
+    type: EVENT
+    mainSources:
+      - name: hpp_lane
+        timeout: 1000
+  - name: slot_det_parking_lot
+    type: EVENT
+    mainSources:
+      - name: slot_det_parking_lot
+        timeout: 1000
+  - name: ocr_info
+    type: EVENT
+    mainSources:
+      - name: ocr_info
+        timeout: 1000
+  - name: state_machine_1
+    type: EVENT
+    mainSources:
+      - name: state_machine_1
+        timeout: 1000
+  - name: Object_Info
+    type: EVENT
+    mainSources:
+      - name: Object_Info
+        timeout: 2000
+  - name: UPA_Info_T
+    type: EVENT
+    mainSources:
+      - name: UPA_Info_T
+        timeout: 2000
+  - name: UssRawDataSet
+    type: EVENT
+    mainSources:
+      - name: UssRawDataSet
+        timeout: 2000

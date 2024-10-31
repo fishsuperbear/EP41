@@ -1,0 +1,42 @@
+package commonapi
+
+interface DoSomeIP {
+  version {major 1 minor 0}
+  method udsMessageRequest {
+    in {
+      DoSomeIPReqUdsMessage req
+    }
+    out {
+      DoSomeIPRespUdsMessage resp
+    }
+    error stdErrorTypeEnum
+  }
+  
+
+    array my_array of UInt8
+
+    enumeration TargetAddressType {
+      kPhysical
+      kFunctional
+    }
+
+    struct DoSomeIPReqUdsMessage {
+      UInt16 udsSa
+      UInt16 udsTa
+      TargetAddressType taType
+      my_array udsData
+    }
+
+    struct DoSomeIPRespUdsMessage {
+      UInt16 udsSa
+      UInt16 udsTa
+      UInt32 result
+      TargetAddressType taType
+      my_array udsData
+    }
+
+    enumeration stdErrorTypeEnum {
+        OK
+        NOT_OK
+    }
+}

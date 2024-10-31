@@ -1,0 +1,653 @@
+[
+  {
+    "key": "default_application_timeout",
+    "value": {
+      "object[]": [
+        {
+          "key": "enter_timeout_s",
+          "value": {
+            "double": 8.0
+          },
+          "checksum": 222
+        },
+        {
+          "key": "exit_timeout_s",
+          "value": {
+            "double": 8.0
+          },
+          "checksum": 222
+        }
+      ]
+    },
+    "checksum": 111
+  },
+  {
+    "key": "default_environments",
+    "value": {
+      "string[]": []
+    },
+    "checksum": 111
+  },
+  {
+    "key": "processors",
+    "value": {
+      "object[]": [
+        {
+          "key": "Cpu.Processor0_Core0",
+          "value": {
+            "uint32": 0
+          },
+          "checksum": 222
+        },
+        {
+          "key": "Cpu.Processor0_Core1",
+          "value": {
+            "uint32": 1
+          },
+          "checksum": 222
+        }
+      ]
+    },
+    "checksum": 111
+  },
+  {
+    "key": "function_groups",
+    "value": {
+      "object[]": [
+        {
+          "key": "Access",
+          "value": {
+            "object[]": [
+              {
+                "key": "initial_state",
+                "value": {
+                  "string": "Off"
+                },
+                "checksum": 333
+              },
+              {
+                "key": "states",
+                "value": {
+                  "object[]": [
+                    {
+                      "key": "Off",
+                      "value": {},
+                      "checksum": 444
+                    },
+                    {
+                      "key": "Running",
+                      "value": {},
+                      "checksum": 444
+                    }
+                  ]
+                },
+                "checksum": 333
+              },
+              {
+                "key": "trans_states",
+                "value": {
+                  "object[]": [
+                    {
+                      "key": "OffToRunning",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Off"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Running"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "RunningToOff",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Running"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Off"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    }
+                  ]
+                },
+                "checksum": 333
+              }
+            ]
+          },
+          "checksum": 222
+        },
+        {
+          "key": "MachineState",
+          "value": {
+            "object[]": [
+              {
+                "key": "initial_state",
+                "value": {
+                  "string": "Startup"
+                },
+                "checksum": 333
+              },
+              {
+                "key": "states",
+                "value": {
+                  "object[]": [
+                    {
+                      "key": "Off",
+                      "value": {},
+                      "checksum": 444
+                    },
+                    {
+                      "key": "Reset",
+                      "value": {},
+                      "checksum": 444
+                    },
+                    {
+                      "key": "Restart",
+                      "value": {},
+                      "checksum": 444
+                    },
+                    {
+                      "key": "Shutdown",
+                      "value": {},
+                      "checksum": 444
+                    },
+                    {
+                      "key": "Standby",
+                      "value": {},
+                      "checksum": 444
+                    },
+                    {
+                      "key": "Startup",
+                      "value": {},
+                      "checksum": 444
+                    },
+                    {
+                      "key": "Update",
+                      "value": {},
+                      "checksum": 444
+                    },
+                    {
+                      "key": "Verify",
+                      "value": {},
+                      "checksum": 444
+                    },
+                    {
+                      "key": "PreStartup",
+                      "value": {},
+                      "checksum": 444
+                    }
+                  ]
+                },
+                "checksum": 333
+              },
+              {
+                "key": "trans_states",
+                "value": {
+                  "object[]": [
+                    {
+                      "key": "OffToStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Off"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Startup"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "StandbyToShutdown",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Standby"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Shutdown"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "StandbyToStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Standby"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Startup"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "StartupToReset",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Startup"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Reset"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "StartupToRestart",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Startup"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Restart"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "StartupToShutdown",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Startup"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Shutdown"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "StartupToStandby",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Startup"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Standby"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "StartupToUpdate",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Startup"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Update"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "StartupToVerify",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Startup"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Verify"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "UpdateToReset",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Update"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Reset"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "UpdateToStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Update"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Startup"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "VerifyToRestart",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Verify"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Restart"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "VerifyToStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Verify"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Startup"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "OffToPreStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Off"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "PreStartup"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "PreStartupToStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "PreStartup"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Startup"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "StartupToPreStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Startup"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "PreStartup"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "PreStartupToUpdate",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "PreStartup"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Update"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "UpdateToPreStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Update"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "PreStartup"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    },
+                    {
+                      "key": "PreStartupToReset",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "PreStartup"
+                            },
+                            "checksum": 555
+                          },
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Reset"
+                            },
+                            "checksum": 555
+                          }
+                        ]
+                      },
+                      "checksum": 444
+                    }
+                  ]
+                },
+                "checksum": 333
+              }
+            ]
+          },
+          "checksum": 222
+        }
+      ]
+    },
+    "checksum": 111
+  },
+  {
+    "key": "resource_groups",
+    "value": {
+      "object[]": [
+        {
+          "key": "ResourceLimit",
+          "value": {},
+          "checksum": 222
+        }
+      ]
+    },
+    "checksum": 111
+  }
+]

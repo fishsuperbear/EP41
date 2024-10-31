@@ -1,0 +1,1525 @@
+[
+  {
+    "key": "function_groups",
+    "value": {
+      "object[]": [
+        {
+          "key": "Access",
+          "value": {
+            "object[]": [
+              {
+                "key": "initial_state",
+                "value": {
+                  "string": "Off"
+                }
+              },
+              {
+                "key": "states",
+                "value": {
+                  "object[]": [
+                    {
+                      "key": "Off",
+                      "value": {}
+                    },
+                    {
+                      "key": "Running",
+                      "value": {}
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "trans_states",
+                "value": {
+                  "object[]": [
+                    {
+                      "key": "OffToRunning",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Running"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Off"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {
+                              "object[]": [
+                                {
+                                  "key": "Access/OffToRunning/PostProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "post_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "Access/OffToRunning/PreProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "pre_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "Access/OffToRunning/ArbitrateProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 1000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "arbitrate_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "RunningToOff",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Off"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Running"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {
+                              "object[]": [
+                                {
+                                  "key": "Access/RunningToOff/PostProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "post_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "Access/RunningToOff/ArbitrateProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 1000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "arbitrate_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "Access/RunningToOff/ModeTransitionTask",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "pre_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key": "MachineState",
+          "value": {
+            "object[]": [
+              {
+                "key": "initial_state",
+                "value": {
+                  "string": "Startup"
+                }
+              },
+              {
+                "key": "states",
+                "value": {
+                  "object[]": [
+                    {
+                      "key": "Off",
+                      "value": {}
+                    },
+                    {
+                      "key": "Reset",
+                      "value": {}
+                    },
+                    {
+                      "key": "Restart",
+                      "value": {}
+                    },
+                    {
+                      "key": "Shutdown",
+                      "value": {}
+                    },
+                    {
+                      "key": "Standby",
+                      "value": {}
+                    },
+                    {
+                      "key": "Startup",
+                      "value": {}
+                    },
+                    {
+                      "key": "Update",
+                      "value": {}
+                    },
+                    {
+                      "key": "Verify",
+                      "value": {}
+                    },
+                    {
+                      "key": "PreStartup",
+                      "value": {}
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "trans_states",
+                "value": {
+                  "object[]": [
+                    {
+                      "key": "OffToStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Startup"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Off"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {
+                              "object[]": [
+                                {
+                                  "key": "MachineState/OffToStartup/PostProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "post_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "StandbyToShutdown",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Shutdown"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Standby"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {}
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "StandbyToStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Startup"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Standby"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {
+                              "object[]": [
+                                {
+                                  "key": "MachineState/StandbyToStartup/ArbitrateProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 1000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "arbitrate_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StandbyToStartup/PreProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "pre_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StandbyToStartup/PostProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 30000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "post_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "StartupToReset",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Reset"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Startup"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {
+                              "object[]": [
+                                {
+                                  "key": "MachineState/StartupToReset/PostProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "post_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StartupToReset/PreProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 30000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "pre_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StartupToReset/ArbitrateProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 1000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "arbitrate_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "StartupToRestart",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Restart"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Startup"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {
+                              "object[]": [
+                                {
+                                  "key": "MachineState/StartupToRestart/ArbitrateProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 1000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "arbitrate_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StartupToRestart/PostProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "post_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StartupToRestart/PreProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 30000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "pre_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "StartupToShutdown",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Shutdown"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Startup"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {
+                              "object[]": [
+                                {
+                                  "key": "MachineState/StartupToShutdown/ArbitrateProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 1000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "arbitrate_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StartupToShutdown/PostProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "post_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StartupToShutdown/PreProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "pre_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "StartupToStandby",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Standby"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Startup"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {
+                              "object[]": [
+                                {
+                                  "key": "MachineState/StartupToStandby/PostProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 30000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "post_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StartupToStandby/PreProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 30000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "pre_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StartupToStandby/ArbitrateProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 30000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "arbitrate_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "StartupToUpdate",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Update"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Startup"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {
+                              "string[]": [
+                                "MachineState.Update"
+                              ]
+                            }
+                          },
+                          {
+                            "key": "task",
+                            "value": {
+                              "object[]": [
+                                {
+                                  "key": "MachineState/StartupToUpdate/ArbitrateProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 1000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "arbitrate_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StartupToUpdate/PostProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "post_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StartupToUpdate/PreProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "pre_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "StartupToVerify",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Verify"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Startup"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {
+                              "object[]": [
+                                {
+                                  "key": "MachineState/StartupToVerify/PostProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "post_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StartupToVerify/ArbitrateProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 1000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "arbitrate_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StartupToVerify/PreProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "pre_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "UpdateToReset",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Reset"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Update"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {
+                              "object[]": [
+                                {
+                                  "key": "MachineState/UpdateToReset/ArbitrateProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 1000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "arbitrate_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/UpdateToReset/PreProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "pre_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "UpdateToStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Startup"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Update"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {
+                              "string[]": [
+                                "MachineState.Startup"
+                              ]
+                            }
+                          },
+                          {
+                            "key": "task",
+                            "value": {
+                              "object[]": [
+                                {
+                                  "key": "MachineState/UpdateToStartup/PreProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "pre_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/UpdateToStartup/ArbitrateProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 1000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "arbitrate_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/UpdateToStartup/PostProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "post_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "VerifyToRestart",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Restart"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Verify"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {}
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "VerifyToStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Startup"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Verify"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {
+                              "object[]": [
+                                {
+                                  "key": "MachineState/VerifyToStartup/ArbitrateProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 1000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "arbitrate_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/VerifyToStartup/PreProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "pre_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/VerifyToStartup/PostProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "post_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "OffToPreStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "PreStartup"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Off"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {}
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "PreStartupToStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Startup"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "PreStartup"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {
+                              "object[]": [
+                                {
+                                  "key": "MachineState/PreStartupToStartup/PreProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "pre_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/PreStartupToStartup/ArbitrateProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 1000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "arbitrate_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/PreStartupToStartup/PostProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "post_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "StartupToPreStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "PreStartup"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Startup"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {
+                              "object[]": [
+                                {
+                                  "key": "MachineState/StartupToPreStartup/PostProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "post_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StartupToPreStartup/ArbitrateProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 1000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "arbitrate_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "key": "MachineState/StartupToPreStartup/PreProcess",
+                                  "value": {
+                                    "object[]": [
+                                      {
+                                        "key": "timeout",
+                                        "value": {
+                                          "uint32": 3000
+                                        }
+                                      },
+                                      {
+                                        "key": "category",
+                                        "value": {
+                                          "string": "pre_process"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "PreStartupToUpdate",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Update"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "PreStartup"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {}
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "UpdateToPreStartup",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "PreStartup"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "Update"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {}
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "key": "PreStartupToReset",
+                      "value": {
+                        "object[]": [
+                          {
+                            "key": "entered_state",
+                            "value": {
+                              "string": "Reset"
+                            }
+                          },
+                          {
+                            "key": "exited_state",
+                            "value": {
+                              "string": "PreStartup"
+                            }
+                          },
+                          {
+                            "key": "action",
+                            "value": {}
+                          },
+                          {
+                            "key": "task",
+                            "value": {}
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+]

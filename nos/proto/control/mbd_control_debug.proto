@@ -1,0 +1,313 @@
+syntax = "proto2";
+package hozon.control;
+
+import "proto/common/header.proto";
+
+message MbdPoseCalcDebugFromMCU {
+
+  optional double posecalc_posedata_timestamp = 1;	
+  optional bool posecalc_inputdata_valid = 2;
+  optional bool posecalc_posedata_timecheck	= 3;
+  optional bool posecalc_enable	= 4;
+  optional double posecalc_timedelay	= 5;
+  optional double posedata_world_pos_x	= 6;
+  optional double posedata_world_pos_y	= 7;
+  optional double posedata_vrf_vel_x	= 8;
+  optional double posedata_vrf_vel_y	= 9;
+  optional double posedata_vrf_acc_x	= 10;
+  optional double posedata_vrf_acc_y	= 11;
+  optional double posedata_world_heading	= 12;
+  optional double posedata_vrf_yawrate	= 13;
+  optional double posecalc_world_pos_x	= 14;
+  optional double posecalc_world_pos_y	= 15;
+  optional double posecalc_vrf_vel_x	= 16;
+  optional double posecalc_vrf_vel_y	= 17;
+  optional double posecalc_vrf_acc_x	= 18;
+  optional double posecalc_vrf_acc_y	= 19;
+  optional double posecalc_world_vel_x	= 20;
+  optional double posecalc_world_vel_y	= 21;
+  optional double posecalc_world_acc_x	= 22;
+  optional double posecalc_world_acc_y	= 23;
+  optional double posecalc_world_heading	= 24;
+  optional double posecalc_world_pitch	= 25;
+
+}
+
+message MbdTrajCalcDebugFromMCU {
+
+  optional bool trajcalc_trajdata_replaning_flag	= 1;
+  optional uint32 trajcalc_trajdata_estop	= 2;
+  optional uint32 trajcalc_trajdata_gearcmd	= 3;
+  optional uint32 trajcalc_inputdata_valid	= 4;
+  optional double trajcalc_trajdata_timestamp	= 5;
+  optional double trajcalc_globaltime_timestamp	= 6;
+  optional bool trajcalc_trajdata_pointtime_check	= 7;
+  optional bool trajcalc_trajdata_timecheck	= 8;
+  optional uint32 trajcalc_enable	= 9;
+  optional uint32 trajcalc_lon_startpoint_index	= 10;
+  optional double trajcalc_lon_linear_ratio	= 11;
+  optional double trajcalc_lon_poserrcmd	= 12;
+  optional double trajcalc_lon_headingcmd	= 13;
+  optional double trajcalc_lon_velcmd	= 14;
+  optional double trajcalc_lon_acc_cmd	= 15;
+  optional double trajcalc_lon_curvcmd	= 16;
+  optional uint32 trajcalc_lonpre_startpoint_index	= 17;
+  optional double trajcalc_lonpre_linear_ratio	= 18;
+  optional double trajcalc_lonpre_poserrcmd	= 19;
+  optional double trajcalc_lonpre_headingcmd	= 20;
+  optional double trajcalc_lonpre_velcmd	= 21;
+  optional double trajcalc_lonpre_acc_cmd	= 22;
+  optional double trajcalc_lonpre_curvrmd	= 23;
+  optional double trajcalc_posedata_posex	= 24;
+  optional double trajcalc_posedata_posey	= 25;
+  optional uint32 trajcalc_lat_startpoint_index	= 26;
+  optional double trajcalc_lat_linear_ratio	= 27;
+  optional double trajcalc_lat_match_pointx	= 28;
+  optional double trajcalc_lat_match_pointy	= 29;
+  optional double trajcalc_lat_poserrcmd	= 30;
+  optional double trajcalc_lat_headingcmd	= 31;
+  optional double trajcalc_lat_velcmd	= 32;
+  optional double trajcalc_lat_acc_cmd	= 33;
+  optional double trajcalc_lat_curvcmd	= 34;
+  optional double trajcalc_posedata_preposex	= 35;
+  optional double trajcalc_posedata_preposey	= 36;
+  optional uint32 trajcalc_latpre_startpoint_index	= 37;
+  optional double trajcalc_latpre_linear_ratio	= 38;
+  optional double trajcalc_latpre_match_pointx	= 39;
+  optional double trajcalc_latpre_match_pointy	= 40;
+  optional double trajcalc_latpre_poserrcmd	= 41;
+  optional double trajcalc_latpre_headingcmd	= 42;
+  optional double trajcalc_latpre_velcmd	= 43;
+  optional double trajcalc_latpre_acc_cmd	= 44;
+  optional double trajcalc_latpre_curvcmd	= 45;
+
+}
+
+
+message MbdADASCalcDebugFromMCU {
+  optional uint32 adascalc_is_lccactive	= 1;
+  optional double adascalc_trajparam_a0	= 2;
+  optional double adascalc_trajparam_a1	= 3;
+  optional double adascalc_trajparam_a2	= 4;
+  optional double adascalc_trajparam_a3	= 5;
+  optional uint32 adascalc_trp_replanlevel	= 6;
+  optional uint32 adascalc_hostlindchgtoleft_bl	= 7;
+  optional uint32 adascalc_hostlindchgtorght_bl	= 8;
+  optional uint32 adascalc_accsystemstate	= 9;
+  optional uint32 adascalc_accstopreq	= 10;
+  optional double adascalc_deltavelocity	= 11;
+  optional double adascalc_deltadist	= 12;
+  optional double adascalc_drvrseltrgtspd_sg	= 13;
+  optional uint32 adascalc_acc_smrsts	= 14;
+  optional uint32 adascalc_enable	= 15;
+  optional bool adascalc_replanningflag	= 16;
+  optional uint32 adascalc_gearcmd	=17;
+  optional uint32 adascalc_estop	= 18;
+  optional double cal_adascalc_headdingoffset_rad	= 19;
+  optional double adascalc_lat_poserrcmd	= 20;
+  optional double adascalc_lat_headingcmd	= 21;
+  optional double adascalc_lat_velcmd	= 22;
+  optional double adascalc_latpre_curvcmd	= 23;
+  optional double adascalc_lon_poserrcmd	= 24;
+  optional double adascalc_lon_velcmd	= 25;
+  optional double adascalc_a_acctrajcmd	= 26;
+  optional uint32 adascalc_is_longtraj_replan	= 27;
+  optional double adascalc_m_strajerror	= 28;
+  optional double adascalc_trajparamlong_a0	= 29;
+  optional double adascalc_trajparamlong_a1	= 30;
+  optional double adascalc_trajparamlong_a2	= 31;
+  optional double adascalc_trajparamlong_a3	= 32;
+  optional double adascalc_trajparamlong_a4	= 33;
+  optional double adascalc_trajparamlong_a5	= 34;
+  optional double adascalc_v_spdtrajcmd	= 35;
+
+}
+
+message MbdCtrlDecDebugFromMCU {
+  optional uint32 ctrldec_sysmode	= 1;
+  optional bool ctrldec_req_auto	= 2;
+  optional bool ctrldec_automode_is_estop	= 3;
+  optional bool ctrldec_is_gear_change_req	= 4;
+  optional bool ctrldec_is_stop_steer_ctrl	= 5;
+  optional bool ctrldec_is_vehicle_standstill	= 6;
+  optional bool ctrldec_is_steer_set_ok	= 7;
+  optional uint32 ctrldec_trajcalc_geargmd	= 8;
+  optional uint32 ctrldec_lat_sysmodecmd	= 9;
+  optional uint32 ctrldec_lat_resetflag	= 10;
+  optional double ctrldec_lat_sys_poserr	= 11;
+  optional double ctrldec_lat_sys_yawff	= 12;
+  optional double ctrldec_lat_sys_velff	= 13;
+  optional double ctrldec_lat_sys_curvff	= 14;
+  optional double ctrldec_lat_api_poscmd	= 15;
+  optional double ctrldec_lat_api_yawcmd	= 16;
+  optional double ctrldec_lat_api_curvcmd	= 17;
+  optional double ctrldec_lat_api_steercmd	= 18;
+  optional uint32 ctrldec_lon_sysmodecmd	= 19;
+  optional uint32 ctrldec_lon_resetflag	= 20;
+  optional double ctrldec_lon_sys_poserr	= 21;
+  optional double ctrldec_lon_sys_velff	= 22;
+  optional double ctrldec_lon_sys_accff	= 23;
+  optional uint32 ctrldec_lon_sys_gearcmd	= 24;
+  optional uint32 ctrldec_lon_sys_gear_ena	= 25;
+  optional uint32 ctrldec_lon_sys_brk_emerg	= 26;
+  optional double ctrldec_lon_api_poscmd	= 27;
+  optional double ctrldec_lon_api_velff	= 28;
+  optional double ctrldec_lon_api_acc_cmd	= 29;
+  optional double ctrldec_lon_api_thrcmd	= 30;
+  optional double ctrldec_lon_api_brkcmd	= 31;
+  optional uint32 ctrldec_adascalc_geargmd	= 32;
+  optional uint32 ctrldec_ctrl_err = 33;
+  optional uint32 ctrldec_actor_error = 34;
+  optional uint32 ctrldec_sensor_error = 35;
+  optional uint32 ctrldec_algorithm_error = 36;
+
+
+}
+
+message MbdLonCtrlDebugFromMCU {
+  optional uint32 lonctrl_modecmd	= 1;
+  optional uint32 lonctrl_resetflag	= 2;
+  optional double lonctrl_sys_poserr	= 3;
+  optional double lonctrl_sys_velff	= 4;
+  optional double lonctrl_sys_accff	= 5;
+  optional uint32 lonctrl_sys_gearcmd	= 6;
+  optional uint32 lonctrl_sys_gearena	= 7;
+  optional uint32 lonctrl_sys_brkemerg	= 8;
+  optional double lonctrl_api_poscmd 	= 9;
+  optional double lonctrl_api_velcmd	= 10;
+  optional double lonctrl_api_acccmd	= 11;
+  optional double lonctrl_api_thrcmd	= 12;
+  optional double lonctrl_api_brkcmd	= 13;
+  optional double lonctrl_fdbk_vx	= 14;
+  optional double lonctrl_fdbk_ax	= 15;
+  optional double lonctrl_fdbk_pitch	= 16;
+  optional double lonctrl_fdbk_gear	= 17;
+  optional double lonctrl_fdbk_reverse	= 18;
+  optional double lonctrl_pos_dyn	= 19;
+  optional double lonctrl_posctrl_p	= 20;
+  optional double lonctrl_posctrl_i	= 21;
+  optional double lonctrl_pos_poserr_filter	= 22;
+  optional double lonctrl_pos_pi_velcmd	= 23;
+  optional double lonctrl_pos_output_velcmd	= 24;
+  optional double lonctrl_vel_dyn	= 25;
+  optional double lonctrl_vel_velcmd_lmt	= 26;
+  optional double lonctrl_vel_vel_err	= 27;
+  optional double lonctrl_velctrl_p	= 28;
+  optional double lonctrl_velctrl_i	= 29;
+  optional double lonctrl_vel_pi_acc_cmd	= 30;
+  optional double lonctrl_vel_pi_acccmd_filter	= 31;
+  optional double lonctrl_vel_accpitch	= 32;
+  optional double lonctrl_vel_accdamper	= 33;
+  optional double lonctrl_vel_accff_filter	= 34;
+  optional double lonctrl_vel_output_acccmd	= 35;
+  optional double lonctrl_vel_output_acccmd_filter	= 36;
+  optional double lonctrl_thrust_thr_dyn	= 37;
+  optional double lonctrl_thrust_thr_accerr	= 38;
+  optional double lonctrl_thrust_brk_dyn	= 39;
+  optional double lonctrl_thrust_brk_accerr	= 40;
+  optional double lonctrl_thrust_fdbk_ax_filter	= 41;
+  optional double lonctrl_thrust_thr_acc_cmd_filter	= 42;
+  optional double lonctrl_thrust_brk_acc_cmd_filter	= 43;
+  optional double lonctrl_thrustctrl_thr_p	= 44;
+  optional double lonctrl_thrustctrl_thr_i	= 45;
+  optional double lonctrl_thrustctrl_brk_p	= 46;
+  optional double lonctrl_thrustctrl_brk_i	= 47;
+  optional double lonctrl_thrust_pi_thr_acc_cmd	= 48;
+  optional double lonctrl_thrust_pi_brk_acc_cmd	= 49;
+  optional double lonctrl_thrust_acc_cmd_filter_lmt	= 50;
+  optional double lonctrl_thrust_acctothr_gain	= 51;
+  optional double lonctrl_thrust_throut_throcmd	= 52;
+  optional double lonctrl_thrust_acctobrk_gain	= 53;
+  optional double lonctrl_thrust_brkout_brkcmd	= 54;
+  optional double lonctrl_analog_autput_throtcmd	= 55;
+  optional double lonctrl_analog_autput_brkcmd	= 56;
+  optional double lonctrl_vel_mrac_cmd	= 57;
+  optional double lonctrl_vel_reference_model	= 58;
+  optional double lonctrl_accel_eso_cmd	= 59;
+  optional double lonctrl_deccel_eso_cmd	= 60;
+  optional double lonctrl_slope_estimate	= 61;
+  optional double lonctrl_mass_estimate	= 62;
+  optional uint32 lonctrl_error	= 63;
+
+}
+
+message MbdLatCtrlDebugFromMCU {
+  optional uint32 latctrl_modecmd	= 1;
+  optional uint32 latctrl_resetflag	= 2;
+  optional double latctrl_sys_poserr	= 3;
+  optional double latctrl_sys_yawff	= 4;
+  optional double latctrl_sys_velff	= 5;
+  optional double latctrl_sys_curvff	= 6;
+  optional double latctrl_api_poscmd	= 7;
+  optional double latctrl_api_yawcmd	= 8;
+  optional double latctrl_api_curvcmd	= 9;
+  optional double latctrl_api_steercmd	= 10;
+  optional double latictrl_fdbk_vxb	= 11;
+  optional double latictrl_fdbk_heading	= 12;
+  optional double latictrl_fdbk_yawrate	= 13;
+  optional double latictrl_fdbk_steer	= 14;
+  optional uint32 latictrl_fdbk_gear = 15;
+  optional uint32 latictrl_fdbk_rvsflag	= 16;
+  optional double latictrl_offset_dyn	= 17;
+  optional double latictrl_offset_offseterr	= 18;
+  optional double latictrl_offset_pi_torscmd	= 19;
+  optional double latictrl_offset_torsrateffcmd	= 20;
+  optional double latictrl_offset_output_yawcmd	= 21;
+  optional double latictrl_offsetctrl_i	= 22;
+  optional double latictrl_offsetctrl_p	= 23;
+  optional double latictrl_tors_dyn	= 24;
+  optional double latictrl_tors_pure_yawerr	= 25;
+  optional double latictrl_tors_yawerr	= 26;
+  optional double latictrl_yawctrl_p	= 27;
+  optional double latictrl_yawctrl_i	= 28;
+  optional double latictrl_tors_pi_torsrate	= 29;
+  optional double latictrl_tors_pi_leadfilter_torsrate	= 30;
+  optional double latictrl_tors_torsrateff	= 31;
+  optional double latictrl_tors_output_yawratecmd	= 32;
+  optional double latictrl_rate_dyn	= 33;
+  optional double latictrl_rate_p	= 34;
+  optional double latictrl_rate_i	= 35;
+  optional double latictrl_rate_yawratecmd_lmt	= 36;
+  optional double latictrl_rate_filter_yawratecmd_lmt	= 37;
+  optional double latictrl_rate_pi_steer	= 38;
+  optional double latictrl_rate_pi_filter_steer	= 39;
+  optional double latictrl_rate_steerff	= 40;
+  optional double latictrl_rate_output_front_steercmd	= 41;
+  optional double latictrl_rate_output_front_steercmd_offset	= 42;
+  optional double latictrl_rate_output_sw_steercmd	= 43;
+  optional double latictrl_steer_steercmd_filter	= 44;
+  optional double latictrl_steer_max_steerrate_value	= 45;
+  optional double latictrl_steer_steercmd_lmt_filter	= 46;
+  optional double latictrl_steer_output_steercmd	= 47;
+  optional double latictrl_yaw_curve_compsate	= 48;
+  optional double latictrl_rate_reference_model	= 49;
+  optional double latictrl_rate_mrac_cmd	= 50;
+  optional double latictrl_rate_eso_cmd	= 51;
+  optional double latictrl_rate_steer_offset	= 52;
+  optional double latictrl_rate_ramp_estimate	= 53;
+  optional uint32 latictrl_error	= 54;
+
+}
+
+message MbdCtrlOutputDebugFromMCU {
+  optional double ctrlout_brake_cmd	= 1;
+  optional double ctrlout_throttle_cmd	= 2;
+  optional double ctrlout_acc_cmd	= 3;
+  optional uint32 ctrlout_gear_enable	= 4;
+  optional uint32 ctrlout_gear_cmd	= 5;
+  optional uint32 ctrlout_emerg_enable	= 6;
+  optional double ctrlout_steer_cmd	= 7;
+  optional double ctrlout_steer_torque_cmd 	= 8;
+
+}
+
+message MbdDebugFromMCU {
+  optional hozon.common.Header header = 1;
+  optional MbdPoseCalcDebugFromMCU pose_calc_debug = 3;
+  optional MbdTrajCalcDebugFromMCU traj_calc_debug = 5;
+  optional MbdADASCalcDebugFromMCU adas_calc_debug = 7;
+  optional MbdCtrlDecDebugFromMCU ctrl_dec_debug = 9;
+  optional MbdLonCtrlDebugFromMCU lon_ctrl_debug = 11;
+  optional MbdLatCtrlDebugFromMCU lat_ctrl_debug = 13;
+  optional MbdCtrlOutputDebugFromMCU ctrl_output_debug = 15;
+}

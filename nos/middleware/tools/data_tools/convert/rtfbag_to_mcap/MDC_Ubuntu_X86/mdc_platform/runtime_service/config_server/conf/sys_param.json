@@ -1,0 +1,7 @@
+{
+	"global" : 
+	{
+        "/global/sensorAccessMode" : "1",
+        "/global/version" : "1.0.0"
+	}
+}

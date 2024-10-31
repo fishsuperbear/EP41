@@ -1,0 +1,14 @@
+{
+  "instanceSpecifiers": [
+    {
+      "instanceSpecifier": "config_client/config_client/ConfigAppFromServerRPort",
+      "service": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface",
+      "instanceIdentifiers": [
+        {
+          "protocol": "SOMEIP",
+          "instanceIdentifier": "1"
+        }
+      ]
+    }
+  ]
+}

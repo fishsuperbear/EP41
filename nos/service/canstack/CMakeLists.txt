@@ -1,0 +1,6 @@
+if(${TARGET_PLATFORM} STREQUAL "mdc-llvm") 
+    add_subdirectory(hz_ins)
+endif()
+add_subdirectory(hz_chassis)
+add_subdirectory(hz_cangen)
+# add_subdirectory(hz_radarcorner)

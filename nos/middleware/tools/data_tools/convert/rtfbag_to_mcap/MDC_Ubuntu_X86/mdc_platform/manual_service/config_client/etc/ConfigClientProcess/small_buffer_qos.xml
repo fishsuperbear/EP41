@@ -1,0 +1,3 @@
+<qos>
+    <profile name="DDSQosProfile"/>
+</qos>

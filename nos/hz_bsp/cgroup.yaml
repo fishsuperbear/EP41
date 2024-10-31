@@ -1,0 +1,138 @@
+%YAML:1.0
+
+# log parameter
+# 0 means printf, 1 means logblock, other means log absolute dir path
+# current log will overwrite old
+# when log mode do not support, use printf as default
+#logpara: 0 #printf
+#logpara: 1 #logblock
+#logpara: /svp_log/DSVSyslog/neta_notify.log #sample dir  
+logpara: /svp_log/DSVSyslog/neta_notify.log
+
+#cpu cgroup begin
+cpu:
+  enable: true
+  #cgroup cpu add group logic will ignore the name in the name list
+  ignore_name:
+    - sh
+  #set it to 0 to mean do not need to delay set the cpu cgroup, unit: ms
+  delay_ms: 5000
+  #cpu cgroup group defines begin
+  algorithm:
+    enable: true
+    settings: 
+    #when has no threadname, we add the process into cgroup
+    processname:
+      #- cgroupA
+      - ehp
+      - planning
+      - fisheye_percept
+      - parking_slam
+      - parking_fusion
+      - uss_perception
+      - hz_perception_s
+      - perception
+      - calibrate
+      - hz_location
+      - hz_location_plu
+    #when has threadname, we add the thread into cgroup, not the process
+    #threadname:
+    parentprocessname:
+      - execution_manag
+    #skipparentprocessname means skip the parentprocessname cases
+    #skipparentprocessname:
+  calibrate:
+    enable: false
+    settings:
+      cpu.cfs_quota_us: 20000
+      cpu.cfs_period_us: 100000
+    processname:
+      - calibrate
+  nos:
+    enable: true
+    settings:
+      cpu.cfs_quota_us: 90000
+      cpu.cfs_period_us: 100000
+    processname:
+      #- cgroupB
+      - sensor_trans
+      - neta_lidar
+      - sys_statemgr
+      - phm_server
+      - update_manager
+      - state_machine
+      - soc_to_hmi
+      - soc_to_mcu
+      - dvr
+      - diag_server
+      - config_server
+      - data_collection
+      #- pki_service
+      #- crypto_server
+      - log_server
+      - remote_diag
+      - camera_venc
+      - devm_server
+      - network_capture
+      - neta_someipd
+    parentprocessname:
+      - execution_manag
+  nos_nvs_producer:
+    enable: false
+    settings:
+      cpu.cfs_quota_us: 50000
+      cpu.cfs_period_us: 100000
+    processname:
+      - nvs_producer
+    threadname:
+      - DEVBLK_WORKER_0
+      - DEVBLK_WORKER_1
+      - DEVBLK_WORKER_2
+      - CAutoRecovery
+  black_list:
+    enable: true
+    settings:
+      cpu.cfs_quota_us: 5000
+      cpu.cfs_period_us: 100000
+    processname:
+      - gunzip
+  os:
+    enable: true
+    settings:
+      cpu.cfs_quota_us: 50000
+      cpu.cfs_period_us: 100000
+    processname:
+      - avmdriver
+  #default name is reserved for all unknown names
+  default:
+    enable: false
+    settings:
+      cpu.cfs_quota_us: 5000
+      cpu.cfs_period_us: 100000
+    #DO NOT define processname or threadname or parentprocessname!
+  #cpu cgroup group defines end
+#cpu cgroup end
+
+
+#cpuset cgroup begin
+cpuset:
+  enable: true
+  #cgroup cpuset add group logic will ignore the name in the name list
+  ignore_name:
+    - sh
+  #cpuset cgroup group defines begin
+  sysmon:
+    enable: false
+    settings:
+      cpuset.cpus: "1-2"
+      cpuset.mems: 0
+    processname:
+      #- cgroupC
+      - system_monitor
+      #- execution_manager   ???  0-2 0-1 ?
+    #parentprocessname:
+    #  - execution_manag
+    skipparentprocessname:
+      - system_monitor
+  #cpuset cgroup group defines end
+#cpuset cgroup end

@@ -1,0 +1,21 @@
+{
+    "ORIN": {
+        "EP41": {
+            "SDK": "20231101",
+            "middleWare": "EP41_ORIN_NOS_02.04.07_1101_1115_20231120",
+            "release": {
+                "compileCmd": "bash ql_build.sh",
+                "outputPath": ["output", "*"]
+            },
+            "debug": {
+                "compileCmd": "bash ql_build.sh",
+                "outputPath": ["output", "*"]
+            },
+            "third_party": "v5.1.81_x86_2004_20231219",
+            "ProtoVersion": "0ded740076039e0c3d2bb268370bbefe3124f205",
+            "CUDA": "cuda_11.4.327_20231011",
+            "TensorRT": "tensorrt_v8.5.10.4_all_20231206",
+            "releaseVersion": "EP41_ORIN_NOS_02.04.07_1101_1115_20231120"
+        }
+    }
+}

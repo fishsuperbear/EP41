@@ -1,0 +1,10 @@
+{
+	"appId":"LOG_TEST_002",
+	"appDescription":"log test",
+	"logLevel":"kTrace",
+	"logMode":"console + file",
+	"logFile":"/opt/usr/log/soc_log/",
+	"maxLogFileStoredNum":10,
+	"maxSizeOfEachLogFile":10,
+	"pureLogFormat":false
+}

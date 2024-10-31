@@ -1,0 +1,39 @@
+{
+    "Dem": [
+        {
+            "extendDataRecordNo": 1,
+            "snapshotRecordNo": 1,
+            "snapshotCount": 5,
+            "snapshotDids": [ "0x0112", "0xe101", "0xb100", "0xd001", "0xf020" ]
+        }
+    ],
+
+    "DTCs": [
+        { "dtc": "B123456", "dtcValue": "0x923456", "faultKey": 888801, "notifyHmi": 1, "agingAllowed": 1, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "C123456", "dtcValue": "0x523456", "faultKey": 888802, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "P567890", "dtcValue": "0x123456", "faultKey": 888803, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "U123456", "dtcValue": "0xc23456", "faultKey": 888804, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "570048",  "dtcValue": "0x570048", "faultKey": 800401, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "570148",  "dtcValue": "0x570148", "faultKey": 800402, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "570548",  "dtcValue": "0x570548", "faultKey": 800406, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "570648",  "dtcValue": "0x570648", "faultKey": 800407, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "570748",  "dtcValue": "0x570748", "faultKey": 800408, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "570848",  "dtcValue": "0x570848", "faultKey": 800409, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "570948",  "dtcValue": "0x570948", "faultKey": 800410, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "570a48",  "dtcValue": "0x570a48", "faultKey": 800411, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "570b48",  "dtcValue": "0x570b48", "faultKey": 800413, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "570c48",  "dtcValue": "0x570c48", "faultKey": 800414, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "570d48",  "dtcValue": "0x570d48", "faultKey": 800415, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "570e48",  "dtcValue": "0x570e48", "faultKey": 800416, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "570f48",  "dtcValue": "0x570f48", "faultKey": 800417, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "571148",  "dtcValue": "0x571148", "faultKey": 800419, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "574148",  "dtcValue": "0x574148", "faultKey": 800464, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "574248",  "dtcValue": "0x574248", "faultKey": 800465, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "0A0B34",  "dtcValue": "0x0A0B34", "faultKey": 9110034, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "0A0B35",  "dtcValue": "0x0A0B35", "faultKey": 9110035, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "0A0B36",  "dtcValue": "0x0A0B36", "faultKey": 9110036, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "0A0B37",  "dtcValue": "0x0A0B37", "faultKey": 9110037, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "0A0B38",  "dtcValue": "0x0A0B38", "faultKey": 9110038, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] },
+        { "dtc": "666666",  "dtcValue": "0x666666", "faultKey": 666666, "notifyHmi": 0, "agingAllowed": 0, "agingCount": 40, "tripCount": 1, "extendDids": [] }
+    ]
+}

@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package hozon.planning;
+
+message IpoptPosOptimizeSmootherConfig {
+  optional int32 max_iter_num = 1;
+  optional int32 print_level = 2;
+  optional double max_cpu_time = 3;
+  optional double tol = 4;
+  optional double acceptable_tol = 5;
+  optional double interpolation_s = 6;
+  optional int32 min_point_num = 7;
+  optional double bias_weight = 8;
+  optional double kappa_weight = 9;
+  optional double dkappa_weight = 10;
+  optional double lat_moving_buffer = 11;
+  optional double steer_angle_buffer = 12;
+}

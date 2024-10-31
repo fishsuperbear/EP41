@@ -1,0 +1,6 @@
+struct ServiceBase {
+    char sender[50];
+    uint32 seq;
+    boolean fire_forget;
+    int32 reply;
+};

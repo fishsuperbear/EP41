@@ -1,0 +1,65 @@
+%YAML:1.0
+
+recvInstances:
+    - name: chassis                       # sensor_trans 接收座舱
+      type: proto_proxy
+      topic: /soc/chassis
+      domainId: 0
+    - name: sm_from_planning              # sensor_trans 来自规控 statemachine
+      type: proto_proxy
+      topic: /soc/statemachine
+      domainId: 0
+    - name: sm_from_hpp_perception        # 来自感知 statemachine
+      type: proto_proxy
+      topic: /perception/parking/state_machine
+      domainId: 0
+    - name: parking_lot                   # 来自感知 parking_lot
+      type: proto_proxy
+      topic: /perception/parking/parkinglot_2
+      domainId: 0
+    - name: avp_hmi                       # 来自规控 avmhmi
+      type: proto_proxy
+      topic: /planning/ego_trajectory
+      domainId: 0
+    - name: imu_info                      # sensor_trans
+      type: proto_proxy
+      topic: /soc/imuinsinfo
+      domainId: 0
+sendInstances:
+    - name: apa2chassis                   # sensor_trans 发给座舱
+      type: proto_skeleton
+      topic: /soc/apa2mcu_chassis
+      domainId: 0
+    - name: sm_to_mcu                     # soc_to_mcu 发给规控
+      type: proto_skeleton
+      topic: /soc/sm_to_mcu
+      domainId: 0
+    - name: sm_to_hpp_perception          # 直接发给感知
+      type: proto_skeleton
+      topic: /soc/sm_to_hpp_perception
+      domainId: 0
+    # 缺少发送的chassis topic
+
+log:
+    mode: 3
+    file: /opt/usr/log/soc_log/
+    name: state_machine
+    description: state_machine
+    level: 3
+    adf:
+      level: 4
+# loglevel {0，1，2，3，4，5, 6}， 0：verbose, 1：debug, 2：info, 3：warn, 4>：error, 5：fatal, 6：off
+# logmode  {1, 2, 3},  1: 终端， 2: 文件，3：终端+文件
+
+# trigger二选一即可
+trigger:
+    - name: statemachine
+      type: PERIOD
+      period: 50
+      auxSources:
+          - name: chassis
+          - name: sm_from_planning
+          - name: sm_from_hpp_perception
+          - name: parking_lot
+          - name: avp_hmi
+          - name: imu_info

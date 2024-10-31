@@ -1,0 +1,21 @@
+{
+    "LogAppName": "EW",
+    "LogAppDescription": "extwdg",
+    "LogContextName": "EW",
+    "LogLevel": 1, // TRACE=0,DEBUG,INFO,WARN,ERROR,CRITICAL,OFF=6
+    "LogMode": 2, // CONSOLE=1,FILE,CONSOLE_FILE=3
+    "LogFilePath": "/opt/usr/log/soc_log/",
+    "MaxLogFileNum": 10,
+    "MaxSizeOfLogFile": 20,
+    "DebugSwitch": "off",
+    "TransInfonumb": 1,
+    "TransInfo": [
+        {
+            "DestIp": "172.16.90.10",
+            "DestPort": 23461,
+            "HostIP": "172.16.90.11",
+            "HostPort": 23461,
+            "Protocol": "UDP"
+        }
+    ]
+}

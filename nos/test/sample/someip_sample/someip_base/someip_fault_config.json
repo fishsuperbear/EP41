@@ -1,0 +1,176 @@
+{
+    "services": [
+        {
+            "short_name": "SocFaultService",
+            "service": 25004,
+            "major_version": 1,
+            "minor_version": 0,
+            "methods": [
+                {
+                    "short_name": "FaultReport2SoC",
+                    "method": 513,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                }
+            ]
+        },
+        {
+            "short_name": "McuFaultService",
+            "service": 25010,
+            "major_version": 1,
+            "minor_version": 0,
+            "methods": [
+                {
+                    "short_name": "FaultReport2MCU",
+                    "method": 769,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "FaultReport2HMI",
+                    "method": 772,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                }
+            ]
+        }
+    ],
+    "provided_instances": [
+        {
+            "service": 25004,
+            "major_version": 1,
+            "short_name": "SocFaultProvidedSomeipService1Instance1",
+            "instance": 1,
+            "load_Balancing_priority": 0,
+            "load_Balancing_weight": 0,
+            "udp_port": 10003,
+            "tcp_port": 10003,
+            "tcp_reuse": false,
+            "udp_reuse": false,
+            "udp_collection": 1408,
+            "method_attribute": [
+                {
+                    "method": 513,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                }
+            ],
+            "event_attribute": [],
+            "offer_time_reference": "SomeipServerServiceInstanceConfig",
+            "ethernet_reference": "FaultNetworkEndpoint",
+            "tcp_tls_flag": false,
+            "tcp_tls_handshake_key": [
+                {
+                    "algorithm_family": "AES",
+                    "algorithm_mode": "mode",
+                    "algorithm_second_family": "RSA"
+                }
+            ],
+            "tcp_private_key_name": "server.key",
+            "tcp_certification_name": "server.crt",
+            "udp_tls_flag": false,
+            "udp_tls_handshake_key": [
+                {
+                    "algorithm_family": "AES",
+                    "algorithm_mode": "mode",
+                    "algorithm_second_family": "RSA"
+                }
+            ],
+            "udp_private_key_name": "server.key",
+            "udp_certification_name": "server.crt",
+            "provided_eventgroups": []
+        }
+    ],
+    "required_instances": [
+        {
+            "service": 25010,
+            "major_version": 1,
+            "short_name": "McuFault_RequiredSomeipService1Instance1",
+            "instance": 1,
+            "udp_port": 10007,
+            "tcp_port": 10007,
+            "tcp_reuse": false,
+            "udp_reuse": false,
+            "udp_collection": 1408,
+            "method_attribute": [
+                {
+                    "method": 769,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                },
+                {
+                    "method": 772,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                }
+            ],
+            "find_time_reference": "SomeipClientServiceInstanceConfig",
+            "ethernet_reference": "FaultNetworkEndpoint",
+            "tcp_tls_flag": false,
+            "udp_tls_flag": false,
+            "required_eventgroups": []
+        }
+    ],
+    "sd_server_offer_times": [
+        {
+            "sd_time_name": "SomeipServerServiceInstanceConfig",
+            "initial_delay_min": 10,
+            "initial_delay_max": 50,
+            "repetitions_base_delay": 100,
+            "repetitions_max": 0,
+            "ttl": 10000,
+            "cyclic_offer_delay": 3000,
+            "request_response_delay_min": 10,
+            "request_response_delay_max": 20
+        }
+    ],
+    "sd_client_find_times": [
+        {
+            "sd_time_name": "SomeipClientServiceInstanceConfig",
+            "initial_delay_min": 10,
+            "initial_delay_max": 50,
+            "repetitions_base_delay": 100,
+            "repetitions_max": 5,
+            "ttl": 3000
+        }
+    ],
+    "sd_client_subscribe_times": [
+        {
+            "sd_time_name": "SomeipClientSubscribeConfig",
+            "request_response_delay_min": 10,
+            "request_response_delay_max": 50,
+            "subscribe_retry_times": 2,
+            "subscribe_retry_delay": 3,
+            "subscribe_ttl": 3000
+        }
+    ],
+    "sd_server_subscribe_times": [
+        {
+            "sd_time_name": "SomeipServerSubscribeConfig",
+            "request_response_delay_min": 10,
+            "request_response_delay_max": 50
+        }
+    ],
+    "network_endpoints": [
+        {
+            "network_id": "FaultNetworkEndpoint",
+            "interface_name": "mgbe3_0.90",
+            "ip_addr": "172.16.90.11",
+            "ip_addr_type": 4,
+            "subnet_mask": "255.255.255.0",
+            "priority": 1,
+            "ttl": 255,
+            "multicast_ip_addr": "224.224.224.244",
+            "multicast_port": 30490
+        }
+    ]
+}

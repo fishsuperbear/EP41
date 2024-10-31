@@ -1,0 +1,56 @@
+%YAML:1.0
+
+recvInstances:
+    - name: chassis
+      type: proto_proxy
+      topic: /soc/chassis                        # 对应 hozon::soc::Chassis
+      domainId: 0
+    - name: ihbc_obstacle
+      type: proto_proxy
+      topic: /perception/fsd/obj_fusion_1        # 对应 hozon::perception::PerceptionObstacles
+      domainId: 0
+    - name: ihbc_light_and_intense
+      type: proto_proxy
+      topic: /perception/fsd/detection/tsr_ihbc  # 对应 hozon::perception::Vision2dDetection
+      domainId: 0
+
+sendInstances:
+    - name: output_canfd                         # 输出 ihbc 状态，使用 hozon::soc::Apa2Chassis pb对象
+      type: proto_skeleton
+      topic: /soc/ihbc_output_canfd
+      domainId: 0
+    - name: output_fsmcore                       # 输出状态机框架的状态，使用 hozon::fsm_output::StateOutput pb对象
+      type: proto_skeleton
+      topic: /soc/fsmcore_output_ihbc
+      domainId: 0
+
+log:
+    name: fsmcore_ihbc
+    description: ihbc
+    file: /opt/usr/log/soc_log/
+    mode: 3
+    level: 2
+    adf:
+        level: 2
+
+trigger:
+    - name: perioical                     # 这个可以自己取，用于注册 trigger 对应的 process 函数
+      type: PERIOD
+      period: 20                          # 50 Hz
+      auxSources:
+          - name: chassis                 # 要和recvInstances里的name对应
+            timeout: 100
+          - name: ihbc_obstacle           # 要和recvInstances里的name对应
+            timeout: 1000
+          - name: ihbc_light_and_intense  # 要和recvInstances里的name对应
+            timeout: 1000
+    - name: buff_chassis_trigger
+      type: EVENT
+      mainSources:
+          - name: chassis
+            timeout: 100                  # 保存 chassis 数据，用与 10 帧震动最大最小值
+
+appName: ihbc    #Node name
+description: IHBC Onboard
+
+fsm_rule_path: /app/runtime_service/ihbc_tsr_tlr/conf/FsmIhbcConfig.pb.conf  # 状态机配置文件路径

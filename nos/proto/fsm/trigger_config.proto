@@ -1,0 +1,43 @@
+syntax = "proto2";
+
+package hozon.trigger;
+
+message RapidAccConfig {
+  optional double rapid_acc = 1;
+  optional double rapid_speed = 3;
+}
+
+message EmergerSteerConfig {
+  optional double emerger_steer_rate = 1 [default = 180.0];
+  optional double emerger_steer_speed= 3 [default = 30.0];
+}
+
+message CollisionConfig {
+  optional double collision_acc = 1 [default = -6.0];
+  optional double collision_speed = 3 [default = 1.0];
+}
+
+message EmergerBrakeConfig {
+  optional double emerger_brake_acc = 5 [default = -4.0];
+  optional double emerger_brake_speed = 7 [default = 10.0];
+}
+
+message NnpConfig {
+  optional CollisionConfig collision_config = 1;
+  optional EmergerBrakeConfig emerger_brake_config = 3;
+  repeated EmergerSteerConfig emerger_steer_config = 9;
+  optional double lat_ctrl_err = 13 [default = 0.5];
+  optional double lon_ctrl_err = 15 [default = 10.0];
+  repeated RapidAccConfig rapid_acc_config = 17;
+}
+
+message AvpConfig {
+  optional uint32 num_parking_lots = 1 [default = 10];
+  optional uint32 take_over_parking = 3 [default = 3];
+  optional double rapid_acc = 5 [default = 1.6];
+}
+
+message TriggerConfig {
+  optional NnpConfig nnp_config = 1;
+  optional AvpConfig avp_config = 3;
+}

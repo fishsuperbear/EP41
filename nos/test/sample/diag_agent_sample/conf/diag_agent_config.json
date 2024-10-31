@@ -1,0 +1,115 @@
+{
+    "ProcessName": "diag_sample",
+
+    // did config
+    "DID": [
+        {
+            "shortName": "DiagSampleTestDid1",
+            "id" : "0xA500",
+            "isSupportWrite": false,
+            "dataSize": 3
+        },
+        {
+            "shortName": "DiagSampleTestDid2",
+            "id" : "0xA501",
+            "isSupportWrite": true,
+            "dataSize": 4
+        },
+        {
+            "shortName": "DiagSampleTestDid3",
+            "id" : "0xFD14",
+            "isSupportWrite": true,
+            "dataSize": 40
+        }
+    ],
+
+    // rid config
+    "RID": [
+        {
+            "shortName": "DiagSampleTestRid",
+            "id" : "0xD500",
+            "isSupportMultiStart": false,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "requstLen": 0,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "StopRoutine",
+                    "id": "0x02",
+                    "requstLen": 0,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "requstLen": 0,
+                    "replyLen": 1
+                }
+            ]
+        },
+        {
+            "shortName": "DiagSampleTestRid2",
+            "id" : "0xFC88",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "requstLen": 3,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "requstLen": 0,
+                    "replyLen": 1
+                }
+            ]
+        },
+        {
+            "shortName": "DiagSampleTestRid3",
+            "id" : "0xFD08",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "requstLen": 2,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "requstLen": 0,
+                    "replyLen": 3
+                }
+            ]
+        },
+        {
+            "shortName": "DiagSampleTestRid4",
+            "id" : "0xFD10",
+            "isSupportMultiStart": true,
+            "ridSubFunctions":
+            [
+                {
+                    "shortName": "StartRoutine",
+                    "id": "0x01",
+                    "requstLen": 2,
+                    "replyLen": 1
+                },
+                {
+                    "shortName": "GetRoutineResult",
+                    "id": "0x03",
+                    "requstLen": 0,
+                    "replyLen": 2
+                }
+            ]
+        }
+    ]
+}

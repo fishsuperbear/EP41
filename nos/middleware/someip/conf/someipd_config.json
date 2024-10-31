@@ -1,0 +1,8 @@
+{
+    "LogAppName": "someipd",
+    "LogLevel": 2,
+    "LogConsole": 0,
+    "LogFilePath": "/opt/usr/log/soc_log/",
+    "MaxLogFileNum": 10,
+    "MaxSizeOfLogFile": 20
+}

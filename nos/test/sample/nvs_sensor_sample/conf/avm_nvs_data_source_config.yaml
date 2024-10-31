@@ -1,0 +1,31 @@
+%YAML:1.0
+
+library: "./lib/libadf-lite-ds.so"
+executorName: DataSource
+
+log:
+    level: 2
+
+dataSourcesIn:
+    - topic: camera_8
+      type: nvs_cuda_proxy
+      cmTopic: cam8_recv0
+      cmDomainId: 0
+    - topic: camera_9
+      type: nvs_cuda_proxy
+      cmTopic: cam9_recv0
+      cmDomainId: 0
+    - topic: camera_10
+      type: nvs_cuda_proxy
+      cmTopic: cam10_recv0
+      cmDomainId: 0
+    - topic: camera_11
+      type: nvs_cuda_proxy
+      cmTopic: cam11_recv0
+      cmDomainId: 0
+
+dataSourcesOut:
+    # - topic: workresult3
+    #   type: proto_skeleton
+    #   cmTopic: cm/workresult3
+    #   cmDomainId: 0

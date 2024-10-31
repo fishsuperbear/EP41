@@ -1,0 +1,206 @@
+[
+  {
+    "key": "7094e2df-f9b1-489d-9db2-be2aea59be0e",
+    "value": {
+      "object[]": [
+        {
+          "key": "KeySlotPrototypeProps",
+          "value": {
+            "object[]": [
+              {
+                "key": "SlotUid",
+                "value": {
+                  "string": "7094e2df-f9b1-489d-9db2-be2aea59be0e"
+                }
+              },
+              {
+                "key": "SlotNumber",
+                "value": {
+                  "uint32": 100
+                }
+              },
+              {
+                "key": "CryptoAlgType",
+                "value": {
+                  "string": "RSA2048-SHA256-PKCS"
+                }
+              },
+              {
+                "key": "CryptoObjectType",
+                "value": {
+                  "string": "PRIVATE-KEY"
+                }
+              },
+              {
+                "key": "SlotCapacity",
+                "value": {
+                  "uint32": 2048
+                }
+              },
+              {
+                "key": "Exportability",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "DependencySlotUid",
+                "value": {
+                  "string": "00000000-0000-0000-0000-000000000000"
+                }
+              },
+              {
+                "key": "DependencyType",
+                "value": {
+                  "string": ""
+                }
+              },
+              {
+                "key": "CryptoProviderType",
+                "value": {
+                  "string": "bdfa408d-3d4f-41ff-a33e-f65b05388078"
+                }
+              },
+              {
+                "key": "KeySlotType",
+                "value": {
+                  "uint32": 2
+                }
+              },
+
+              {
+                "key": "AllowContentTypeChange",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "AllocateSpareSlot",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "ContentAllowedUsage",
+                "value": {
+                  "uint32": 4
+                }
+              },
+              {
+                "key": "MaxUpdateAllowed",
+                "value": {
+                  "int32": -1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "key": "f772b0fa-9f71-485b-a923-29051721eeb7",
+    "value": {
+      "object[]": [
+        {
+          "key": "KeySlotPrototypeProps",
+          "value": {
+            "object[]": [
+              {
+                "key": "SlotUid",
+                "value": {
+                  "string": "f772b0fa-9f71-485b-a923-29051721eeb7"
+                }
+              },
+              {
+                "key": "SlotNumber",
+                "value": {
+                  "uint32": 101
+                }
+              },
+              {
+                "key": "CryptoAlgType",
+                "value": {
+                  "string": "RSA2048-SHA256-PKCS"
+                }
+              },
+              {
+                "key": "CryptoObjectType",
+                "value": {
+                  "string": "PRIVATE-KEY"
+                }
+              },
+              {
+                "key": "SlotCapacity",
+                "value": {
+                  "uint32": 2048
+                }
+              },
+              {
+                "key": "Exportability",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "DependencySlotUid",
+                "value": {
+                  "string": "00000000-0000-0000-0000-000000000000"
+                }
+              },
+              {
+                "key": "DependencyType",
+                "value": {
+                  "string": ""
+                }
+              },
+              {
+                "key": "CryptoProviderType",
+                "value": {
+                  "string": "bdfa408d-3d4f-41ff-a33e-f65b05388078"
+                }
+              },
+              {
+                "key": "KeySlotType",
+                "value": {
+                  "uint32": 2
+                }
+              },
+
+              {
+                "key": "AllowContentTypeChange",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "AllocateSpareSlot",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "ContentAllowedUsage",
+                "value": {
+                  "uint32": 4
+                }
+              },
+              {
+                "key": "MaxUpdateAllowed",
+                "value": {
+                  "int32": -1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "key": "Checksum",
+    "value": {
+      "string": "2BA85E89F61DA1859A837934"
+    }
+  }
+]

@@ -1,0 +1,5 @@
+struct CmSomeipBuf {
+    string name;
+    sequence<char> str;
+};
+

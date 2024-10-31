@@ -1,0 +1,14 @@
+{
+    "LogAppName": "CFG_SERVER",
+    "LogAppDescription": "cfg_server",
+    "LogContextName": "CFG_SERVER",
+    "LogLevel": 2, // TRACE=0,DEBUG,INFO,WARN,ERROR,CRITICAL,OFF=6
+    "LogMode": 3, // CONSOLE=1,FILE,CONSOLE_FILE=3
+    "LogFilePath": "/opt/usr/log/soc_log/",
+    "PerFilePath": "/cfg/",
+    "BakPerFilePath": "/cfg_bak/",
+    "MaxComValLimit": 10240, //超过字节大小另存bin文件
+    "MaxLogFileNum": 10,
+    "MaxSizeOfLogFile": 20,
+    "DebugSwitch": "off"
+}

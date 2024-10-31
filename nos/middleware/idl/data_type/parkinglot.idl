@@ -1,0 +1,54 @@
+#include "common.idl"
+#include "type.idl"
+
+/*******************************************************************************
+    结构 名        :  AlgPSPoint
+    功能描述       :  停车位描述
+*******************************************************************************/
+struct AlgPSPoint {
+    Point3f point;
+    uint8 position;
+    uint8 quality;
+    Point3f point_vehicle;
+};
+
+/*******************************************************************************
+    结构 名        :  AlgParkingLotOut
+    功能描述       :  AlgParkingLotOut
+*******************************************************************************/
+struct AlgParkingLotOut {
+    int32 parkingSeq;  // id
+    uint8 type;  // 类别
+    uint8 status;
+    uint8 sensorType;
+    boolean isPrivatePs ;
+    sequence<AlgPSPoint> ptsVRF;  // 欧式离散点
+    HafTime timeCreation;            // 第一次识别时间戳
+};
+
+/*******************************************************************************
+    结构 名        :  AlgPathPoint
+    功能描述       :  寻迹路径
+*******************************************************************************/
+struct AlgPathPoint {
+    float x;
+    float y;
+    float z;
+    float yaw;
+    float accumulate_s;
+    float gear;
+};
+
+/*******************************************************************************
+    结构 名        :  AlgParkingLotOutArray
+    功能描述       :  停车位检测结果列表
+*******************************************************************************/
+struct AlgParkingLotOutArray : IDLBaseType {
+    uint32 count;
+    uint32 locSeq;
+    uint32 optParkingSeq;
+    sequence<AlgParkingLotOut> parkingLots;
+    sequence<AlgPathPoint> tracePath;  //寻迹轨迹点有效长度
+    uint32 PathPointSize;
+    boolean isValid ;  // 该帧数据是否可用
+};

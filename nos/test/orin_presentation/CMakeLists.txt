@@ -1,0 +1,2 @@
+add_subdirectory(phm_app)
+add_subdirectory(cfg_app)

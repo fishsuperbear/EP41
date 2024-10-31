@@ -1,0 +1,2 @@
+add_subdirectory(sm_proc_a)
+add_subdirectory(sm_proc_b)

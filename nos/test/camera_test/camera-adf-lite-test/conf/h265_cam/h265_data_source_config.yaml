@@ -1,0 +1,59 @@
+%YAML:1.0
+
+library: "./lib/libadf-lite-ds.so"
+executorName: DataSource
+
+log:
+    level: 3
+
+dataSourcesIn:
+    - topic: /soc/encoded_camera_0
+      type: proto_proxy
+      cmTopic: /soc/encoded_camera_0
+      cmDomainId: 0
+    - topic: /soc/encoded_camera_1
+      type: proto_proxy
+      cmTopic: /soc/encoded_camera_1
+      cmDomainId: 0
+    - topic: /soc/encoded_camera_3
+      type: proto_proxy
+      cmTopic: /soc/encoded_camera_3
+      cmDomainId: 0
+    - topic: /soc/encoded_camera_4
+      type: proto_proxy
+      cmTopic: /soc/encoded_camera_4
+      cmDomainId: 0
+    - topic: /soc/encoded_camera_5
+      type: proto_proxy
+      cmTopic: /soc/encoded_camera_5
+      cmDomainId: 0
+    - topic: /soc/encoded_camera_6
+      type: proto_proxy
+      cmTopic: /soc/encoded_camera_6
+      cmDomainId: 0
+    - topic: /soc/encoded_camera_7
+      type: proto_proxy
+      cmTopic: /soc/encoded_camera_7
+      cmDomainId: 0
+    - topic: /soc/encoded_camera_8
+      type: proto_proxy
+      cmTopic: /soc/encoded_camera_8
+      cmDomainId: 0
+    - topic: /soc/encoded_camera_9
+      type: proto_proxy
+      cmTopic: /soc/encoded_camera_9
+      cmDomainId: 0
+    - topic: /soc/encoded_camera_10
+      type: proto_proxy
+      cmTopic: /soc/encoded_camera_10
+      cmDomainId: 0
+    - topic: /soc/encoded_camera_11
+      type: proto_proxy
+      cmTopic: /soc/encoded_camera_11
+      cmDomainId: 0
+
+dataSourcesOut:
+    # - topic: workresult3
+    #   type: proto_skeleton
+    #   cmTopic: cm/workresult3
+    #   cmDomainId: 0

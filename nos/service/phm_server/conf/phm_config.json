@@ -1,0 +1,20 @@
+{
+    "LogAppName": "PHMS",
+    "LogAppDescription": "phm_server",
+    "LogContextName": "PHM",
+    "LogLevel": 1, // PHM_VERBOSE=0,PHM_DEBUG,PHM_INFO,PHM_WARN,PHM_ERROR,PHM_FATAL,PHM_OFF=6
+    "LogMode": 2, // PHM_CONSOLE=0,PHM_FILE,PHM_CONSOLE_FILE=2
+    "LogFilePath": "/opt/usr/log/soc_log/",
+    "MaxLogFileNum": 10,
+    "MaxSizeOfLogFile": 20,
+    "CollectFaultFileSize": 1048576,
+    "CollectFaultMaxCnt": 500,
+    "DebugSwitch": "off",
+    "RestartProcSwitch": "off",
+    "AnalysisSwitch": "on",
+    "SystemCheckTime": 60000,
+    "ProcCheckTime": 1000,
+    "AnalysisTime": 300000,
+    "LockFaultToHMISwitch": "on",
+    "LockFaultCurrentVersion": "ots"
+}

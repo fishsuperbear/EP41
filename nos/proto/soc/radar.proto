@@ -1,0 +1,79 @@
+syntax = "proto2";
+
+package hozon.soc;
+
+import "proto/common/header.proto";
+import "proto/common/types.proto";
+
+message RadarModeDataInfo {
+  optional float x = 1;
+  optional float y = 2;
+  optional float z = 3;
+  optional hozon.common.Point3D rms = 4;
+  optional hozon.common.Point3D quality = 5;
+}
+
+message RadarTrackData {
+  optional uint32 id = 1;
+  optional RadarModeDataInfo position = 2;
+  optional RadarModeDataInfo velocity = 3;
+  optional RadarModeDataInfo acceleration = 4;
+  optional float rcs = 5;
+  optional float snr = 6;
+  optional float exist_probability = 7;
+  
+  // uint8
+  /*
+   0-MOVING
+  1-STATIC
+  2-STOPED
+  3-CROSSING
+  4-ONCOMING
+  5-UNKNOW
+  */
+  optional uint32 mov_property = 8;
+
+  // uint8
+  /****************
+  0-CAR
+  1-TRUCK
+  2-PEDESTRAIN
+  3-MOTORCYCLE
+  4-OTHERS
+  5-UNKNOWN
+  6-POINT
+  **************/
+  optional uint32 track_type = 9;
+
+  // uint16
+  optional uint32 track_age = 10; 
+
+  // uint8
+  /*************
+  取值范围0~100
+  ***********/
+  optional uint32 obj_obstacle_prob = 11;
+
+  // uint8
+  /************
+  目标的跟踪状态：
+  0-Unknow
+  1-New Created
+  2-Coasted
+  3-Merge
+  4-Tracked
+  ***************/
+  optional uint32 measState = 12;
+  optional hozon.common.Point3D size_lwh = 13;
+  optional float orient_agl = 14;
+}
+
+message RadarTrackArrayFrame {
+  optional hozon.common.Header header = 1;
+  // uint8
+  optional uint32 sensor_id = 2;
+  // uint8
+  optional uint32 radar_state = 3;
+  repeated RadarTrackData track_list = 4;
+  optional bool is_valid = 5;
+}

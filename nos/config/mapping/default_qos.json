@@ -1,0 +1,116 @@
+{
+    "participant": [
+        {
+            "name": "mapping",
+            "domain": 0,
+            "transport": {
+                "use_builtin_transports": false,
+                "udp": {
+                    "enable": true,
+                    "network": "127.0.0.1",
+                    "send_socket_buffer_size": 2097152,
+                    "listen_socket_buffer_size": 2097152
+                },
+                "shm": {
+                    "enable": true,
+                    "segment_size": 20971520,
+                    "max_message_size": 10485760
+                }
+            },
+            "discover": {
+                "typelookup_client": true,
+                "typelookup_server": true,
+                "leaseDuration": 5,
+                "leaseDuration_announce_period": 1,
+                "initial_announce_count": 100,
+                "initial_announce_period": 100
+            },
+            "datawriter": [
+                {
+                    "topic": "DefaultTopic",
+                    "reliability": "RELIABLE",
+                    "durability": "TRANSIENT_LOCAL_DURABILITY_QOS",
+                    "endpoint": {
+                        "history_memory_policy": "PREALLOCATED_WITH_REALLOC_MEMORY_MODE"
+                    },
+                    "history": {
+                        "kind": "KEEP_LAST",
+                        "depth": 5
+                    },
+                    "data_sharing": "AUTO"
+                }
+            ],
+            "datareader": [
+                {
+                    "topic": "DefaultTopic",
+                    "reliability": "BEST_EFFORT",
+                    "durability": "TRANSIENT_LOCAL_DURABILITY_QOS",
+                    "endpoint": {
+                        "history_memory_policy": "PREALLOCATED_WITH_REALLOC_MEMORY_MODE"
+                    },
+                    "history": {
+                        "kind": "KEEP_LAST",
+                        "depth": 5
+                    },
+                    "data_sharing": "AUTO"
+                }
+            ]
+        },
+        {
+            "name": "mapping_md",
+            "domain": 2,
+            "transport": {
+                "use_builtin_transports": false,
+                "udp": {
+                    "enable": true,
+                    "network": "127.0.0.1",
+                    "send_socket_buffer_size": 2097152,
+                    "listen_socket_buffer_size": 2097152
+                },
+                "shm": {
+                    "enable": false,
+                    "segment_size": 20971520,
+                    "max_message_size": 10485760
+                }
+            },
+            "discover": {
+                "typelookup_client": true,
+                "typelookup_server": true,
+                "leaseDuration": 5,
+                "leaseDuration_announce_period": 1,
+                "initial_announce_count": 100,
+                "initial_announce_period": 100
+            },
+            "datawriter": [
+                {
+                    "topic": "DefaultTopic",
+                    "reliability": "RELIABLE",
+                    "durability": "TRANSIENT_LOCAL_DURABILITY_QOS",
+                    "endpoint": {
+                        "history_memory_policy": "PREALLOCATED_WITH_REALLOC_MEMORY_MODE"
+                    },
+                    "history": {
+                        "kind": "KEEP_LAST",
+                        "depth": 5
+                    },
+                    "data_sharing": "OFF"
+                }
+            ],
+            "datareader": [
+                {
+                    "topic": "DefaultTopic",
+                    "reliability": "BEST_EFFORT",
+                    "durability": "TRANSIENT_LOCAL_DURABILITY_QOS",
+                    "endpoint": {
+                        "history_memory_policy": "PREALLOCATED_WITH_REALLOC_MEMORY_MODE"
+                    },
+                    "history": {
+                        "kind": "KEEP_LAST",
+                        "depth": 5
+                    },
+                    "data_sharing": "OFF"
+                }
+            ]
+        }
+    ]
+}

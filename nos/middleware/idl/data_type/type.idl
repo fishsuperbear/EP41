@@ -1,0 +1,130 @@
+struct Point3i {
+    int32 x ;
+    int32 y ;
+    int32 z ;
+};
+
+struct Point3f {
+    float x ;
+    float y ;
+    float z ;
+};
+
+struct Point3d {
+    double x ;
+    double y ;
+    double z ;
+};
+
+struct Point2i {
+    int32 x ;
+    int32 y ;
+};
+
+struct Point2f {
+    float x ;
+    float y ;
+};
+
+struct Point2d {
+    double x ;
+    double y ;
+};
+
+/* ******************************************************************************
+    结构 名        :  Quaternion
+    功能描述       :  定位四元数
+****************************************************************************** */
+struct AlgQuaternion {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+/* ******************************************************************************
+    结构 名        :  Pose
+    功能描述       :  位姿信息，包括UTM坐标和四元数
+****************************************************************************** */
+struct AlgPose {
+    Point3d position;
+    AlgQuaternion quaternion;
+    Point3f eulerAngle;
+    Point3f rotationVRF;
+    float heading;
+};
+
+/* ******************************************************************************
+    结构 名        :  Twist
+    功能描述       :  定位输出的线速度、角速度
+****************************************************************************** */
+struct AlgTwist {
+    Point3f linearVRF;
+    Point3f angularRawVRF;
+    Point3f angularVRF;
+};
+
+/* ******************************************************************************
+    结构 名        :  Accel
+    功能描述       :  定位输出的线加速度、角加速度
+****************************************************************************** */
+struct AlgAccel {
+    Point3f linearRawVRF;
+    Point3f linearVRF;
+    Point3f angularVRF;
+};
+
+/* ******************************************************************************
+    结构 名        :  PoseWithCovariance
+    功能描述       :  含有方差信息的位姿信息
+****************************************************************************** */
+struct AlgPoseWithCovariance {
+    AlgPose poseWGS;
+    AlgPose poseLOCAL;
+    AlgPose poseGCJ02;
+    AlgPose poseUTM01;
+    AlgPose poseUTM02;
+    AlgPose poseDR;
+    uint16 utmZoneID01;
+    uint16 utmZoneID02;
+    float std[6 * 6];
+};
+
+
+/* ******************************************************************************
+    结构 名        :  Twist
+    功能描述       :  含有方差信息的速度结构体
+****************************************************************************** */
+struct AlgTwistWithCovariance {
+    AlgTwist twistVRF;
+    float std[6 * 6];
+};
+
+/* ******************************************************************************
+    结构 名        :  AccelWithCovariance
+    功能描述       :  含有方差的加速度信息
+****************************************************************************** */
+struct AlgAccelWithCovariance {
+    AlgAccel linearVRF;
+    float std[6 * 6];
+};
+
+struct HafTime {
+    uint32 sec;
+    uint32 nsec;
+};
+
+struct AlgRect2D {
+    Point2f topleft;                        // 边框中心点
+    Point2f size;                          // 边框大小
+};
+
+struct AlgRect3D {
+    Point3f     Center;                     // 边框中心点
+    Point3f     CenterStdDev;               // 边框中心点标准差
+    Point3f     SizeLWH;                    // 边框大小
+    Point3f     SizeStdDev;                 // 边框大小标准差
+    double   Orientation;                // 车辆坐标系下，航向角-单位弧度
+    double   OrientationStdDev;          // 边框航向角的标准差
+    sequence<Point3f> corners;           // 边框顶点
+};

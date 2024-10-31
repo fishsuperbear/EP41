@@ -1,0 +1,125 @@
+%YAML:1.0
+
+library: "${ADFLITE_ROOT_PATH}/lib/libfisheye_perception_test.so"
+executorName: FisheyePerception
+
+
+input:
+    - topic: fisheye_front
+      capacity: 5
+    - topic: fisheye_left
+      capacity: 5
+    - topic: fisheye_right
+      capacity: 5
+    - topic: fisheye_rear
+      capacity: 5
+    - topic: workresult1
+      capacity: 5
+    - topic: workresult2
+      capacity: 5
+    - topic: struct_topic_test
+      capacity: 5
+    - topic: plain_struct_topic_test
+      capacity: 5
+    - topic: notplain_struct_topic_test
+      capacity: 5
+    - topic: proto_sample_topic
+      capacity: 5
+    - topic: link_sample_topic
+      capacity: 5
+
+trigger:
+  - name: recv_fisheye_img
+    type: TS_ALIGN
+    timeWindow: 30
+    mainSources:
+      - name: fisheye_front
+        timeout: 1000
+      - name: fisheye_left
+        timeout: 1000
+      - name: fisheye_right
+        timeout: 1000
+      - name: fisheye_rear
+        timeout: 1000
+
+  - name: workflow1
+    type: PERIOD
+    period: 800
+
+  - name: workflow2
+    type: EVENT
+    mainSources:
+      - name: workresult1
+        timeout: 1000
+
+  - name: workflow3
+    type: EVENT
+    mainSources:
+      - name: workresult2
+        timeout: 1000
+
+  - name: receive_cm_topic
+    type: EVENT
+    mainSources:
+      - name: proto_sample_topic
+        timeout: 1000
+
+  - name: receive_link_sample
+    type: EVENT
+    mainSources:
+      - name: link_sample_topic
+        timeout: 1000
+
+  - name: receive_struct_topic
+    type: EVENT
+    mainSources:
+      - name: struct_topic_test
+        timeout: 1000
+
+  - name: receive_plain_struct_topic
+    type: EVENT
+    mainSources:
+      - name: plain_struct_topic_test
+        timeout: 1000
+
+  - name: receive_notplain_struct_topic
+    type: EVENT
+    mainSources:
+      - name: notplain_struct_topic_test
+        timeout: 1000
+
+  - name: free_data_topic
+    type: PERIOD
+    period: 800
+
+  # - name: recv_status_change
+  #   type: PERIOD
+  #   period: 6000
+
+  - name: fisheye_event_check1
+    type: EVENT
+    mainSources:
+      - name: fisheye_rear
+        timeout: 1000
+    auxSources:
+      - name: fisheye_front
+        timeout: 1000
+
+  - name: fisheye_event_check2
+    type: EVENT
+    mainSources:
+      - name: fisheye_front
+        timeout: 1000
+    auxSources:
+      - name: fisheye_rear
+        timeout: 1000
+
+profiler:
+    name: link_latency
+    enable: true
+    latency:
+        enable: true
+        link:
+            - name: link1
+              recvMsg: link_sample_topic
+              sendMsg: link_sample_topic2

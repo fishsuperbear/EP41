@@ -1,0 +1,39 @@
+identifier:
+  "MAPPING"
+description: "Mapping module"
+diag_agent:
+  sendInstanceID:
+  recvInstanceID:
+    DiagComServer:
+        instanceId: [3]
+        portName: ["DiagComServerRPort"]
+smc:
+  sendInstanceID:
+    TriggerInOut:
+        instanceId: [1]
+        portName: ["SmcToAppPPort"]
+    SmCenter:
+        instanceId: [1]
+        portName: ["SmcToMcuPPort"]
+    PlatformStateAgent:
+        instanceId: [1]
+        portName: ["PlatformStateAgentToAppPPort"]
+  recvInstanceID:
+    ConfigServerServiceInterface:
+        instanceId: [1]
+        portName: ["SmcFromCfgRPort"]
+    DevmCenterServiceInterface:
+        instanceId: [1]
+        portName: ["SmcFromDevmCenterRPort"]
+    McuCanNetWorkServiceInterface:
+        instanceId: [1]
+        portName: ["SmcFromMcuRPort"]
+    McuEventServiceInterface:
+        instanceId: [1]
+        portName: ["SmcFromMcuEventRPort"]
+    SmnServiceInterface:
+        instanceId: [1]
+        portName: ["SmcFromSmnRPort"]
+    FmReportEventService:
+        instanceId: [1444]
+        portName: ["SmcReportEventRPort"]

@@ -1,0 +1,17 @@
+{
+  "process_name": "uss_perceptionProcess",
+  "executable": "uss_perception",
+  "restart_attempt_num": "2",
+  "shall_run_ons": [],
+  "mode_of_order": [
+    "Normal.2"
+  ],
+  "scheduling_policy": "RR",
+  "scheduling_priority": "60",
+  "arguments": [],
+  "environments": [
+    "NETA_CM_QOS_PATH=/app/runtime_service/uss_perception/etc/default_qos.json",
+    "HZ_ULTRASONIC_PROJECT_ROOT=/app/runtime_service/uss_perception",    
+    "HZ_ULTRASONIC_SOCADF_YAML=/app/runtime_service/uss_perception/conf/Config.yaml"
+  ]
+}

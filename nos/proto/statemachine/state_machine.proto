@@ -1,0 +1,119 @@
+syntax = "proto2";
+
+package hozon.state;
+
+import "proto/common/header.proto";
+
+message AutopilotStatus {
+    optional uint32 processing_status = 1;
+    optional uint32 camera_status = 2;
+    optional uint32 uss_status = 3;
+    optional uint32 radar_status = 4;
+    optional uint32 lidar_status = 5;
+    optional uint32 velocity_status = 6;
+    optional uint32 perception_status = 7;
+    optional uint32 planning_status = 8;
+    optional uint32 controlling_status = 9;
+    optional uint32 turn_light_status = 10;
+    optional uint32 localization_status = 11;
+}
+
+message Command {
+    optional uint32 enable_parking_slot_detection = 1;
+    optional uint32 enable_object_detection = 2;
+    optional uint32 enable_freespace_detection = 3;
+    optional uint32 enable_uss = 4;
+    optional uint32 enable_radar = 5;
+    optional uint32 enable_lidar = 6;
+    optional uint32 system_command = 7;
+    optional uint32 emergencybrake_state = 8;
+    optional uint32 system_reset = 9;
+    optional uint32 reserved1 = 10;
+    optional uint32 reserved2 = 11;
+    optional uint32 reserved3 = 12;
+}
+
+message WorkingStatus {
+    optional uint32 processing_status = 1;
+    optional uint32 error_code = 2;
+    optional uint32 perception_warninginfo = 3;
+    optional uint32 perception_adcs4__tex = 4;
+    optional uint32 perception_adcs4_pa_failinfo = 5;
+    optional uint32 tba__distance = 6;
+    optional bool tba = 7;
+    optional uint32 tba_text = 8;
+    optional uint32 reserved2 = 9;
+    optional uint32 reserved3 = 10;
+    optional uint32 nsm_approach_warning = 11;
+    optional uint32 hpa = 12;
+    optional uint32 hpa_path_on_park_area = 13;
+    optional uint32 hpa_path_store_sts = 14;
+    optional uint32 hpa_learn_path_stsw = 15;
+    optional uint32 hpa_path_learn_sts = 16;
+    optional uint32 hpa_path_learning_work_sts = 17;
+    optional uint32 hpa_point_in_park_slot = 18;
+    optional uint32 hpa_pathway_to_cloud_work_sts = 19;
+    optional uint32 hpa_guide_sts = 20;
+    optional uint32 hpa_return_button = 21;
+    optional uint32 hpa_path_exist_sts = 22;
+    optional uint32 hpa_distance = 23;
+    optional uint32 hpa_path_available_id = 24;
+    optional uint32 hpa_crossing_number = 25;
+    optional uint32 perception_adcs4_hpa_failinfo = 26;
+    optional uint32 hpa_localization_sts = 27;
+    optional uint32 adcs8_mod_object_moving_direction = 28; // 0x0: No Object  0x1: Rear Side  0x2: Left Rear Side
+                                      // 0x3: Left Side  0x4: Left Front Side  0x5: Front Side
+                                      // 0x6: Right Front Side  0x7: Right Side  0x8: Right Rear Side
+    optional uint32 adcs8_avm_mod_warning = 29; // 0x0: No Warning  0x1: Warning
+}
+
+message PNCControlState {
+    enum FctState {
+        DEFAULT = 0;    // 默认
+        APA = 1;        // 自动泊车
+        RPA = 2;        // 遥控泊车
+        DAPA = 3;       // 自定义自动泊车
+        TBA = 4;        // 循迹倒车
+        LAPA_MAP = 5;   // 记忆泊车建图
+        LAPA = 6;       // 记忆泊车
+        AVP = 7;        // 代客泊车
+        ISM = 8;        // 召唤模式
+    }
+
+    optional FctState fct_state = 1;
+    optional uint32 m_iuss_state_obs = 2;
+    optional uint32 need_replan_stop = 3;
+    optional uint32 plan_trigger = 4;
+    optional uint32 control_enable = 5;
+    optional uint32 control_status = 6;
+    optional uint32 pnc_run_state = 7;
+    optional uint32 pnc_warninginfo = 8;
+    optional uint32 pnc_adcs4__tex = 9;
+    optional uint32 pnc_adcs4_pa_failinfo = 10;
+    optional bool fapa = 11;
+    optional bool rpa = 12;
+    optional bool tba = 13;
+    optional bool lapa_map_building = 14;
+    optional bool lapa_cruising = 15;
+    optional bool lapa_pick_up = 16;
+    optional bool ism = 17;
+    optional bool avp = 18;
+    optional uint32 pnc_adcs4_tba_failinfo = 19;
+    optional uint32 pnc_adcs4_rpa_failinfo = 20;
+    optional uint32 pnc_adcs4_lapa__map_building_failinfo = 21;
+    optional uint32 pnc_adcs4_lapa__cruising_failinfo = 22;
+    optional uint32 pnc_adcs4_lapa__pick_up_failinfo = 23;
+    optional uint32 pnc_adcs4_ism_failinfo = 24;
+    optional uint32 pnc_adcs4_avp_failinfo = 25;
+    optional uint32 tba_text = 26;
+    optional uint32 reserved2 = 27;
+    optional uint32 reserved3 = 28;
+}
+
+message StateMachine {
+    optional hozon.common.Header header = 1;
+    optional AutopilotStatus pilot_status = 2;
+    optional Command hpp_command = 3;
+    optional WorkingStatus hpp_perception_status = 4;
+    optional PNCControlState pnc_control_state = 5;
+}

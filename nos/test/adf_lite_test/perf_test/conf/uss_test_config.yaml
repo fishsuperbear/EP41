@@ -1,0 +1,25 @@
+%YAML:1.0
+
+library: "/app/test/adf_lite_test/perf_test/lib/libuss_test.so"
+depLibPath: ["/app/lib", "/opt/app/1/lib"]
+executorName: UssTest
+    
+input:
+    - topic: planning_test
+      capacity: 5
+
+trigger:
+  - name: Object_Info
+    type: PERIOD
+    period: 40
+  - name: UPA_Info_T
+    type: PERIOD
+    period: 40
+  - name: UssRawDataSet
+    type: PERIOD
+    period: 40
+  - name: planning_test_recv
+    type: EVENT
+    mainSources:
+      - name: planning_test
+        timeout: 1000

@@ -1,0 +1,185 @@
+syntax = "proto2";
+
+package hozon.common;
+
+// Error codes enum for API's categorized by modules.
+enum ErrorCode {
+  // No error, returns on success.
+  OK = 0;
+
+  // Canbus module error codes start from here.
+  CANBUS_ERROR = 2000;
+  CAN_CLIENT_ERROR_BASE = 2100;
+  CAN_CLIENT_ERROR_OPEN_DEVICE_FAILED = 2101;
+  CAN_CLIENT_ERROR_FRAME_NUM = 2102;
+  CAN_CLIENT_ERROR_SEND_FAILED = 2103;
+  CAN_CLIENT_ERROR_RECV_FAILED = 2104;
+
+  // input data error codes start from here.
+  INPUT_CHASSIS_RECIEVED_ERROR                       = 10101000;
+  INPUT_CHASSIS_DATA_ERROR                           = 10102000;
+
+  INPUT_LOCALIZATION_RECIEVED_NNP_ERROR              = 10201000;
+  INPUT_LOCALIZATION_DATA_NNP_ERROR                  = 10202000;
+  INPUT_LOCALIZATION_RECIEVED_AVP_ERROR              = 10203000;
+  INPUT_LOCALIZATION_DATA_AVP_ERROR                  = 10204000;
+
+  INPUT_LANE_RECIEVED_NNP_ERROR                      = 10301000;
+  INPUT_LANE_DATA_NNP_ERROR                          = 10302000;
+  INPUT_LANE_RECIEVED_AVP_ERROR                      = 10303000;
+  INPUT_LANE_DATA_AVP_ERROR                          = 10304000;
+
+  INPUT_OBSTACLE_RECIEVED_NNP_ERROR                  = 10401000;
+  INPUT_OBSTACLE_DATA_NNP_ERROR                      = 10402000;
+  INPUT_OBSTACLE_RECIEVED_AVP_ERROR                  = 10403000;
+  INPUT_OBSTACLE_DATA_AVP_ERROR                      = 10404000;
+
+  INPUT_PARKINGLOT_RECIEVED_ERROR                    = 10501000;
+  INPUT_PARKINGLOT_DATA_ERROR                        = 10502000;
+
+  INPUT_FREESPACE_RECIEVED_NNP_ERROR                 = 10601000;
+  INPUT_FREESPACE_DATA_NNP_ERROR                     = 10602000;
+  INPUT_FREESPACE_RECIEVED_AVP_ERROR                 = 10603000;
+  INPUT_FREESPACE_DATA_AVP_ERROR                     = 10604000;
+
+  INPUT_FCT_RECIEVED_ERROR                           = 10701000;
+  INPUT_FCT_DATA_ERROR                               = 10702000;
+
+  INPUT_MAP_RECIEVED_ERROR                           = 10801000;
+  INPUT_MAP_DATA_ERROR                               = 10802000;
+
+  INPUT_TRAFFICSIGN_RECIEVED_NNP_ERROR               = 10901000;
+  INPUT_TRAFFICSIGN_DATA_NNP_ERROR                   = 10902000;
+  INPUT_TRAFFICSIGN_RECIEVED_AVP_ERROR               = 10903000;
+  INPUT_TRAFFICSIGN_DATA_AVP_ERROR                   = 10904000;
+
+  LOCALVIEW_INVALID_INPUT_ERROR                      = 20000100;
+
+  // Map module error codes start from here.
+  LOCALVIEW_MAP_HD_ERROR                             = 20100100;
+  LOCALVIEW_MAP_LANEHDFUSION_ERROR                   = 20100300;
+  LOCALVIEW_MAP_LANE_ERROR                           = 20100200;
+  LOCALVIEW_MAP_PARK_ERROR                           = 20100400;
+  LOCALVIEW_MAP_SLAM_ERROR                           = 20100500;
+  LOCALVIEW_MAP_SD_ERROR                             = 20100600;
+  LOCALVIEW_MAP_PARKHD_ERROR                         = 20100700;
+
+  // Routing module error codes start from here.
+  LOCALVIEW_ROUTING_ERROR                            = 20200100;
+  LOCALVIEW_ROUTING_REQUEST_ERROR                    = 20200200;
+  LOCALVIEW_ROUTING_RESPONSE_ERROR                   = 20200300;
+  LOCALVIEW_ROUTING_NOTREADY_ERROR                   = 20200400;
+  LOCALVIEW_ROUTING_EHPLINK_ERROR                    = 20200500;
+
+  // EHR module error codes start from here.
+  LOCALVIEW_EHR_DATALOSS_ERROR                       = 20300100;
+  LOCALVIEW_EHR_DATAANALY_ERROR                      = 20300200;
+
+  // FSM module error codes start from here.
+  LOCALVIEW_FSM_INITIAL_ERROR                        = 20400100;
+  LOCALVIEW_FSM_PERCEPTION_ERROR                     = 20400200;
+  LOCALVIEW_FSM_HDMAP_ERROR                          = 20400300;
+  LOCALVIEW_FSM_APA_ERROR                            = 20400400;
+  LOCALVIEW_FSM_HISTORYTRACE_ERROR                   = 20400500;
+  LOCALVIEW_FSM_HDMAPAVP_ERROR                       = 20400600;
+  LOCALVIEW_FSM_CONSTRUCT_ERROR                      = 20400700;
+  LOCALVIEW_FSM_PERCEPTIONFUSED_ERROR                = 20400800;
+  LOCALVIEW_FSM_MAGIC_CALL_ERROR                     = 20400900;
+
+  // Planning core module error codes start from here.
+  CORE_ONLANE_INIT_ERROR                             = 30100000;
+  CORE_ONLANE_VEHICLESTATECHECK_ERROR                = 30100001;
+  CORE_ONLANE_NOHDMAP_ERROR                          = 30100002;
+  CORE_ONLANE_REFLINEUPDATE_ERROR                    = 30100003;
+
+  CORE_FRAME_PREDICTIONOBSTACLES_ERROR               = 30101000;
+  CORE_FRAME_INITNULLPTR_ERROR                       = 30102000;
+  CORE_FRAME_REFLINESEGEMNT_ERROR                    = 30103000;
+  CORE_FRAME_SEGMENTSHRINK_ERROR                     = 30104000;
+  CORE_FRAME_INITFRAME_ERROR                         = 30105000;
+  CORE_FRAME_FREFERENCEDECIDER_ERROR                 = 30106000;
+  CORE_FRAME_FREFERENCEPROVIDER_ERROR                = 30107000;
+  CORE_FRAME_INITFRAME_COLLISION_ERROR               = 30108000;
+
+  CORE_PLANNING_SOLVEFAIL_ERROR                      = 30201000;
+  CORE_PLANNING_SCENARIOCREATE_ERROR                 = 30202000;
+  CORE_PLANNING_STAGECREATE_ERROR                    = 30203000;
+  CORE_PLANNING_LANEFOLLOWSTAGE_ERROR                = 30204000;
+  CORE_PLANNING_PARKINGCRUISINGSTAGE_ERROR           = 30205000;
+  CORE_PLANNING_PARKINGPARKINGSTAGE_ERROR            = 30206000;
+
+  CORE_TRAFFICRULE_INPUT_ERROR                       = 30310000;
+  CORE_TRAFFICRULE_REROUTING_ERROR                   = 30301000;
+  CORE_TRAFFICRULE_REFERENCELINEEND_ERROR            = 30302000;
+  CORE_TRAFFICRULE_ODD_ERROR                         = 30303000;
+
+  CORE_SAFETYGUARD_CONFIGINIT_ERROR                  = 30401000;
+  CORE_SAFETYGUARD_CREATEINIT_ERROR                  = 30402000;
+
+  // Prediction module error codes start from here.
+  PREDICTION_INPUT_ERROR                             = 40100000;
+  PREDICTION_CONTAINER_ERROR                         = 40200000;
+  PREDICTION_EVALUATOR_ERROR                         = 40300000;
+  PREDICTION_PREDICTOR_ERROR                         = 40400000;
+
+  // Planner module error codes start from here.
+  PLANNER_CRUISING_LANECHANGE_ERROR                  = 50100100;
+  PLANNER_CRUISING_PATHREUSE_ERROR                   = 50100200;
+  PLANNER_CRUISING_PATHLANEBORROW_ERROR              = 50100300;
+  PLANNER_CRUISING_PATHBOUNDS_ERROR                  = 50100400;
+  PLANNER_CRUISING_PATHOPTIMIZER_ERROR               = 50100500;
+  PLANNER_CRUISING_PATHASSESSMENT_ERROR              = 50100600;
+  PLANNER_CRUISING_PATHDECIDER_ERROR                 = 50100700;
+  PLANNER_CRUISING_PATHREFERENCE_ERROR               = 50100800;
+  PLANNER_CRUISING_OBSTACLESDECIDER_ERROR            = 50101000;
+
+  PLANNER_CRUISING_RULEBASEDSTOP_ERROR               = 50105000;
+  PLANNER_CRUISING_STBOUNDS_ERROR                    = 50105100;
+  PLANNER_CRUISING_SPEEDBOUNDSPRIORI_ERROR           = 50105200;
+  PLANNER_CRUISING_SPEEDHEURISTICOPTIMIZER_ERROR     = 50105300;
+  PLANNER_CRUISING_SPEEDDECIDER_ERROR                = 50105400;
+  PLANNER_CRUISING_SPEEDBOUNDSFINAL_ERROR            = 50105500;
+  PLANNER_CRUISING_SPEEDOPTIMIZER_ERROR              = 50105600;
+  PLANNER_CRUISING_VTSAMPLEOPTIMIZER_ERROR           = 50105700;
+  PLANNER_CRUISING_RSSDECIDER_ERROR                  = 50105800;
+  PLANNER_CRUISING_GUIDELINEBOUNDS_ERROR             = 50105900;
+  PLANNER_CRUISING_OBSTACLEFILTER_ERROR              = 50106000;
+  PLANNER_CRUISING_PRECISEPATHBOUNDS_ERROR           = 50106100;
+  PLANNER_CRUISING_GUIDELINEPATHOPTIMIZER_ERROR      = 50106200;
+  PLANNER_CRUISING_ASTARPATH_ERROR                   = 50106300;
+
+  PLANNER_PARKING_ROIDECIDER_ERROR                   = 50200100;
+  PLANNER_PARKING_PATHPROVIDER_ERROR                 = 50200200;
+  PLANNER_PARKING_PATHSMOOTHER_ERROR                 = 50200300;
+  PLANNER_PARKING_PATHPARTITION_ERROR                = 50200400;
+  PLANNER_PARKING_SPEED_OPTIMIZER_ERROR              = 50200500;
+  PLANNER_PARKING_STRAIGHTPATH_ERROR                 = 50200600;
+  PLANNER_PARKING_PATHGENERATOR_ERROR                = 50200700;
+
+  PLANNER_PARKING_AUTOTUNING_ERROR                   = 50300100;
+  PLANNER_PARKING_COLLISION_ERROR                    = 50400000;
+
+  // Control module error codes start from here.
+  CONTROL_ERROR                                      = 60100000;
+  CONTROL_INIT_ERROR                                 = 60200000;
+  CONTROL_COMPUTE_ERROR                              = 60300000;
+  CONTROL_ESTOP_ERROR                                = 60400000;
+  CONTROL_PERFECTCTRL_ERROR                          = 60500000;
+
+  // Others module error codes start from here.
+  OTHERS_HTTP_LOGIC_ERROR                            = 70100100;
+  OTHERS_HTTP_RUNTIME_ERROR                          = 70100200;
+
+  OTHERS_DRIVER_GNSS_ERROR                           = 70200100;
+  OTHERS_DRIVER_VELODYNE_ERROR                       = 70200200;
+
+  OTHERS_RELATIVEMAP_SELF_ERROR                      = 70300100;
+  OTHERS_RELATIVEMAP_NOTREADY_ERROR                  = 70300200;
+
+  OTHERS_STORRYTELLING_ERROR                         = 70400000;
+}
+
+message StatusPb {
+  optional ErrorCode error_code = 1 [default = OK];
+  optional string msg = 2;
+}

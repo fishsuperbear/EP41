@@ -1,0 +1,9 @@
+{
+    "log_id": "SSM",
+    "log_desc": "sys state mgr",
+    "log_level": "2",
+    "log_mode": "2",
+    "log_path": "/opt/usr/log/soc_log/",
+    "log_max_num": "10",
+    "log_max_size": "10"
+}

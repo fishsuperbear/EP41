@@ -1,0 +1,52 @@
+#include "common.idl"
+#include "type.idl"
+
+/*******************************************************************************
+    结构 名        :  AlgPredictPoint
+    功能描述       :  预测点描述
+*******************************************************************************/
+
+struct AlgPredictPoint {
+    float x ;
+    float y ;
+    float z ;
+    float theta ;
+    float speed ;
+    float acc ;
+    float confidence ;
+    float timeRelative ;
+};
+
+/*******************************************************************************
+    结构 名        :  AlgPredictionTrajectory
+    功能描述       :  车道线描述
+*******************************************************************************/
+struct AlgPredictionTrajectory {
+    sequence<AlgPredictPoint> pathPointsVRF;  //车辆坐标系下，障碍物预测轨迹点集
+    float probability;                   //
+};
+
+/*******************************************************************************
+    结构 名        :  AlgPredictionObstacle
+    功能描述       :  障碍物预测结果
+*******************************************************************************/
+struct AlgPredictionObstacle {
+    uint32 id;                   // id
+    sequence<AlgPredictionTrajectory> Trajectory;  //
+    uint8 Intent;
+    float intentProbability;             //
+    uint8 Priority;
+    boolean is_static;
+};
+
+
+/*******************************************************************************
+    结构 名        :  AlgPredictionObstacleArray
+    功能描述       :  预测障碍物轨迹列表
+*******************************************************************************/
+struct AlgPredictionObstacleArray : IDLBaseType {
+    sequence<AlgPredictionObstacle> predictionObstacles;
+    double startTime ;                                       //
+    double endTime ;                                       //
+    boolean isValid ;                                       // 该帧数据是否可用
+};

@@ -1,0 +1,374 @@
+{
+    // log config
+    "LogAppName": "STMM",
+    "LogAppDescription": "system_monitor",
+    "LogContextName": "STMM",
+    "LogLevel": 1, // SYSTEM_MONITOR_TRACE=0,SYSTEM_MONITOR_DEBUG,SYSTEM_MONITOR_INFO,SYSTEM_MONITOR_WARN,SYSTEM_MONITOR_ERROR,SYSTEM_MONITOR_CRITICAL,SYSTEM_MONITOR_OFF=6
+    "LogMode": 1, // SYSTEM_MONITOR_CONSOLE=0,SYSTEM_MONITOR_FILE,SYSTEM_MONITOR_CONSOLE_FILE=2
+    "LogFilePath": "/opt/usr/log/soc_log/",
+    "MaxLogFileNum": 10,
+    "MaxSizeOfLogFile": 20,
+    "DebugSwitch": "off",
+    // tcp config
+    "TcpEthName": "mgbe3_0",
+    "TcpPort": 25252,
+    "TcpMaxClients": 5,
+    // monitor subfunction config
+    "MonitorSubFunction": [
+        {
+            "shortName": "CpuMonitor",
+            "id": "0x00",
+            "monitorSwitch": "on",
+            "monitorCycle": 3000, // ms
+            "recordFileCycle": 10, // s
+            "recordFilePath": "/opt/usr/log/system_monitor_log/",
+            "isAlarm": true,
+            "alarmValue": 80,
+            "postProcessingSwitch": "off"
+        },
+        {
+            "shortName": "MemMonitor",
+            "id": "0x01",
+            "monitorSwitch": "on",
+            "monitorCycle": 3000, // ms
+            "recordFileCycle": 10, // s
+            "recordFilePath": "/opt/usr/log/system_monitor_log/",
+            "isAlarm": true,
+            "alarmValue": 80,
+            "postProcessingSwitch": "off"
+        },
+        {
+            "shortName": "DiskMonitor",
+            "id": "0x02",
+            "monitorSwitch": "on",
+            "monitorCycle": 3000, // ms
+            "recordFileCycle": 10, // s
+            "recordFilePath": "/opt/usr/log/system_monitor_log/",
+            "isAlarm": true,
+            "alarmValue": 90,
+            "postProcessingSwitch": "on"
+        },
+        {
+            "shortName": "EmmcMonitor",
+            "id": "0x03",
+            "monitorSwitch": "on",
+            "monitorCycle": 3000, // ms
+            "recordFileCycle": 10, // s
+            "recordFilePath": "/opt/usr/log/system_monitor_log/",
+            "isAlarm": true,
+            "alarmValue": 90,
+            "postProcessingSwitch": "off"
+        },
+        {
+            "shortName": "TemperatureMonitor",
+            "id": "0x04",
+            "monitorSwitch": "on",
+            "monitorCycle": 3000, // ms
+            "recordFileCycle": 10, // s
+            "recordFilePath": "/opt/usr/log/system_monitor_log/",
+            "isAlarm": false,
+            "alarmValue": 70,
+            "postProcessingSwitch": "off"
+        },
+        {
+            "shortName": "VoltageMonitor",
+            "id": "0x05",
+            "monitorSwitch": "on",
+            "monitorCycle": 3000, // ms
+            "recordFileCycle": 10, // s
+            "recordFilePath": "/opt/usr/log/system_monitor_log/",
+            "isAlarm": false,
+            "alarmValue": 15,
+            "postProcessingSwitch": "off"
+        },
+        {
+            "shortName": "FileSystemMonitor",
+            "id": "0x06",
+            "monitorSwitch": "on",
+            "monitorCycle": 3000, // ms
+            "recordFileCycle": 10, // s
+            "recordFilePath": "/opt/usr/log/system_monitor_log/",
+            "isAlarm": false,
+            "alarmValue": 0,
+            "postProcessingSwitch": "off"
+        },
+        {
+            "shortName": "ProcessMonitor",
+            "id": "0x07",
+            "monitorSwitch": "on",
+            "monitorCycle": 3000, // ms
+            "recordFileCycle": 10, // s
+            "recordFilePath": "/opt/usr/log/system_monitor_log/",
+            "isAlarm": false,
+            "alarmValue": 0,
+            "postProcessingSwitch": "off"
+        },
+        {
+            "shortName": "NetworkMonitor",
+            "id": "0x08",
+            "monitorSwitch": "on",
+            "monitorCycle": 60000, // ms
+            "recordFileCycle": 10, // s
+            "recordFilePath": "/opt/usr/log/system_monitor_log/",
+            "isAlarm": false,
+            "alarmValue": 0,
+            "postProcessingSwitch": "off"
+        }
+    ],
+    "DiskMonitorPathList": [
+        {
+            "partition": "/ota",
+            "reservedSize": 5120, // MB
+            "partitionAlarmValue": 90,
+            "isIncludeSpecialPostProcessing": false,
+            // General post-processing config
+            "isDeleteEmptyDir": false,
+            "deleteFilesByWildcardList": [],
+            "deleteFilesByPathList": []
+        },
+        {
+            "partition": "/hz_map",
+            "reservedSize": 10240, // MB
+            "partitionAlarmValue": 90,
+            "isIncludeSpecialPostProcessing": false,
+            // General post-processing config
+            "isDeleteEmptyDir": false,
+            "deleteFilesByWildcardList": [],
+            "deleteFilesByPathList": []
+        },
+        {
+            "partition": "/opt/usr/col",
+            "reservedSize": 7680, // MB
+            "partitionAlarmValue": 90,
+            "isIncludeSpecialPostProcessing": false,
+            // General post-processing config
+            "isDeleteEmptyDir": false,
+            "deleteFilesByWildcardList": [],
+            "deleteFilesByPathList": []
+        },
+        {
+            "partition": "/opt/usr/log",
+            "reservedSize": 1024, // MB
+            "partitionAlarmValue": 90,
+            "isIncludeSpecialPostProcessing": true,
+            // General post-processing config
+            "isDeleteEmptyDir": false,
+            "deleteFilesByWildcardList": [],
+            "deleteFilesByPathList": []
+        },
+        {
+            "partition": "/opt/usr/log_bak",
+            "reservedSize": 5120, // MB
+            "partitionAlarmValue": 90,
+            "isIncludeSpecialPostProcessing": false,
+            // General post-processing config
+            "isDeleteEmptyDir": false,
+            "deleteFilesByWildcardList": [],
+            "deleteFilesByPathList": [
+                {
+                    "filePath": "/opt/usr/log_bak/soc_log",
+                    "isTraverseSubdir": true
+                },
+                {
+                    "filePath": "/opt/usr/log_bak/mcu_log",
+                    "isTraverseSubdir": true
+                }
+            ]
+        },
+        {
+            "partition": "/opt/usr/upgrade",
+            "reservedSize": 25600, // MB
+            "partitionAlarmValue": 90,
+            "isIncludeSpecialPostProcessing": false,
+            // General post-processing config
+            "isDeleteEmptyDir": false,
+            "deleteFilesByWildcardList": [],
+            "deleteFilesByPathList": []
+        },
+        {
+            "partition": "/opt/usr/storage",
+            "reservedSize": 16384, // MB
+            "partitionAlarmValue": 90,
+            "isIncludeSpecialPostProcessing": false,
+            // General post-processing config
+            "isDeleteEmptyDir": false,
+            "deleteFilesByWildcardList": [],
+            "deleteFilesByPathList": []
+        },
+        {
+            "partition": "/opt/usr/data",
+            "reservedSize": 7680, // MB
+            "partitionAlarmValue": 90,
+            "isIncludeSpecialPostProcessing": true,
+            // General post-processing config
+            "isDeleteEmptyDir": false,
+            "deleteFilesByWildcardList": [
+                {
+                    "wildcardPath": "/opt/usr/data/coredump/core.*",
+                    "isTraverseSubdir": true
+                }
+            ],
+            "deleteFilesByPathList": []
+        },
+        {
+            "partition": "/svp_log",
+            "reservedSize": 3072, // MB
+            "partitionAlarmValue": 90,
+            "isIncludeSpecialPostProcessing": false,
+            // General post-processing config
+            "isDeleteEmptyDir": false,
+            "deleteFilesByWildcardList": [],
+            "deleteFilesByPathList": []
+        }
+    ],
+    "SocLogMoveList": [
+        {
+            "filePrefix": "CAMV_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "CAPTURE_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "CFG_SERVER_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "DATA_TOOLS_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "DC_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "DEVM_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "DIAG_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "LOGSV_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "NVS_P_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "PHMS_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "REMOTE_DIAG_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "SOC_MCU_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "STMM_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "UPMG_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "em_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "fisheye_perception_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "FSD_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "lidar_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "parking_fusion_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "parking_slam_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "parking_state_machine_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "planning_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "sm_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "ssm_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "someipd_",
+            "reservedFileNum": 5
+        },
+        {
+            "filePrefix": "stoh_",
+            "reservedFileNum": 5
+        }
+    ],
+    "McuLogMoveList": [
+        {
+            "filePrefix": "HZ_MCU_",
+            "reservedFileNum": 5
+        }
+    ],
+    "ProcessMonitorNameList": [
+        "execution_manager",
+        "rsyslogd",
+        "sshd",
+        "NvFsiCom",
+        "PowerManager",
+        "UpdateService",
+        "ptp4l",
+        "phc2sys",
+        "notify_main",
+        "remote_diag",
+        "extwdg"
+    ],
+    "MnandHsMonitorUfsNodeList": [
+        "/dev/vblkdev1"
+    ],
+    "MnandHsMonitorEmmcNodeList": [
+        "/dev/vblkdev14"
+    ],
+    "FileSystemProtectList": [
+        {
+            "pathName": "/app/conf",
+            "isRecursive": false
+        },
+        {
+            "pathName": "/app/script",
+            "isRecursive": true
+        }
+    ],
+    "FileSystemMonitorList": [
+        {
+            "pathName": "/app/version.json",
+            "isRecursive": false
+        }
+    ],
+    "NetworkMonitorNicList": [
+        "mgbe3_0"
+    ]
+}

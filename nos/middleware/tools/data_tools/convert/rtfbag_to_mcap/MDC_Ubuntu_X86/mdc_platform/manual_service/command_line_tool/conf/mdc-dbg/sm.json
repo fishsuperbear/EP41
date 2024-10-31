@@ -1,0 +1,37 @@
+[
+    {
+        "key" : "app",
+        "value" :
+        {
+            "string" : "sm"
+        }
+    },
+    {
+        "key" : "command",
+        "value" :
+        {
+            "string[]" : [ "sm get { functionGroupInfo | functionGroupList }",
+                           "sm query < functionGroupName >",
+                           "sm request < functionGroupName > < stateName >",
+                           "sm reset { soft | hard } { 0 | 1 }",
+                           "sm query_platform_state",
+                           "sm request_platform_state <platformState> <params>",
+                           "sm reset_recovery_count"
+                         ]
+        }
+    },
+    {
+        "key" : "help",
+        "value" :
+        {
+            "string[]" : ["sm get { functionGroupInfo | functionGroupList }, Get the function groups name or states name.",
+                          "sm query < functionGroupName >,                   Query the function group state.",
+                          "sm request < functionGroupName > < stateName >,   Set the function group state, which returns the set result.",
+                          "sm reset { soft | hard } { 0 | 1 },               Reset the MDC system with different actionType(soft/hard) and actionTime(0/1). ",
+                          "sm query_platform_state,                          Query the platform state.",
+                          "sm request_platform_state <platformState> <params>,     Request the platform state.",
+                          "sm reset_recovery_count,                          Reset the recovery count to zero."
+            ]
+        }
+    }
+]

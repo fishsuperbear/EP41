@@ -1,0 +1,184 @@
+mapping:
+    - triggerId: 120 # MCU120
+      task: MCUPipeLine
+    - triggerId: 121 # MCU121
+      task: MCUPipeLine
+    - triggerId: 122 # MCU122
+      task: MCUPipeLine
+#    - triggerId: 2001
+#      task: allFileMergeAndUpload
+#      priority: 10
+#    - triggerId: 2002        # 司机紧急制动
+#      task: allFileMergeAndUpload
+#      priority: 10
+#    - triggerId: 2003        # 司机紧急转向
+#      task: allFileMergeAndUpload
+#      priority: 10
+    # - triggerId: 2005        # 泊车把数超限
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 2006        # 泊车多次接管
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 2007        # 泊车能力类失败接管
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 2008        # 泊车功能故障请求接管
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 2011        # N-Pilot功能故障请求接管
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+#    - triggerId: 2013        # 发生碰撞
+#      task: allFileMergeAndUpload
+#      priority: 10
+    # - triggerId: 2015        # 控制偏差过大请求接管
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+#    - triggerId: 2016
+#      task: allFileMergeAndUpload
+#      priority: 10
+    # - triggerId: 2018       # 急加速
+    #   task: allFileMergeAndUpload
+    #   priority: 10
+    # - triggerId: 2017        # FCW二级预警
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 102         # 【行车视觉】3D框大小抖动
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 103         # 【行车视觉】目标位置跳变
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 106         # 【行车视觉】行车车道线拟合异常
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 107         # 【行车视觉】障碍物所属类别跳变
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 111         # 【行车视觉】障碍物输出不稳定
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 201         # 【泊车】slam模块失败
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 202         # 【泊车】车位检测异常
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 209         # 跟踪帧数很低，或者id跳变频繁
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 301         # 【Lidar】同一位置障碍物闪现
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 302         # 【Lidar】障碍物所属类别跳变
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 303         # 【Lidar】FreeSpace
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 304         # 【Lidar】CIPV速度异常
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 305         # 【Lidar】车道线检测异常
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 306         # 【Lidar】目标检测特殊场景
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 307         # 【Lidar】空中噪声点较多等特殊场景
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 1002        # INS处于非“组合导航模式”
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 1003        # INS处于非“RTK稳定解定位定向”模式
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 1005        # 无车道线
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 1007        # 图像异常
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 1008        # INS/IMU数据异常
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 1009        # 底盘数据异常
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 1010        # 定位结果跳变
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 1011        # 定位结果与原始INS的结果偏差较大
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 1012        # 轮速里程计发生跳变
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 1013        # 视觉里程计发生跳变
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    # - triggerId: 1014        # 地图匹配发生跳变
+    #   task: allFileMergeAndUpload
+    #   priority: 1
+    - triggerId: 9001        # 产线标定
+      task: uploadCalibration
+      priority: 1
+    - triggerId: 9002        # 售后标定
+      task: uploadCalibration
+      priority: 1
+    - triggerId: 9003       # ota升级标定
+      task: uploadCalibration
+      priority: 1
+    - triggerId: 9996
+      task: allFileMergeAndUpload
+      priority: 11
+    - triggerId: 9997
+      task: allFileMergeAndUpload
+      priority: 4
+    - triggerId: 9998  # only for test.
+      task: allFileMergeAndUpload
+      priority: 10
+    - triggerId: 9999  # only for test.
+      task: allFileMergeAndUpload
+      priority: 1
+    - triggerId: 20001  # upload all logs
+      task: uploadAllLog
+      priority: -2
+    - triggerId: 20002  # upload fm
+      task: uploadFaultFilesEvery10Min
+      priority: -2
+    - triggerId: 20003  # upload planning
+      task: uploadPlanningEvery10Min
+      priority: -2
+    - triggerId: 20004  # upload eth
+      task: uploadEthEvery10Minutes
+      priority: -2
+    - triggerId: 20005  # upload can
+      task: uploadCanEvery10Min
+      priority: -2
+    - triggerId: 20006  # manager fault
+      task: managerOldFault
+      priority: -2
+    - triggerId: 20007  # manager log all
+      task: managerOldLogAll
+      priority: -2
+    - triggerId: 20008  # manager trigger
+      task: managerOldMasked
+      priority: -2
+    - triggerId: 20009  # manager cablibration
+      task: managerOldCablibration
+      priority: -2
+    - triggerId: 20010  # manager mcu
+      task: managerOldMcu
+      priority: -2
+    - triggerId: 20011  # manager can
+      task: managerOldCan
+      priority: -2
+    - triggerId: 20012  # manager planning
+      task: managerOldPlanning
+      priority: -2
+    - triggerId: 20013  # manager eth
+      task: managerOldEth
+      priority: -2

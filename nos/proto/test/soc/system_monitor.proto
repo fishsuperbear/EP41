@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+package hozon.system.monitor;
+
+message NotifyMessage {
+    optional int64 id = 1;
+    optional string info = 2;
+}
+
+message AlarmMessage {
+    optional int64 id = 1;
+    optional string info = 2;
+}
+
+message ControlMessage {
+    optional int64 id = 1;
+    optional int64 type = 2;
+    optional string value = 3;
+};

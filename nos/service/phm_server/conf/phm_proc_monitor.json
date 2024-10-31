@@ -1,0 +1,173 @@
+{
+	"ProcMonitor":
+	[
+		{
+			"ProcName": "diag_serverProcess",
+			"FaultId": 4000,
+			"FaultObj": 1,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "config_serverProcess",
+			"FaultId": 4000,
+			"FaultObj": 2,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "log_serverProcess",
+			"FaultId": 4000,
+			"FaultObj": 3,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "remote_diagProcess",
+			"FaultId": 4000,
+			"FaultObj": 4,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "state_machineProcess",
+			"FaultId": 4000,
+			"FaultObj": 5,
+			"RetryCount": 255
+		},
+		{
+			"ProcName": "update_managerProcess",
+			"FaultId": 4000,
+			"FaultObj": 6,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "devm_serverProcess",
+			"FaultId": 4000,
+			"FaultObj": 7,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "camera_vencProcess",
+			"FaultId": 4000,
+			"FaultObj": 8,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "crypto_serverProcess",
+			"FaultId": 4000,
+			"FaultObj": 9,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "pki_serviceProcess",
+			"FaultId": 4000,
+			"FaultObj": 10,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "data_collectionProcess",
+			"FaultId": 4000,
+			"FaultObj": 11,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "dvrProcess",
+			"FaultId": 4000,
+			"FaultObj": 12,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "sys_statemgrProcess",
+			"FaultId": 4000,
+			"FaultObj": 13,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "soc_to_hmiProcess",
+			"FaultId": 4000,
+			"FaultObj": 14,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "soc_to_mcuProcess",
+			"FaultId": 4000,
+			"FaultObj": 15,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "neta_lidarProcess",
+			"FaultId": 4000,
+			"FaultObj": 16,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "time_syncProcess",
+			"FaultId": 4000,
+			"FaultObj": 17,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "perceptionProcess",
+			"FaultId": 4000,
+			"FaultObj": 18,
+			"RetryCount": 0
+		},
+		{
+			"ProcName": "parking_perceptionProcess",
+			"FaultId": 4000,
+			"FaultObj": 19,
+			"RetryCount": 0
+		},
+		{
+			"ProcName": "planningProcess",
+			"FaultId": 4000,
+			"FaultObj": 20,
+			"RetryCount": 0
+		},
+		{
+			"ProcName": "hz_locationProcess",
+			"FaultId": 4000,
+			"FaultObj": 21,
+			"RetryCount": 0
+		},
+		{
+			"ProcName": "hz_location_pluginProcess",
+			"FaultId": 4000,
+			"FaultObj": 22,
+			"RetryCount": 0
+		},
+		{
+			"ProcName": "calibrateProcess",
+			"FaultId": 4000,
+			"FaultObj": 23,
+			"RetryCount": 0
+		},
+		{
+			"ProcName": "network_captureProcess",
+			"FaultId": 4000,
+			"FaultObj": 24,
+			"RetryCount": 0
+		},
+		{
+			"ProcName": "neta_someipdProcess",
+			"FaultId": 4000,
+			"FaultObj": 25,
+			"RetryCount": 0
+		},
+		{
+			"ProcName": "nvs_producerProcess",
+			"FaultId": 4000,
+			"FaultObj": 26,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "sensor_transProcess",
+			"FaultId": 4000,
+			"FaultObj": 27,
+			"RetryCount": 5
+		},
+		{
+			"ProcName": "ihbc_tsr_tlrProcess",
+			"FaultId": 4000,
+			"FaultObj": 28,
+			"RetryCount": 5
+		}
+	]
+}

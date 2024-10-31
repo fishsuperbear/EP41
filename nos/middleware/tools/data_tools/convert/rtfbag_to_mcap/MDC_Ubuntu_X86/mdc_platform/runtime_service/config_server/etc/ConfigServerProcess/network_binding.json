@@ -1,0 +1,24 @@
+{
+  "instanceSpecifiers": [
+    {
+      "instanceSpecifier": "config_server/config_server/ConfigServerToAppPPort",
+      "service": "/HuaweiMDC/MdcPlatformServices/ConfigServerServiceInterface/ConfigServerServiceInterface",
+      "instanceIdentifiers": [
+        {
+          "protocol": "SOMEIP",
+          "instanceIdentifier": "1"
+        }
+      ]
+    },
+    {
+      "instanceSpecifier": "config_server/config_server/ConfigServerFromFmRPort",
+      "service": "/HuaweiMDC/MdcPlatformServices/PlatformServiceInterface/FmServiceInterface/FmReportEventService",
+      "instanceIdentifiers": [
+        {
+          "protocol": "DDS",
+          "instanceIdentifier": "1444"
+        }
+      ]
+    }
+  ]
+}

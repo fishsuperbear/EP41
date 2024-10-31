@@ -1,0 +1,50 @@
+#include "common.idl"
+#include "type.idl"
+
+struct tPointInfo {
+    uint16  x;
+    uint16  y;
+};
+
+struct tSonarInfo {
+    uint8  TxsensorID;
+    uint8  status;
+};
+
+struct APA_Info_T {
+    tPointInfo  ObstaclePoint_left[20];
+    tPointInfo  ObstaclePoint_right[20];
+};
+
+struct UPA_Info_T {
+    uint32 	dwTimeStampH;
+    uint32 	dwTimeStampL;
+    tSonarInfo	TxSnsInfo;
+    tSonarInfo	RxSns0Info;
+    tSonarInfo	RxSns1Info;
+    tSonarInfo	RxSns2Info;
+    uint16	wTxSns_Ringtime;
+    uint16	wTxSns_Echo_Dist[3];
+    uint16	wRxSns0_Echo_Dist[3];
+    uint16	wRxSns1_Echo_Dist[3];
+    uint16	wRxSns2_Echo_Dist[3];
+};
+
+struct Object_Info {
+    tPointInfo  ObstaclePoint;
+    sequence<uint16> wDistance;
+    uint8   wTracker_age;
+    uint8   cTracker_status;
+    uint8   cTracker_ID;
+    uint8   cTracker_type;
+};
+
+struct AlgUssInfo : IDLBaseType {
+    APA_Info_T  APA_Info;
+    UPA_Info_T  UPA_Info[2];
+    Object_Info Tracker_Data;
+    tPointInfo  APA_Virtual_Point[5];
+    uint16  reserved1[12];
+    uint16  reserved2[12];
+    uint16  reserved3[12];
+};

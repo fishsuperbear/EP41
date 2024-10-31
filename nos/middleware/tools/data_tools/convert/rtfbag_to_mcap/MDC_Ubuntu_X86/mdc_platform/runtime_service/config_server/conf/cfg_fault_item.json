@@ -1,0 +1,118 @@
+[
+    {
+        "key": "FaultItem",
+        "value": {
+        "object[]":
+            [
+                {
+                    "key": "object",
+                    "value": {
+                        "object[]": [
+                            {
+                                "key": "FaultName",
+                                "value": {
+                                    "string": "cfgInitAbnormal"
+                                },
+                                "checksum": 271143104
+                            },
+                            {
+                                "key": "FaultId",
+                                "value": {
+                                    "uint32": 1658
+                                },
+                                "checksum": 2704349418
+                            },
+                            {
+                                "key": "FaultObject",
+                                "value": {
+                                    "uint32": 0
+                                },
+                                "checksum": 2704349418
+                            },
+                            {
+                                "key": "BrokenCount",
+                                "value": {
+                                    "uint32": 1
+                                },
+                                "checksum": 2704349418
+                            },
+                            {
+                                "key": "RecoverCount",
+                                "value": {
+                                    "uint32": 0
+                                },
+                                "checksum": 2704349418
+                            },
+                            {
+                                "key": "CheckInterval",
+                                "value": {
+                                    "uint32": 0
+                                },
+                                "checksum": 2704349418
+                            }
+                        ]
+                    },
+                    "checksum": 264756932
+                },
+                {
+                    "key": "object",
+                    "value": {
+                        "object[]": [
+                            {
+                                "key": "FaultName",
+                                "value": {
+                                    "string": "cfgWriteFileAbnormal"
+                                },
+                                "checksum": 271143104
+                            },
+                            {
+                                "key": "FaultId",
+                                "value": {
+                                    "uint32": 1659
+                                },
+                                "checksum": 2704349418
+                            },
+                            {
+                                "key": "FaultObject",
+                                "value": {
+                                    "uint32": 0
+                                },
+                                "checksum": 2704349418
+                            },
+                            {
+                                "key": "BrokenCount",
+                                "value": {
+                                    "uint32": 1
+                                },
+                                "checksum": 2704349418
+                            },
+                            {
+                                "key": "RecoverCount",
+                                "value": {
+                                    "uint32": 1
+                                },
+                                "checksum": 2704349418
+                            },
+                            {
+                                "key": "CheckInterval",
+                                "value": {
+                                    "uint32": 200
+                                },
+                                "checksum": 2704349418
+                            }
+                        ]
+                    },
+                    "checksum": 264756932
+                }
+            ]
+        },
+        "checksum": 1360879489
+    },
+    {
+        "key": "version",
+        "value": {
+            "string": "1.0.0"
+        },
+        "checksum": 2704349418
+    }
+]

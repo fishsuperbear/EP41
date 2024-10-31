@@ -1,0 +1,21 @@
+#include "common.idl"
+#include "type.idl"
+
+struct DebugPlanningFrame : IDLBaseType {
+    string msg_1;
+    string msg_2;
+    string msg_3;
+    string msg_4;
+    string msg_5;
+    string msg_6;
+    string msg_7;
+    string msg_8;
+    string msg_9;
+    string msg_10;
+    string msg_11;
+    string msg_12;
+    string msg_13;
+    string msg_14;
+    string msg_15;
+    boolean    isValid ;
+};

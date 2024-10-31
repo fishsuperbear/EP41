@@ -1,0 +1,36 @@
+{
+	"Index":200,
+	"ResultValue":
+		[
+			{
+				"test_uint64Data":1504665880572,
+				"test_intData":-123456,
+				"test_boolData":true,
+				"test_cStringData":"This is a c string 1.",
+				"test_cppStringData":"This is a c++ string 1.",
+				"test_HexData":"0x8876AD32",
+				"test_DobleData":1234.5678,
+				"test_FloatData":1234.5678
+			},
+			{
+				"test_uint64Data":100000,
+				"test_intData":34567,
+				"test_boolData":false,
+				"test_cStringData":"This is a c string 2.",
+				"test_cppStringData":"This is a c++ string 2.",
+				"test_HexData":"0x64",
+				"test_DobleData":354.8899,
+				"test_FloatData":221.3344
+			},
+			{
+				"test_uint64Data":200000,
+				"test_intData":678910,
+				"test_boolData":false,
+				"test_cStringData":"This is a c string 3.",
+				"test_cppStringData":"This is a c++ string 3.",
+				"test_HexData":"0xFFFFFFFF",
+				"test_DobleData":222.111,
+				"test_FloatData":111.222
+			}
+		]
+}

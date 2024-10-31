@@ -1,0 +1,235 @@
+{
+    "ip": "172.16.50.11",
+    "port": 13400,
+    "ifname": "mgbe3_0.50",
+    "sourceAddress": 4194,
+    "targetAddress": 4291,
+    "canid":"0x1234",
+    "requestTest": [
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"27 03","response":"67 03 ..."},
+                {"request":"27 04","response":"67 04 ..."},
+                {"request":"31 01","response":"7f 31 13"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> 31 InvalidRequestMessageLength 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"27 03","response":"67 03 ..."},
+                {"request":"27 04","response":"67 04 ..."},
+                {"request":"31 01 61","response":"7f 31 13"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> 31 InvalidRequestMessageLength 02",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"27 03","response":"67 03 ..."},
+                {"request":"27 04","response":"67 04 ..."},
+                {"request":"31 01 61 40","response":"71 01 61 40 ..."},
+                {"request":"31 02 61 40","response":"71 02 61 40 ..."},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> 31 Valid_Request_WDBI 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"27 03","response":"67 03 ..."},
+                {"request":"27 04","response":"67 04 ..."},
+                {"request":"31 01 61 41","response":"7f 31 31"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> 31 Overwrite_Read_Only_Data_Identifier 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"27 03","response":"67 03 ..."},
+                {"request":"27 04","response":"67 04 ..."},
+                {"request":"31 01 61 40","response":"71 01 61 40 ..."},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case General> 31 SimpleRequest 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"27 03","response":"67 03 ..."},
+                {"request":"27 04","response":"67 04 ..."},
+                {"request":"31 02 61 40","response":"71 02 61 40 ..."},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case General> 31 SimpleRequest 02",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"27 03","response":"67 03 ..."},
+                {"request":"27 04","response":"67 04 ..."},
+                {"request":"31 03 61 40","response":"71 03 61 40 ..."},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case General> 31 SimpleRequest 03",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"27 05","response":"67 05 ..."},
+                {"request":"27 06","response":"67 06 ..."},
+                {"request":"31 03 D0 00","response":"7f 31 12"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case General> 31 InvalidSubfunctions 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"31 01 61 40","response":"7f 31 33"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Session> 31 InvalidSecurityState 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"27 05","response":"67 05 ..."},
+                {"request":"27 06","response":"67 06 ..."},
+                {"request":"31 03 61 40","response":"7f 31 33"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Session> 31 InvalidSecurityState 02",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"27 05","response":"67 05 ..."},
+                {"request":"27 06","response":"67 06 ..."},
+                {"request":"31 03 D0 00","response":"7f 31 12"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case General> 31 InvalidSubfunctions 02",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"27 05","response":"67 05 ..."},
+                {"request":"27 06","response":"67 06 ..."},
+                {"request":"31 03 D0 00","response":"7f 31 12"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case General> 31 InvalidSubfunctions 03",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"27 05","response":"67 05 ..."},
+                {"request":"27 06","response":"67 06 ..."},
+                {"request":"31 03 D0 00","response":"7f 31 12"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case General> 31 InvalidSubfunctions 04",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"27 05","response":"67 05 ..."},
+                {"request":"27 06","response":"67 06 ..."},
+                {"request":"31 03 D0 00","response":"7f 31 12"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case General> 31 InvalidSubfunctions 05",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"10 01","response":"50 01 ..."},
+                {"request":"10 03","response":"50 03 ..."},
+                {"request":"27 05","response":"67 05 ..."},
+                {"request":"27 06","response":"67 06 ..."},
+                {"request":"31 03 D0 00","response":"7f 31 12"},
+                {"request":"10 01","response":"50 01 ..."}
+            ],
+            "delayTime": 1000,
+            "describe":"<case General> 31 InvalidSubfunctions 06",
+            "ignoreFail": true
+        }
+    ]
+}
+

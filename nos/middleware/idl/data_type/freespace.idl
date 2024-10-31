@@ -1,0 +1,42 @@
+#include "common.idl"
+#include "type.idl"
+
+/*******************************************************************************
+    结构 名        :  AlgFreeSpaceOut
+    功能描述       :  FreeSpace检测结果
+*******************************************************************************/
+struct AlgFreeSpaceOut {
+    int32                freespaceSeq;           // id
+    uint8                cls;                    // 类别
+    uint8                heightType;
+    uint8                sensorType;
+    sequence<Point3f>    freeSpacePointVRF;      // 欧式离散点
+    sequence<Point3f>    freeSpaceKeyPointVRF;      // freespace关键点按照逆时针/顺时针组成的点集
+    boolean              isLinkObjFusion;           // freespace点集与融合obj-fusion中障碍物ID是否关联，关联给true，否则给fasle
+    int32                obstacleId;             // 当isLinkObjFusion为true时，obstacleId表示freespace在obj_fusion中的ID号，否则，默认输出0即可
+    HafTime              timeCreation;           // 第一次识别时间戳
+};
+
+/*******************************************************************************
+    结构 名        :  AlgFreeSpace2DOut
+    功能描述       :  FreeSpace检测结果
+*******************************************************************************/
+struct AlgFreeSpace2DOut {
+    HafTime                 timeCreation;           // 第一次识别时间戳
+    int32                   freespaceSeq;            // id
+    sequence<Point2f>       points;
+    uint8                   type;
+    string             sensorName;
+};
+
+/*******************************************************************************
+    结构 名        :  AlgFreeSpaceOutArray
+    功能描述       :  FreeSpace检测结果列表
+*******************************************************************************/
+struct AlgFreeSpaceOutArray : IDLBaseType {
+    uint32            count;
+    uint32            locSeq;
+    sequence<AlgFreeSpaceOut> freeSpaceOut;
+    sequence<AlgFreeSpace2DOut> freeSpace2DOut;
+    boolean               isValid ;            // 该帧数据是否可用
+};

@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<!--The manifest file of soc!!!!!!!!!!!!!-->
+<PkgCfg>
+  <Version>0.1</Version>
+  <ProcessProportion>0.9</ProcessProportion>
+  <Soc>
+    <Name>MDC</Name>
+    <UpdateType>interface</UpdateType>
+    <LogicalAddr>10C3</LogicalAddr>
+    <HaveFileSystem>True</HaveFileSystem>
+    <SameVersionCheck>True</SameVersionCheck>
+    <PartNumber>S40-3602022</PartNumber>
+    <SupplierCode>9HW</SupplierCode>
+    <TargetVersion>05.02.15</TargetVersion>
+    <File>
+      <Firmware>
+        <Name>soc/firmware/EP40_MDC_ADdev_05.02.15_0930_1025_20221116.zip</Name>
+      </Firmware>
+    </File>
+  </Soc>
+</PkgCfg>

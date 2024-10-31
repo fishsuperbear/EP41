@@ -1,0 +1,60 @@
+syntax = "proto2";
+
+package hozon.perception.debug.pblaneline;
+import "proto/common/header.proto";
+import "proto/common/types.proto";
+import "proto/perception/transport_element.proto";
+
+message StaticModuleDebugData {
+  optional bool is_motionless_state = 1;
+}
+
+enum CrossType {
+  SPLIT = 0;
+  MERGE = 1;
+  UNKNOWN = 2;
+};
+
+message CrossPoint {
+  optional uint32 id = 2;
+  optional CrossType type = 3;  // 0 分流; 1合流。
+  optional hozon.perception.LaneLinePoint point = 4;
+};
+
+message MeasureModuleDebugData {
+  repeated hozon.perception.LaneInfo lane_info = 2;
+  repeated CrossPoint crosspoints = 3;
+}
+
+message ConfigDebugData {
+  // 需要debug的配置信息
+  optional bool use_idle_strategy = 2;
+  optional double is_motionless_upper_limiting_value = 3;
+};
+
+message FilterModuleDebugData {
+  optional StaticModuleDebugData static_state_module_debug = 2;
+  repeated hozon.perception.LaneLinePoint measurement_points = 3;
+  repeated hozon.perception.LaneLinePoint predict_points = 4;
+  repeated hozon.perception.LaneLinePoint update_points = 5;
+  repeated hozon.perception.LaneLinePoint update_remove_points = 6;
+  repeated hozon.perception.LaneLinePoint update_append_points = 7;
+  repeated hozon.perception.LaneLinePoint tracked_points = 8;
+  optional hozon.common.Affine3D delta_pose = 9;
+}
+
+message TrackerDebugData {
+  optional MeasureModuleDebugData measure_module_debug = 2;  // 输入的原始观测数据debug
+  // optional MatchModuleDebugData match_module_debug = 3;      // 关联模块debug
+  optional FilterModuleDebugData filter_module_debug = 4;    // 滤波模块debug
+};
+
+message PostProcessDebugData {
+  optional hozon.common.Header header = 2;
+
+  optional double current_timestamp  = 3;
+
+  optional ConfigDebugData config_module_debug = 4;
+
+  optional TrackerDebugData tracker_debug_data = 5;
+}

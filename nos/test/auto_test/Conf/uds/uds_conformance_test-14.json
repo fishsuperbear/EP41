@@ -1,0 +1,50 @@
+{
+    "ip": "172.16.50.11",
+    "port": 13400,
+    "ifname": "mgbe3_0.50",
+    "sourceAddress": 4194,
+    "targetAddress": 4291,
+    "canid":"0x1234",
+    "requestTest": [
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"14 FF FF FF","response":"54"}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> SID:0x14 Valid_Request_WDBI 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"14 FF FF FF","response":"54"}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Application> SID:0x14 Valid_Request_WDBI 02",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"14 92","response":"7f 14 13"}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> SID:0x14 InvalidRequestMessageLength 01",
+            "ignoreFail": true
+        },
+        {
+            "retryCounts":1,
+            "testerPresent": false,
+            "requestTest2": [
+                {"request":"14 92 34 56 49","response":"7f 14 13"}
+            ],
+            "delayTime": 1000,
+            "describe":"<case Format> SID:0x14 InvalidRequestMessageLength 02",
+            "ignoreFail": true
+        }
+    ]
+}

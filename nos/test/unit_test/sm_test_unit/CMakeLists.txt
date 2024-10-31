@@ -1,0 +1,11 @@
+#set(GTEST_LIB_PATH "${PRJ_ROOT_DIR}/netaos_thirdparty/${TARGET_PLATFORM}/gtest/lib")
+set(EM_SERVER_PATH ${CMAKE_SOURCE_DIR}/unit_test/sm_test_unit/server)
+file(COPY ${EM_SERVER_PATH}
+    DESTINATION  ${CMAKE_SOURCE_DIR}/../output/${TARGET_PLATFORM}/test/unit_test/sm_test_unit  FOLLOW_SYMLINK_CHAIN)
+add_subdirectory(testcase_SM_001)
+add_subdirectory(testcase_SM_002)
+add_subdirectory(testcase_SM_003)
+add_subdirectory(testcase_SM_004)
+add_subdirectory(testcase_SM_005)
+add_subdirectory(testcase_SM_006)
+add_subdirectory(testcase_SM_007)

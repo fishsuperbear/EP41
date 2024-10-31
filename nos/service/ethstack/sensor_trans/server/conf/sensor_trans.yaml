@@ -1,0 +1,147 @@
+%YAML:1.0
+
+logLevel: 2  #{0，1，2，3，4，5, 6}， 0：verbose, 1：debug, 2：info, 3：warn, 4>：error, 5：fatal, 6：off
+logMode: 3   #{1, 2, 3},             
+file: /opt/usr/log/soc_log/
+nppOrHpp: 1    #{1, 2}, 1: npp, 2: hpp
+
+recvInstances:
+    - name: apa2chassis
+      type: proto_proxy
+      topic: /soc/apa2mcu_chassis
+      domainId: 0
+    - name: ego2chassis
+      type: proto_proxy
+      topic: /planning/ego_trajectory
+      domainId: 0
+    - name: nnplane
+      type: proto_proxy
+      topic: /perception/fsd/transportelement_1
+      domainId: 0
+    - name: hpplane
+      type: proto_proxy
+      topic: /perception/parking/transportelement_2
+      domainId: 0
+    - name: nnplocation
+      type: proto_proxy
+      topic: /localization/location
+      domainId: 0
+    - name: hpplocation
+      type: proto_proxy
+      topic: /perception/parking/slam_location
+      domainId: 0
+    - name: nnpobject
+      type: proto_proxy
+      topic: /perception/fsd/obj_fusion_1
+      domainId: 0
+    - name: hppobject
+      type: proto_proxy
+      topic: /perception/parking/obj_fusion_2
+      domainId: 0
+    - name: sm2mcu
+      type: proto_proxy
+      topic: /soc/sm_to_mcu
+      domainId: 0
+    - name: parkinglot2hmi_2
+      type: proto_proxy
+      topic: /perception/parking/parkinglot2hmi_2
+      domainId: 0
+    - name: ihbc
+      type: proto_proxy
+      topic: /soc/ihbc_output_canfd
+      domainId: 0
+    - name: guard_mode
+      type: proto_proxy
+      topic: /soc/gm_output_canfd
+      domainId: 0
+    - name: mod
+      type: proto_proxy
+      topic: /soc/mod_output_canfd
+      domainId: 0
+    - name: tsrtlr
+      type: proto_proxy
+      topic: /soc/tsrtlr_output_canfd
+      domainId: 0
+
+log:
+    mode: 3
+    file: /opt/usr/log/soc_log/
+    name: SSTR
+    description: sensor_trans
+    level: 2   
+    adf:
+      level: 2
+
+
+
+trigger:
+    - name: ego2mcu_chassis
+      type: EVENT
+      mainSources:
+          - name: ego2chassis
+            timeout: 2000
+    - name: apa2mcu_chassis
+      type: EVENT
+      mainSources:
+          - name: apa2chassis
+            timeout: 2000
+    - name: nnplane
+      type: EVENT
+      mainSources:
+          - name: nnplane
+            timeout: 2000
+    - name: hpplane
+      type: EVENT
+      mainSources:
+          - name: hpplane
+            timeout: 2000
+    - name: nnplocation
+      type: EVENT
+      mainSources:
+          - name: nnplocation
+            timeout: 2000
+    - name: hpplocation
+      type: EVENT
+      mainSources:
+          - name: hpplocation
+            timeout: 2000
+    - name: nnpobject
+      type: EVENT
+      mainSources:
+          - name: nnpobject
+            timeout: 2000
+    - name: hppobject
+      type: EVENT
+      mainSources:
+          - name: hppobject
+            timeout: 2000
+    - name : sm2mcu
+      type: EVENT
+      mainSources:
+          - name: sm2mcu
+            timeout: 2000
+    - name: parkinglot2hmi_2
+      type: EVENT
+      mainSources:
+          - name: parkinglot2hmi_2
+            timeout: 2000
+    - name: ihbc
+      type: EVENT
+      mainSources:
+          - name: ihbc
+            timeout: 2000
+    - name: guard_mode
+      type: EVENT
+      mainSources:
+          - name: guard_mode
+            timeout: 2000
+    - name: mod
+      type: EVENT
+      mainSources:
+          - name: mod
+            timeout: 2000
+    - name: tsrtlr
+      type: EVENT
+      mainSources:
+          - name: tsrtlr
+            timeout: 2000

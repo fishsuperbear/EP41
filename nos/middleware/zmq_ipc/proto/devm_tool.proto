@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+package hozon.netaos.zmqipc;  // 命名空间
+
+message DevmDidInfo {
+    uint32 did = 1;
+    string data_value = 2;
+}
+
+message DevmReq {
+    string req_type = 1;
+    string data_value = 2;
+}
+
+message DevmCpuInfo {
+    string architecture = 1;
+    int64 cpus = 2;
+    string online_cpus = 3;
+    string offline_cpus = 4;
+    string model_name = 5;
+    float cpu_max_mhz = 6;
+    float cpu_min_mhz = 7;
+    int64 l1d_catch = 8;
+    int64 l1i_catch = 9;
+    int64 l2_catch = 10;
+    int64 l3_catch = 11;
+    float temp_cpu = 12;
+    float temp_soc0 = 13;
+    float temp_soc1 = 14;
+    float temp_soc2 = 15;
+    map<string, string> cpu_binding = 16;
+    repeated float cpus_usage = 17;
+}
+message DevmTemperature {
+    float soc_temp = 1;
+    float mcu_temp = 2;
+    float ext0_temp = 3;
+    float ext1_temp = 4;
+};
+message DevmVoltage {
+    int32 kl15_vol = 1;
+    float kl30_vol = 2;
+};
+message DevmDeviceInfo {
+    string soc_version = 1;
+    string mcu_version = 2;
+    string dsv_version = 3;
+	string swt_version = 4;
+    string uss_version = 5;
+    string soc_type = 6;
+    string mcu_type = 7;
+    string switch_type = 8;
+    string dsv_type = 9;
+    map<string, string> sensor_version = 10;
+}
+
+message DevmDeviceStatus {
+    string soc_status = 1;
+    string mcu_status = 2;
+    map<string, string> camera_status = 3;
+    map<string, string> lidar_status = 4;
+    map<string, string> radar_status = 5;
+    map<string, string> imu_status = 6;
+    map<string, string> uss_status = 7;
+}
+
+
+
+
+
+
+//upgrade struct
+message UpgradeCommonReq {
+    uint32 platform = 1;
+}
+
+message UpgradeStatusResp {
+    string update_status = 1;
+    uint32 error_code = 2;
+    string error_msg = 3;
+}
+
+message UpgradePrecheckResp {
+    bool space = 1;
+    bool speed = 2;
+    bool gear = 3;
+    uint32 error_code = 4;
+    string error_msg = 5;
+}
+
+message UpgradeProgressResp {
+    uint32 progress = 1;
+    uint32 error_code = 2;
+    string error_msg = 3;
+}
+
+message UpgradeUpdateReq {
+    bool start_with_precheck = 1;
+    bool skip_version = 2;
+    uint32 ecu_mode = 3;
+    string package_path = 4;
+}
+
+message UpgradeUpdateResp {
+    uint32 error_code = 1;
+    string error_msg = 2;
+}
+
+message UpgradeVersionResp {
+    string major_version = 1;
+    string soc_version = 2;
+    string mcu_version = 3;
+    string dsv_version = 4;
+	string swt_version = 5;
+    map<string, string> sensor_version = 6;
+    uint32 error_code = 7;
+    string error_msg = 8;
+}
+
+message UpgradeFinishResp {
+    uint32 error_code = 1;
+    string error_msg = 2;
+}
+
+message UpgradeCurPartitionResp {
+	string cur_partition = 1;
+    uint32 error_code = 2;
+    string error_msg = 3;
+}
+
+message UpgradeSwitchSlotResp {
+    uint32 error_code = 1;
+    string error_msg = 2;
+}

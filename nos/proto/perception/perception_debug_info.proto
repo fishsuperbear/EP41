@@ -1,0 +1,12 @@
+
+syntax = "proto2";
+
+package hozon.perception.debug;
+
+import "proto/common/header.proto";
+import "proto/perception/laneline_debug.proto";
+
+message PerceptionDebugInfo {
+  optional hozon.common.Header header = 1;
+  optional hozon.perception.debug.pblaneline.PostProcessDebugData lane_postprocess_debug = 2;
+}

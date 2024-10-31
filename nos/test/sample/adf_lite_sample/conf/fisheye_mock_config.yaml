@@ -1,0 +1,20 @@
+%YAML:1.0
+
+library: "${ADFLITE_ROOT_PATH}/lib/libfisheye_mock_test.so"
+executorName: FisheyeMock
+
+
+trigger:
+  - name: fisheye_front_yield
+    type: PERIOD
+    period: 100
+  - name: fisheye_left_yield
+    type: PERIOD
+    period: 100
+  - name: fisheye_right_yield
+    type: PERIOD
+    period: 100
+  - name: fisheye_rear_yield
+    type: PERIOD
+    period: 100
+

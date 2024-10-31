@@ -1,0 +1,29 @@
+[
+    {
+        "key" : "app",
+        "value" :
+        {
+            "string" : "clt"
+        }
+    },
+    {
+        "key" : "command",
+        "value" :
+        {
+            "string[]" : [ "{ -h | --help }",
+                           "{ -v | --version }",
+                           "{ -l | --list }",
+                           "{ -a | --all }"]
+        }
+    },
+    {
+        "key" : "help",
+        "value" :
+        {
+            "string[]" : [ "{ -h | --help },        Show help info.",
+                           "{ -v | --version },     Show version info.",
+                           "{ -l | --list },        Show supported plugin.",
+                           "{ -a | --all },         Show all plugin cmd."]
+        }
+    }
+]

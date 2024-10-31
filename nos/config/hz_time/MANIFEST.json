@@ -1,0 +1,17 @@
+{
+  "process_name": "hz_timeProcess",
+  "executable": "hz_time",
+  "restart_attempt_num": "2",
+  "shall_run_ons": [],
+  "mode_of_order":[
+    "Factory.2",
+    "Normal.2"
+  ],
+  "scheduling_policy":"RR",
+  "scheduling_priority":"70",
+  "arguments":[],
+  "environments":[
+    "NETA_CM_QOS_PATH=/app/runtime_service/hz_time/etc/default_qos.json"
+  ]
+}
+

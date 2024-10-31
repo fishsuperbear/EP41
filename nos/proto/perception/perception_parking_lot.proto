@@ -1,0 +1,80 @@
+syntax = "proto2";
+
+package hozon.perception;
+
+import "proto/common/types.proto";
+import "proto/common/header.proto";
+
+message PSPoint{
+   enum Position{
+       TOP_LEFT=0;
+       TOP_RIGHT=1;
+       BOTTOM_LEFT=2;
+       BOTTOM_RIGHT=3;
+       STOP_LEFT=4;
+       STOP_RIGHT=5;
+    };
+    enum Quality{
+       LOW=0;
+       HIGH=1;
+    };
+    optional hozon.common.Point3D  point=1;
+    optional Position  position=2;
+    optional Quality   quality=3;
+}
+
+message ParkingLotOut{
+    enum ParkType{
+       VERTICAL=0;
+       LATERAL=1;
+       OBLIQUE=2;
+       NONE=3;
+     };
+     enum ParkStatus{
+       FREE=0;
+       OCCUPIED=1;
+       UNKOWN=2;
+     };
+     enum SenType{
+       CAMERA=0;
+       MAP=1;
+       CAM_MAP_FUSION=2;
+     };
+    optional uint32 parking_seq = 1;
+    optional ParkType type = 2;
+    optional ParkStatus status = 3;
+    optional SenType sensor_type = 4;
+    optional bool is_private_ps = 5;
+    repeated PSPoint pts_vrf= 6;
+    optional double time_creation= 7;
+    repeated PSPoint pts_enu= 8;
+    optional double hmi_angle= 9;
+    optional double hmi_depth= 10;
+    optional double hmi_width= 11;
+    optional double hmi_direction= 12;
+    optional double hmi_type= 13;
+    optional double hmi_status= 14;
+}
+
+message ParkingPathPoint{
+    optional double x = 1;
+    optional double y = 2;
+    optional double z = 3;
+    optional double yaw = 4;
+    optional double accumulate_s = 5;
+    optional uint32 gear = 6;
+}
+
+
+
+message ParkingLotOutArray{
+         optional hozon.common.Header header=1;
+         optional uint32 count =2;
+         optional uint32 locSeq =3;
+         optional uint32 opt_parking_seq =4;
+         repeated ParkingLotOut parking_lots= 5;
+         optional bool is_valid = 6;
+         optional uint32 path_point_size = 7;
+         repeated ParkingPathPoint traced_path = 8;
+         optional bool hpp_cruising_to_parking = 9 [default = false];
+}

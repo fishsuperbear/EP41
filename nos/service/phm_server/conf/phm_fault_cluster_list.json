@@ -1,0 +1,3135 @@
+{
+	"Faults": [ 
+		{
+			"FaultKey":  501001,
+			 "Cluster": [
+				{"Name": "hq-map", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  501002,
+			 "Cluster": [
+				{"Name": "hq-map", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  501003,
+			 "Cluster": [
+				{"Name": "hq-map", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  501004,
+			 "Cluster": [
+				{"Name": "hq-map", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  501005,
+			 "Cluster": [
+				{"Name": "hq-map", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  501006,
+			 "Cluster": [
+				{"Name": "hq-map", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  501007,
+			 "Cluster": [
+				{"Name": "hq-map", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  502001,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  502002,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  502003,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  502004,
+			 "Cluster": [
+				{"Name": "local-location", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  502005,
+			 "Cluster": [
+				{"Name": "local-location", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  502006,
+			 "Cluster": [
+				{"Name": "local-location", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  503007,
+			 "Cluster": [
+				{"Name": "local-location", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  504001,
+			 "Cluster": [
+				{"Name": "local-location", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  504002,
+			 "Cluster": [
+				{"Name": "local-location", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  504003,
+			 "Cluster": [
+				{"Name": "local-location", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  504004,
+			 "Cluster": [
+				{"Name": "local-location", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  505001,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  505002,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  505003,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  505004,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  506001,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  506002,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  506003,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  507001,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  507002,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  507003,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  508001,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  508002,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  508003,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  508004,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  508005,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  508006,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  508007,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  509001,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 6},
+				{"Name": "local-location", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  509002,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 6},
+				{"Name": "local-location", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  509003,
+			 "Cluster": [
+				{"Name": "dr", "BitPosition": 6},
+				{"Name": "local-location", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  620001,
+			 "Cluster": [
+				{"Name": "120-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  620002,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  620003,
+			 "Cluster": [
+				{"Name": "lf-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  620004,
+			 "Cluster": [
+				{"Name": "rf-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  620005,
+			 "Cluster": [
+				{"Name": "lr-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  620006,
+			 "Cluster": [
+				{"Name": "rr-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  620007,
+			 "Cluster": [
+				{"Name": "r-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  621001,
+			 "Cluster": [
+				{"Name": "120-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  621002,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  621003,
+			 "Cluster": [
+				{"Name": "lf-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  621004,
+			 "Cluster": [
+				{"Name": "rf-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  621005,
+			 "Cluster": [
+				{"Name": "lr-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  621006,
+			 "Cluster": [
+				{"Name": "rr-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  621007,
+			 "Cluster": [
+				{"Name": "r-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  622001,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  622002,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  651001,
+			 "Cluster": [
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  651002,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  651003,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  652001,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  652002,
+			 "Cluster": [
+				{"Name": "freespace", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  652003,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  653001,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  653002,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  653003,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  653004,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  653005,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  653006,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  653007,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  653008,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  653009,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  653010,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  653011,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  653012,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  653013,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  653014,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  654001,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  654002,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  655001,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  655002,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  660001,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  660002,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  660003,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  661001,
+			 "Cluster": [
+				{"Name": "freespace", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  661002,
+			 "Cluster": [
+				{"Name": "freespace", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  661003,
+			 "Cluster": [
+				{"Name": "freespace", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  662001,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  662002,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  662003,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  665001,
+			 "Cluster": [
+				{"Name": "fusion-parkinglot", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  665002,
+			 "Cluster": [
+				{"Name": "fusion-parkinglot", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  665003,
+			 "Cluster": [
+				{"Name": "fusion-parkinglot", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  665004,
+			 "Cluster": [
+				{"Name": "fusion-parkinglot", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  665005,
+			 "Cluster": [
+				{"Name": "fusion-parkinglot", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  665006,
+			 "Cluster": [
+				{"Name": "fusion-parkinglot", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  670001,
+			 "Cluster": [
+				{"Name": "freespace", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  670002,
+			 "Cluster": [
+				{"Name": "freespace", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  670003,
+			 "Cluster": [
+				{"Name": "freespace", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  671001,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  671002,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  671003,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  671004,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  672001,
+			 "Cluster": [
+				{"Name": "uss-parkinglot", "BitPosition": 6},
+				{"Name": "uss-obstacle", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  672002,
+			 "Cluster": [
+				{"Name": "uss-parkinglot", "BitPosition": 6},
+				{"Name": "uss-obstacle", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  673001,
+			 "Cluster": [
+				{"Name": "uss-parkinglot", "BitPosition": 5},
+				{"Name": "uss-obstacle", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  673002,
+			 "Cluster": [
+				{"Name": "uss-parkinglot", "BitPosition": 5},
+				{"Name": "uss-obstacle", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  674001,
+			 "Cluster": [
+				{"Name": "uss-parkinglot", "BitPosition": 6},
+				{"Name": "uss-obstacle", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  674002,
+			 "Cluster": [
+				{"Name": "uss-parkinglot", "BitPosition": 6},
+				{"Name": "uss-obstacle", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  674003,
+			 "Cluster": [
+				{"Name": "uss-parkinglot", "BitPosition": 6},
+				{"Name": "uss-obstacle", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  675001,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6},
+				{"Name": "fusion-parkinglot", "BitPosition": 6},
+				{"Name": "freespace", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  676001,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  676002,
+			 "Cluster": [
+				{"Name": "fusion-parkinglot", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  676003,
+			 "Cluster": [
+				{"Name": "fusion-parkinglot", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  676004,
+			 "Cluster": [
+				{"Name": "fusion-parkinglot", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  676005,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  676006,
+			 "Cluster": [
+				{"Name": "freespace", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  676007,
+			 "Cluster": [
+				{"Name": "freespace", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  676008,
+			 "Cluster": [
+				{"Name": "freespace", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  676009,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  676010,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  676011,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  676012,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  676013,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  676014,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  676015,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  676016,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  677001,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  677002,
+			 "Cluster": [
+				{"Name": "fusion-parkinglot", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  677003,
+			 "Cluster": [
+				{"Name": "freespace", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  677004,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  750002,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  750001,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  750003,
+			 "Cluster": [
+				{"Name": "fusion-obj", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  200901,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 4}
+			]
+		},
+		{
+			"FaultKey":  200902,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  201001,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  201101,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  201302,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  205101,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  205201,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205202,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205203,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205204,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205205,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205206,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205207,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205208,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205209,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205210,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205211,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205212,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205213,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205214,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205215,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205216,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205217,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205218,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205219,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205220,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205221,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205222,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205223,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205224,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205225,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205226,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205227,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205228,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205229,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205230,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205231,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205232,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205233,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205234,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205235,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205236,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205237,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205238,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205239,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205240,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205241,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205242,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205243,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205244,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205245,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205246,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205401,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205402,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205403,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205404,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205405,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205701,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  205702,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  206201,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5},
+				{"Name": "120-camera", "BitPosition": 5},
+				{"Name": "rf-camera", "BitPosition": 5},
+				{"Name": "lr-camera", "BitPosition": 5},
+				{"Name": "rr-camera", "BitPosition": 5},
+				{"Name": "lf-camera", "BitPosition": 5},
+				{"Name": "r-camera", "BitPosition": 5},
+				{"Name": "front-fisheye-camera", "BitPosition": 5},
+				{"Name": "left-fisheye-camera", "BitPosition": 5},
+				{"Name": "right-fisheye-camera", "BitPosition": 5},
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  206401,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 4}
+			]
+		},
+		{
+			"FaultKey":  206402,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 6}
+			]
+		},
+		{
+			"FaultKey":  330103,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  307001,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  307002,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  307003,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  307004,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  307005,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  307006,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  307007,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  307008,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  307010,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  307011,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 4}
+			]
+		},
+		{
+			"FaultKey":  310001,
+			 "Cluster": [
+				{"Name": "rf-radar", "BitPosition": 0},
+				{"Name": "lf-radar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  310002,
+			 "Cluster": [
+				{"Name": "lf-radar", "BitPosition": 4}
+			]
+		},
+		{
+			"FaultKey":  310003,
+			 "Cluster": [
+				{"Name": "lf-radar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  311001,
+			 "Cluster": [
+				{"Name": "lf-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  311002,
+			 "Cluster": [
+				{"Name": "lf-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  311003,
+			 "Cluster": [
+				{"Name": "lf-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  312001,
+			 "Cluster": [
+				{"Name": "rf-radar", "BitPosition": 4}
+			]
+		},
+		{
+			"FaultKey":  312002,
+			 "Cluster": [
+				{"Name": "rf-radar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  312003,
+			 "Cluster": [
+				{"Name": "rf-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  312004,
+			 "Cluster": [
+				{"Name": "rf-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  312005,
+			 "Cluster": [
+				{"Name": "rf-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  313001,
+			 "Cluster": [
+				{"Name": "rr-radar", "BitPosition": 0},
+				{"Name": "lr-radar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  313002,
+			 "Cluster": [
+				{"Name": "lr-radar", "BitPosition": 4}
+			]
+		},
+		{
+			"FaultKey":  313003,
+			 "Cluster": [
+				{"Name": "lr-radar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  313004,
+			 "Cluster": [
+				{"Name": "lr-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  313005,
+			 "Cluster": [
+				{"Name": "lr-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  313006,
+			 "Cluster": [
+				{"Name": "lr-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  314001,
+			 "Cluster": [
+				{"Name": "rr-radar", "BitPosition": 4}
+			]
+		},
+		{
+			"FaultKey":  314002,
+			 "Cluster": [
+				{"Name": "rr-radar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  314003,
+			 "Cluster": [
+				{"Name": "rr-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  314004,
+			 "Cluster": [
+				{"Name": "rr-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  314005,
+			 "Cluster": [
+				{"Name": "rr-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315001,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  315002,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 4}
+			]
+		},
+		{
+			"FaultKey":  315003,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  315004,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315005,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315006,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315007,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315008,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315009,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315010,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315011,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315013,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315014,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315015,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315016,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315017,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315018,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315019,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315020,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315021,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315022,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315023,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  315024,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  316001,
+			 "Cluster": [
+				{"Name": "gnss", "BitPosition": 0},
+				{"Name": "imu", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  316002,
+			 "Cluster": [
+				{"Name": "gnss", "BitPosition": 4},
+				{"Name": "imu", "BitPosition": 4}
+			]
+		},
+		{
+			"FaultKey":  316003,
+			 "Cluster": [
+				{"Name": "gnss", "BitPosition": 0},
+				{"Name": "imu", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  316005,
+			 "Cluster": [
+				{"Name": "gnss", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  316006,
+			 "Cluster": [
+				{"Name": "imu", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  316007,
+			 "Cluster": [
+				{"Name": "gnss", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  316008,
+			 "Cluster": [
+				{"Name": "gnss", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  316009,
+			 "Cluster": [
+				{"Name": "gnss", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  316010,
+			 "Cluster": [
+				{"Name": "gnss", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  316011,
+			 "Cluster": [
+				{"Name": "imu", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  316012,
+			 "Cluster": [
+				{"Name": "gnss", "BitPosition": 5},
+				{"Name": "imu", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  316013,
+			 "Cluster": [
+				{"Name": "gnss", "BitPosition": 5},
+				{"Name": "imu", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  316014,
+			 "Cluster": [
+				{"Name": "gnss", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  316015,
+			 "Cluster": [
+				{"Name": "gnss", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  316016,
+			 "Cluster": [
+				{"Name": "imu", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  316017,
+			 "Cluster": [
+				{"Name": "imu", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  320001,
+			 "Cluster": [
+				{"Name": "frc", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  320002,
+			 "Cluster": [
+				{"Name": "frc", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  320003,
+			 "Cluster": [
+				{"Name": "frc", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  320004,
+			 "Cluster": [
+				{"Name": "frc", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  321001,
+			 "Cluster": [
+				{"Name": "frm", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  321002,
+			 "Cluster": [
+				{"Name": "frm", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  321003,
+			 "Cluster": [
+				{"Name": "frm", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  321004,
+			 "Cluster": [
+				{"Name": "frm", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  322001,
+			 "Cluster": [
+				{"Name": "flm", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  322002,
+			 "Cluster": [
+				{"Name": "flm", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  322003,
+			 "Cluster": [
+				{"Name": "flm", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  322004,
+			 "Cluster": [
+				{"Name": "flm", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  323001,
+			 "Cluster": [
+				{"Name": "flc", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  323002,
+			 "Cluster": [
+				{"Name": "flc", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  323003,
+			 "Cluster": [
+				{"Name": "flc", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  323004,
+			 "Cluster": [
+				{"Name": "flc", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  324001,
+			 "Cluster": [
+				{"Name": "srr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  324002,
+			 "Cluster": [
+				{"Name": "srr", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  324003,
+			 "Cluster": [
+				{"Name": "srr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  324004,
+			 "Cluster": [
+				{"Name": "srr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  325001,
+			 "Cluster": [
+				{"Name": "srl", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  325002,
+			 "Cluster": [
+				{"Name": "srl", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  325003,
+			 "Cluster": [
+				{"Name": "srl", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  325004,
+			 "Cluster": [
+				{"Name": "srl", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  326001,
+			 "Cluster": [
+				{"Name": "sfr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  326002,
+			 "Cluster": [
+				{"Name": "sfr", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  326003,
+			 "Cluster": [
+				{"Name": "sfr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  326004,
+			 "Cluster": [
+				{"Name": "sfr", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  327001,
+			 "Cluster": [
+				{"Name": "sfl", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  327002,
+			 "Cluster": [
+				{"Name": "sfl", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  327003,
+			 "Cluster": [
+				{"Name": "sfl", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  327004,
+			 "Cluster": [
+				{"Name": "sfl", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  328001,
+			 "Cluster": [
+				{"Name": "rrc", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  328002,
+			 "Cluster": [
+				{"Name": "rrc", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  328003,
+			 "Cluster": [
+				{"Name": "rrc", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  328004,
+			 "Cluster": [
+				{"Name": "rrc", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  329001,
+			 "Cluster": [
+				{"Name": "rrm", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  329002,
+			 "Cluster": [
+				{"Name": "rrm", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  329003,
+			 "Cluster": [
+				{"Name": "rrm", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  329004,
+			 "Cluster": [
+				{"Name": "rrm", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  330001,
+			 "Cluster": [
+				{"Name": "rlm", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  330002,
+			 "Cluster": [
+				{"Name": "rlm", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  330003,
+			 "Cluster": [
+				{"Name": "rlm", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  330004,
+			 "Cluster": [
+				{"Name": "rlm", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  331001,
+			 "Cluster": [
+				{"Name": "rlc", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  331002,
+			 "Cluster": [
+				{"Name": "rlc", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  331003,
+			 "Cluster": [
+				{"Name": "rlc", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  331004,
+			 "Cluster": [
+				{"Name": "rlc", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  400005,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  400014,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  400015,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  400016,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  400017,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  400018,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  400019,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 1}
+			]
+		},
+		{
+			"FaultKey":  400020,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  400021,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  400022,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  400024,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  400025,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  400026,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 0},
+				{"Name": "120-camera", "BitPosition": 0},
+				{"Name": "rf-camera", "BitPosition": 0},
+				{"Name": "lr-camera", "BitPosition": 0},
+				{"Name": "rr-camera", "BitPosition": 0},
+				{"Name": "lf-camera", "BitPosition": 0},
+				{"Name": "r-camera", "BitPosition": 0},
+				{"Name": "front-fisheye-camera", "BitPosition": 0},
+				{"Name": "left-fisheye-camera", "BitPosition": 0},
+				{"Name": "right-fisheye-camera", "BitPosition": 0},
+				{"Name": "rear-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  400027,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  402019,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  410001,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  410002,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  421002,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  480001,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  480002,
+			 "Cluster": [
+				{"Name": "platform", "BitPosition": 2}
+			]
+		},
+		{
+			"FaultKey":  480003,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  480004,
+			 "Cluster": [
+				{"Name": "rf-radar", "BitPosition": 0},
+				{"Name": "lf-radar", "BitPosition": 0},
+				{"Name": "rr-radar", "BitPosition": 0},
+				{"Name": "lr-radar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  480005,
+			 "Cluster": [
+				{"Name": "imu", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  480006,
+			 "Cluster": [
+				{"Name": "chassis", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  480007,
+			 "Cluster": [
+				{"Name": "gnss", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  480010,
+			 "Cluster": [
+				{"Name": "f-radar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  470001,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  470002,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  470003,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  470004,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  470005,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  470006,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  470008,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  470009,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  470101,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  470102,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  470103,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  470104,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  470201,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 4}
+			]
+		},
+		{
+			"FaultKey":  470202,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 4}
+			]
+		},
+		{
+			"FaultKey":  470203,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  470204,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 3}
+			]
+		},
+		{
+			"FaultKey":  470205,
+			 "Cluster": [
+				{"Name": "lidar", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  440001,
+			 "Cluster": [
+				{"Name": "120-camera", "BitPosition": 1}
+			]
+		},
+		{
+			"FaultKey":  440002,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 1}
+			]
+		},
+		{
+			"FaultKey":  440003,
+			 "Cluster": [
+				{"Name": "r-camera", "BitPosition": 1}
+			]
+		},
+		{
+			"FaultKey":  440004,
+			 "Cluster": [
+				{"Name": "front-fisheye-camera", "BitPosition": 1}
+			]
+		},
+		{
+			"FaultKey":  440005,
+			 "Cluster": [
+				{"Name": "left-fisheye-camera", "BitPosition": 1}
+			]
+		},
+		{
+			"FaultKey":  440006,
+			 "Cluster": [
+				{"Name": "right-fisheye-camera", "BitPosition": 1}
+			]
+		},
+		{
+			"FaultKey":  440007,
+			 "Cluster": [
+				{"Name": "rear-fisheye-camera", "BitPosition": 1}
+			]
+		},
+		{
+			"FaultKey":  440008,
+			 "Cluster": [
+				{"Name": "lf-camera", "BitPosition": 1}
+			]
+		},
+		{
+			"FaultKey":  440009,
+			 "Cluster": [
+				{"Name": "rf-camera", "BitPosition": 1}
+			]
+		},
+		{
+			"FaultKey":  440010,
+			 "Cluster": [
+				{"Name": "lr-camera", "BitPosition": 1}
+			]
+		},
+		{
+			"FaultKey":  440011,
+			 "Cluster": [
+				{"Name": "rr-camera", "BitPosition": 1}
+			]
+		},
+		{
+			"FaultKey":  441001,
+			 "Cluster": [
+				{"Name": "120-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  441002,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  441003,
+			 "Cluster": [
+				{"Name": "r-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  441004,
+			 "Cluster": [
+				{"Name": "front-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  441005,
+			 "Cluster": [
+				{"Name": "left-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  441006,
+			 "Cluster": [
+				{"Name": "right-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  441007,
+			 "Cluster": [
+				{"Name": "rear-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  441008,
+			 "Cluster": [
+				{"Name": "lf-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  441009,
+			 "Cluster": [
+				{"Name": "rf-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  441010,
+			 "Cluster": [
+				{"Name": "lr-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  441011,
+			 "Cluster": [
+				{"Name": "rr-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  442001,
+			 "Cluster": [
+				{"Name": "120-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  442002,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  442003,
+			 "Cluster": [
+				{"Name": "r-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  442004,
+			 "Cluster": [
+				{"Name": "front-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  442005,
+			 "Cluster": [
+				{"Name": "left-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  442006,
+			 "Cluster": [
+				{"Name": "right-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  442007,
+			 "Cluster": [
+				{"Name": "rear-fisheye-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  442008,
+			 "Cluster": [
+				{"Name": "lf-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  442009,
+			 "Cluster": [
+				{"Name": "rf-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  442010,
+			 "Cluster": [
+				{"Name": "lr-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  442011,
+			 "Cluster": [
+				{"Name": "rr-camera", "BitPosition": 5}
+			]
+		},
+		{
+			"FaultKey":  443001,
+			 "Cluster": [
+				{"Name": "120-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  443002,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  443003,
+			 "Cluster": [
+				{"Name": "r-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  443004,
+			 "Cluster": [
+				{"Name": "front-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  443005,
+			 "Cluster": [
+				{"Name": "left-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  443006,
+			 "Cluster": [
+				{"Name": "right-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  443007,
+			 "Cluster": [
+				{"Name": "rear-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  443008,
+			 "Cluster": [
+				{"Name": "lf-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  443009,
+			 "Cluster": [
+				{"Name": "rf-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  443010,
+			 "Cluster": [
+				{"Name": "lr-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  443011,
+			 "Cluster": [
+				{"Name": "rr-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  444001,
+			 "Cluster": [
+				{"Name": "120-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  444002,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  444003,
+			 "Cluster": [
+				{"Name": "r-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  444004,
+			 "Cluster": [
+				{"Name": "front-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  444005,
+			 "Cluster": [
+				{"Name": "left-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  444006,
+			 "Cluster": [
+				{"Name": "right-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  444007,
+			 "Cluster": [
+				{"Name": "rear-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  444008,
+			 "Cluster": [
+				{"Name": "lf-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  444009,
+			 "Cluster": [
+				{"Name": "rf-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  444010,
+			 "Cluster": [
+				{"Name": "lr-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  444011,
+			 "Cluster": [
+				{"Name": "rr-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  445001,
+			 "Cluster": [
+				{"Name": "120-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  445002,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  445003,
+			 "Cluster": [
+				{"Name": "r-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  445004,
+			 "Cluster": [
+				{"Name": "front-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  445005,
+			 "Cluster": [
+				{"Name": "left-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  445006,
+			 "Cluster": [
+				{"Name": "right-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  445007,
+			 "Cluster": [
+				{"Name": "rear-fisheye-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  445008,
+			 "Cluster": [
+				{"Name": "lf-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  445009,
+			 "Cluster": [
+				{"Name": "rf-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  445010,
+			 "Cluster": [
+				{"Name": "lr-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  445011,
+			 "Cluster": [
+				{"Name": "rr-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  446001,
+			 "Cluster": [
+				{"Name": "120-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  446002,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  447001,
+			 "Cluster": [
+				{"Name": "120-camera", "BitPosition": 0}
+			]
+		},
+		{
+			"FaultKey":  447002,
+			 "Cluster": [
+				{"Name": "30-camera", "BitPosition": 0}
+			]
+		}
+	]
+}

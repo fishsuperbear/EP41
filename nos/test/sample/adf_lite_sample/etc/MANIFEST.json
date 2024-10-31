@@ -1,0 +1,20 @@
+{
+  "process_name": "Lite1",
+  "executable": "adf-lite-process",
+  "restart_attempt_num": "2",
+  "keep_alive_num": "0",
+  "shall_run_ons": [2,3],
+  "mode_of_order":[
+    "Normal.1",
+    "Driving.2",
+    "Parking.3",
+    "OTA.1"
+  ],
+  "scheduling_policy":"RR",
+  "scheduling_priority":"5",
+  "arguments":[
+     "/home/alang/qingluan/nos/output/x86_2004/test/emproc_adf_test/adf-lite-sample/conf/top_config.yaml"
+  ],
+  "environments":["ADFLITE_ROOT_PATH=/home/alang/qingluan/nos/output/x86_2004/test/emproc_adf_test/adf-lite-sample"]
+}
+

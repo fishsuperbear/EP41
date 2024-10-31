@@ -1,0 +1,90 @@
+{
+    "DoIpNetworkConfiguration": [
+        {
+            "netType": "IPv4",
+            "sourceType": "in",
+            "if_use": "doipclient",
+            "ifName": "mgbe3_0", /* TBD */
+            "localIp": "10.6.75.186", /* TBD */
+            "multicastIp": "255.255.255.255",
+            "tcpPort": 13400,
+            "udpPort": 13400
+        }
+    ],
+    "DoIpRoutingTable": [
+        {
+            "logicalAddress": 4298, /* 激光雷达 0x10CA*/
+            "Ip": "172.16.50.20",
+            "ifName": "mgbe3_0.50",
+            "maxRequestBytes": 4102
+        },
+        {
+            "logicalAddress": 4293, /* 前雷达  0x10C5*/
+            "Ip": "172.16.90.10",
+            "ifName": "mgbe3_0.90",
+            "maxRequestBytes": 4095
+        },
+        {
+            "logicalAddress": 4292, /* 左前角雷达 0x10C4*/
+            "Ip": "172.16.90.10",
+            "ifName": "mgbe3_0.90",
+            "maxRequestBytes": 4095
+        },
+        {
+            "logicalAddress": 4295, /* 右前角雷达 0x10C7*/
+            "Ip": "172.16.90.10",
+            "ifName": "mgbe3_0.90",
+            "maxRequestBytes": 4095
+        },
+        {
+            "logicalAddress": 4296, /* 左后角雷达 0x10C8*/
+            "Ip": "172.16.90.10",
+            "ifName": "mgbe3_0.90",
+            "maxRequestBytes": 4095
+        },
+        {
+            "logicalAddress": 4297, /* 右后角雷达 0x10C9*/
+            "Ip": "172.16.90.10",
+            "ifName": "mgbe3_0.90",
+            "maxRequestBytes": 4095
+        },
+        {
+            "logicalAddress": 4291, /* DM 0x10C3*/
+            "Ip": "0.0.0.0",
+            "ifName": "mgbe3_0",
+            "maxRequestBytes": 4194304
+        }
+
+    ],
+    "DoIpTimerConfiguration": {
+        "maxInitialVehicleAnnouncementTime": 10,
+        "vehicleAnnouncementInterval": 500,
+        "vehicleAnnouncementCount": 3,
+        "vehicleIdentificationSyncStatus": false,
+        "tcpInitialInactivityTime": 2000, /* 2s */
+        "tcpGeneralInactivityTime": 300000, /* 5min */
+        "tcpAliveCheckResponseTimeout": 500, /* 500ms */
+        "doipAckTimeout": 2000
+    },
+    "DoIpEntityConfiguration": {
+        "entity_type": "node", /* edge_gateway, gateway, node */
+        "eid": 2509770916112, /*02:48:5A:01:01:10*/
+        "gid": 2509770916112, /*02:48:5A:01:01:10*/
+        "logicalAddress": 4291, /*4291->0x10C3*/
+        "maxTesterConnections": 3,
+        "maxRequestBytes": 4194304,
+        "sourceAddressWhiteList": [3712, 3713, 3714, 4194, 4291, 4195, 3840, 3841],
+        "functionAddressList": [58368]
+    },
+    "DoIpSwitchConfiguration": {
+        "isActivationLineDependent": false,
+        "resourceInitByIf": true,
+        "vinGidSyncUse": false,
+        "eidUseMac": true,
+        "furtherAcitionRequired": false,
+        "entityStatusMaxByteFieldUse": true,
+        "power_mode_support": false,
+        "authentication_required": false,
+        "confirmation_required": false
+    }
+}

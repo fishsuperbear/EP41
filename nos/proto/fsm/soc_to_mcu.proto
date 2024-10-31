@@ -1,0 +1,67 @@
+syntax = "proto2";
+
+package hozon.functionmanager;
+
+import "proto/common/header.proto";
+
+message Soc2FctBusU8 {
+    optional uint32 cur_perception_sub_state = 1;
+    optional uint32 cur_hdmap_sub_state = 2;
+    optional uint32 nnp_lon_takeover_request = 3;
+    optional uint32 enable_spd_adapt = 4;
+    optional uint32 enable_shundown_acc = 5;
+    optional uint32 soc_close_turn_light_req = 6;
+    optional uint32 is_exist_acc_target = 7;
+    optional uint32 cruise_status = 8;
+    optional uint32 no_lane_status = 9;
+    optional uint32 lane_line_status = 10;
+    optional uint32 ldw_left_trigger_flag = 11;
+    optional uint32 ldw_right_trigger_flag = 12;
+    optional uint32 ldw_left_lane = 13;
+    optional uint32 ldw_right_lane = 14;
+    optional uint32 ldp_left_trigger_flag = 15;
+    optional uint32 ldp_right_trigger_flag = 16;
+    optional uint32 ldp_left_finish_flag = 17;
+    optional uint32 ldp_right_finish_flag = 18;
+    optional uint32 ldp_left_lane = 19;
+    optional uint32 ldp_right_lane = 20;
+    optional uint32 reserved01 = 25;
+    optional uint32 reserved02 = 26;
+    optional uint32 reserved03 = 27;
+    optional uint32 reserved04 = 28;
+    optional uint32 reserved05 = 29;
+    optional uint32 reserved06 = 30;
+    optional uint32 reserved07 = 31;
+    optional uint32 reserved08 = 32;
+    optional uint32 reserved09 = 33;
+    optional uint32 reserved010 = 34;
+}
+
+message Soc2FctBusU32 {
+    optional uint32 traj_param_a0 = 1;
+    optional uint32 traj_param_a1 = 2;
+    optional uint32 traj_param_a2 = 3;
+    optional uint32 traj_param_a3 = 4;
+    optional uint32 traj_param_a4 = 5;
+    optional uint32 trajectory_seq = 6;
+    optional uint32 reserved01 = 7;
+    optional uint32 reserved02 = 8;
+    optional uint32 reserved03 = 9;
+    optional uint32 reserved04 = 10;
+    optional uint32 reserved05 = 11;
+    optional uint32 reserved06 = 12;
+    optional uint32 reserved07 = 13;
+    optional uint32 reserved08 = 14;
+    optional uint32 reserved09 = 15;
+    optional uint32 reserved010 = 16;
+    optional uint32 reserved011 = 17;
+    optional uint32 reserved012 = 18;
+    optional uint32 reserved013 = 19;
+    optional uint32 reserved014 = 20;
+}
+
+message SocToFctBus {
+    optional hozon.common.Header header = 1;
+    optional Soc2FctBusU8 soc_to_fct_bus_u8 = 3;
+    optional Soc2FctBusU32 soc_to_fct_bus_u32 = 5;
+}

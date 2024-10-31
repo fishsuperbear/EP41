@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="shortcut icon" href="icon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Data Collection Flow Chart</title>
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo="/>
+    <style>
+        div.mermaid {
+            /* font-family: 'trebuchet ms', verdana, arial; */
+            font-family: 'Courier New', Courier, monospace !important;
+        }
+    </style>
+</head>
+<body>
+
+<h1>trigger流程图</h1>
+<h3>状态说明</h3>
+
+<pre class="mermaid" id="description_mermaid">
+    flowchart TD
+        classDef running fill:#ffff99;
+        classDef done fill:#99d388;
+        classDef initial fill:#ccc;
+        classDef error fill:#ff7777;
+        subgraph p_m["正常流程"]
+            direction LR
+            init[未开始]-->run[运行中]-->finished[运行完成]
+            class init initial
+            class run running
+            class finished done
+        end
+        subgraph other["其他"]
+            direction LR
+            err[异常]
+            class err error
+        end
+  </pre>
+<hr/>
+
+<pre id="myMermaidText0"></pre><hr/>
+<pre id="myMermaidText1">  </pre><hr/>
+<pre id="myMermaidText2">  </pre><hr/>
+<pre id="myMermaidText3">  </pre><hr/>
+<pre id="myMermaidText4">  </pre><hr/>
+<pre id="myMermaidText5">  </pre><hr/>
+<pre id="myMermaidText6">  </pre><hr/>
+<pre id="myMermaidText7">  </pre><hr/>
+<pre id="myMermaidText8">  </pre><hr/>
+<pre id="myMermaidText9">  </pre><hr/>
+
+<script type="module">
+    import mermaid from 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.0/mermaid.esm.min.mjs';
+    var timeRec = {};
+
+    async function updateText(index) {
+        // 获取当前的 Mermaid 图表
+        timeRec[index] += 1;
+        if (timeRec[index] < 10) {
+            return;
+        }
+        console.log("test");
+        const response = await fetch("data/flowchart" + index + ".txt", {
+            headers: {
+                "Cache-Control": "no-cache",
+                "Last-Modified": new Date(Date.now()).toLocaleString(),
+            }
+        });
+        if (response.status != 200) {
+            timeRec[index] = 0;
+            return;
+        }
+        // 获取响应内容
+        const textStr = await response.text();
+        console.log(textStr);
+        if (mermaid.parse(textStr)) {
+            const {svg, bindFunctions} = await mermaid.render("myMermaidTextInner" + index, textStr);
+            document.getElementById('myMermaidText' + index).innerHTML = svg;
+            if (textStr in timeRec) {
+                timeRec[textStr]+=1;
+            } else {
+                timeRec[textStr]=0;
+            }
+            if (timeRec[textStr]>1000) {// 1000*300 = 5min
+                timeRec[textStr]=1001;
+                timeRec[index]=-5; // 5min没有更新， 则减缓更新速度。(10--5) *300=4.5s.
+            } else {
+                timeRec[index] = 10-timeRec[textStr]/100;
+            }
+        } else {
+            timeRec[index] = 0;
+        }
+    }
+
+    for (let i = 0; i < 10; i++) {
+        timeRec[i] = 10;
+        setInterval(() => {
+            updateText(i);
+        }, 300);
+    }
+    // setInterval(updateText,1000);
+
+    // 
+    // tri[trigger]
+    // pip1[pip 1]
+    // pip2[pip 2]
+    // pip3[pip 3]
+    // mcap[mcap merge]
+    // upload[upload files]
+    // tri--> pip1
+    // tri--> pip2
+    // tri--> pip3
+    // pip1-->video[video topic]-->videoProcess[video process]
+    //
+    // pip2-->other[other topic]-->otherProcess[topic filter]
+    // pip3-->log[log collector]-->logCompress[log compress]
+    // videoProcess-->mcap
+    // otherProcess-->mcap
+    // logCompress-->mcap
+    // mcap-->upload
+    // classDef running fill:#f96;
+    // classDef done fill:#77ff77;
+    // classDef initial fill:#ccc;
+    // classDef error fill:#ff7777;
+    // class videoProcess running;
+    // class otherProcess error;
+    // class video done;
+    // class other done;
+    // class mcap initial;
+    // class upload initial;
+
+</script>
+</body>
+</html>

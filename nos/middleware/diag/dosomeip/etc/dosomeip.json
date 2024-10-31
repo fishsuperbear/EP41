@@ -1,0 +1,7 @@
+{
+    "InitMaxTimeout" : 10,
+    "ResponseMaxTimeout" : 5,
+    "DoipAddressList" : ["0x10CA", "0x10CB"],
+    "DocanAddressList" : ["0x10C4", "0x10C5", "0x10C7", "0x10C8", "0x10C9", "0x10CC"],
+    "DoSomeIPProxyAddress" : "0x1066"
+}

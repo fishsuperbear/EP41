@@ -1,0 +1,6 @@
+#include "servicebase.idl"
+
+struct chassis_method: ServiceBase
+{
+    string data;
+};

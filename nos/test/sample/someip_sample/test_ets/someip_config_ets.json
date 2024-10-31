@@ -1,0 +1,836 @@
+{
+    "services": [
+        {
+            "short_name": "service_300",
+            "service": 312,
+            "major_version": 1,
+            "minor_version": 0,
+            "events": [
+                {
+                    "short_name": "event_1",
+                    "event": 1,
+                    "serializer": "SOMEIP",
+                    "segment_length": 1408,
+                    "separation_time": 0,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "event_2",
+                    "event": 2,
+                    "serializer": "SOMEIP",
+                    "segment_length": 1408,
+                    "separation_time": 0,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "event_3",
+                    "event": 3,
+                    "serializer": "SOMEIP",
+                    "segment_length": 1408,
+                    "separation_time": 0,
+                    "communication_type": "TCP"
+                },
+                {
+                    "short_name": "event_5",
+                    "event": 5,
+                    "serializer": "SOMEIP",
+                    "segment_length": 1408,
+                    "separation_time": 0,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "event_6",
+                    "event": 6,
+                    "serializer": "SOMEIP",
+                    "segment_length": 1408,
+                    "separation_time": 0,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "event_7",
+                    "event": 7,
+                    "serializer": "SOMEIP",
+                    "segment_length": 1408,
+                    "separation_time": 0,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "event_8",
+                    "event": 8,
+                    "serializer": "SOMEIP",
+                    "segment_length": 1408,
+                    "separation_time": 0,
+                    "communication_type": "TCP"
+                },
+                {
+                    "short_name": "event_11",
+                    "event": 11,
+                    "serializer": "SOMEIP",
+                    "segment_length": 1408,
+                    "separation_time": 0,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "event_32760",
+                    "event": 32760,
+                    "serializer": "SOMEIP",
+                    "segment_length": 1408,
+                    "separation_time": 0,
+                    "communication_type": "UDP"
+                }
+            ],
+            "methods": [
+                {
+                    "short_name": "method_1",
+                    "method": 1,
+                    "fire_and_forget": true,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_2",
+                    "method": 2,
+                    "fire_and_forget": true,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_3",
+                    "method": 3,
+                    "fire_and_forget": true,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_4",
+                    "method": 4,
+                    "fire_and_forget": true,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_5",
+                    "method": 5,
+                    "fire_and_forget": true,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_8",
+                    "method": 8,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_9",
+                    "method": 9,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_10",
+                    "method": 10,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_14",
+                    "method": 14,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_18",
+                    "method": 18,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_19",
+                    "method": 19,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_20",
+                    "method": 20,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_21",
+                    "method": 21,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_22",
+                    "method": 22,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_23",
+                    "method": 23,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_25",
+                    "method": 25,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_31",
+                    "method": 31,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_35",
+                    "method": 35,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_37",
+                    "method": 37,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_38",
+                    "method": 38,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_39",
+                    "method": 39,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_40",
+                    "method": 40,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_41",
+                    "method": 41,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_42",
+                    "method": 42,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_43",
+                    "method": 43,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_47",
+                    "method": 47,
+                    "fire_and_forget": true,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_48",
+                    "method": 48,
+                    "fire_and_forget": true,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_50",
+                    "method": 50,
+                    "fire_and_forget": true,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_52",
+                    "method": 52,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_53",
+                    "method": 53,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_54",
+                    "method": 54,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_55",
+                    "method": 55,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_58",
+                    "method": 58,
+                    "fire_and_forget": true,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_59",
+                    "method": 59,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_60",
+                    "method": 60,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_61",
+                    "method": 61,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_62",
+                    "method": 62,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_63",
+                    "method": 63,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "method_65",
+                    "method": 65,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                }
+            ],
+            "fields": [
+                {
+                    "short_name": "field_5",
+                    "notifier": 5
+                },
+                {
+                    "short_name": "field_6",
+                    "notifier": 6
+                },
+                {
+                    "short_name": "field_7",
+                    "notifier": 7
+                },
+                {
+                    "short_name": "field_8",
+                    "notifier": 8
+                }
+            ],
+            "eventgroups": [
+                {
+                    "short_name": "eventgroup_1",
+                    "eventgroup": 1,
+                    "events": [
+                        2,
+                        5
+                    ]
+                },
+                {
+                    "short_name": "eventgroup_2",
+                    "eventgroup": 2,
+                    "events": [
+                        1,
+                        2,
+                        3,
+                        5,
+                        6,
+                        7,
+                        8,
+                        11
+                    ]
+                },
+                {
+                    "short_name": "eventgroup_3",
+                    "eventgroup": 3,
+                    "events": [
+                        7
+                    ]
+                },
+                {
+                    "short_name": "eventgroup_5",
+                    "eventgroup": 5,
+                    "events": [
+                        1,
+                        2,
+                        5,
+                        6,
+                        7,
+                        11
+                    ]
+                },
+                {
+                    "short_name": "eventgroup_6",
+                    "eventgroup": 6,
+                    "events": [
+                        11
+                    ]
+                }
+            ]
+        },
+        {
+            "short_name": "service_3000",
+            "service": 3000,
+            "major_version": 1,
+            "minor_version": 0,
+            "events": [
+                {
+                    "short_name": "event_6",
+                    "event": 6,
+                    "serializer": "SOMEIP",
+                    "segment_length": 1408,
+                    "separation_time": 0,
+                    "communication_type": "UDP"
+                },
+                {
+                    "short_name": "event_45",
+                    "event": 45,
+                    "serializer": "SOMEIP",
+                    "segment_length": 1408,
+                    "separation_time": 0,
+                    "communication_type": "TCP"
+                }
+            ],
+            "methods": [
+                {
+                    "short_name": "method_31",
+                    "method": 31,
+                    "segment_length_request": 1400,
+                    "segment_length_response": 1400,
+                    "separation_time_request": 1000,
+                    "separation_time_response": 2000,
+                    "communication_type": "UDP"
+                }
+            ],
+            "eventgroups": [
+                {
+                    "short_name": "eventgroup_5",
+                    "eventgroup": 5,
+                    "events": [
+                        6
+                    ]
+                },
+                {
+                    "short_name": "eventgroup_6",
+                    "eventgroup": 6,
+                    "events": [
+                        45
+                    ]
+                }
+            ]
+        }
+    ],
+    "provided_instances": [
+        {
+            "service": 312,
+            "major_version": 1,
+            "short_name": "provided_instances_2000_1",
+            "instance": 1,
+            "load_Balancing_priority": 0,
+            "load_Balancing_weight": 0,
+            "udp_port": 30501,
+            "tcp_port": 30501,
+            "udp_reuse": false,
+            "tcp_reuse": false,
+            "udp_collection": 1408,
+            "event_attribute": [
+                {
+                    "event": 2,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                },
+                {
+                    "event": 5,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                },
+                {
+                    "event": 32760,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                }
+            ],
+            "method_attribute": [
+                {
+                    "method": 1,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                },
+                {
+                    "method": 9,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                },
+                {
+                    "method": 8,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                },
+                {
+                    "method": 31,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                },
+                {
+                    "method": 35,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                },
+                {
+                    "method": 65,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                }
+            ],
+            "offer_time_reference": "sd_server_offer_times_1",
+            "ethernet_reference": "network_eno1",
+            "provided_eventgroups": [
+                {
+                    "eventgroup": 1,
+                    "multicast_addr_ip4": "224.224.224.240",
+                    "multicast_port": 30501,
+                    "threshold": 2,
+                    "subscribe_time_reference": "sd_server_subscribe_times_1"
+                }
+            ]
+        },
+        {
+            "service": 312,
+            "major_version": 1,
+            "short_name": "provided_instances_2000_2",
+            "instance": 2,
+            "load_Balancing_priority": 0,
+            "load_Balancing_weight": 0,
+            "udp_port": 30502,
+            "udp_reuse": false,
+            "udp_collection": 1408,
+            "event_attribute": [
+                {
+                    "event": 7,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                }
+            ],
+            "method_attribute": [
+                {
+                    "method": 9,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                }
+            ],
+            "offer_time_reference": "sd_server_offer_times_1",
+            "ethernet_reference": "network_eno1",
+            "provided_eventgroups": [
+                {
+                    "eventgroup": 3,
+                    "multicast_addr_ip4": "224.224.224.240",
+                    "multicast_port": 30502,
+                    "threshold": 2,
+                    "subscribe_time_reference": "sd_server_subscribe_times_1"
+                }
+            ]
+        },
+        {
+            "service": 3000,
+            "major_version": 1,
+            "short_name": "provided_instances_3000_1",
+            "instance": 1,
+            "load_Balancing_priority": 0,
+            "load_Balancing_weight": 0,
+            "tcp_port": 30503,
+            "tcp_reuse": false,
+            "udp_collection": 1408,
+            "event_attribute": [
+                {
+                    "event": 6,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                }
+            ],
+            "method_attribute": [
+                {
+                    "method": 31,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                }
+            ],
+            "offer_time_reference": "sd_server_offer_times_1",
+            "ethernet_reference": "network_eno1",
+            "provided_eventgroups": [
+                {
+                    "eventgroup": 5,
+                    "multicast_addr_ip4": "224.224.224.240",
+                    "multicast_port": 30503,
+                    "threshold": 2,
+                    "subscribe_time_reference": "sd_server_subscribe_times_1"
+                }
+            ]
+        },
+        {
+            "service": 3000,
+            "major_version": 1,
+            "short_name": "provided_instances_3000_2",
+            "instance": 2,
+            "load_Balancing_priority": 0,
+            "load_Balancing_weight": 0,
+            "tcp_port": 30504,
+            "tcp_reuse": false,
+            "udp_collection": 1408,
+            "event_attribute": [
+                {
+                    "event": 45,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                }
+            ],
+            "method_attribute": [
+                {
+                    "method": 31,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                }
+            ],
+            "offer_time_reference": "sd_server_offer_times_1",
+            "ethernet_reference": "network_eno1",
+            "provided_eventgroups": [
+                {
+                    "eventgroup": 6,
+                    "multicast_addr_ip4": "224.224.224.240",
+                    "multicast_port": 30504,
+                    "threshold": 2,
+                    "subscribe_time_reference": "sd_server_subscribe_times_1"
+                }
+            ]
+        }
+    ],
+    "required_instances": [
+        {
+            "service": 312,
+            "major_version": 1,
+            "short_name": "required_instances_312_244",
+            "instance": 244,
+            "udp_port": 30507,
+            "tcp_port": 30507,
+            "tcp_reuse": false,
+            "udp_reuse": false,
+            "udp_collection": 1408,
+            "method_attribute": [
+                {
+                    "method": 1,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                },
+                {
+                    "method": 2,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                }
+            ],
+            "find_time_reference": "sd_client_find_times_1",
+            "ethernet_reference": "network_eno1",
+            "required_eventgroups": [
+                {
+                    "eventgroup": 1,
+                    "subscribe_time_reference": "sd_client_subscribe_times_1"
+                },
+                {
+                    "eventgroup": 2,
+                    "subscribe_time_reference": "sd_client_subscribe_times_1"
+                }
+            ]
+        },
+        {
+            "service": 312,
+            "major_version": 1,
+            "short_name": "required_instances_312_2",
+            "instance": 2,
+            "udp_port": 30508,
+            "tcp_port": 30508,
+            "tcp_reuse": false,
+            "udp_reuse": false,
+            "udp_collection": 1408,
+            "method_attribute": [
+                {
+                    "method": 1,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                },
+                {
+                    "method": 2,
+                    "udp_collection_buffer_timeout": 0,
+                    "udp_collection_trigger": "ALWAYS"
+                }
+            ],
+            "find_time_reference": "sd_client_find_times_1",
+            "ethernet_reference": "network_eno1",
+            "required_eventgroups": [
+                {
+                    "eventgroup": 1,
+                    "subscribe_time_reference": "sd_client_subscribe_times_1"
+                },
+                {
+                    "eventgroup": 2,
+                    "subscribe_time_reference": "sd_client_subscribe_times_1"
+                }
+            ]
+        }
+    ],
+    "sd_server_offer_times": [
+        {
+            "sd_time_name": "sd_server_offer_times_1",
+            "initial_delay_min": 10,
+            "initial_delay_max": 50,
+            "repetitions_base_delay": 100,
+            "repetitions_max": 5,
+            "ttl": 3,
+            "cyclic_offer_delay": 1000,
+            "request_response_delay_min": 10,
+            "request_response_delay_max": 20
+        }
+    ],
+    "sd_client_find_times": [
+        {
+            "sd_time_name": "sd_client_find_times_1",
+            "initial_delay_min": 10,
+            "initial_delay_max": 50,
+            "repetitions_base_delay": 100,
+            "repetitions_max": 5,
+            "ttl": 3
+        }
+    ],
+    "sd_client_subscribe_times": [
+        {
+            "sd_time_name": "sd_client_subscribe_times_1",
+            "request_response_delay_min": 10,
+            "request_response_delay_max": 20,
+            "subscribe_retry_times": 2,
+            "subscribe_retry_delay": 3,
+            "subscribe_ttl": 3000
+        }
+    ],
+    "sd_server_subscribe_times": [
+        {
+            "sd_time_name": "sd_server_subscribe_times_1",
+            "request_response_delay_min": 10,
+            "request_response_delay_max": 50
+        }
+    ],
+    "network_endpoints": [
+        {
+            "network_id": "network_eno1",
+            "interface_name": "mgbe3_0.10",
+            "ip_addr_type": 4,
+            "subnet_mask": "255.255.255.0",
+            "priority": 1,
+            "ttl": 255,
+            "multicast_ip_addr": "239.192.255.251",
+            "multicast_port": 30490
+        }
+    ]
+}

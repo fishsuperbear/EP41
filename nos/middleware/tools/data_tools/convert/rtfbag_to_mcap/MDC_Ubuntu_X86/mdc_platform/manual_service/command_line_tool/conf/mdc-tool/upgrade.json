@@ -1,0 +1,54 @@
+[
+    {
+        "key" : "app",
+        "value" :
+        {
+            "string" : "upgrade"
+        }
+    },
+    {
+        "key" : "command",
+        "value" :
+        {
+            "string[]" : [ "upgrade query status",
+                           "upgrade query precheck",
+                           "upgrade query progress { precheck | install | activate }",
+                           "upgrade precheck { all | minimal }",
+                           "upgrade precheck custom < filename >",
+                           "upgrade install < filename > [ all ]",
+                           "upgrade install < filename > -f { 0 | 1 | 2 | 3 } [ all ]",
+                           "upgrade activate",
+                           "upgrade finish [auto]",
+                           "upgrade display { version | history } ",
+                           "upgrade display history < startTime > < endTime > ",
+                           "upgrade enter { update-mode | recovery } [ clear ] ",
+                           "upgrade exit update-mode" ]
+        }
+    },
+    {
+        "key" : "help",
+        "value" :
+        {
+            "string[]" : ["upgrade query status,                                        Used to query status of the upgrade service.",
+                          "upgrade query precheck,                                      Used to query the pre-check result.",
+                          "upgrade query progress { precheck | install | activate },    Used to query the pre-check, installation, or activation progress.",
+                          "upgrade precheck { all | minimal | { custom < filename > }}, Used to conduct a check before the upgrade based on the selected mode.",
+                          "                                                                 all:     Check all items.",
+                          "                                                                 minimal: Check only the mandatory items.",
+                          "                                                                 custom:  Check the specified items in the package.",
+                          "upgrade install < filename > [ -f { 0 | 1 | 2 | 3 } ] [ all ],   Used to upgrade with a specified software package and show the progress.",
+                          "                                                                 (-f: forced upgrade",
+                          "                                                                      1: Ignore major version comparison.",
+                          "                                                                      2: Ignore component version comparison.",
+                          "                                                                      3: Ignore component upgrade precheck.)",
+                          "                                                                 (all: upgrade, activation, and other upgrade-related operations)",
+                          "upgrade activate,                                            Used to activate the system after an upgrade.",
+                          "upgrade finish [auto],                                       Used to finsh an upgrade.",
+                          "upgrade display version,                                     Used to show the current version information.",
+                          "upgrade enter { update-mode | recovery } [ clear ] ,              update-mode     Used to enter the update mode.",
+			  "                                                                  recovery        Used to enter recovery.",
+              "                                                                  clear           Used to format readable and writeable partion.",
+                          "upgrade exit update-mode,                                    Used to exit the update mode."]
+        }
+    }
+]

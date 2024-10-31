@@ -1,0 +1,17 @@
+{
+    "process_name": "neta_someipdProcess",
+    "executable": "neta_someipd",
+    "restart_attempt_num": "2",
+    "shall_run_ons": [1],
+    "mode_of_order": [
+        "Factory.1",
+        "Normal.1",
+        "Update.1"
+    ],
+    "scheduling_policy": "RR",
+    "scheduling_priority": "80",
+    "arguments": [],
+    "environments": [
+        "NETA_CM_QOS_PATH=/app/runtime_service/neta_someipd/etc/default_qos.json"
+    ]
+}

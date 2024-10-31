@@ -1,0 +1,28 @@
+struct fault_event
+{
+    string domain;
+    uint64 occur_time;
+    uint32 fault_id;
+    uint8 fault_obj;
+    uint8 fault_status;
+};
+
+struct faultInhibitEvent
+{
+    uint32 type;
+};
+
+struct RequstType
+{
+    uint32 type;
+};
+
+struct FileName
+{
+    string fileName;
+};
+
+struct CollectionFile
+{
+    sequence<FileName> allFileNames;
+};

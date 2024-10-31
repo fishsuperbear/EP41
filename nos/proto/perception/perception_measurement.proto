@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+package hozon.perception.measurement;
+
+
+import "proto/common/header.proto";
+
+import "proto/perception/perception_obstacle.proto";
+import "proto/perception/transport_element.proto";
+import "proto/perception/perception_parking_lot.proto";
+import "proto/perception/perception_freespace.proto";
+
+message DebugFrame {
+  optional string name = 2;
+  optional double stamp = 3;
+}
+
+message MeasurementPb {
+  optional hozon.common.Header header = 2;
+  optional PerceptionObstacles obstacles = 3;
+  optional TransportElement transport_element = 4;
+  optional FreeSpaceOutArray freespaces = 5;
+  optional ParkingLotOutArray parking_slots = 6;
+  repeated DebugFrame debug_frame = 7;
+}

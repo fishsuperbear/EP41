@@ -1,0 +1,31 @@
+%YAML:1.0
+
+library: "${ADFLITE_ROOT_PATH}/lib/libperception_12.so"
+executorName: Perception2
+
+
+input:
+    - topic: workresult1
+      capacity: 5
+    - topic: link_sample_topic4
+      capacity: 5
+trigger:
+  - name: receive_workflow1
+    type: EVENT
+    mainSources:
+      - name: workresult1
+        timeout: 1000
+  - name: receive_link_sample4
+    type: EVENT
+    mainSources:
+      - name: link_sample_topic4
+        timeout: 1000
+profiler:
+    name: link_latency
+    enable: true
+    latency:
+        enable: true
+        show:
+            - link_name: link1
+              trigger_name: receive_link_sample4
+              from_msg: link_sample_topic4

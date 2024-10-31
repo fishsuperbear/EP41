@@ -1,0 +1,35 @@
+#ifndef _SINGLETON_H_
+#define _SINGLETON_H_
+
+#include <mutex>
+
+template <typename T>
+class Singleton {
+    static T* c_instance;
+
+   public:
+    static T* GetInstance();
+    ~Singleton();
+};
+
+template <typename T>
+T* Singleton<T>::c_instance = NULL;
+// T* Singleton<T>::c_instance = new T();
+
+template <typename T>
+T* Singleton<T>::GetInstance() {
+    static std::once_flag flag;
+    if (c_instance == NULL) {
+        std::call_once(flag, [&] { c_instance = new T(); });
+    }
+    return c_instance;
+}
+
+template <typename T>
+Singleton<T>::~Singleton() {
+    if (c_instance != nullptr) {
+        delete c_instance;
+    }
+}
+
+#endif  //_SINGLETON_H_

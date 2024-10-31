@@ -1,0 +1,42 @@
+syntax = "proto2";
+
+package hozon.hdmap;
+
+import "proto/common/header.proto";
+import "proto/map/map_id.proto";
+
+message JunctionPassable {
+  // 通行状态, 直接用红绿黄灯状态表示
+  enum JunctionPassableType {
+    JUNCTION_GREEN  = 1;
+    JUNCTION_RED    = 2;
+    JUNCTION_YELLOW = 3;
+  }
+  
+  // 通行方向
+  enum JunctionDirectionType {
+    JUNCTION_LEFT_U_TURN  = 1;
+    JUNCTION_LEFT_TURN    = 2;
+    JUNCTION_FORWARD      = 3;
+    JUNCTION_RIGHT_TURN   = 4;
+  }
+  
+  message LanePassableInfo {
+    // 车道id
+    optional Id lane_id                         = 1;
+    optional JunctionPassableType passable_type = 2;
+  }
+  
+  message DirectionPassableInfo {
+    optional JunctionDirectionType direction    = 1;
+    optional JunctionPassableType passable_type = 2;
+  }
+  
+  optional hozon.common.Header header           = 1;
+
+  // 各车道可通行性
+  repeated LanePassableInfo lane_passable_infos = 2;
+  
+  // 各方向可通行性
+  repeated DirectionPassableInfo direction_passable_infos = 3;
+}

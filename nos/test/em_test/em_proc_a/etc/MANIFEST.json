@@ -1,0 +1,21 @@
+{
+  "process_name": "hz_app_aProcess",
+  "executable": "em_proc_a",
+  "restart_attempt_num": "2",
+  "keep_alive_num": "0",
+  "shall_run_ons": [2,3],
+  "mode_of_order":[
+    "Normal.1",
+    "Driving.2",
+    "Parking.3",
+    "OTA.1"
+  ],
+  "scheduling_policy":"RR",
+  "scheduling_priority":"5",
+  "arguments":[
+     "-s a",
+     "-c /opt/usr/app/em_proc_a/conf/proc_a.conf"
+  ],
+  "environments":["CM_CONFIG_FILE_PATH=/opt/usr/app/em_proc_a/etc/process"]
+}
+

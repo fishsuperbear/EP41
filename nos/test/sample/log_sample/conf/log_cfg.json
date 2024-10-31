@@ -1,0 +1,10 @@
+{
+	"appId":"TEST",
+	"appDescription":"diag server application",
+	"logLevel":"kTrace",	// "kCritical", "kError", "kWarn", "kInfo", "kDebug", "kTrace"
+	"logMode":"console + file",	//log to console or/and file.
+	"logFile":"./",	//#日志路径，当logMode配置有指定文件存储时，使用本路径存储日志
+	"maxLogFileStoredNum":10,	//# max log file stored number, MAX:20, MIN:0
+	"maxSizeOfEachLogFile":20,	//# max size of each log file, 单位：M, MAX:100, MIN:2
+	"pureLogFormat":false	//# true:仅输出log数据,不输出其他信息；false：按特定格式输出，格式：[年-月-日 时:分:秒.毫秒] [等级缩写]   [AppID]  [ctxID]      [log数据]
+}

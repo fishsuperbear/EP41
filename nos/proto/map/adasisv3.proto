@@ -1,0 +1,1286 @@
+/**
+ * Define protobuf for ADASISv3
+ * protoc version : 3.5.1
+ */
+
+// [START declaration]
+syntax = "proto2";
+package hozon.adasisv3;
+
+// Do not set LITE_RUNTIME
+// option optimize_for = LITE_RUNTIME;
+
+enum AdasisV3ProtobufProtocolMajorVersion {
+    AdasisV3ProtobufProtocolMajorVersion_Value = 2;
+}
+
+enum AdasisV3ProtobufProtocolMinorVersion {
+    AdasisV3ProtobufProtocolMinorVersion_Value = 2;
+}
+
+// [START messages]
+enum Availability {
+    Availability_NotAvailable = 0;
+    Availability_Valid = 1;
+}
+
+enum UnitOfSystem {
+    UnitOfSystem_Imperial = 0;
+    UnitOfSystem_Metric   = 1;
+}
+
+enum ChangeMode {
+    ChangeMode_Create = 0;
+    ChangeMode_Update = 1;
+    ChangeMode_Delete = 2;
+}
+
+enum ConditionType {
+    ConditionType_conditionTypeNumeric = 0;
+    ConditionType_conditionTypeVehicle = 1;
+    ConditionType_conditionTypeLoad = 2;
+    ConditionType_conditionTypeTimeOfDay = 3;
+    ConditionType_conditionTypeWeather = 4;
+    ConditionType_conditionTypeFuzzyTime = 5;
+    ConditionType_conditionTypeTurnDirection = 6;
+    ConditionType_conditionTypeDaysOfWeek = 7;
+    ConditionType_conditionTypeWeight = 8;
+}
+
+enum CurveType {
+    CurveType_NotPresent = 0;
+    CurveType_Polyline = 1;
+    CurveType_BezierSpline = 2;
+    CurveType_Clothoid = 3;
+    CurveType_Other = 99;
+}
+
+enum DrivingSide {
+    DrivingSide_RightHandDriving = 0;
+    DrivingSide_LeftHandDriving = 1;
+}
+
+enum EffectiveSpeedLimitType {
+    EffectiveSpeedLimitType_Unknown = 0;
+    EffectiveSpeedLimitType_Implicit = 1;
+    EffectiveSpeedLimitType_ExplicitOnTrafficSign = 2;
+    EffectiveSpeedLimitType_ExplicitNight = 3;
+    EffectiveSpeedLimitType_ExplicitDay = 4;
+    EffectiveSpeedLimitType_ExplicitTimeOrDay = 5;
+    EffectiveSpeedLimitType_ExplicitRain = 6;
+    EffectiveSpeedLimitType_ExplicitSnow = 7;
+    EffectiveSpeedLimitType_ExplicitFog = 8;
+}
+
+enum FormOfWay {
+    FormOfWay_Unknown = 0;
+    FormOfWay_MultipleCarriageWay = 2;
+    FormOfWay_SingleCarriageWay = 3;
+    FormOfWay_RoundaboutCircle = 4;
+    FormOfWay_Service = 13;
+    FormOfWay_RampEntry = 16;
+    FormOfWay_RampExit = 17;
+    FormOfWay_CrossLink = 18;
+    FormOfWay_JCT = 19;
+    FormOfWay_SlipRoad = 20;
+    FormOfWay_SideRoad = 21;
+    FormOfWay_SlipAndJCT = 22;
+    FormOfWay_TurnRightLineA = 23;
+    FormOfWay_TurnRightLineB = 24;
+    FormOfWay_TurnLeftLineA = 25;
+    FormOfWay_TurnLeftLineB = 26;
+    FormOfWay_TurnLeftRightLine = 27;
+    FormOfWay_ServiceAndSlipRoad = 28;
+    FormOfWay_ServiceAndJCT = 29;
+    FormOfWay_ServiceAndSlipRoadAndJCT = 30;
+    FormOfWay_Other = 99;
+}
+
+enum FuzzyTime {
+    FuzzyTime_Unknown = 1;
+    FuzzyTime_Day = 2;
+    FuzzyTime_Night = 3;
+}
+
+enum GuidanceMode {
+    GuidanceMode_guidanceInactive = 1;
+    GuidanceMode_guidanceForUser = 2;
+    GuidanceMode_guidanceAutomatic = 3;
+}
+
+enum LaneArrowMarking {
+    LaneArrowMarking_None = 0;
+    LaneArrowMarking_Straight = 1;
+    LaneArrowMarking_SlightRight = 2;
+    LaneArrowMarking_Right = 4;
+    LaneArrowMarking_HardRight = 8;
+    LaneArrowMarking_UTurn = 16;
+    LaneArrowMarking_HardLeft = 32;
+    LaneArrowMarking_Left = 64;
+    LaneArrowMarking_SlightLeft = 128;
+    LaneArrowMarking_NA = -1;
+}
+
+enum LaneTransition {
+    LaneTransition_Unknown = 0;
+    LaneTransition_Continue = 1;
+    LaneTransition_Merging = 2;
+    LaneTransition_Splitting = 3;
+    LaneTransition_Other = 99;
+}
+
+enum LateralPosition {
+    LateralPosition_Unknown = 0;
+    LateralPosition_Right = 1;
+    LateralPosition_Left = 2;
+    LateralPosition_Above = 4;
+    LateralPosition_Surface = 8;
+}
+
+enum LineMarking {
+    LineMarking_Unknown                   = 0;
+    LineMarking_SolidLine                 = 1;
+    LineMarking_DashedLine                = 2;
+    LineMarking_ShortDashedLine           = 3;
+    LineMarking_DoubleSolidLine           = 4;
+    LineMarking_DoubleDashedLine          = 5;
+    LineMarking_LeftSolidRightDashed      = 6;
+    LineMarking_RightSolidLeftDashed      = 7;
+    LineMarking_ShadedArea                = 8;
+    LineMarking_LaneVirtualMarking        = 9;
+    LineMarking_IntersectionVirualMarking = 10;
+    LineMarking_CurbVirtualMarking        = 11;
+    LineMarking_UnclosedRoad              = 12;
+    LineMarking_RoadVirtualLine           = 13;
+    LineMarking_LaneChangeVirtualLine     = 14;
+    LineMarking_Other                     = 99;
+}
+
+enum LineMarkingColour {
+    LineMarkingColour_None                 = 0;
+    LineMarkingColour_White                = 1;
+    LineMarkingColour_Yellow               = 2;
+    LineMarkingColour_Orange               = 3;
+    LineMarkingColour_Blue                 = 4;
+    LineMarkingColour_Green                = 5;
+    LineMarkingColour_Gray                 = 6;
+    LineMarkingColour_LeftGrayRightYellow  = 7;
+    LineMarkingColour_LeftYellowRightWhite = 8;
+    LineMarkingColour_Other                = 99;
+}
+
+enum LinearObjectType {
+    LinearObjectType_Unknown         = 0;
+    LinearObjectType_Centerline      = 1;
+    LinearObjectType_LaneMarking     = 2;
+    LinearObjectType_Guardrail       = 3;
+    LinearObjectType_Fence           = 4;
+    LinearObjectType_Kerb            = 5;
+    LinearObjectType_Wall            = 6;
+    LinearObjectType_MMetalGuardrail = 7;
+    LinearObjectType_CPureConcrete   = 8;
+    LinearObjectType_POtherGuardrail = 9;
+    LinearObjectType_MCurb           = 10;
+    LinearObjectType_CCurb           = 11;
+    LinearObjectType_PCurb           = 12;
+    LinearObjectType_PureNature      = 13;
+    LinearObjectType_PureCurb        = 14;
+    LinearObjectType_WallFlat        = 15;
+    LinearObjectType_WallTunnel      = 16;
+    LinearObjectType_Canopy          = 17;
+    LinearObjectType_Other           = 99;
+}
+
+enum Load {
+    Load_loadWaterPolluting = 1;
+    Load_loadExplosive = 2;
+    Load_loadOtherDangerous = 3;
+    Load_loadEmpty = 4;
+    Load_loadSpecial = 5;
+    Load_loadGasses = 6;
+    Load_loadFlammableLiquids = 7;
+    Load_loadFlammableSolids = 8;
+    Load_loadOxidizing = 9;
+    Load_loadToxicInfectious = 10;
+    Load_loadRadioactive = 11;
+    Load_loadCorrosive = 12;
+}
+
+enum LocationObjectType {
+    LocationObjectType_GuidePost = 1;
+}
+
+enum MapProvider {
+    MapProvider_provider_Unknown = 0;
+    MapProvider_provider_AND = 1;
+    MapProvider_provider_AutoNavi = 2;
+    MapProvider_provider_HERE = 3;
+    MapProvider_provider_Hyundai = 4;
+    MapProvider_provider_Navinfo = 5;
+    MapProvider_provider_TomTom = 6;
+    MapProvider_provider_Zenrin = 7;
+}
+
+enum MapStatus {
+    MapStatus_mapNotAvailable = 0;
+    MapStatus_mapLoading = 1;
+    MapStatus_mapAvailable = 2;
+}
+
+enum MessageType {
+    MessageType_Position = 1;
+    MessageType_Profile = 2;
+    MessageType_GlobalData = 3;
+    MessageType_ProfileControl = 4;
+    MessageType_PathControl = 5;
+    MessageType_Reason = 6;
+}
+
+enum ProfileType {
+    ProfileType_Unknown = 0;
+    ProfileType_Node = 1;
+    ProfileType_Probability = 2;
+    ProfileType_HeadingChange = 3;
+    ProfileType_LaneModel = 4;
+    ProfileType_LaneConnectivity = 5;
+    ProfileType_LinearObjects = 6;
+    ProfileType_LanesGeometry = 7;
+    ProfileType_LaneWidth = 8;
+    ProfileType_RoadGeometry = 9;
+    ProfileType_NumberOfLanesPerDirection = 10;
+    ProfileType_ComplexIntersection = 11;
+    ProfileType_LinkIdentifier = 12;
+    ProfileType_FunctionalRoadClass = 13;
+    ProfileType_RouteNumberTypes = 14;
+    ProfileType_FormOfWay = 15;
+    ProfileType_RoadAccessibility = 16;
+    ProfileType_AccessRestriction = 17;
+    ProfileType_OvertakingRestriction = 18;
+    ProfileType_Tunnel = 19;
+    ProfileType_Bridge = 20;
+    ProfileType_DividedRoad = 21;
+    ProfileType_Curvature = 22;
+    ProfileType_Slope = 23;
+    ProfileType_BuiltUpArea = 24;
+    ProfileType_InTown = 25;
+    ProfileType_Surface = 26;
+    ProfileType_TrafficSign = 27;
+    ProfileType_TrafficLight = 28;
+    ProfileType_SpecialSituation = 29;
+    ProfileType_EffectiveSpeedLimit = 30;
+    ProfileType_ExtendedSpeedLimit = 31;
+    ProfileType_TravelSpeed = 32;
+    ProfileType_FlowSpeed = 33;
+    ProfileType_RoadCondition = 34;
+    ProfileType_Weather = 35;
+    ProfileType_LocationObject = 36;
+    ProfileType_PartOfCalculatedRoute = 37;
+    ProfileType_CountryCode = 38;
+    ProfileType_RegionCode = 39;
+    ProfileType_DrivingSide = 40;
+    ProfileType_UnitSystem = 41;
+    ProfileType_VersionProtocol = 42;
+    ProfileType_VersionHardware = 43;
+    ProfileType_VersionMap = 44;
+    ProfileType_MapAge = 45;
+    ProfileType_MapProvider = 46;
+    ProfileType_MapStatus = 47;
+    ProfileType_SystemStatus = 48;
+    ProfileType_TimeZoneOffset = 49;
+    ProfileType_AbsoluteVehiclePosition = 50;
+    ProfileType_RoadSurface = 98;
+    ProfileType_Pole = 99;
+    ProfileType_RoadStatus = 100;
+    ProfileType_TrafficFlow = 101;
+    ProfileType_TrafficEvent = 102;
+    ProfileType_StaticNotODD = 103;
+    ProfileType_StaticODD = 108;
+    ProfileType_Ready = 109;
+    ProfileType_DecelerationZone = 110;
+    ProfileType_LaneStatus = 112;
+    ProfileType_OverHead = 113;
+    ProfileType_MergePoint = 114;
+    ProfileType_ExtendedLaneSpeedLimit = 115;
+    ProfileType_LineID = 117;
+    ProfileType_LaneTrafficEvent = 118;
+    ProfileType_RefinedLaneTrafficEvent = 119;
+}
+
+enum Quality {
+    Quality_Unknown = 1;
+    Quality_NotAvailable = 2;
+    Quality_Value1 = 3;
+    Quality_Value2 = 4;
+    Quality_Value3 = 5;
+    Quality_Value4 = 6;
+    Quality_Value5 = 7;
+}
+
+enum RelativeDirection {
+    RelativeDirection_None = 0;
+    RelativeDirection_Both = 1;
+    RelativeDirection_AlongPathDirection = 2;
+    RelativeDirection_AgainstPathDirection = 3;
+}
+
+enum RightOfWay {
+    RightOfWay_Unknown = 0;
+    RightOfWay_MustYield = 1;
+    RightOfWay_HasRightOfWay = 2;
+}
+
+enum RoadAccessFlags {
+    RoadAccessFlags_PassengerCars = 1;
+    RoadAccessFlags_Pedestrians = 2;
+    RoadAccessFlags_Bus = 4;
+    RoadAccessFlags_Delivery = 8;
+    RoadAccessFlags_Emergency = 16;
+    RoadAccessFlags_Taxi = 32;
+    RoadAccessFlags_ThroughTraffic = 64;
+    RoadAccessFlags_Trucks = 128;
+}
+
+enum RoadCondition {
+    RoadCondition_Unknown = 1;
+    RoadCondition_Clear = 2;
+    RoadCondition_Wet = 3;
+    RoadCondition_Snowy = 4;
+    RoadCondition_Icy = 5;
+    RoadCondition_Slippery = 6;
+    RoadCondition_Dirt = 7;
+}
+
+enum SpecialSituationType {
+    SpecialSituationType_DeadEnd = 248;
+    SpecialSituationType_FerryTerminal = 249;
+    SpecialSituationType_TollBooth = 250;
+    SpecialSituationType_RailroadCrossing = 251;
+    SpecialSituationType_PedestrianCrossing = 252;
+    SpecialSituationType_SpeedBump = 253;
+    SpecialSituationType_CertifiedRoad = 254;
+    SpecialSituationType_TollBooth_CertifiedRoad = 255;
+}
+
+enum SpeedLimitSource {
+    SpeedLimitSource_Unknown = 1;
+    SpeedLimitSource_Implicit = 2;
+    SpeedLimitSource_Explicit = 3;
+}
+
+enum SurfaceCondition {
+    SurfaceCondition_Unknown = 1;
+    SurfaceCondition_PavedRigid = 2;
+    SurfaceCondition_PavedFlexible = 3;
+    SurfaceCondition_Blocks = 4;
+    SurfaceCondition_Gravel = 5;
+    SurfaceCondition_Dirt = 6;
+}
+
+enum TrafficLightLongitudinalPosition {
+    TrafficLightLongitudinalPosition_Unknown = 0;
+    TrafficLightLongitudinalPosition_BeforeIntersection = 1;
+    TrafficLightLongitudinalPosition_AfterIntersection = 2;
+}
+
+enum TrafficLightState {
+    TrafficLightState_Unknown = 0;
+    TrafficLightState_Invalid = 1;
+    TrafficLightState_Off = 2;
+    TrafficLightState_Green = 3;
+    TrafficLightState_Yellow = 4;
+    TrafficLightState_Red = 5;
+}
+
+enum UnitOfSpeed {
+    UnitOfSpeed_KpH = 1;
+    UnitOfSpeed_MpH = 2;
+}
+
+enum Weather {
+    Weather_Unknown = 0;
+    Weather_NoSpecial = 1;
+    Weather_Sunshine = 2;
+    Weather_Rain = 3;
+    Weather_Fog = 4;
+    Weather_Snow = 5;
+    Weather_Ice = 6;
+    Weather_StrongWind = 7;
+}
+
+enum WeatherRedefine {
+    WeatherRedefine_SunnyOrClear = 0;
+    WeatherRedefine_Cloudy = 1;
+    WeatherRedefine_FewClouds = 2;
+    WeatherRedefine_PartlyCoundy = 3;
+    WeatherRedefine_Overcast = 4;
+    WeatherRedefine_Windy = 5;
+    WeatherRedefine_Calm = 6;
+    WeatherRedefine_LightBreeze = 7;
+    WeatherRedefine_ModerateOrGentleBreeze = 8;
+    WeatherRedefine_FreshBreeze = 9;
+    WeatherRedefine_StrongBreeze = 10;
+    WeatherRedefine_HightWindAndNearGale = 11;
+    WeatherRedefine_Gale = 12;
+    WeatherRedefine_StrongGale = 13;
+    WeatherRedefine_WindStorm = 14;
+    WeatherRedefine_ViolentWindStorm = 15;
+    WeatherRedefine_Hurricane = 16;
+    WeatherRedefine_Tornado = 17;
+    WeatherRedefine_TropicalStorm = 18;
+    WeatherRedefine_ShowerRain = 19;
+    WeatherRedefine_HeavyShowerRain = 20;
+    WeatherRedefine_Thundershower = 21;
+    WeatherRedefine_HeavyThunderstorm = 22;
+    WeatherRedefine_ThundershowerAndHail = 23;
+    WeatherRedefine_LightRain = 24;
+    WeatherRedefine_ModerateRain = 25;
+    WeatherRedefine_HeavyRain = 26;
+    WeatherRedefine_ExtremeRain = 27;
+    WeatherRedefine_DrizzleRain = 28;
+    WeatherRedefine_RainStorm = 29;
+    WeatherRedefine_HeavyRainStorm = 30;
+    WeatherRedefine_SevereRainStorm = 31;
+    WeatherRedefine_FreezingRain = 32;
+    WeatherRedefine_LightSnow = 33;
+    WeatherRedefine_ModerateSnow = 34;
+    WeatherRedefine_HeavySnow = 35;
+    WeatherRedefine_Snowstorm = 36;
+    WeatherRedefine_Sleet = 37;
+    WeatherRedefine_RainAndSnow = 38;
+    WeatherRedefine_ShowerSnow = 39;
+    WeatherRedefine_SnowFlurry = 40;
+    WeatherRedefine_Mist = 41;
+    WeatherRedefine_Foggy = 42;
+    WeatherRedefine_Haze = 43;
+    WeatherRedefine_Sand = 44;
+    WeatherRedefine_Dust = 45;
+    WeatherRedefine_Duststorm = 46;
+    WeatherRedefine_Sandstorm = 47;
+    WeatherRedefine_Hot = 48;
+    WeatherRedefine_Cold = 49;
+    WeatherRedefine_IceParticle = 50;
+    WeatherRedefine_IceNeedle = 51;
+    WeatherRedefine_Hail = 52;
+    WeatherRedefine_LightningStorm = 53;
+    WeatherRedefine_Lightning = 54;
+    WeatherRedefine_Unknown = 127;
+    WeatherRedefine_Other = 99;
+}
+
+enum YesNoUnknown {
+    YesNoUnknown_Unknown = 0;
+    YesNoUnknown_Yes = 1;
+    YesNoUnknown_No = 2;
+}
+
+enum RoadStatus {
+    RoadStatus_Unknown = 0;
+    RoadStatus_NormalTraversable = 1;
+    RoadStatus_InConstruction = 2;
+    RoadStatus_DrivingProhibition = 3;
+    RoadStatus_Other = 99;
+}
+
+enum TrafficSignSignType {
+    TrafficSignSignType_RoadWorks                    = 6;
+    TrafficSignSignType_Stop                         = 33;
+    TrafficSignSignType_OvertakingProhibited         = 46;
+    TrafficSignSignType_EndOfProhibitionOnOvertaking = 47;
+    TrafficSignSignType_ChildrenAndSchoolZone        = 52;
+    TrafficSignSignType_MinSpeedLimit                = 86;
+    TrafficSignSignType_MaxSpeedLimit                = 87;
+    TrafficSignSignType_EndOfSpeedLimit              = 88;
+    TrafficSignSignType_NoEntrance                   = 245;
+    TrafficSignSignType_AllSpeedLimitCancel          = 246;
+    TrafficSignSignType_NoParkingSign                = 247;
+    TrafficSignSignType_Others                       = 250;
+    TrafficSignSignType_StartOfHighway               = 251;
+    TrafficSignSignType_EndOfHighway                 = 252;                
+    TrafficSignSignType_LeftCurve                    = 253;
+    TrafficSignSignType_RightCurve                   = 254;
+    TrafficSignSignType_Unknown                      = 255;
+    TrafficSignSignType_SeriesCurves                 = 256;
+}
+enum OverHeadType {
+    OverHeadType_Unknown = 0;
+    OverHeadType_BottomOfBridge = 1;
+    OverHeadType_Other = 99;
+}
+
+enum RoadSurfaceSignType {
+    RoadSurfaceSignType_Unknown = 0;
+    RoadSurfaceSignType_Text = 1;
+    RoadSurfaceSignType_Straight = 2;
+    RoadSurfaceSignType_StraightOrLeft = 3;
+    RoadSurfaceSignType_StraightOrRight = 4;
+    RoadSurfaceSignType_StraightUTurn = 5;
+    RoadSurfaceSignType_LeftTurn = 6;
+    RoadSurfaceSignType_LeftTurnUTurn = 7;
+    RoadSurfaceSignType_LeftTurnAndInterflow = 8;
+    RoadSurfaceSignType_RightTurn = 9;
+    RoadSurfaceSignType_RightTurnAndInterflow = 10;
+    RoadSurfaceSignType_LeftRightTurn = 11;
+    RoadSurfaceSignType_UTurn = 12;
+    RoadSurfaceSignType_NoLeftTurn = 13;
+    RoadSurfaceSignType_NoRightTurn = 14;
+    RoadSurfaceSignType_NoUTurn = 15;
+    RoadSurfaceSignType_StraightLeftRight = 16;
+    RoadSurfaceSignType_StraightULeft = 17;
+    RoadSurfaceSignType_RightUTurn = 18;
+    RoadSurfaceSignType_MaxSpeedLimit = 19;
+    RoadSurfaceSignType_MinSpeedLimit = 20;
+    RoadSurfaceSignType_Time = 21;
+    RoadSurfaceSignType_CheckFollowingDistance = 22;
+    RoadSurfaceSignType_StopToGiveway = 23;
+    RoadSurfaceSignType_SlowdownToGiveway = 24;
+    RoadSurfaceSignType_StopMark = 25;
+    RoadSurfaceSignType_Nets = 26;
+    RoadSurfaceSignType_Other = 99;
+}
+
+enum PoleSignType {
+    PoleSignType_Unknown = 0;
+    PoleSignType_Gantry = 1;
+    PoleSignType_SignPost = 2;
+    PoleSignType_Signal = 4;
+    PoleSignType_Other = 99;
+}
+
+enum SignShape {
+    SignShape_Unknown     = 0;
+    SignShape_Rectangle   = 1;
+    SignShape_Triangle    = 2;
+    SignShape_Round       = 3;
+    SignShape_Diamond     = 4;
+    SignShape_Hexagon     = 5;
+    SignShape_Octagon     = 6;
+    SignShape_Furcation   = 7;
+    SignShape_Combination = 8;
+    SignShape_Other       = 99;
+}
+
+enum TrafficFlowStatus {
+    TrafficFlowStatus_Unknown = 0;
+    TrafficFlowStatus_Smooth = 1;
+    TrafficFlowStatus_Amble = 2;
+    TrafficFlowStatus_Congestion = 3;
+    TrafficFlowStatus_Blockage = 4;
+    TrafficFlowStatus_NoTrafficFlow = 5;
+    TrafficFlowStatus_Other = 99;
+}
+
+enum TrafficEventType {
+    TrafficEventType_Unknown = 0;
+    TrafficEventType_GeneralTrafficAccident = 7;
+    TrafficEventType_SeriousTrafficAccident = 8;
+    TrafficEventType_FaultyCar = 9;
+    TrafficEventType_SuspectedAccident = 10;
+    TrafficEventType_RoadConstruction = 11;
+    TrafficEventType_ConstructionImpactTravel = 12;
+    TrafficEventType_ConstructionAndPassThroughNotRecommended = 13;
+    TrafficEventType_TrafficControl = 14;
+    TrafficEventType_RoadClosed = 15;
+    TrafficEventType_ExitRampClosed = 16;
+    TrafficEventType_EntranceRampClosed = 17;
+    TrafficEventType_OneLaneClosed = 18;
+    TrafficEventType_TwoLanesClosed = 19;
+    TrafficEventType_ThreeLanesClosed = 20;
+    TrafficEventType_FourLanesClosed = 21;
+    TrafficEventType_ProhibitLeftTurn = 22;
+    TrafficEventType_ProhibitRightTurn = 24;
+    TrafficEventType_ProhibitLeftAndRightTurn = 26;
+    TrafficEventType_ProhibitStraight = 28;
+    TrafficEventType_ProhibitUTurn = 30;
+    TrafficEventType_RoadHeightOrWeightOrWidthLimited = 32;
+    TrafficEventType_OtherVehicleRestrictions = 33;
+    TrafficEventType_NoParking = 34;
+    TrafficEventType_Gale = 35;
+    TrafficEventType_Hurricane = 36;
+    TrafficEventType_Fog = 37;
+    TrafficEventType_HeavyFog = 38;
+    TrafficEventType_Rain = 39;
+    TrafficEventType_HeavyRain = 40;
+    TrafficEventType_Sleet = 41;
+    TrafficEventType_Snow = 42;
+    TrafficEventType_HeavySnow = 43;
+    TrafficEventType_Hail = 44;
+    TrafficEventType_DestructiveHail = 45;
+    TrafficEventType_ColdWave = 46;
+    TrafficEventType_Sandstorm = 47;
+    TrafficEventType_HighTemperature = 48;
+    TrafficEventType_Drought = 49;
+    TrafficEventType_Thunder = 50;
+    TrafficEventType_Frost = 51;
+    TrafficEventType_Haze = 52;
+    TrafficEventType_Typhoon = 53;
+    TrafficEventType_Thunderstorm = 54;
+    TrafficEventType_ForestFire = 55;
+    TrafficEventType_RoadSurfaceWater = 56;
+    TrafficEventType_RoadSurfaceSnow = 57;
+    TrafficEventType_RoadSurfaceThinIce = 58;
+    TrafficEventType_RoadSurfaceSubsidence = 59;
+    TrafficEventType_RoadSurfaceObstacle = 60;
+    TrafficEventType_RoadSurfaceFire = 61;
+    TrafficEventType_RoadSurfaceSlip = 62;
+    TrafficEventType_RoadSurfaceOil = 63;
+    TrafficEventType_RoadSurfaceGasoline = 64;
+    TrafficEventType_PoorRoadConditions = 65;
+    TrafficEventType_DangerousDrivingConditions = 66;
+    TrafficEventType_ExtremelyDangerousDrivingConditions = 67;
+    TrafficEventType_Expo = 68;
+    TrafficEventType_MajorNationalEvents = 69;
+    TrafficEventType_Assembly = 70;
+    TrafficEventType_LargeConference = 71;
+    TrafficEventType_SportsActivity = 72;
+    TrafficEventType_CulturalActivity = 73;
+    TrafficEventType_Holiday = 74;
+    TrafficEventType_Flood = 75;
+    TrafficEventType_Earthquake = 76;
+    TrafficEventType_RockFall = 77;
+    TrafficEventType_Collapse = 78;
+    TrafficEventType_DebrisFlow = 79;
+    TrafficEventType_GraspTheViolation = 80;
+    TrafficEventType_CheckDrunkDriving = 81;
+    TrafficEventType_PoliceEnforcement = 82;
+    TrafficEventType_Announcement = 83;
+    TrafficEventType_OpenToTraffic = 84;
+    TrafficEventType_CompleteTheReconstruction = 85;
+    TrafficEventType_RealRoadCondition = 86;
+    TrafficEventType_Emergency = 87;
+    TrafficEventType_SubwayEvent = 88;
+    TrafficEventType_CustomBroadcast = 89;
+    TrafficEventType_GeneralTrafficAccidentAndRoadClosed = 90;
+    TrafficEventType_SeriousTrafficAccidentAndRoadClosed = 91;
+    TrafficEventType_RoadConstructionAndRoadClosed = 92;
+    TrafficEventType_HeavyFogAndRoadClosed = 93;
+    TrafficEventType_HeavyRainAndRoadClosed = 94;
+    TrafficEventType_HeavySnowAndRoadClosed = 95;
+    TrafficEventType_HailAndRoadClosed = 96;
+    TrafficEventType_RoadSurfaceWaterAndRoadClosed = 97;
+    TrafficEventType_RoadSurfaceSnowAndRoadClosed = 98;
+    TrafficEventType_RoadSurfaceThinIceAndRoadClosed = 99;
+    TrafficEventType_RoadSurfaceSubsidenceAndRoadClosed = 100;
+    TrafficEventType_RoadSurfaceObstacleAndRoadClosed = 101;
+    TrafficEventType_SeriousFireAndRoadClosed = 102;
+    TrafficEventType_ExpoAndRoadClosed = 103;
+    TrafficEventType_MajorNationalEventsAndRoadClosed = 104;
+    TrafficEventType_AssemblyAndRoadClosed = 105;
+    TrafficEventType_LargeConferenceAndRoadClosed = 106;
+    TrafficEventType_SportsActivityAndRoadClosed = 107;
+    TrafficEventType_CulturalActivityAndRoadClosed = 108;
+    TrafficEventType_HolidayAndRoadClosed = 109;
+    TrafficEventType_FloodAndRoadClosed = 110;
+    TrafficEventType_EarthquakeAndRoadClosed = 111;
+    TrafficEventType_RockFallAndRoadClosed = 112;
+    TrafficEventType_CollapseAndRoadClosed = 113;
+    TrafficEventType_DebrisFlowAndRoadClosed = 114;
+    TrafficEventType_Other = 999;
+}
+
+enum DecelerationZoneType {
+    DecelerationZoneType_Unknown = 0;
+    DecelerationZoneType_SLOWDOWNANTISKID = 1;
+    DecelerationZoneType_ROADHUMP = 2;
+    DecelerationZoneType_Other = 99;
+}
+
+enum LinearObjectConfidence {
+    LinearObjectConfidence_Unknown           = 0;   
+    LinearObjectConfidence_Normal            = 1;  
+    LinearObjectConfidence_Obscured          = 2;   
+    LinearObjectConfidence_NotClear          = 3;   
+    LinearObjectConfidence_NotAligned        = 4;   
+    LinearObjectConfidence_InterferenceLine  = 5;   
+    LinearObjectConfidence_OverlapLine       = 6;   
+    LinearObjectConfidence_MeanWhile         = 7;   
+    LinearObjectConfidence_Other             = 99;  
+}
+
+enum SpeedType
+{
+    Unknown       = 0;
+    MaxSpeedLimit = 1;
+    MinSpeedLimit = 2;
+    Other         = 99;
+}
+
+
+enum ReasonType {
+    ReasonType_Unknown = 0;
+    ReasonType_Reset = 1;
+    ReasonType_RouteStatus = 2;
+    ReasonType_Other = 255;
+}
+
+message Vector {
+    optional float x = 1;
+    optional float y = 2;
+    optional float z = 3;
+}
+
+message Speed {
+    optional uint32 value = 1;
+    optional UnitOfSpeed unit = 2;
+}
+
+message WGS84Point {
+    optional int32 latitude = 1;
+    optional int32 longitude = 2;
+    optional int32 altitude = 3;
+}
+
+message VehiclePosition {
+    optional int32 latitude = 1;
+    optional int32 longitude = 2;
+    optional int32 altitude = 3;
+    optional uint64 timestamp = 4;
+    optional float heading = 5;
+}
+
+message Position {
+    optional uint32 pathId = 1;
+    optional uint32 offset = 2;
+    optional uint32 accuracy = 3;
+    optional int32 deviation = 4;
+    optional float speed = 5;
+    optional float relativeHeading = 6;
+    optional float probability = 7;
+    optional uint32 currentLane = 8;
+    optional uint32 preferredPath = 9;
+}
+
+message AbsoluteVehiclePosition {
+    optional Heading heading = 1;
+    optional WGS84Point vehiclePosition = 2;
+	optional uint32 stdLateralPos =  3;
+	optional uint32 stdLongitudinalPos = 4;
+}
+
+message RelativePosition {
+	optional float locLaneSequenceConfidence = 1;
+    optional uint32 lateralOffsetLeft = 2;
+	optional uint32 lateralOffsetRight = 3;
+    optional float locLeftBoundaryHeading = 4;
+    optional float locRightBoundaryHeading = 5;
+}
+
+message PositionMessage {
+    optional uint64 timestamp = 1;
+    optional uint64 positionAge = 2;
+    repeated Position positions = 3;
+    optional AbsoluteVehiclePosition absoluteVehiclePosition = 4;
+	optional RelativePosition relativePosition = 5;
+    optional uint32 locSigStatus = 6;
+    optional SpeedRelated speedRelated = 7;
+    optional uint32 locOutputStatus = 8;
+    optional uint32 locOutputInitStatus = 9;
+}
+
+message ProfileEntry {
+    optional uint32 instanceId = 1;
+    optional bool isRetransmission = 2;
+    optional ChangeMode change = 3;
+    optional float confidence = 4;
+    optional uint32 pathId = 5;
+    repeated uint32 laneNumbers = 6;
+    optional RelativeDirection direction = 7;
+    optional uint32 offset = 8;
+    optional uint32 endOffset = 9;
+    optional bool endOffsetFinal = 10;
+    optional ProfileType type = 11;
+    optional Availability available = 12;
+    oneof value {
+        UInt32ProfileValue UInt32ProfileValue_value = 13;
+        Int32ProfileValue Int32ProfileValue_value = 14;
+        UInt64ProfileValue UInt64ProfileValue_value = 15;
+        FloatProfileValue FloatProfileValue_value = 16;
+        BooleanProfileValue BooleanProfileValue_value = 17;
+        YesNoUnknownProfileValue YesNoUnknownProfileValue_value = 18;
+        FormOfWayProfileValue FormOfWayProfileValue_value = 19;
+        DrivingSideProfileValue DrivingSideProfileValue_value = 20;
+        UnitSystemProfileValue UnitSystemProfileValue_value = 21;
+        SpecialSituationProfileValue SpecialSituationProfileValue_value = 22;
+        RoadConditionProfileValue RoadConditionProfileValue_value = 23;
+        WeatherProfileValue WeatherProfileValue_value = 24;
+        MapProviderProfileValue MapProviderProfileValue_value = 25;
+        MapStatusProfileValue MapStatusProfileValue_value = 26;
+        OffsetFloatProfileValue OffsetFloatProfileValue_value = 27;
+        NodeProfileValue NodeProfileValue_value = 28;
+        SystemStatusProfileValue SystemStatusProfileValue_value = 29;
+        AbsoluteVehiclePositionProfileValue AbsoluteVehiclePositionProfileValue_value = 30;
+        SurfaceConditionProfileValue SurfaceConditionProfileValue_value = 31;
+        SpeedProfileValue SpeedProfileValue_value = 32;
+        LaneModelValue LaneModelValue_value = 33;
+        LaneConnectivityValue LaneConnectivityValue_value = 34;
+        LinearObjectDefinitionValue LinearObjectDefinitionValue_value = 35;
+        LanesGeometryProfileValue LanesGeometryProfileValue_value = 36;
+        RoadGeometryProfileValue RoadGeometryProfileValue_value = 37;
+        TrafficLightProfileValue TrafficLightProfileValue_value = 38;
+        EffectiveSpeedLimit EffectiveSpeedLimit_value = 39;
+        LocationObject LocationObject_value = 40;
+        RegionCodeValue RegionCodeValue_value = 41;
+        ExtendedSpeedLimitValue ExtendedSpeedLimitValue_value = 42;
+        TrafficSignValue TrafficSignValue_value = 43;
+        ConditionalRestrictionProfileValue ConditionalRestrictionProfileValue_value = 44;
+        RoadSurfaceProfileValue RoadSurfaceProfileValue_value = 45;
+        PoleProfileValue PoleProfileValue_value = 46;
+        TrafficFlowProfileValue TrafficFlowProfileValue_value = 47;
+        TrafficEventProfileValue TrafficEventProfileValue_value = 48;
+        StaticODDProfileValue StaticODDProfileValue_value = 49;
+        StaticNotODDProfileValue StaticNotODDProfileValue_value = 50;
+        DecelerationZoneProfileValue DecelerationzoneProfileValue_value = 51;
+	    OverHeadProfileValue OverHeadProfileValue_value = 52;
+        MergePointValue MergePointValue_value = 53;
+        ExtendedLaneSpeeProfileValue ExtendedLaneSpeeProfileValue_value = 54;
+        LaneTrafficEventProfileValue LaneTrafficEventProfileValue_value = 55;
+        LineIDProfileValue LineIDProfileValue_value = 56;
+        RefinedLaneTrafficEventProfileValue refinedLaneTrafficEventProfileValue_value = 57;
+    }
+}
+
+message ProfileMessage {
+    repeated ProfileEntry profiles = 1;
+}
+
+message GlobalData {
+    optional ProfileType type = 1;
+    optional Availability available = 2;
+    oneof value {
+        UInt32ProfileValue UInt32ProfileValue_value = 3;
+        Int32ProfileValue Int32ProfileValue_value = 4;
+        UInt64ProfileValue UInt64ProfileValue_value = 5;
+        FloatProfileValue FloatProfileValue_value = 6;
+        BooleanProfileValue BooleanProfileValue_value = 7;
+        DrivingSideProfileValue DrivingSideProfileValue_value = 8;
+        UnitSystemProfileValue UnitSystemProfileValue_value = 9;
+        MapProviderProfileValue MapProviderProfileValue_value = 10;
+        MapStatusProfileValue MapStatusProfileValue_value = 11;
+        SystemStatusProfileValue SystemStatusProfileValue_value = 12;
+        AbsoluteVehiclePositionProfileValue AbsoluteVehiclePositionProfileValue_value = 13;
+        RegionCodeValue RegionCodeValue_value = 14;
+    }
+}
+
+message GlobalDataMessage {
+    repeated GlobalData data = 1;
+}
+
+message ProfileControl {
+    optional uint32 pathId = 1;
+    optional uint32 offset = 2;
+}
+
+message ProfileControlMessage {
+    repeated ProfileControl values = 1;
+}
+
+message PathControl {
+    optional uint32 Id = 1;
+    optional uint32 parentId = 2;
+    optional uint32 offset = 3;
+}
+
+message PathControlMessage {
+    optional uint32 idFirst = 1;
+    optional uint32 idLast = 2;
+    repeated PathControl values = 3;
+}
+
+message ReasonMessage {
+    optional ReasonType type = 1;
+    optional uint32 value = 2;
+}
+
+message MessageOnBus {
+    optional uint32 cyclicCounter = 1;
+    optional MessageType type = 2;
+    oneof message {
+        PositionMessage PositionMessage_message = 3;
+        ProfileMessage ProfileMessage_message = 4;
+        GlobalDataMessage GlobalDataMessage_message = 5;
+        ProfileControlMessage ProfileControlMessage_message = 6;
+        PathControlMessage PathControlMessage_message = 7;
+        ReasonMessage ReasonMessage_message = 8;
+    } 
+}
+
+message UInt32ProfileValue {
+    optional uint32 value = 1;
+}
+
+message Int32ProfileValue {
+    optional int32 value = 1;
+}
+
+message UInt64ProfileValue {
+    optional uint64 value = 1;
+}
+
+message FloatProfileValue {
+    optional float value = 1;
+}
+
+message BooleanProfileValue {
+    optional bool value = 1;
+}
+
+message YesNoUnknownProfileValue {
+    optional YesNoUnknown value = 1;
+}
+
+message FormOfWayProfileValue {
+    optional FormOfWay value = 1;
+}
+
+message DrivingSideProfileValue {
+    optional DrivingSide value = 1;
+}
+
+message UnitSystemProfileValue {
+    optional UnitOfSystem value = 1;
+}
+
+message SpecialSituationProfileValue {
+    optional SpecialSituationType value = 1;
+}
+
+message RoadConditionProfileValue {
+    optional RoadCondition value = 1;
+}
+
+message WeatherProfileValue {
+    optional WeatherRedefine value = 1;
+}
+
+message MapProviderProfileValue {
+    optional MapProvider value = 1;
+}
+
+message MapStatusProfileValue {
+    optional MapStatus value = 1;
+}
+
+message OffsetFloatEntry {
+    optional uint32 offset = 1;
+    optional float value = 2;
+}
+
+message OffsetFloatProfileValue {
+    repeated OffsetFloatEntry entries = 1;
+}
+
+message NodeArm {
+    optional uint32 subPath = 1;
+    optional float probability = 2;
+    optional float turnAngle = 3;
+    optional bool isComplexIntersection = 4;
+    optional RightOfWay rightOfWay = 5;
+}
+
+message NodeProfileValue {
+    repeated NodeArm arms = 1;
+}
+
+message SystemStatusProfileValue {
+    optional GuidanceMode guidance = 1;
+    optional bool simulating = 2;
+}
+
+message AbsoluteVehiclePositionProfileValue {
+    optional VehiclePosition position = 1;
+}
+
+message SurfaceConditionProfileValue {
+    optional Quality general = 1;
+    optional SurfaceCondition surface = 2;
+}
+
+message SpeedProfileValue {
+    optional Speed value = 1;
+}
+
+message LaneInfo {
+    optional uint32 laneNumber = 1;
+    optional RelativeDirection direction = 2;
+    optional LaneTransition transition = 3;
+    optional uint64 types = 4;
+    optional uint32 centerline = 5;
+    optional uint32 leftBoundary = 6;
+    optional uint32 rightBoundary = 7;
+    repeated uint32 leftBoundaryExtra = 8;
+    repeated uint32 rightBoundaryExtra = 9;
+}
+
+message LaneModelValue {
+    optional uint32 totalNumberOfLanes = 1;
+    repeated LaneInfo laneInfos = 2;
+}
+
+message LaneConnectivityPair {
+    optional uint32 initialLaneNumber = 1;
+    optional uint32 initialPath = 2;
+    optional uint32 newLaneNumber = 3;
+    optional uint32 newPath = 4;
+}
+
+message LaneConnectivityValue {
+    repeated LaneConnectivityPair connectivityPairs = 1;
+}
+
+message LinearObject {
+    optional uint32 id = 1;
+    optional LinearObjectConfidence confidence = 2;
+    optional LinearObjectType type = 3;
+    optional LineMarking marking = 4;
+    optional LineMarkingColour colour = 5;
+    optional bool ldm = 6;
+}
+
+message LinearObjectDefinitionValue {
+    repeated LinearObject linearObjects = 1;
+}
+
+message Curve {
+    optional CurveType type = 1;
+    repeated WGS84Point points = 2;
+}
+
+message LineGeometryValueAttribute {
+    optional float curvature = 1;
+    optional float slope = 2;
+    optional float banking = 3;
+    optional float headingAngle = 4;
+}
+
+message LineGeometryValue {
+    optional WGS84Point wgs84point = 1;
+    optional LineGeometryValueAttribute attribute = 2;
+}
+
+message LineGeometry {
+    optional uint32 idLine = 1;
+    optional CurveType curveType = 2;
+    repeated WGS84Point curve = 3;
+    repeated LineGeometryValue value = 4;
+}
+
+message LanesGeometryProfileValue {
+    repeated LineGeometry geometries = 1;
+}
+
+message RoadGeometryProfileValue {
+    optional Curve roadCenterline = 1;
+}
+
+message TrafficLightProfileValue {
+    optional TrafficLightLongitudinalPosition longitudinalPosition = 1;
+    optional LateralPosition lateralPosition = 2;
+    optional double cycleTime = 3;
+    optional TrafficLightState currentState = 4;
+    optional YesNoUnknown turnOnRedAllowed = 5;
+    optional WGS84Point position = 6;
+    repeated WGS84Point boundingBox = 7;
+}
+
+message EffectiveSpeedLimit {
+    optional Speed value = 1;
+    optional EffectiveSpeedLimitType type = 2;
+}
+
+message LocationObject {
+    optional LocationObjectType type = 1;
+    optional int32 lateralOffset = 2;
+    optional WGS84Point absolutePosition = 3;
+}
+
+message RegionCodeValue {
+    repeated uint32 value = 1;
+}
+
+message ConditionNumeric {
+    optional uint32 value = 1;
+}
+
+message ConditionVehicleType {
+    optional uint32 vehicleTypeMask = 1;
+}
+
+message ConditionLoad {
+    optional Load value = 1;
+}
+
+message ConditionTimeOfDay {
+    optional uint32 startMinutes = 1;
+    optional uint32 endMinutes = 2;
+}
+
+message ConditionWeather {
+    optional uint32 weather = 1;
+}
+
+message ConditionFuzzyTime {
+    optional FuzzyTime fuzzyTime = 1;
+}
+
+message ConditionTurnDirection {
+    optional LaneArrowMarking direction = 1;
+}
+
+message Condition {
+    optional ConditionType type = 1;
+    optional YesNoUnknown appliesToEgoVehicle = 2;
+    oneof condition {
+        ConditionNumeric condition_numeric = 3;
+        ConditionVehicleType condition_vehicleType = 4;
+        ConditionLoad condition_load = 5;
+        ConditionTimeOfDay condition_timeOfDay = 6;
+        ConditionWeather condition_weather = 7;
+        ConditionFuzzyTime condition_fuzzyTime = 8;
+        ConditionTurnDirection condition_turnDirection = 9;
+    }
+}
+
+message ExtendedSpeedLimitValue {
+    optional Speed value = 1;
+    optional SpeedLimitSource source = 2;
+    repeated Condition conditions = 3;
+}
+
+message ExtendedLaneSpeedLimitValue {
+    optional uint32 speedValue = 1;
+    optional SpeedType speedType = 2;
+    optional UnitOfSpeed unit = 3;
+    optional SpeedLimitSource source = 4;
+    repeated Condition conditions = 5;
+}
+
+message ExtendedLaneSpeeProfileValue {
+    repeated ExtendedLaneSpeedLimitValue ExtendedLaneSpeedLimit_value = 1;
+}
+
+message TrafficSignValue {
+    optional TrafficSignSignType type = 1;
+    optional uint32 value = 2;
+    optional uint32 location = 3;
+    optional int32 shift = 4;
+    optional int32 transverseDistance = 5;
+    optional uint32 distance = 6;
+    optional uint32 length = 7;
+    optional YesNoUnknown vms = 8;
+    optional SignShape shape = 9;
+    optional WGS84Point wgs84point = 10;
+    repeated Condition panels = 11;
+    repeated WGS84Point boundingBox = 12;
+}
+
+message ConditionalRestrictionProfileValue {
+    optional bool allowed = 1;
+    repeated Condition conditions = 2;
+}
+
+message RoadSurfaceProfileValue {
+    optional RoadSurfaceSignType signType = 1;
+    optional WGS84Point wgs84point = 2;
+    repeated uint32 value = 3;
+    repeated WGS84Point boundingBox = 4;
+}
+
+message PoleProfileValue {
+    optional PoleSignType signType = 1;
+    optional int32 relativeHeight = 2;
+    optional WGS84Point wgs84point = 3;
+}
+
+message TrafficFlowProfileValue {
+    optional TrafficFlowStatus flowStatus = 1;
+    optional uint32 reliability = 2;
+}
+
+message TrafficEventProfileValue {
+    optional TrafficEventType eventType = 1;
+    optional uint32 reliability = 2;
+}
+
+message StaticODDProfileValue {
+    optional uint32 type = 1;
+    optional uint32 action = 2;
+    optional uint64 reason = 3;
+}
+
+message StaticNotODDProfileValue {
+    optional uint32 type = 1;
+    optional uint32 action = 2;
+    optional uint64 reason = 3;
+}
+
+message DecelerationZoneProfileValue {
+    optional DecelerationZoneType type = 1;
+    repeated WGS84Point boundingBox = 2;
+}
+message OverHeadProfileValue {
+repeated OverHeadValue OverHeadValue_value = 1;
+}
+
+message OverHeadValue {
+optional OverHeadType type = 1;
+repeated WGS84Point wgs84point = 2;
+}
+
+message MergePointValue {
+    optional uint32 otherPathId = 1;
+    optional uint32 otherOffset = 2;
+    optional bool isMaster = 3;
+}
+
+message LineIDValue {
+    optional uint64 linearObjectID = 1;
+    optional uint64 lineID = 2; 
+}
+
+message LineIDProfileValue {
+    repeated LineIDValue LineIDs = 1;
+}
+
+message SpeedRelated {
+    optional TriaxialSpeed triaxialSpeed = 1;
+    optional TriaxialAcceleration triaxialAcceleration = 2;
+    optional TriaxialAngularSpeed triaxialAngularSpeed = 3;
+}
+
+message TriaxialSpeed {
+    repeated float spd = 1;
+    optional uint64 spdTickTime = 2;
+}
+
+message TriaxialAcceleration {
+    repeated float acc = 1;
+    optional uint64 accTickTime = 2;
+}
+
+message TriaxialAngularSpeed {
+    repeated float angularSpd = 1;
+    optional uint64 angularSpdTickTime = 2;
+}
+
+message Heading {
+    optional float value = 1;
+    optional float accuracy = 2;
+}
+
+message LaneTrafficEventProfileValue {
+    optional TrafficEventType eventType = 1;
+    optional uint32 blurredLane = 2;
+}
+
+enum RefinedLaneStatus
+{
+    RefinedLaneStatus_NotAllowed = 0;
+    RefinedLaneStatus_Allowed = 1;
+    RefinedLaneStatus_Unknown = 2;
+};
+message RefinedLaneTrafficEventProfileValue {
+      optional TrafficEventType eventType = 1;
+      repeated RefinedLaneStatus refinedLane = 2;
+}
+
+// [END messages]

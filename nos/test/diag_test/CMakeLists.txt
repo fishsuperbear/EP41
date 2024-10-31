@@ -1,0 +1,1 @@
+add_subdirectory(dem_event_test)

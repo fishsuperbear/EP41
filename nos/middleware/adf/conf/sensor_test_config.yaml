@@ -1,0 +1,31 @@
+%YAML:1.0
+
+recvInstances:
+    - name: imu_ins
+      type: proto_proxy
+      topic: /hozon/imu_ins
+      domainId: 0
+      bufferCapacity: 20
+
+log:
+    mode: 3
+    file: ./
+    name: sens
+    description: sens
+    level: 0   
+    adf:
+      level: 0
+
+# schedule:
+#     policy: RR
+#     priority: 99
+#     # cpuAffinity: [1, 2 ,3]
+
+trigger:
+    - name: imu_ins
+      type: PERIOD
+      period: 100
+      auxSources:
+          - name: imu_ins
+            multiFrame: 10
+            readClear: true

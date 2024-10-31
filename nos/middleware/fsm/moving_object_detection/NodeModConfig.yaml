@@ -1,0 +1,57 @@
+%YAML:1.0
+
+recvInstances:
+    - name: chassis
+      topic: /soc/chassis
+      type: proto_proxy
+      domainId: 0
+    - name: perception_workingstatus
+      topic: /soc/statemachine
+      type: proto_proxy
+      domainId: 0
+
+sendInstances:
+    - name: output_canfd                         # 输出 tsrtlr 状态，使用 hozon::soc::Apa2Chassis pb对象
+      type: proto_skeleton
+      topic: /soc/mod_output_canfd
+      domainId: 0
+    - name: output_fsmcore                       # 输出状态机框架的状态，使用 hozon::fsm_output::StateOutput pb对象
+      type: proto_skeleton
+      topic: fsmcore_output_mod
+      domainId: 0
+    - name: perception_call                      # 输出拉起感知的命令，使用 hozon::state::StateMachine pb对象
+      type: proto_skeleton
+      topic: /soc/statemachine
+      domainId: 0
+
+log:
+    name: fsmcore_mod
+    description: moving object detection
+    file: /opt/usr/log/soc_log/
+    mode: 3
+    level: 2
+    adf:
+        level: 2
+
+trigger:
+    - name: perioical                            # 这个可以自己取，用于注册 trigger 对应的 process 函数
+      type: PERIOD
+      period: 20                                 # 50 Hz
+      auxSources:
+          - name: chassis                        # 要和recvInstances里的name对应
+            timeout: 100
+          - name: perception_workingstatus       # 要和recvInstances里的name对应
+            timeout: 500
+    - name: can_message_trigger
+      type: EVENT
+      mainSources:
+          - name: perception_workingstatus       # 要和recvInstances里的name对应
+            timeout: 500
+      auxSources:
+          - name: chassis
+            timeout: 100                         # 用于判断车门关闭
+
+appName: moving_object_detection                 # Node name
+description: Mod Onboard
+
+fsm_rule_path: ./FsmModConfig.pb.conf            # 状态机配置文件路径

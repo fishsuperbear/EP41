@@ -1,0 +1,658 @@
+syntax = "proto2";
+
+package hozon.functionmanager;
+
+import "proto/common/header.proto";
+import "proto/common/types.proto";
+import "proto/routing/routing.proto";
+import "proto/map/map_lane.proto";
+
+enum HmiChangeLaneStatus {
+    HMI_IN_CHANGE_LANE = 1;        // during change lane state
+    HMI_CHANGE_LANE_FAILED = 2;    // change lane failed
+    HMI_CHANGE_LANE_FINISHED = 3;  // change lane finished
+    HMI_CHANGE_LANE_CANCELED = 4;  // change lane canncled
+    HMI_CHANGE_LANE_START = 5;     // send hmi change_lane_start for some seconds when adc is changing lane.
+    // send hmi change_lane_request when adc is no auto lane change mode and needs lane change.
+    HMI_CHANGE_LANE_REQUEST = 6;  
+}
+
+enum HmiChangeLaneReason {
+    HMI_NONE = 1; // none
+    HMI_AUDIO_REQUEST = 2; // audio change lane
+    HMI_TURN_SIGNAL_SWITCH = 3; // turn signal switch change lane 
+    HMI_NAVIGATION = 4; // navigation change lane
+    HMI_EFFICIENCY = 5; // efficiency change lane
+}
+
+enum CancelLaneChangeReason {
+    NONE_CANCEL_LANE_CHANGE = 0;
+    VOICE_INACTIVE_LANE_CHANGE = 10;
+    VOICE_LEFT_LANE_CHANGE = 11;
+    VOICE_RIGHT_LANE_CHANGE = 12;
+    TURN_SIGNAL_SWITCH_LEVEL_1_LEFT_LANE_CHANGE = 20;
+    TURN_SIGNAL_SWITCH_LEVEL_1_RIGHT_LANE_CHANGE = 21;
+    TURN_SIGNAL_SWITCH_LEVEL_2_LEFT_LANE_CHANGE = 22;
+    TURN_SIGNAL_SWITCH_LEVEL_2_RIGHT_LANE_CHANGE = 23;
+    CONFIRM_INACTIVE_LANE_CHANGE = 30;
+    NO_CONFIRM_LANE_CHANGE = 31;
+    FAILED_LANE_CHANGE = 40;
+    VOICE_LANE_CHANGE_CANCELED = 50;
+    VOICE_LANE_CHANGE_FAILED = 51;
+    TURN_SIGNAL_SWITCH_LANE_CHANGE_CANCELED = 60;
+    TURN_SIGNAL_SWITCH_LANE_CHANGE_FAILED = 61;
+    EFFICIENCY_LANE_CHANGE_CANCELED = 70;
+    CHECK_OVERTIME_BEFORE_LANE_CHANGE = 80;
+    PERCEPTION_TYPE_IN_LANE_CHANGE = 90;
+    FORBID_LANE_CHANGE_ON_SOLID_LANE = 100;
+}
+
+message HmiLaneChangeRiskObstacle{
+    optional int32 front_obstacle_id = 1 [default = 0];
+    optional int32 back_obstacle_id  = 2 [default = 0];
+}
+
+message HmiLaneChangeDebug {
+    optional HmiChangeLaneStatus hmi_lane_change_status = 1;
+    optional HmiChangeLaneReason hmi_lane_change_reason = 3;
+    optional CancelLaneChangeReason hmi_cancel_lane_change_reason = 5;
+    optional bool is_current_opt_succeed = 7 [default = false];
+    optional bool is_lane_change_on_solid_lane = 9 [default = false];
+    optional bool target_lane_has_lane_marker = 10 [default = true];
+    optional bool is_auto_lane_change_mode = 11 [default = true];
+    optional bool is_clear_to_change_lane = 12 [default = true];
+    optional string failed_lane_change_reason = 13 ;
+}
+
+message LocationErrDebug {
+    optional string loc_err_reason = 1;
+    optional uint32 hasmap_err_state = 2;
+    optional uint32 nomap_err_state = 3;
+    optional float left_lanemarker_err = 4;
+    optional float right_lanemarker_err = 5;
+    optional float pose_err_x = 6;
+    optional float pose_err_y = 7;
+    optional uint32 is_failure_location = 8;
+    optional bool is_bad_lanemarkers = 9;
+    optional bool not_in_main_road = 10;
+    optional float left_heading_err = 11;
+    optional float right_heading_err = 12;
+}
+
+message MapLaneCheckDebug {
+    optional int32 match_state = 1;
+    optional int32 match_state_dis_count = 2;
+    optional double match_x = 3;
+    optional double diff_x = 4;
+}
+
+message MapLanesCheckDebug {
+    optional bool is_match = 1;
+    optional double max_lanemarker_dis = 2;
+    optional double val_dis = 3;
+    optional double checker_dis = 4;
+    optional MapLaneCheckDebug left_check = 5;
+    optional MapLaneCheckDebug right_check = 6;
+}
+
+message MapCheckerDebug {
+    optional bool is_match = 1;
+    optional string id = 2;
+    optional hozon.hdmap.Lane.LaneCurvature curvature_type = 3;
+}
+
+
+message RealHdmapDebug {
+    optional bool real_is_in_hdmap = 1;
+    optional bool update_routing_request = 2;
+    optional bool update_routing_response = 3;
+    optional LocationErrDebug location_err_debug = 4;
+    optional hozon.common.Header routing_header = 5;
+    optional string request_end_id = 6;
+    optional hozon.common.PointENU request_end_pose = 7;
+    optional MapLanesCheckDebug maplane_checker = 8;
+    optional MapCheckerDebug map_checker_debug = 9;
+}
+
+message LocalHdmapDebug {
+    optional bool real_is_in_hdmap = 1;
+    optional bool update_routing_request = 2;
+    optional bool update_routing_response = 3;
+    optional string adc_lane_id = 4;
+}
+
+// 起步抑制的目标类型
+enum DriveOffInhibitionObjType{
+    NOOBJECT = 0;
+    PEDESTRIAN = 1;
+    VEHICLE = 2;
+    CYELIST = 3;
+    UNKNOWN = 4;
+}
+// 自动驾驶风格
+enum DrivingMode{
+    UNKNOWN_MODE = 0;
+    BASIC = 1;
+    NORMAL = 2;
+    RADICAL = 3;
+}
+// NNP功能状态
+enum NNPSysState{
+    NNPS_OFF = 0;
+    NNPS_PASSIVE = 1;
+    NNPS_STANDBY = 2;
+    NNPS_ACTIVE = 3;
+    NNPS_OVERRIDE = 4;
+    NNPS_NPILOT = 5;
+    NNPS_TO = 6;
+    NNPS_FAIL_TmpUnavabl = 7;
+    NNPS_FAIL_ServReq = 8;
+    NNPS_LAT_OVERRIDE = 9;
+    NNPS_LON_OVERRIDE = 10;
+}
+// 驾驶模式
+enum DriveMode{
+    NONE =0;
+    ADAS_LAT_ACTIVE_LGT_OVERRIDE = 1;
+    ADAS_LGT_ACTIVE_LAT_OVERRIDE = 2;
+    ADAS_LAT_LGT_ACTIVE = 3;
+    NNP_LAT_ACTIVE_LGT_OVERRIDE = 4;
+    NNP_LGT_ACTIVE_LAT_OVERRIDE = 5;
+    NNP_LAT_LGT_ACTIVE = 6;
+    AVP_LAT_ACTIVE_LGT_OVERRIDE = 7;
+    AVP_LGT_ACTIVE_LAT_OVERRIDE = 8;
+    AVP_LAT_LGT_ACTIVE = 9;
+    AVP_LAT_LGT_QUIT = 10;
+    AVP_TMP = 11;
+    NCP_LAT_ACTIVE_LGT_OVERRIDE = 12;
+    NCP_LGT_ACTIVE_LAT_OVERRIDE = 13;
+    NCP_LAT_LGT_ACTIVE = 14;
+    LDP_LAT_ACTIVE_LGT_OVERRIDE = 15;
+    LDP_LAT_LGT_ACTIVE = 16;
+}
+
+// AEB/FCW state
+enum WarningLevel{
+    NO_WARNING = 0;
+    LEVEL1 = 1;
+    LEVEL2 = 2;
+}
+
+enum NNPScenarios {
+  NO_REQUEST = 0;
+  STATIC_OBSTACLE = 1;
+  TFL = 2;
+  PEDASTRIAN_WALK = 3;
+  PAY_MODE_CONFIRM = 4;
+  LANE_REDUCE = 5;
+  NARROW_LANE = 6;
+  SPEED_ADAPT = 7;
+  OVERSIZED_VEHICLE_BOTH_SIDE = 8;
+  OVERSIZED_VEHICLE_ONE_SIDE = 9;
+  ONCOMING_VEHICLE = 10;
+  BEST_PATH_TRACING = 11;
+}
+
+enum NNPRinoStatus {
+  RINO_NO_REQUEST = 0;
+  RAMP_IN_START = 1;
+  RAMP_IN_DONE = 2;
+  RAMP_IN_TRAFFICE_JAM = 3;
+  RAMP_OUT_START = 4;
+  RAMP_OUT_DONE = 5;
+  TASK_TAKE_OVER_REQ = 6;
+  EXIT_MISSED = 7;
+}
+
+message FcwAeb_state{
+    optional WarningLevel state = 1;
+    optional uint32 id = 2;
+}
+
+enum ChangeLaneInfor {
+  INFOR_NONE = 0;
+  VEHICLE_SPEED_TOO_LOW = 1;
+  LANE_CHANGE_START = 2;
+  LANE_CHANGE_END = 3;
+  LANE_CHANGE_CANCEL = 4;
+  LANE_CHANGE_PENDING = 5;
+  LANE_CHANGE_ONGOING = 6;
+  LANE_CHANGE_PENDING_ALERT = 7;
+};
+
+enum TaPilotMode {
+    NO_CONTROL = 0;
+    ADAS = 1;
+    NNP = 2;
+    AVP = 3;
+};
+
+enum AdasMode {
+    NO_ADAS_MODE = 0;
+    ACC = 1;
+    PILOT = 2;
+}
+
+message LightSignalState{
+    // 近光灯状态
+    optional bool lowbeamst = 1;
+    // 远光灯状态
+    optional bool highbeamst  = 2;
+    // 危险报警灯状态
+    optional bool hazardlampst  = 3;
+    // 远近光灯状态
+    optional bool lowhighbeamst  = 4;
+    // 喇叭状态
+    optional bool hornst  = 5;
+}
+
+message LightSignalRq{
+    // 请求近光灯信号
+    optional bool lowbeamreqst = 1;
+    // 请求远光灯信号
+    optional bool highbeamreqst  = 2;
+    // 请求危险报警灯信号
+    optional bool hazardlampreqst  = 3;
+    // 请求远近光灯信号
+    optional bool lowhighbeamreqst  = 4;
+    // 请求喇叭信号
+    optional bool hornreqst  = 5;
+}
+
+enum AlcMode {
+    NEED_CONFIRM_ALC = 0;
+    AUTO_ALC = 1;
+};
+
+ enum LcsndConfirm {
+    NO_ACTION_LCSND = 0;
+    CONFIRM_ACTIVE_LCSND = 1;
+    CONFIRM_INACTIVE_LCSND = 2;
+ };
+
+ enum LcsndRequest {
+    NO_ACTION_LCDND_REQ = 0;
+    ACTIVE_LEFT_REQ = 1;
+    ACTIVE_RIGHT_REQ = 2;
+    INACTIVE_REQ = 3;
+ };
+
+ enum TurnLightReq {
+    NO_REQ_LIGHT = 0;
+    RIGHT_TURN_LIGHT = 1;
+    RIGHT_TURN_LIGHT_STATUS = 2;
+    LEFT_TURN_LIGHT = 3;
+    LEFT_TURN_LIGHT_STATUS = 4;
+    ERROR_TURN_LIGHT = 7;
+ };
+
+ enum PilotLaneChangeDir {
+    PILOT_DIR_NONE = 0;
+    PILOT_DIR_LEFT = 1;
+    PILOT_DIR_RIGHT = 2;
+ };
+
+ message PilotLaneChangeStatus {
+    optional ChangeLaneInfor pilot_lc_infor = 1;
+    optional PilotLaneChangeDir pilot_lc_dir = 2;
+    optional bool pilot_lc_warning = 3;
+ };
+
+message FctToNnpInput{
+    // ADAS纵向控制减速到停请求
+    optional bool longitud_ctrl_dectostop_req = 1;
+    // ADAS纵向控制起步请求
+    optional bool Longitud_ctrl_driveoff = 2;
+    // 前车起步抑制请求
+    optional bool driveoff_inhibition = 3;
+    // 起步抑制的目标类型
+    optional DriveOffInhibitionObjType driveoff_inhibition_objtype = 4;
+    // 驾驶员点击按钮或语音反馈，成功确认
+    optional LcsndConfirm lcsndconfirm = 5;
+    // 驾驶员开启转向灯信号
+    optional TurnLightReq turnlight_reqst = 6;
+    // 驾驶员语音主动激活/取消变道
+    optional LcsndRequest lcsnd_request = 7;
+    // 收费模式确认
+    optional uint32 paymode_confirm = 8;
+    // 智能车速匹配确认
+    optional uint32 spd_adapt_comfirm = 9;
+    // 驾驶员切换自动变道功能设置
+    optional AlcMode alc_mode = 10;
+    // 自动驾驶风格选项设置反馈
+    optional DrivingMode driving_mode = 11;
+    // 设定速度
+    optional uint32 longitud_ctrl_setspeed = 12;
+    // 综合考虑驾驶员设定的驾驶风格+驾驶员拨杆设置
+    optional uint32 longitud_ctrl_setdistance = 13;
+    // NNP功能状态
+    optional NNPSysState nnp_sysstate = 14;
+    // 灯状态
+    optional LightSignalState light_signal_state = 15;
+    // 最终标定出的跟车时距（单位为时间t）
+    optional double longitud_ctrl_time = 16;
+    // 最终标定出的最小跟车距离（单位为m）
+    optional double longitud_ctrl_min_dis = 17;
+    // 最终输出的巡航速度（单位为m/s）
+    optional double longitud_ctrl_cruise_speedms = 18;
+    // acc跟车目标
+    optional uint32 acc_target_id = 31;
+    // alc报警目标
+    optional uint32 alc_warning_target_id = 32;
+    // alc报警状态
+    optional uint32 alc_warning_state = 33;
+    // FCW 状态
+    optional FcwAeb_state fcw = 34;
+    // AEB 状态
+    optional FcwAeb_state aeb = 35;
+    // FCT NNP原始状态
+    optional NNPSysState nnp_original_state = 36;
+    // 脱手报警信号
+    optional bool is_hands_off_warning_bl = 37;
+    enum ADCS8_ACCState {
+        ACC_OFF = 0;
+        ACC_STANDBY = 1;
+        ACC_ACTIVE = 2;
+        ACC_OVERRIDE = 3;
+        ACC_STANDSTILL_ACTIVE = 4;
+        ACC_STANDSTILL_WAIT = 5;
+        ACC_FAULT = 6;
+        ACC_RESERVE = 7;
+    }
+
+    enum NPILOT_State {
+        PILOT_OFF = 0;
+        PILOT_STANDBY = 1;
+        PILOT_ACTIVE = 2;
+        PILOT_SUSPEND = 3;
+        PILOT_FAULT = 4;
+        PILOT_PASSIVE = 5;
+    }
+    // ACC状态
+    optional ADCS8_ACCState acc_state = 38;
+    // PILOT 状态
+    optional NPILOT_State npilot_state = 39;
+    // tsr
+    optional TsrInfo tsr_info = 40;
+    optional bool usr_has_changed_cruise_spd = 41;
+    optional PilotLaneChangeStatus pilot_lane_change_status = 42;
+    optional bool is_acc_resume = 43;
+    optional bool adcs_lon_speed_valid = 44[default = false];
+}
+// nnp激活条件 内部
+message NnpStateChangeConditions{
+    //行驶区域有高精度地图覆盖(定位处于结构化道路内)
+    optional bool vehicle_in_hdmap = 1 [default = false];
+    // 车道级别定位为有效定位
+    optional bool valid_of_lane_localization = 2 [default = false];
+    // 车道级别导航信息有效
+    optional bool valid_of_lane_routing = 3 [default = false];
+    // 当前是否为内部问题跳转到感知模式
+    optional bool is_change_dueto_internalreasons = 10 [default = false];
+    // 当前ODD类型是否需要切换到视觉
+    optional bool is_change_mode_by_odd_type = 12 [default = false];
+    // 当前是否为ODD区域
+    optional bool is_odd_region = 13 [default = false];
+    // 当前定位是否无效或者发生跳变
+    optional uint32 location_err_state = 14;
+}
+// nnp激活条件
+message NnpActivationConditions{
+    //行驶区域有高精度地图覆盖(定位处于结构化道路内)
+    optional bool vehicle_in_hdmap = 1 [default = false];
+    // 车道级别定位为有效定位
+    optional bool valid_of_lane_localization = 2 [default = false];
+    // 车道级别导航信息有效
+    optional bool valid_of_lane_routing = 3 [default = false];
+    // 车辆不处在逆向车道
+    optional bool vehicle_not_in_reverselane = 4 [default = false];
+    // 车辆不处在禁止行驶车道
+    optional bool vehicle_not_in_forbidlane = 5 [default = false];
+    // 车辆不处在其它不可行驶区域
+    optional bool vehicle_not_in_otherforbidarea = 6 [default = false];
+    // 当前车道曲率合适
+    optional bool appropriate_current_lane_curve = 7 [default = false];
+    // 当前车道宽度合适
+    optional bool appropriate_current_lane_width = 8 [default = false];
+    // 当前车辆与车道的角度差合适
+    optional bool appropriate_current_lane_headingerr = 9 [default = false];
+    // 当前是否为感知模式
+    optional bool is_perception_state = 10 [default = false];
+}
+// 当前车道信息
+message CrrentLaneMg{
+    // 当前车道宽度
+    optional float nnp_d_crrntlanewidth_sg = 1;
+    // 当前车道曲率
+    optional float nnp_crv_crrntlanecurve_sg = 2;
+    // 当前车道的方向
+    optional float nnp_rad_crrntlanehead_sg = 3;
+}
+// NNP软件故障
+message NNPSoftwareFault{
+    // 能否规划出路线
+    optional bool plan_trajectory_success = 1;
+    // planning正常
+    optional bool planning_success = 2;
+}
+
+enum NnpActiveOnOffSet {
+    NO_REQUEST_NNP_ACTIVE = 0;
+    OFF_NNP_ACTIVE = 1;
+    ON_NNP_ACTIVE = 2;
+};
+
+enum LaneChangeDir {
+    NONE_DIR = 0;
+    LEFT_DIR = 1;
+    RIGHT_DIR = 2;
+};
+
+enum LcAudioPlay {
+    LC_NONE = 0;
+    LEFT_LANE_CHANGE_ACTIVE = 1;
+    RIGHT_LANE_CHANGE_ACTIVE = 2;
+};
+
+enum DclcAudioPlay {
+    DCLC_NONE = 0;
+    LEFT_BRO = 1;
+    RIGHT_BRO = 2;
+    CANCEL_BRO = 3;
+    CAREFUL_DRIVING = 5;
+};
+
+enum LaneChangeWarn {
+    NO_WARN = 0;
+    LEFT_WARN = 1;
+    RIGHT_WARN = 2;
+    RESERVED = 3;
+};
+
+enum LightReq {
+    LIGHT_OFF = 0;
+    LEFT_LIGHT = 1;
+    RIGHT_LIGHT = 2;
+    WARNING_LIGHT = 3;
+ };
+
+message NnpSwitchConditions {
+    optional bool DfltNNPInhibitFlf_bl = 1;
+    optional bool is_faild_2_pilot_bl = 2;
+    optional bool HdOffActExcdCntFlf_bl = 3;
+    optional bool ODD_indx_VSMStaticCond_bl = 4;
+    optional bool NNP_is_EmgFlshSta_bl = 5;
+    optional bool EPBAppcnSts_eEPB_bl = 6;
+    optional bool NNPDrivingTaskTOFlf_bl = 7;
+    optional bool NNPDrvrNotRespFlf_bl = 8;
+    optional bool NNP_is_StrTorqTkovCond_bl = 9;
+    optional bool NNP_is_AccOvrrdCond_bl = 10;
+    optional bool NNP_is_VehSpdCond_bl = 11;
+    optional bool NNP_is_BrkOvrrdCond_bl = 12;
+    optional bool NNP_is_StrRatOvrrdCond_bl = 13;
+    optional bool NNP_AutoOnOffSet = 14;
+    optional bool DA_IN_is_NNPSwStsOnSwA_bl = 15;
+    optional bool DA_IN_is_NNPSwStsCanclSwA_bl = 16;
+    optional bool DA_IN_NNP_DriverStatus = 17;
+    optional bool TJAActiveFlf_bl = 18;
+    optional bool is_planning_count_ok = 19;
+    optional bool da_in_DriverOvertackMode = 20;
+    optional bool NNPSuspendFlf_bl = 21;
+    optional bool ODD_is_EpsCond_bl = 22;
+    optional bool NNP_is_latoverride_bl = 23;
+    optional bool NNP_is_StrTorqToPassive_bl = 24;
+    optional bool Fm_is_nnp_fault = 25;
+    optional bool ctr_enable = 26;
+    optional bool is_nnp_state_system_fault = 27;
+    optional bool NNP_ToPassiveAll_bl = 28;
+    optional bool acc_and_pilot_fault_bl = 29;
+    optional bool acc_and_pilot_ok_bl = 30;
+    optional bool acc_state_is_passive_bl = 31;
+    optional bool ODD_indx_VSMDynamicCond_bl = 32;
+}
+
+message ACCDisableReasons {
+    repeated string acc_disable_reason = 1;
+}
+
+message McuFmFault {
+    repeated string fm_fault = 1;
+}
+
+message NnpHmiSignals {
+    optional uint32 P2N_State_Reminder = 1;
+    optional uint32 NNP_State_Reminder = 2;
+    optional uint32 NNP_ResumeAudioplay = 3;
+    optional uint32 NNPCancelAudioPlay = 4;
+    optional bool lateralCtrtakeover = 5;
+    optional bool LateralCtrHandOffReleasewarning = 6;
+    optional bool longitudCtrlTakeOverReq = 7;
+    optional uint32 lateralCtrHandsEyesOffWarn = 8;
+    enum NNPSwitch {
+        No_Action = 0;
+        On = 1;
+        Off = 2;
+    }
+    optional NNPSwitch NNP_Active_OnOffSet = 9;
+    optional NNPSwitch NNPsndState = 10;
+    optional bool FCT_is_NNPMainSwitch_bl = 11;
+}
+
+message LovalviewTime {
+    optional double start_time = 1;
+    optional double real_hdmap_time = 2;
+    optional double perception_map_time = 3;
+    optional double adaptive_map_time = 4;
+    optional double nolane_map_time = 5;
+    optional double localview_time = 6;
+    optional double run_once_time = 7;
+    optional double map_state_date_time = 8;
+    optional double solve_routing_time = 9;
+    optional double solve_changelane_time = 10;
+    optional double map_state_date_time_lock = 11;
+    optional double map_state_date_time_copy = 12;
+    optional double map_state_date_time_swap = 13;
+    optional double map_state_date_time_set = 14;
+    optional double end_time = 15;
+    optional double last_planning_timeout = 16;
+    optional double last_planning_end_timestamp = 17;
+}
+
+message NnpToFctOutput{
+    //NNP快捷开关（主界面）
+    optional NnpActiveOnOffSet nnp_active_on_off_set = 30;
+    // Lane change 提醒
+    optional ChangeLaneInfor lane_change_infor = 1;
+    // 变道方向提示
+    optional LaneChangeDir lane_change_direction = 2;
+    // 变道语音提醒
+    optional LcAudioPlay lc_audio_play = 3;
+    // 语音变道反馈
+    optional bool lcsndrequest = 4;
+    // DCLC语音播报
+    optional DclcAudioPlay dclc_audio_play = 5;
+    // 变道危险报警（仪表显示）
+    optional LaneChangeWarn lane_change_warning = 6;
+    // 变道转向灯请求
+    optional LightReq light_request = 7;
+    // 变道等待超时提醒
+    optional bool lane_change_pending_alert = 8;
+    // NNP_语音提示关闭转向灯提醒
+    optional bool nnp_light_remind = 9;
+    // 接管行驶任务
+    optional bool lateralctr_takeover = 10;
+    // 语音播报
+    optional NNPScenarios nnp_scenarios_audio_play = 11;
+    // 中控图像显示
+    optional NNPScenarios nnp_scenarios = 12;
+    // 汇入汇出状态提醒
+    optional NNPRinoStatus nnp_rino_status = 13;
+    // 收费车道确认反馈
+    optional uint32 paymode_confirm_feedback = 14;
+    // 智能车速匹配反馈
+    optional uint32 spdadapt_comfirm_feedback = 15;
+    optional uint32 map_spd_km = 38;
+    // 高精地图限速
+    optional double tsr_speedsign = 16;
+    // 驾驶员切换自动变道功能设置反馈
+    optional bool aalc_mode = 17;
+    // nnp激活条件
+    optional NnpActivationConditions nnp_activation_conditions = 18;
+    // 距离汇入点的距离
+    optional float nnp_d_distance2_onramp_sg = 19;
+    // 距离下匝道点的距离
+    optional float nnp_d_distance2_downramp_sg = 20;
+    // 即将驶入地图,距离进入ODD的距离
+    optional float nnp_d_distance_into_odd_sg = 21;
+    // 即将驶出地图,距离驶出ODD的距离
+    optional float nnp_d_distance_outof_odd_sg = 22;
+    // 当前车道信息
+    optional CrrentLaneMg crrent_lane_mg = 23;
+    // 变道安全停车可实现
+    optional bool nnp_is_nnpmrmflf_bl = 24;
+    // 变道安全停车已完成
+    optional bool nnp_is_nnpmrm_doneflf_bl = 25;
+    // 本车道安全停车可实现
+    optional bool nnp_is_nnpemflf_bl = 26;
+    // 本车道安全停车已完成
+    optional bool nnp_is_nnpem_doneflf_bl = 27;
+    //NNP软件故障
+    optional NNPSoftwareFault nnp_software_fault = 28;
+    // 
+    optional LightSignalRq light_signal_reqst = 29;
+    optional uint32 curr_lane_spd_km = 31;
+    // 原始的是否在地图中的判断结果
+    optional bool is_in_hdmap = 32;
+
+    // nnp切换条件
+    optional NnpStateChangeConditions nnp_statechange_conditions = 33;
+
+    // 进入匝道车道个数
+    optional uint32 to_ramp_lane_count = 34;
+    optional LovalviewTime localview_time = 35;
+    optional TunnelSpdAdaptDebug tunnel_spd_adapt_debug = 36;
+    optional hozon.routing.PerceptionChangeLaneTypes change_lane_types = 37;
+    optional bool need_speed_adapt = 39;
+    optional int32 adapt_cruise_speed_km = 40;
+    optional int32 adcs_longitud_ctrl_setdistance = 41;
+}
+message NnpFct{
+    optional FctToNnpInput fct_to_nnp_input = 1;
+    optional NnpToFctOutput nnp_to_fct_output = 2;
+}
+message TsrInfo{
+    optional bool valid = 2 [default = false];
+    optional uint32 speed_limit_km = 3 [default = 0];
+}
+message TunnelSpdAdaptDebug{
+    enum CurrState {
+        INTO_TUNNEL = 0;
+        IN_TUNNEL = 1;
+        OUT_TUNNEL = 2;
+    }
+    optional CurrState curr_state = 1;
+    optional bool find_tunnel = 3 [default = false];
+    optional double tunnel_dis = 5 [default = 1e5];
+    optional bool tunnel_adapt = 7 [default = false];
+    
+}

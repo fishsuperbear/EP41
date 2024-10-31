@@ -1,0 +1,64 @@
+[
+{
+	"ip_addr":"172.16.50.11",
+	"port":13400,
+	"fname":"mgbe3_0.50",
+	"thread_start_delay":10,
+	"test":[
+	{
+		"protocol_type":"TCP",
+		"timeout":2000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"payload_data":"1062ff00000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":9,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"06 00 00 00 00"
+		}
+		],
+		"describe":"<TG5_TC18> task1 激活类型未知的路由激活请求测试-激活1062",
+		"sever_close_wait":200
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":2000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"payload_data":"10 62 02 00 00 00 00"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":9,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"06 00 00 00 00"
+		}
+		],
+		"describe":"<TG5_TC18> task2 激活类型未知的路由激活响应后Required Action测试-激活1062",
+		"sever_close_wait":200
+	}
+	]
+}
+]

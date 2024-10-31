@@ -1,0 +1,49 @@
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-SOMEIP_deployment_spec.fdepl"
+import "DoSomeIP.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.DoSomeIP {
+	SomeIpServiceID = 4660
+
+	method udsMessageRequest {
+		SomeIpMethodID = 30000
+	}
+	
+	array my_array{
+		SomeIpArrayMaxLength = 100
+		SomeIpArrayLengthWidth = 4        
+	}
+
+	enumeration TargetAddressType {
+    	kPhysical{}
+    	kFunctional{}
+    }
+
+	struct DoSomeIPReqUdsMessage {
+    	udsSa{}
+       	udsTa{}
+    	taType{}
+      	udsData{}
+    }
+
+    struct DoSomeIPRespUdsMessage {
+       	udsSa{}
+       	udsTa{}
+       	result{}
+       	taType{}
+      	udsData{}
+    }
+
+	enumeration stdErrorTypeEnum {
+        OK {
+        }
+        NOT_OK {
+        }
+    }
+}
+
+define org.genivi.commonapi.someip.deployment for provider as MyService {
+	instance commonapi.DoSomeIP {
+		InstanceId = "commonapi.dosomeip"
+		SomeIpInstanceID = 22136
+	}
+}

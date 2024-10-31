@@ -1,0 +1,10 @@
+#include "common.idl"
+#include "type.idl"
+
+struct AlgTsrMsg {
+    uint8 spd_limit;
+};
+
+struct AlgPerceptionInfoFrame : IDLBaseType {
+    AlgTsrMsg tsr_info;
+};

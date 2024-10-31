@@ -1,0 +1,278 @@
+{
+  "applicationName": "/HuaweiMDC/PlatformApplication/SmcApplication/SwComponent/smc/SmcProcess",
+  "services": [
+    {
+      "service": "/HuaweiMDC/PlatformServices/DiagComServer",
+      "serviceId": 103,
+      "events": [],
+      "fields": [],
+      "methods": [
+        {
+          "method": "Request",
+          "id": 36212,
+          "isFireAndForget": false,
+          "requestTopicName": "RequestTopicNameOfRequestDeployment",
+          "replyTopicName": "ReplyTopicNameOfRequestDeployment",
+          "requestDataType": [
+            "/HuaweiMDC/PlatformServices/DiagMsgDataType/DataTypes/ByteVector"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Boolean",
+            "/HuaweiMDC/PlatformServices/DiagMsgDataType/DataTypes/ByteVector"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServices/DiagComServer/RequestOutput"
+        }
+      ],
+      "instances": [
+        {
+          "shortName": "/HuaweiMDC/PlatformApplication/DiagAgentApplication/Service/Consumer/DiagComServer/OperationCycleSetInstance",
+          "instance": "3",
+          "domainId": 1,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "default_qos.xml",
+          "events": [],
+          "fields": [],
+          "methods": [
+            {
+              "id": 36212,
+              "methodQosProfile": "default_qos.xml",
+              "dataIds": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "service": "/HuaweiMDC/PlatformServiceInterface/SmnServiceInterface/SmnServiceInterface",
+      "serviceId": 2981,
+      "events": [],
+      "fields": [],
+      "methods": [
+        {
+          "method": "GetStartupResult",
+          "id": 34012,
+          "isFireAndForget": false,
+          "requestTopicName": "RequestOfRpcOfGetStartupResultDeployment",
+          "replyTopicName": "ReplyOfRpcOfGetStartupResultDeployment",
+          "requestDataType": [],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Boolean"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/SmnServiceInterface/SmnServiceInterface/GetStartupResultOutput"
+        },
+        {
+          "method": "ProcessStateChange",
+          "id": 42715,
+          "isFireAndForget": false,
+          "requestTopicName": "RequestOfRpcOfProcessStateChangeDeployment",
+          "replyTopicName": "ReplyOfRpcOfProcessStateChangeDeployment",
+          "requestDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/SmcMsgDataTypes/DataTypes/StateTransition"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/SmnServiceInterface/SmnServiceInterface/ProcessStateChangeOutput"
+        },
+        {
+          "method": "GetSpecifiedFgState",
+          "id": 17325,
+          "isFireAndForget": false,
+          "requestTopicName": "RequestOfRpcOfGetSpecifiedFgStateDeployment",
+          "replyTopicName": "ReplyOfRpcOfGetSpecifiedFgStateDeployment",
+          "requestDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/SmnMsgDataTypes/StringVec"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/PlatformServiceInterface/SmnMsgDataTypes/StringVec"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/SmnServiceInterface/SmnServiceInterface/GetSpecifiedFgStateOutput"
+        }
+      ],
+      "instances": [
+        {
+          "shortName": "/HuaweiMDC/PlatformApplication/SmcApplication/Service/Dp/Consumer/SmcRequiredSmnDdsServiceInstance",
+          "instance": "1",
+          "domainId": 12,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "default_qos.xml",
+          "events": [],
+          "fields": [],
+          "methods": [
+            {
+              "id": 34012,
+              "methodQosProfile": "default_qos.xml",
+              "dataIds": []
+            },
+            {
+              "id": 17325,
+              "methodQosProfile": "default_qos.xml",
+              "dataIds": []
+            },
+            {
+              "id": 42715,
+              "methodQosProfile": "default_qos.xml",
+              "dataIds": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "service": "/HuaweiMDC/MdcPlatformServices/PlatformServiceInterface/FmServiceInterface/FmReportEventService",
+      "serviceId": 1089,
+      "events": [],
+      "fields": [],
+      "methods": [
+        {
+          "method": "ReportFault",
+          "id": 14388,
+          "isFireAndForget": false,
+          "requestTopicName": "RequestReportFaultDdsRpc",
+          "replyTopicName": "ReplyReportFaultDdsRpc",
+          "requestDataType": [
+            "/HuaweiMDC/MdcPlatformServices/PlatformServiceInterface/DataTypes/FmFaultData"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppDataType/Int32"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/PlatformServiceInterface/FmServiceInterface/FmReportEventService/ReportFaultOutput"
+        },
+        {
+          "method": "ReportCheckPoint",
+          "id": 3322,
+          "isFireAndForget": false,
+          "requestTopicName": "RequestReportCheckPointDdsRpc",
+          "replyTopicName": "ReplyReportCheckPointDdsRpc",
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/int32_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/PlatformServiceInterface/FmServiceInterface/FmReportEventService/ReportCheckPointOutput"
+        },
+        {
+          "method": "ReportProcState",
+          "id": 24315,
+          "isFireAndForget": false,
+          "requestTopicName": "RequestReportProcStateDdsRpc",
+          "replyTopicName": "ReplyReportProcStateDdsRpc",
+          "requestDataType": [
+            "/HuaweiMDC/StdCppDataType/String",
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint32_t",
+            "/HuaweiMDC/StdCppBasicDataType/int32_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/MdcPlatformServices/PlatformServiceInterface/FmServiceInterface/FmReportEventService/ReportProcStateOutput"
+        }
+      ],
+      "instances": [
+        {
+          "shortName": "/HuaweiMDC/PlatformApplication/SmcApplication/Service/Dp/Consumer/SmcReportEventRequiredDdsServiceInstance",
+          "instance": "1444",
+          "domainId": 14,
+          "network": "192.168.10.6",
+          "isClient": true,
+          "qosProfile": "default_qos.xml",
+          "events": [],
+          "fields": [],
+          "methods": [
+            {
+              "id": 14388,
+              "methodQosProfile": "default_qos.xml",
+              "dataIds": []
+            },
+            {
+              "id": 3322,
+              "methodQosProfile": "default_qos.xml",
+              "dataIds": []
+            },
+            {
+              "id": 24315,
+              "methodQosProfile": "default_qos.xml",
+              "dataIds": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "service": "/HuaweiMDC/PlatformServiceInterface/PlatformStateAgentServiceInterface/PlatformStateAgent",
+      "serviceId": 2983,
+      "events": [
+        {
+          "event": "PlatformStateEvent",
+          "id": 43376,
+          "isDpRawData": false,
+          "dataType": "/HuaweiMDC/PlatformServiceInterface/PlatformStateAgentMsgDataTypes/DataTypes/PlatformStateMsg",
+          "topicName": "PlatformStateEventDdsDeployment"
+        }
+      ],
+      "fields": [],
+      "methods": [
+        {
+          "method": "QueryPlatformState",
+          "id": 44471,
+          "isFireAndForget": false,
+          "requestTopicName": "RequestRpcQueryPlatformStateDdsDeployment",
+          "replyTopicName": "ReplyRpcQueryPlatformStateDdsDeployment",
+          "requestDataType": [],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/PlatformStateAgentServiceInterface/PlatformStateAgent/QueryPlatformStateOutput"
+        },
+        {
+          "method": "RequestPlatformState",
+          "id": 37348,
+          "isFireAndForget": false,
+          "requestTopicName": "RequestRpcRequestPlatformStateDdsDeployment",
+          "replyTopicName": "ReplyRpcRequestPlatformStateDdsDeployment",
+          "requestDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t",
+            "/HuaweiMDC/ApplicationDataType/Uint32Vector"
+          ],
+          "replyDataType": [
+            "/HuaweiMDC/StdCppBasicDataType/uint8_t"
+          ],
+          "methodOutputName": "/HuaweiMDC/PlatformServiceInterface/PlatformStateAgentServiceInterface/PlatformStateAgent/RequestPlatformStateOutput"
+        }
+      ],
+      "instances": [
+        {
+          "shortName": "/HuaweiMDC/PlatformApplication/SmcApplication/Service/Dp/Provider/PlatformStateAgentToAppProvidedDdsServiceInstance",
+          "instance": "1",
+          "domainId": 12,
+          "network": "192.168.10.6",
+          "isClient": false,
+          "qosProfile": "small_buffer_qos.xml",
+          "events": [
+            {
+              "id": 43376,
+              "qosProfile": "small_buffer_qos.xml",
+              "dataIds": []
+            }
+          ],
+          "fields": [],
+          "methods": [
+            {
+              "id": 44471,
+              "methodQosProfile": "small_buffer_qos.xml",
+              "dataIds": []
+            },
+            {
+              "id": 37348,
+              "methodQosProfile": "default_qos.xml",
+              "dataIds": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

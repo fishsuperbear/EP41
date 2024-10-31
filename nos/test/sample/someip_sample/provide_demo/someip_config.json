@@ -1,0 +1,418 @@
+{
+    "services" :
+    [
+        {
+            "short_name" : "service_1",
+            "service" : 1,
+            "major_version" : 1,
+            "minor_version" : 0,
+            "events" :
+            [
+                {
+                    "short_name" : "event_1001",
+                    "event" : 1001,
+                    "serializer" : "SOMEIP",
+                    "segment_length" : 1408,
+                    "separation_time" : 0,
+                    "communication_type" : "UDP"
+                },
+                {
+                    "short_name" : "event_1002",
+                    "event" : 1002,
+                    "communication_type" : "TCP"
+                },
+                {
+                    "short_name" : "event_1003",
+                    "event" : 1003,
+                    "communication_type" : "UDP"
+                },
+                {
+                    "short_name" : "event_1004",
+                    "event" : 1004,
+                    "communication_type" : "TCP"
+                }
+            ],
+            "fields" :
+            [
+                {
+                    "short_name" : "field_1",
+                    "notifier" : 1003,
+                    "getter" : 1,
+                    "setter" : 2
+                },
+                {
+                    "notifier" : 1004
+                }
+            ],
+            "methods" :
+            [
+                {
+                    "short_name" : "method_1",
+                    "method" : 1,
+                    "segment_length_request" : 1400,
+                    "segment_length_response" : 1400,
+                    "separation_time_request" : 1000,
+                    "separation_time_response" : 2000,
+                    "communication_type" : "UDP"
+                },
+                {
+                    "short_name" : "method_2",
+                    "method" : 2,
+                    "fire_and_forget" : true,
+                    "communication_type" : "UDP"
+                },
+                {
+                    "short_name" : "method_3",
+                    "method" : 3,
+                    "communication_type" : "UDP"
+                },
+                {
+                    "short_name" : "method_4",
+                    "method" : 4,
+                    "communication_type" : "UDP"
+                },
+                {
+                    "short_name" : "method_5",
+                    "method" : 5,
+                    "communication_type" : "UDP"
+                }
+            ],
+            "eventgroups" :
+            [
+                {
+                    "short_name" : "eventgroup_1",
+                    "eventgroup" : 1,
+                    "events" : [1001, 1002]
+                },
+                {
+                    "short_name" : "eventgroup_2",
+                    "eventgroup" : 2,
+                    "events" : [1002]
+                },
+                {
+                    "short_name" : "eventgroup_3",
+                    "eventgroup" : 3,
+                    "events" : [1003]
+                },
+                {
+                    "short_name" : "eventgroup_4",
+                    "eventgroup" : 4,
+                    "events" : [1001, 1004]
+                }
+            ]
+        },
+        {
+            "short_name" : "service_2",
+            "service" : 2,
+            "major_version" : 1,
+            "minor_version" : 0
+        }
+    ],
+    "provided_instances" :
+    [
+        {
+            "service" : 1,
+            "major_version" : 1,
+            "short_name" : "radar_ProvidedSomeipService1Instance1",
+            "instance" : 1,
+            "load_Balancing_priority" : 0,
+            "load_Balancing_weight" : 0,
+            "udp_port" : 30491,
+            "tcp_port" : 30491,
+            "tcp_reuse" : false,
+            "udp_reuse" : false,
+            "udp_collection" : 1408,
+            "method_attribute" :
+            [
+                {
+                    "method" : 3,
+                    "udp_collection_buffer_timeout" : 0,
+                    "udp_collection_trigger" : "ALWAYS"
+                },
+                {
+                    "method" : 4,
+                    "udp_collection_buffer_timeout" : 0,
+                    "udp_collection_trigger" : "ALWAYS"
+                }
+            ],
+            "event_attribute" :
+            [
+                {
+                    "event" : 1001,
+                    "udp_collection_buffer_timeout" : 0,
+                    "udp_collection_trigger" : "NEVER"
+                },
+                {
+                    "event" : 1002,
+                    "udp_collection_buffer_timeout" : 0,
+                    "udp_collection_trigger" : "ALWAYS"
+                }
+            ],
+            "offer_time_reference" : "radar_SomeipServerServiceInstanceConfig",
+            "ethernet_reference" : "radarNetworkEndpoint",
+            "tcp_tls_flag" : false,
+            "tcp_tls_handshake_key" :
+            [
+                {
+                    "algorithm_family" : "AES",
+                    "algorithm_mode" : "mode",
+                    "algorithm_second_family" : "RSA"
+                }
+            ],
+            "tcp_private_key_name": "server.key",
+            "tcp_certification_name": "server.crt",
+            "udp_tls_flag" : false,
+            "udp_tls_handshake_key" :
+            [
+                {
+                    "algorithm_family" : "AES",
+                    "algorithm_mode" : "mode",
+                    "algorithm_second_family" : "RSA"
+                }
+            ],
+            "udp_private_key_name": "server.key",
+            "udp_certification_name": "server.crt",
+            "provided_eventgroups" :
+            [
+                {
+                    "eventgroup" : 1,
+                    "multicast_addr_ip4" : "224.224.224.240",
+                    "multicast_port" : 30502,
+                    "threshold" : 2,
+                    "subscribe_time_reference" : "radar_SomeipServerSubscribeConfig"
+                },
+                {
+                    "eventgroup" : 2,
+                    "threshold" : 0
+                }
+            ]
+        },
+        {
+            "service" : 1,
+            "major_version" : 1,
+            "short_name" : "radar_ProvidedSomeipService1Instance2",
+            "instance" : 2,
+            "load_Balancing_priority" : 0,
+            "load_Balancing_weight" : 0,
+            "udp_port" : 30505,
+            "tcp_port" : 30505,
+            "tcp_reuse" : false,
+            "udp_reuse" : false,
+            "udp_collection" : 1408,
+            "method_attribute" :
+            [
+                {
+                    "method" : 3,
+                    "udp_collection_buffer_timeout" : 0,
+                    "udp_collection_trigger" : "ALWAYS"
+                },
+                {
+                    "method" : 4,
+                    "udp_collection_buffer_timeout" : 0,
+                    "udp_collection_trigger" : "ALWAYS"
+                }
+            ],
+            "event_attribute" :
+            [
+                {
+                    "event" : 1001,
+                    "udp_collection_buffer_timeout" : 0,
+                    "udp_collection_trigger" : "NEVER"
+                },
+                {
+                    "event" : 1002,
+                    "udp_collection_buffer_timeout" : 0,
+                    "udp_collection_trigger" : "ALWAYS"
+                }
+            ],
+            "offer_time_reference" : "radar_SomeipServerServiceInstanceConfig",
+            "ethernet_reference" : "radarNetworkEndpoint",
+            "tcp_tls_flag" : false,
+            "udp_tls_flag" : false,
+            "provided_eventgroups" :
+            [
+                {
+                    "eventgroup" : 1,
+                    "multicast_addr_ip4" : "224.224.224.240",
+                    "multicast_port" : 30506,
+                    "threshold" : 2,
+                    "subscribe_time_reference" : "radar_SomeipServerSubscribeConfig"
+                },
+                {
+                    "eventgroup" : 2,
+                    "threshold" : 0
+                }
+            ]
+        },
+        {
+            "service" : 2,
+            "major_version" : 1,
+            "short_name" : "radar_ProvidedSomeipService2Instance1",
+            "instance" : 2,
+            "udp_port" : 30511,
+            "tcp_port" : 30511,
+            "tcp_reuse" : false,
+            "udp_reuse" : false,
+            "offer_time_reference" : "radar_SomeipServerServiceInstanceConfig",
+            "ethernet_reference" : "radarNetworkEndpoint"
+        }
+    ],
+    "required_instances" :
+    [
+        {
+            "service" : 1,
+            "major_version" : 1,
+            "short_name" : "radar_RequiredSomeipService1Instance1",
+            "instance" : 1,
+            "udp_port" : 30503,
+            "tcp_port" : 30503,
+            "tcp_reuse" : false,
+            "udp_reuse" : false,
+            "udp_collection" : 1408,
+            "method_attribute" :
+            [
+                {
+                    "method" : 3,
+                    "udp_collection_buffer_timeout" : 0,
+                    "udp_collection_trigger" : "ALWAYS"
+                },
+                {
+                    "method" : 4,
+                    "udp_collection_buffer_timeout" : 0,
+                    "udp_collection_trigger" : "ALWAYS"
+                }
+            ],
+            "find_time_reference" : "radar_SomeipClientServiceInstanceConfig",
+            "ethernet_reference" : "radarNetworkEndpoint",
+            "tcp_tls_flag" : false,
+            "tcp_tls_handshake_key" :
+            [
+                {
+                    "algorithm_family" : "AES",
+                    "algorithm_mode" : "mode",
+                    "algorithm_second_family" : "RSA"
+                }
+            ],
+            "tcp_private_key_name": "client.key",
+            "tcp_certification_name": "client.crt",
+            "udp_tls_flag" : false,
+            "udp_tls_handshake_key" :
+            [
+                {
+                    "algorithm_family" : "AES",
+                    "algorithm_mode" : "mode",
+                    "algorithm_second_family" : "RSA"
+                }
+            ],
+            "udp_private_key_name": "client.key",
+            "udp_certification_name": "client.crt",
+            "required_eventgroups" :
+            [
+                {
+                    "eventgroup" : 1,
+                    "subscribe_time_reference": "radar_SomeipClientSubscribeConfig"
+                },
+                {
+                    "eventgroup" : 3,
+                    "subscribe_time_reference": "radar_SomeipClientSubscribeConfig"
+                }
+            ]
+        },
+        {
+            "service" : 1,
+            "major_version" : 1,
+            "short_name" : "radar_RequiredSomeipService1Instance2",
+            "instance" : 2,
+            "udp_port" : 30504,
+            "tcp_port" : 30504,
+            "tcp_reuse" : false,
+            "udp_reuse" : false,
+            "udp_collection" : 1408,
+            "method_attribute" :
+            [
+                {
+                    "method" : 3,
+                    "udp_collection_buffer_timeout" : 0,
+                    "udp_collection_trigger" : "ALWAYS"
+                },
+                {
+                    "method" : 4,
+                    "udp_collection_buffer_timeout" : 0,
+                    "udp_collection_trigger" : "ALWAYS"
+                }
+            ],
+            "find_time_reference" : "radar_SomeipClientServiceInstanceConfig",
+            "ethernet_reference" : "radarNetworkEndpoint",
+            "tcp_tls_flag" : false,
+            "udp_tls_flag" : false,
+            "required_eventgroups" :
+            [
+                {
+                    "eventgroup" : 1,
+                    "subscribe_time_reference": "radar_SomeipClientSubscribeConfig"
+                },
+                {
+                    "eventgroup" : 3,
+                    "subscribe_time_reference": "radar_SomeipClientSubscribeConfig"
+                }
+            ]
+        }
+    ],
+    "sd_server_offer_times" :
+    [
+        {
+            "sd_time_name" : "radar_SomeipServerServiceInstanceConfig",
+            "initial_delay_min" : 10,
+            "initial_delay_max" : 50,
+            "repetitions_base_delay" : 100,
+            "repetitions_max" : 0,
+            "ttl" : 10000,
+            "cyclic_offer_delay" : 3000,
+            "request_response_delay_min" : 10,
+            "request_response_delay_max" : 20
+        }
+    ],
+    "sd_client_find_times" :
+    [
+        {
+            "sd_time_name" : "radar_SomeipClientServiceInstanceConfig",
+            "initial_delay_min" : 10,
+            "initial_delay_max" : 50,
+            "repetitions_base_delay" : 100,
+            "repetitions_max" : 5,
+            "ttl" : 3000
+        }
+    ],
+    "sd_client_subscribe_times" :
+    [
+        {
+            "sd_time_name" : "radar_SomeipClientSubscribeConfig",
+            "request_response_delay_min" : 10,
+            "request_response_delay_max" : 50,
+            "subscribe_retry_times" : 2,
+            "subscribe_retry_delay" : 3,
+            "subscribe_ttl" : 3000
+        }
+    ],
+    "sd_server_subscribe_times" :
+    [
+        {
+            "sd_time_name" : "radar_SomeipServerSubscribeConfig",
+            "request_response_delay_min" : 10,
+            "request_response_delay_max" : 50
+        }
+    ],
+    "network_endpoints" :
+    [
+        {
+            "network_id" : "radarNetworkEndpoint",
+            "interface_name" : "mgbe3_0",
+            "ip_addr_type" : 4,
+            "subnet_mask" : "255.255.255.0",
+            "priority" : 1,
+            "ttl" : 255,
+            "multicast_ip_addr" : "224.224.224.244",
+            "multicast_port" : 30490
+        }
+    ]
+}

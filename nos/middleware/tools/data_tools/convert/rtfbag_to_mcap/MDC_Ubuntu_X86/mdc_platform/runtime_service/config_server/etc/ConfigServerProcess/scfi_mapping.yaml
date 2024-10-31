@@ -1,0 +1,12 @@
+identifier:
+  "MAPPING"
+description: "Mapping module"
+config_server:
+  sendInstanceID:
+    ConfigServerServiceInterface:
+        instanceId: [1]
+        portName: ["ConfigServerToAppPPort"]
+  recvInstanceID:
+    FmReportEventService:
+        instanceId: [1444]
+        portName: ["ConfigServerFromFmRPort"]

@@ -1,0 +1,408 @@
+[
+  {
+    "key": "3a96cf24-e57b-404a-a99b-5787de6eab87",
+    "value": {
+      "object[]": [
+        {
+          "key": "KeySlotPrototypeProps",
+          "value": {
+            "object[]": [
+              {
+                "key": "SlotUid",
+                "value": {
+                  "string": "3a96cf24-e57b-404a-a99b-5787de6eab87"
+                }
+              },
+              {
+                "key": "SlotNumber",
+                "value": {
+                  "uint32": 1
+                }
+              },
+              {
+                "key": "KeySlotType",
+                "value": {
+                  "uint32": 2
+                }
+              },
+              {
+                "key": "CryptoAlgType",
+                "value": {
+                  "string": "CBC-AES-256"
+                }
+              },
+              {
+                "key": "CryptoObjectType",
+                "value": {
+                  "string": "SYMMETRIC-KEY"
+                }
+              },
+              {
+                "key": "SlotCapacity",
+                "value": {
+                  "uint32": 32
+                }
+              },
+              {
+                "key": "Exportability",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "AllowContentTypeChange",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "AllocateSpareSlot",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "ContentAllowedUsage",
+                "value": {
+                  "uint32": 1
+                }
+              },
+              {
+                "key": "MaxUpdateAllowed",
+                "value": {
+                  "int32": -1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "key": "20c271d2-ab0b-4025-9841-f12ee6c24b24",
+    "value": {
+      "object[]": [
+        {
+          "key": "KeySlotPrototypeProps",
+          "value": {
+            "object[]": [
+              {
+                "key": "SlotUid",
+                "value": {
+                  "string": "20c271d2-ab0b-4025-9841-f12ee6c24b24"
+                }
+              },
+              {
+                "key": "SlotNumber",
+                "value": {
+                  "uint32": 2
+                }
+              },
+              {
+                "key": "KeySlotType",
+                "value": {
+                  "uint32": 2
+                }
+              },
+              {
+                "key": "CryptoAlgType",
+                "value": {
+                  "string": "RSA2048-SHA256-PKCS"
+                }
+              },
+              {
+                "key": "CryptoObjectType",
+                "value": {
+                  "string": "PRIVATE-KEY"
+                }
+              },
+              {
+                "key": "SlotCapacity",
+                "value": {
+                  "uint32": 2048
+                }
+              },
+              {
+                "key": "Exportability",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "AllowContentTypeChange",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "AllocateSpareSlot",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "ContentAllowedUsage",
+                "value": {
+                  "uint32": 4
+                }
+              },
+              {
+                "key": "MaxUpdateAllowed",
+                "value": {
+                  "int32": -1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "key": "0b87136e-4fd0-450c-b395-f3d06bf2c2af",
+    "value": {
+      "object[]": [
+        {
+          "key": "KeySlotPrototypeProps",
+          "value": {
+            "object[]": [
+              {
+                "key": "SlotUid",
+                "value": {
+                  "string": "0b87136e-4fd0-450c-b395-f3d06bf2c2af"
+                }
+              },
+              {
+                "key": "SlotNumber",
+                "value": {
+                  "uint32": 3
+                }
+              },
+              {
+                "key": "KeySlotType",
+                "value": {
+                  "uint32": 2
+                }
+              },
+              {
+                "key": "CryptoAlgType",
+                "value": {
+                  "string": "RSA2048-SHA256-PKCS"
+                }
+              },
+              {
+                "key": "CryptoObjectType",
+                "value": {
+                  "string": "PRIVATE-KEY"
+                }
+              },
+              {
+                "key": "SlotCapacity",
+                "value": {
+                  "uint32": 2048
+                }
+              },
+              {
+                "key": "Exportability",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "AllowContentTypeChange",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "AllocateSpareSlot",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "ContentAllowedUsage",
+                "value": {
+                  "uint32": 4
+                }
+              },
+              {
+                "key": "MaxUpdateAllowed",
+                "value": {
+                  "int32": -1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "key": "99be0029-faa7-4290-b392-3fcff0a52d21",
+    "value": {
+      "object[]": [
+        {
+          "key": "KeySlotPrototypeProps",
+          "value": {
+            "object[]": [
+              {
+                "key": "SlotUid",
+                "value": {
+                  "string": "99be0029-faa7-4290-b392-3fcff0a52d21"
+                }
+              },
+              {
+                "key": "SlotNumber",
+                "value": {
+                  "uint32": 4
+                }
+              },
+              {
+                "key": "KeySlotType",
+                "value": {
+                  "uint32": 2
+                }
+              },
+              {
+                "key": "CryptoAlgType",
+                "value": {
+                  "string": "DIAG-27-APP-MASK"
+                }
+              },
+              {
+                "key": "CryptoObjectType",
+                "value": {
+                  "string": "DIAG-27"
+                }
+              },
+              {
+                "key": "SlotCapacity",
+                "value": {
+                  "uint32": 4
+                }
+              },
+              {
+                "key": "Exportability",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "AllowContentTypeChange",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "AllocateSpareSlot",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "ContentAllowedUsage",
+                "value": {
+                  "uint32": 0
+                }
+              },
+              {
+                "key": "MaxUpdateAllowed",
+                "value": {
+                  "int32": -1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "key": "15e84fe3-525f-4fe1-8031-e84e7e0a640b",
+    "value": {
+      "object[]": [
+        {
+          "key": "KeySlotPrototypeProps",
+          "value": {
+            "object[]": [
+              {
+                "key": "SlotUid",
+                "value": {
+                  "string": "15e84fe3-525f-4fe1-8031-e84e7e0a640b"
+                }
+              },
+              {
+                "key": "SlotNumber",
+                "value": {
+                  "uint32": 5
+                }
+              },
+              {
+                "key": "KeySlotType",
+                "value": {
+                  "uint32": 2
+                }
+              },
+              {
+                "key": "CryptoAlgType",
+                "value": {
+                  "string": "DIAG-27-BOOT-MASK"
+                }
+              },
+              {
+                "key": "CryptoObjectType",
+                "value": {
+                  "string": "DIAG-27"
+                }
+              },
+              {
+                "key": "SlotCapacity",
+                "value": {
+                  "uint32": 4
+                }
+              },
+              {
+                "key": "Exportability",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "AllowContentTypeChange",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "AllocateSpareSlot",
+                "value": {
+                  "bool": true
+                }
+              },
+              {
+                "key": "ContentAllowedUsage",
+                "value": {
+                  "uint32": 0
+                }
+              },
+              {
+                "key": "MaxUpdateAllowed",
+                "value": {
+                  "int32": -1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "key": "Checksum",
+    "value": {
+      "string": "2BA85E89F61DA1859A837934"
+    }
+  }
+]

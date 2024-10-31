@@ -1,0 +1,65 @@
+%YAML:1.0
+
+recvInstances:
+    - name: chassis
+      type: cm_proxy
+      topic: /hozon/chassis
+      domainId: 0
+
+sendInstances:
+    - name: apa2chassis
+      type: proto_skeleton
+      topic: /soc/apa2mcu_chassis
+      domainId: 0
+    - name: ego2chassis
+      type: proto_skeleton
+      topic: /planning/ego_trajectory
+      domainId: 0
+    - name: nnplane
+      type: proto_skeleton
+      topic: /perception/fsd/transportelement_1
+      domainId: 0
+    - name: hpplane
+      type: proto_skeleton
+      topic: /perception/parking/transportelement_2
+      domainId: 0
+    - name: nnplocation
+      type: proto_skeleton
+      topic: /localization/location
+      domainId: 0
+    - name: hpplocation
+      type: proto_skeleton
+      topic: /perception/parking/slam_location
+      domainId: 0
+    - name: nnpobject
+      type: proto_skeleton
+      topic: /perception/parking/obj_fusion_1
+      domainId: 0
+    - name: hppobject
+      type: proto_skeleton
+      topic: /perception/parking/obj_fusion_2
+      domainId: 0
+    - name: sm2mcu
+      type: proto_skeleton
+      topic: /soc/sm_to_mcu
+      domainId: 0
+    - name: parkinglot2hmi_2
+      type: proto_skeleton
+      topic: /perception/parking/parkinglot2hmi_2
+      domainId: 0
+
+log:
+    mode: 3
+    file: ./
+    name: SSTT
+    description: for_sensor_trans_test
+    level: 0
+    adf:
+      level: 0  
+
+trigger:
+    - name: main
+      type: PERIOD
+      period: 10
+      auxSources:
+          - name: chassis

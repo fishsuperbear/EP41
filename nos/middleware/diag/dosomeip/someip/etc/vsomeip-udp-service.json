@@ -1,0 +1,33 @@
+{
+    "unicast": "192.168.1.11",
+    "logging": {
+        "level": "debug",
+        "console": "true",
+        "file": {
+            "enable": "true",
+            "path": "/userdata/ytx/log/do_someip_s.log"
+        },
+        "dlt": "false"
+    },
+    "applications": [
+        {
+            "name": "service-sample",
+            "id": "0x1277"
+        }
+    ],
+    "services": [
+        {
+            "service": "0x1234",
+            "instance": "0x5678",
+            "reliable" : { "port" : "30509", "enable-magic-cookies" : "false" },
+            "unreliable" : "31000"
+        }
+    ],
+    "routing": "service-sample",
+    "service-discovery": {
+        "enable": "true",
+        "multicast": "239.192.255.123",
+        "port": "30490",
+        "protocol": "udp"
+    }
+}

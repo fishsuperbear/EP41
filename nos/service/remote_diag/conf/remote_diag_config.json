@@ -1,0 +1,45 @@
+{
+    // log config
+    "LogAppName": "REMOTE_DIAG",
+    "LogAppDescription": "remote_diag",
+    "LogContextName": "REMOTE_DIAG",
+    "LogLevel": 1, // REMOTE_DIAG_TRACE=0,REMOTE_DIAG_DEBUG,REMOTE_DIAG_INFO,REMOTE_DIAG_WARN,REMOTE_DIAG_ERROR,REMOTE_DIAG_CRITICAL,REMOTE_DIAG_OFF=6
+    "LogMode": 2, // REMOTE_DIAG_CONSOLE=0,REMOTE_DIAG_FILE,REMOTE_DIAG_CONSOLE_FILE=2
+    "LogFilePath": "/opt/usr/log/soc_log/",
+    "MaxLogFileNum": 10,
+    "MaxSizeOfLogFile": 20,
+    "DebugSwitch": "off",
+    // file transfer config
+    "FileTransferSize": 51200,
+    "FileCompressDirPath": "/opt/usr/storage/rmdiag/",
+    "FileDownloadDirPath": "/opt/usr/storage/rmdiag/plugin/",
+    // remote address config
+    "DiagServerAddress": "0x10C3",
+    "RemoteAddressList": [
+        "0xF000",
+        "0xF001"
+    ],
+    "DoipAddressList": [
+        "0x10CA",
+        "0x10CB"
+    ],
+    "DocanAddressList": [
+        "0x10C4",
+        "0x10C5",
+        "0x10C7",
+        "0x10C8",
+        "0x10C9",
+        "0x10CC"
+    ],
+    // rocketmq config
+    "RocketMQReqGroup": "GID_remotediag_req",
+    "RocketMQResGroup": "GID_remotediag_res",
+    "RocketMQAddress": "180.184.140.36:9876",
+    "RocketMQReqTopic": "remote_diag_req",
+    "RocketMQResTopic": "remote_diag_res",
+    "RocketMQResTag": "neta",
+    "RocketMQResKeys": "remote_diag",
+    "RocketMQDomain": "diag",
+    "RocketMQAccessKey": "8jCJ3ik16u6yxEZwsekpf0Cd",
+    "RocketMQSecretKey": "ZxeTqqM3j6kJV9dpCh9J2llT"
+}

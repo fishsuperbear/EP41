@@ -1,0 +1,111 @@
+{
+    "DoIpNetworkConfiguration": [
+        {
+            "netType": "IPv4",
+            "sourceType": "ex",
+            "if_use": "doipserver",
+            "ifName": "eth0",
+            "localIp": "192.168.1.11",
+            "multicastIp": "192.168.1.255",
+            "tcpPort": 13402,
+            "udpPort": 13402
+        },
+        {
+            "netType": "IPv4",
+            "sourceType": "in",
+            "if_use": "doipclient",
+            "ifName": "eth0",
+            "localIp": "192.168.1.11",
+            "multicastIp": "192.168.1.255",
+            "tcpPort": 13400,
+            "udpPort": 13400
+        }
+    ],
+    "DoIpRoutingTable": [
+        {
+            "logicalAddress": 1,
+            "Ip": "10.4.51.71",
+            "ifName": "enp0s31f6",
+            "maxRequestBytes": 4095
+        },
+        {
+            "logicalAddress": 2,
+            "Ip": "10.4.51.72",
+            "ifName": "enp0s31f6",
+            "maxRequestBytes": 4095
+        },
+        {
+            "logicalAddress": 4292,
+            "Ip": "can6",
+            "ifName": "can6",
+            "maxRequestBytes": 4095
+        },
+        {
+            "logicalAddress": 4295,
+            "Ip": "can2",
+            "ifName": "can2",
+            "maxRequestBytes": 4095
+        },
+        {
+            "logicalAddress": 4296,
+            "Ip": "can3",
+            "ifName": "can3",
+            "maxRequestBytes": 4095
+        },
+        {
+            "logicalAddress": 4297,
+            "Ip": "can4",
+            "ifName": "can4",
+            "maxRequestBytes": 4095
+        },
+        {
+            "logicalAddress": 4293,
+            "Ip": "can0",
+            "ifName": "can0",
+            "maxRequestBytes": 4095
+        },
+        {
+            "logicalAddress": 4300,
+            "Ip": "can8",
+            "ifName": "can8",
+            "maxRequestBytes": 4095
+        },
+        {
+            "logicalAddress": 4263,
+            "Ip": "can7",
+            "ifName": "can7",
+            "maxRequestBytes": 4095
+        }
+    ],
+    "DoIpTimerConfiguration": {
+        "maxInitialVehicleAnnouncementTime": 10,
+        "vehicleAnnouncementInterval": 500,
+        "vehicleAnnouncementCount": 3,
+        "vehicleIdentificationSyncStatus": false,
+        "tcpInitialInactivityTime": 2000, /* 2s */
+        "tcpGeneralInactivityTime": 300000, /* 5min */
+        "tcpAliveCheckResponseTimeout": 500, /* 500ms */
+        "doipAckTimeout": 2000
+    },
+    "DoIpEntityConfiguration": {
+        "entity_type": "node", /* edge_gateway, gateway, node */
+        "eid": 2505430597752,
+        "gid": 281474976710655,
+        "logicalAddress": 4291,
+        "maxTesterConnections": 3,
+        "maxRequestBytes": 4194304,
+        "sourceAddressWhiteList": [3712, 4194, 4291, 4195],
+        "functionAddressList": [58368]
+    },
+    "DoIpSwitchConfiguration": {
+        "isActivationLineDependent": false,
+        "resourceInitByIf": true,
+        "vinGidSyncUse": false,
+        "eidUseMac": true,
+        "furtherAcitionRequired": false,
+        "entityStatusMaxByteFieldUse": true,
+        "power_mode_support": false,
+        "authentication_required": false,
+        "confirmation_required": false
+    }
+}

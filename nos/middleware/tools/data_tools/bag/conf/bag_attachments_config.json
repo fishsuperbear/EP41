@@ -1,0 +1,52 @@
+{
+    "attachmens_list": [
+        {
+            "type": "normal",
+            "constraint_list" : [
+                {
+                    "topic_constraint" : [],
+                    "attachment_list": [
+                        "/app/version.json"
+                    ]
+                },
+                {
+                    "topic_constraint" : [
+                        "/soc/rawpointcloud"
+                    ],
+                    "attachment_list": [
+                        "/cfg/lidar_intrinsic_param/ATD128P.dat"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "cfg",
+            "constraint_list" : [
+                {
+                    "topic_constraint" : [],
+                    "attachment_list": [
+                        "conf_calib_7v/7v_front_120_cam_params",
+                        "conf_calib_7v/7v_front_30_cam_params",
+                        "conf_calib_7v/7v_left_front_cam_params",
+                        "conf_calib_7v/7v_left_rear_cam_params",
+                        "conf_calib_7v/7v_rear_cam_params",
+                        "conf_calib_7v/7v_right_front_cam_params",
+                        "conf_calib_7v/7v_right_rear_cam_params",
+                        "conf_calib_apa/front_fisheye_cam_params",
+                        "conf_calib_apa/left_fisheye_cam_params",
+                        "conf_calib_apa/rear_fisheye_cam_params",
+                        "conf_calib_apa/right_fisheye_cam_params"
+                    ]
+                },
+                {
+                    "topic_constraint" : [
+                        "/soc/rawpointcloud"
+                    ],
+                    "attachment_list": [
+                        "conf_calib_lidar/roof_lidar_params"
+                    ]
+                }
+            ]
+        }
+    ]
+}

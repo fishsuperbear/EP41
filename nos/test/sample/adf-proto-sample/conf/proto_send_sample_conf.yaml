@@ -1,0 +1,22 @@
+%YAML:1.0
+
+sendInstances:
+    - name: workresult
+      type: proto_skeleton
+      topic: /proto_sample_topic
+      domainId: 0
+
+log:
+    mode: 3
+    file: ./
+    name: cmps
+    description: cm_proto_sample
+    level: 2   
+    adf:
+      level: 2
+
+# trigger二选一即可
+trigger:
+    - name: main
+      type: PERIOD
+      period: 800

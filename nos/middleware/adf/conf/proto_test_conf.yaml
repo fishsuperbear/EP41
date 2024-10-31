@@ -1,0 +1,30 @@
+%YAML:1.0
+
+recvInstances:
+    - name: workresult
+      type: proto_proxy
+      topic: /proto_test_topic
+      domainId: 0
+    - name: chassis
+      type: proto_proxy
+      topic: /soc/chassis
+      domainId: 0
+
+log:
+    mode: 3
+    file: ./
+    name: prts
+    description: proto_test
+    level: 2  
+    adf:
+      level: 2
+
+# trigger二选一即可
+trigger:
+    - name: main
+      type: EVENT
+      mainSources:
+          - name: workresult
+            timeout: 1000
+          - name: chassis
+            timeout: 1000

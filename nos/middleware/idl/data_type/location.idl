@@ -1,0 +1,16 @@
+#include "common.idl"
+#include "type.idl"
+
+struct AlgLocation : IDLBaseType {
+    boolean isValid;
+    uint32 gpsWeek;
+    double gpsSec;
+    int32 received_ehp_counter;
+    uint8 coordinateType;
+    Point3f mountingError; 
+    AlgPoseWithCovariance pose;
+    AlgTwistWithCovariance velocity;
+    AlgAccelWithCovariance acceleration;
+    uint8 rtkStatus;
+    uint16 locationState;
+};

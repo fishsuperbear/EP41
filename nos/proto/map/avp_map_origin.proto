@@ -1,0 +1,321 @@
+syntax = "proto2";
+
+package perception_map.semanticmap;
+
+message Header {
+  optional string id           = 1;
+  optional string create_time  = 2;
+  optional double j02longitude = 3;
+  optional double j02latitude  = 4;
+  optional double j02altitude  = 5;  // lp: add height
+}
+message Point2d {
+  optional double x = 1 [default = nan];
+  optional double y = 2 [default = nan];
+}
+
+message Point3d {
+  optional double x = 1;
+  optional double y = 2;
+  optional double z = 3;
+}
+
+message Polyline {
+  repeated Point3d point3d = 1;
+}
+
+message Polygon {
+  repeated Polyline polyline = 1;
+}
+
+message Road { 
+  optional string id = 1;  // Road ID
+  enum TravelDirection {
+    UNKNOWN_TURN   = 0;
+    UNIDIRECTIONAL = 1;
+    BIDIRECTIONAL  = 2;
+  }
+  optional TravelDirection travel_direction = 2;  // travel direction
+  repeated string lane_group_id             = 3;  // lane group id.
+  repeated string left_boundary_id          = 4;  // left_boundary_id
+  repeated string right_boundary_id         = 5;  // right_boundary_id
+  enum RoadType {
+    UNKNOWN_TYPE = 0;
+    PARK         = 1;
+    PUBLIC       = 2;
+  }
+  optional RoadType road_type = 6;  // travel type
+  optional int32 from_floor   = 7;
+  optional int32 to_floor     = 8;
+}
+
+message Intersection {
+  optional string id      = 1;  // Intersection ID
+  optional Polygon shape  = 2;  // Geometric shape
+  repeated string lane_id = 3;
+          // lp: less something??? very important
+}
+
+message Lane {
+  optional string id = 1;  // Lane ID.
+  enum Type {
+    UNKNOWN_TYPE = 0;
+    DRIVING      = 1;  // Driving lane
+    SIDEWALK     = 2;  // Sidewalk lane
+    }
+  optional Type type                  = 2;   // lane type.
+  optional Polyline center_line       = 3;   // Center line's geometric shape.
+  optional double width               = 4;
+  repeated string predecessor_lane_id = 5;   // predecessor_lane_id.
+  repeated string successor_lane_id   = 6;   // successor_lane_id.
+  repeated string left_boundary_id    = 7;   // left_boundary_id.
+  repeated string right_boundary_id   = 8;   // right_boundary_id.
+  optional double speed_limit         = 9;   // m/s
+  optional double length              = 10;  // m
+  enum TurnType {
+    UNKNOWN_TURN = 0;  // unknown
+    STRAIGHT     = 1;  // straigh
+    RIGHT_TURN   = 2;  // right turn
+    LEFT_TURN    = 3;  // left turn
+    U_TURN       = 4;  // u turn
+    RIGHT_FRONT  = 5;  // right front
+    RIGHT_REAR   = 6;  // right rear
+    LEFT_FRONT   = 7;  // left front
+    LEFT_REAR    = 8;  // left rear
+  }
+  optional TurnType turn_type           = 11;  // turn type
+  repeated string left_forward_lane_id  = 12;  // left forward lane group
+  repeated string left_reverse_lane_id  = 13;  // left reverse lane group
+  repeated string right_forward_lane_id = 14;  // right forward lane group
+  repeated string right_reverse_lane_id = 15;  // right reverse lane group
+}
+
+
+message LaneGroup {
+  optional string id      = 1;  // lane group ID
+  repeated string lane_id = 2;  // lane ID
+}
+
+message Crosswalk {
+  optional string id      = 1;  // Crosswalk ID.
+  optional Polygon shape  = 2;  // Geometric shape
+  repeated string lane_id = 3;  // Lane's ID which are related to the crosswalk.
+                                // lp: location of the stop line.
+}
+
+message StopLine {
+  optional string id      = 1;  // StopLine ID.
+  optional Polyline shape = 2;  // Geometric shape.
+  repeated string lane_id = 3;  // Lane's ID which are related to the stop line.
+                                // lp: location of the stop line.
+}
+
+message ClearArea {
+  optional string id      = 1;  // ClearArea ID
+  optional Polygon shape  = 2;  // Geometric shape
+  repeated string lane_id = 3;  // Lane's ID which are related to the area.
+                                // lp: location of the stop line.
+}
+
+message SpeedBump {
+  optional string id      = 1;  // SpeedBump ID
+  optional Polygon shape  = 2;  // Geometric shape
+  repeated string lane_id = 3;
+          // lp: location of the stop line.
+}
+
+message Parking {
+  optional string id      = 1;  // Parking ID
+  optional Polygon shape  = 2;  // Geometric shape
+  repeated string lane_id = 3;  // Lane's ID which are related to the parking.
+  enum Type {
+    UNKNOWN  = 0;  //unknown type
+    VERTICAL = 1;
+    LATERAL  = 2;
+    OBLIQUE  = 3;
+  }
+  optional Type type    = 4;  //parking type
+  optional string label = 5;
+}
+
+message Gate {
+  optional string id      = 1;  // gate ID
+  optional Polyline shape = 2;  // Geometric shape
+  enum Type {
+    UNKNOWN_TYPE = 0;
+    AUTO_GATE    = 1;  // automatic gate 
+    BARRIER_GATE = 3;  // arm barrier gate
+  }
+  optional Type type      = 3;  // type
+  repeated string lane_id = 4;  // Lane's ID which are related to the gate.
+}
+
+message Pillar {
+  optional string id      = 1;  // Pillar ID
+  optional Polygon shape  = 2;  // Geometric shape
+  repeated string lane_id = 3;  // Lane's ID which are related to the pillar.
+}
+
+
+message StartPoint {
+  optional Point3d pose  = 1;  
+  optional Point3d rpy  = 2; 
+  optional double qw = 3;
+  optional double qx = 4;
+  optional double qy = 5;
+  optional double qz = 6;
+}
+
+message FreeArea {
+  optional string id                 = 1;  // FreeArea ID
+  optional Polygon shape             = 2;  // Geometric shape
+  repeated string lane_id            = 3;  // Lane's ID which are related to the free area.
+  repeated string prohibited_area_id = 4;  // Prohibited area ID
+  optional bool is_traffic_safe      = 5;  // there are lanes in free area when not traffic safe
+}
+
+message ProhibitedArea {
+  optional string id     = 1;  // Prohibited area ID
+  optional Polygon shape = 2;  // Geometric shape
+  enum Type {
+    UNKNOWN       = 0;
+    GREEN_BELT    = 1;
+    PLATFORM      = 2;
+    TRAFFIC_BOOTH = 3;
+  }
+  optional Type type     = 3;
+  optional double height = 4;
+}
+
+message Boundary {
+  optional string id         = 1;
+  optional Polyline polyline = 2;  // Boundary's geometric shape.
+  enum Type {
+    UNKNOWN               = 0;   // unknow
+    SINGLE_DASHED         = 1;   // single dashed
+    DOUBLE_DASHED         = 2;   // double dashed
+    SINGLE_SOLID          = 3;   // single solid
+    DOUBLE_SOLID          = 4;   // double solid
+    LEFT_DASH_RIGHT_SOLID = 5;   // left dash, right solid
+    LEFT_SOLID_RIGHT_DASH = 6;   // left solid, right dash
+    CURB                  = 7;   // curb
+    BARRIER               = 8;   // barrier
+    VIRTUAL               = 9;   // virtual
+    GREENBELT             = 10;  // green belt
+  }
+  optional Type type = 3;  // Boundary type
+  enum Color {
+    UNKNOWN_COLOR = 0;  // unknow.
+    WHITE         = 1;  // white.
+    YELLOW        = 2;  // yellow.
+  }
+  optional Color color   = 4;  // Boundary's color.
+  optional double height = 5;  // Boundary's height relative to the ground
+  enum Body {
+    UNKNOWN_BODY  = 0;
+    LANE          = 1;
+    ROAD          = 2;
+    LANE_AND_ROAD = 3;
+  }
+  optional Body body = 6;
+  optional Polyline raw_polyline = 7;
+}
+
+message ArrowData {
+  optional string id            = 1;
+  optional Point2d center_point = 2;
+  optional Polygon shape        = 3;
+  optional double heading       = 4;
+  enum Type {
+    UNKNOWN_TURN             = 0;
+    STRAIGHT                 = 1;
+    RIGHT_TURN               = 2;
+    LEFT_TURN                = 3;
+    U_TURN                   = 4;
+    STRAIGHT_LEFT_TURN       = 5;
+    STRAIGHT_RIGHT_TURN      = 6;
+    STRAIGHT_U_TURN          = 7;
+    LEFT_U_TURN              = 8;
+    LEFT_RIGHT_TURN          = 9;
+    LEFT_FRONT_TURN          = 10;
+    RIGHT_FRONT_TURN         = 11;
+    STRAIGHT_LEFT_RIGHT_TURN = 12;
+  }
+  optional Type type      = 5;
+  repeated string lane_id = 6;
+}
+
+message MarkerData {
+  optional string id     = 1;
+  optional Polygon shape = 2;
+  enum Type {
+    UNKNOWN                  = 0;  // unknown
+    EMERGENCY_EXIT_INDICATOR = 1;  // 安全出口标志灯 
+    LEADING_WORDS            = 2;  // 引导语
+    POLE                     = 3;  // 杆子
+    TURNSTILE                = 4;  // 闸机
+    ANTI_CONLLSION_STRIP     = 5;  // 防撞条
+    HYDRANT                  = 6;  //消防栓
+    REFLECTOR                = 7;  //镜子
+    DOOR                     = 8;  //门
+    RAILINGS                 = 9;  //栅栏
+  }
+  optional Type type      = 4;
+  repeated string lane_id = 5;
+}
+
+message AVPMap{
+  optional Header header                  = 1;
+  repeated Road road                      = 2;
+  repeated Intersection intersection      = 3;
+  repeated Lane lane                      = 4;
+  repeated LaneGroup lane_group           = 5;
+  repeated Crosswalk crosswalk            = 6;
+  repeated StopLine stop_line             = 7;
+  repeated ClearArea clear_area           = 9;
+  repeated SpeedBump speed_bump           = 10;
+  repeated Parking parking                = 11;
+  repeated Gate gate                      = 12;
+  repeated Pillar pillar                  = 13;
+  repeated FreeArea free_area             = 14;
+  repeated ProhibitedArea prohibited_area = 16;
+  repeated Boundary boundary              = 17;
+  repeated ArrowData arraw                = 18;
+  repeated MarkerData marker              = 19;
+  optional StartPoint start_point         = 20;
+}
+
+message PathPoint {
+  optional double x     = 1;
+  optional double y     = 2;
+  optional double z     = 3;
+  optional double theta = 4;
+  optional double s     = 5;
+  optional uint32 gear   = 6;  // 0:N,1:R,2:D,3:P
+  optional double time  = 7;
+}
+
+message Path {
+  repeated string lane_id        = 1;
+  repeated PathPoint points = 2;
+  optional PathPoint start_point = 3;
+  optional PathPoint end_point   = 4;
+}
+
+message TargetTaskConfig  {
+  optional string park_lot_id = 1;
+  optional uint32 path_id     = 2;
+  repeated Path path          = 3;
+}
+
+message AvpTaskInfo {
+  optional string map_id = 1;
+  oneof task_config {
+      TargetTaskConfig ntp_park_task_config   = 2;  // park out
+      TargetTaskConfig ntp_summon_task_config = 3;  // park in
+    }
+}
+
+ 
+
+

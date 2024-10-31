@@ -1,0 +1,32 @@
+{
+    "unicast": "192.168.1.11",
+    "logging": {
+        "level": "debug",
+        "console": "true",
+        "file": {
+            "enable": "false",
+            "path": "/var/log/E03MethodsService.log"
+        },
+        "dlt": "false"
+    },
+    "applications": [
+        {
+            "name": "service-sample",
+            "id": "0x1277"
+        }
+    ],
+    "services": [
+        {
+            "service": "0x61B8",
+            "instance": "0x0001",
+            "unreliable": "10009"
+        }
+    ],
+    "routing": "service-sample",
+    "service-discovery": {
+        "enable": "true",
+        "multicast": "239.192.255.123",
+        "port": "30490",
+        "protocol": "udp"
+    }
+}

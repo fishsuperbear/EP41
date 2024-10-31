@@ -1,0 +1,354 @@
+<qos>
+    <profile name="DDSQosProfile">
+        <domain_participant name="domain_1_192.168.10.6">
+            <transport>
+                <mask>TRANSPORT_UDP</mask>
+            </transport>
+            <transport_interfaces>
+                <interfaces>
+                    <interface>192.168.10.6</interface>
+                </interfaces>
+            </transport_interfaces>
+            <discover_config>
+                <participant_liveliness_lease_duration>
+                    <sec>60</sec>
+                    <nanosec>0</nanosec>
+                </participant_liveliness_lease_duration>
+                <participant_liveliness_assert_period>
+                    <sec>24</sec>
+                    <nanosec>0</nanosec>
+                </participant_liveliness_assert_period>
+            </discover_config>
+        </domain_participant>
+        <datareader name="domain_1_192.168.10.6_2435_71_CameraEncodedDdsEvent_reader">
+            <durability>
+                <kind>VOLATILE_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+                <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+            </reliability>
+            <destination_order>
+                <kind>BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS</kind>
+            </destination_order>
+            <history>
+                <kind>KEEP_LAST_HISTORY_QOS</kind>
+                <depth>1</depth>
+            </history>
+            <transchannel>
+                <Channel>TRANS_CHANNEL_DSHM</Channel>
+            </transchannel>
+            <ignore_local_participant>
+                <value>false</value>
+            </ignore_local_participant>
+        </datareader>
+        <datareader name="domain_1_192.168.10.6_2435_72_CameraEncodedDdsEvent_reader">
+            <durability>
+                <kind>VOLATILE_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+                <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+            </reliability>
+            <destination_order>
+                <kind>BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS</kind>
+            </destination_order>
+            <history>
+                <kind>KEEP_LAST_HISTORY_QOS</kind>
+                <depth>1</depth>
+            </history>
+            <transchannel>
+                <Channel>TRANS_CHANNEL_DSHM</Channel>
+            </transchannel>
+            <ignore_local_participant>
+                <value>false</value>
+            </ignore_local_participant>
+        </datareader>
+        <datareader name="domain_1_192.168.10.6_2435_73_CameraEncodedDdsEvent_reader">
+            <durability>
+                <kind>VOLATILE_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+                <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+            </reliability>
+            <destination_order>
+                <kind>BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS</kind>
+            </destination_order>
+            <history>
+                <kind>KEEP_LAST_HISTORY_QOS</kind>
+                <depth>1</depth>
+            </history>
+            <transchannel>
+                <Channel>TRANS_CHANNEL_DSHM</Channel>
+            </transchannel>
+            <ignore_local_participant>
+                <value>false</value>
+            </ignore_local_participant>
+        </datareader>
+        <datareader name="domain_1_192.168.10.6_2435_74_CameraEncodedDdsEvent_reader">
+            <durability>
+                <kind>VOLATILE_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+                <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+            </reliability>
+            <destination_order>
+                <kind>BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS</kind>
+            </destination_order>
+            <history>
+                <kind>KEEP_LAST_HISTORY_QOS</kind>
+                <depth>1</depth>
+            </history>
+            <transchannel>
+                <Channel>TRANS_CHANNEL_DSHM</Channel>
+            </transchannel>
+            <ignore_local_participant>
+                <value>false</value>
+            </ignore_local_participant>
+        </datareader>
+        <datareader name="domain_1_192.168.10.6_2435_85_CameraEncodedDdsEvent_reader">
+            <durability>
+                <kind>VOLATILE_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+                <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+            </reliability>
+            <destination_order>
+                <kind>BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS</kind>
+            </destination_order>
+            <history>
+                <kind>KEEP_LAST_HISTORY_QOS</kind>
+                <depth>1</depth>
+            </history>
+            <transchannel>
+                <Channel>TRANS_CHANNEL_DSHM</Channel>
+            </transchannel>
+            <ignore_local_participant>
+                <value>false</value>
+            </ignore_local_participant>
+        </datareader>
+        <datareader name="domain_1_192.168.10.6_2435_75_CameraEncodedDdsEvent_reader">
+            <durability>
+                <kind>VOLATILE_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+                <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+            </reliability>
+            <destination_order>
+                <kind>BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS</kind>
+            </destination_order>
+            <history>
+                <kind>KEEP_LAST_HISTORY_QOS</kind>
+                <depth>1</depth>
+            </history>
+            <transchannel>
+                <Channel>TRANS_CHANNEL_DSHM</Channel>
+            </transchannel>
+            <ignore_local_participant>
+                <value>false</value>
+            </ignore_local_participant>
+        </datareader>
+        <datareader name="domain_1_192.168.10.6_2435_76_CameraEncodedDdsEvent_reader">
+            <durability>
+                <kind>VOLATILE_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+                <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+            </reliability>
+            <destination_order>
+                <kind>BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS</kind>
+            </destination_order>
+            <history>
+                <kind>KEEP_LAST_HISTORY_QOS</kind>
+                <depth>1</depth>
+            </history>
+            <transchannel>
+                <Channel>TRANS_CHANNEL_DSHM</Channel>
+            </transchannel>
+            <ignore_local_participant>
+                <value>false</value>
+            </ignore_local_participant>
+        </datareader>
+        <datareader name="domain_1_192.168.10.6_2435_77_CameraEncodedDdsEvent_reader">
+            <durability>
+                <kind>VOLATILE_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+                <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+            </reliability>
+            <destination_order>
+                <kind>BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS</kind>
+            </destination_order>
+            <history>
+                <kind>KEEP_LAST_HISTORY_QOS</kind>
+                <depth>1</depth>
+            </history>
+            <transchannel>
+                <Channel>TRANS_CHANNEL_DSHM</Channel>
+            </transchannel>
+            <ignore_local_participant>
+                <value>false</value>
+            </ignore_local_participant>
+        </datareader>
+        <datareader name="domain_1_192.168.10.6_2435_78_CameraEncodedDdsEvent_reader">
+            <durability>
+                <kind>VOLATILE_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+                <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+            </reliability>
+            <destination_order>
+                <kind>BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS</kind>
+            </destination_order>
+            <history>
+                <kind>KEEP_LAST_HISTORY_QOS</kind>
+                <depth>1</depth>
+            </history>
+            <transchannel>
+                <Channel>TRANS_CHANNEL_DSHM</Channel>
+            </transchannel>
+            <ignore_local_participant>
+                <value>false</value>
+            </ignore_local_participant>
+        </datareader>
+        <datareader name="domain_1_192.168.10.6_2435_79_CameraEncodedDdsEvent_reader">
+            <durability>
+                <kind>VOLATILE_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+                <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+            </reliability>
+            <destination_order>
+                <kind>BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS</kind>
+            </destination_order>
+            <history>
+                <kind>KEEP_LAST_HISTORY_QOS</kind>
+                <depth>1</depth>
+            </history>
+            <transchannel>
+                <Channel>TRANS_CHANNEL_DSHM</Channel>
+            </transchannel>
+            <ignore_local_participant>
+                <value>false</value>
+            </ignore_local_participant>
+        </datareader>
+        <datareader name="domain_1_192.168.10.6_2435_80_CameraEncodedDdsEvent_reader">
+            <durability>
+                <kind>VOLATILE_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+                <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+            </reliability>
+            <destination_order>
+                <kind>BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS</kind>
+            </destination_order>
+            <history>
+                <kind>KEEP_LAST_HISTORY_QOS</kind>
+                <depth>1</depth>
+            </history>
+            <transchannel>
+                <Channel>TRANS_CHANNEL_DSHM</Channel>
+            </transchannel>
+            <ignore_local_participant>
+                <value>false</value>
+            </ignore_local_participant>
+        </datareader>
+        <datareader name="domain_1_192.168.10.6_2435_81_CameraEncodedDdsEvent_reader">
+            <durability>
+                <kind>VOLATILE_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+                <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+            </reliability>
+            <destination_order>
+                <kind>BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS</kind>
+            </destination_order>
+            <history>
+                <kind>KEEP_LAST_HISTORY_QOS</kind>
+                <depth>1</depth>
+            </history>
+            <transchannel>
+                <Channel>TRANS_CHANNEL_DSHM</Channel>
+            </transchannel>
+            <ignore_local_participant>
+                <value>false</value>
+            </ignore_local_participant>
+        </datareader>
+        <datareader name="domain_1_192.168.10.6_2435_82_CameraEncodedDdsEvent_reader">
+            <durability>
+                <kind>VOLATILE_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+                <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+            </reliability>
+            <destination_order>
+                <kind>BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS</kind>
+            </destination_order>
+            <history>
+                <kind>KEEP_LAST_HISTORY_QOS</kind>
+                <depth>1</depth>
+            </history>
+            <transchannel>
+                <Channel>TRANS_CHANNEL_DSHM</Channel>
+            </transchannel>
+            <ignore_local_participant>
+                <value>false</value>
+            </ignore_local_participant>
+        </datareader>
+        <datareader name="domain_1_192.168.10.6_2435_83_CameraEncodedDdsEvent_reader">
+            <durability>
+                <kind>VOLATILE_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+                <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+            </reliability>
+            <destination_order>
+                <kind>BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS</kind>
+            </destination_order>
+            <history>
+                <kind>KEEP_LAST_HISTORY_QOS</kind>
+                <depth>1</depth>
+            </history>
+            <transchannel>
+                <Channel>TRANS_CHANNEL_DSHM</Channel>
+            </transchannel>
+            <ignore_local_participant>
+                <value>false</value>
+            </ignore_local_participant>
+        </datareader>
+        <datareader name="domain_1_192.168.10.6_2435_84_CameraEncodedDdsEvent_reader">
+            <durability>
+                <kind>VOLATILE_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+                <kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+            </reliability>
+            <destination_order>
+                <kind>BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS</kind>
+            </destination_order>
+            <history>
+                <kind>KEEP_LAST_HISTORY_QOS</kind>
+                <depth>1</depth>
+            </history>
+            <transchannel>
+                <Channel>TRANS_CHANNEL_DSHM</Channel>
+            </transchannel>
+            <ignore_local_participant>
+                <value>false</value>
+            </ignore_local_participant>
+        </datareader>
+        <topic name="domain_1_192.168.10.6_2435_71_CameraEncodedDdsEvent"></topic>
+        <topic name="domain_1_192.168.10.6_2435_72_CameraEncodedDdsEvent"></topic>
+        <topic name="domain_1_192.168.10.6_2435_73_CameraEncodedDdsEvent"></topic>
+        <topic name="domain_1_192.168.10.6_2435_74_CameraEncodedDdsEvent"></topic>
+        <topic name="domain_1_192.168.10.6_2435_85_CameraEncodedDdsEvent"></topic>
+        <topic name="domain_1_192.168.10.6_2435_75_CameraEncodedDdsEvent"></topic>
+        <topic name="domain_1_192.168.10.6_2435_76_CameraEncodedDdsEvent"></topic>
+        <topic name="domain_1_192.168.10.6_2435_77_CameraEncodedDdsEvent"></topic>
+        <topic name="domain_1_192.168.10.6_2435_78_CameraEncodedDdsEvent"></topic>
+        <topic name="domain_1_192.168.10.6_2435_79_CameraEncodedDdsEvent"></topic>
+        <topic name="domain_1_192.168.10.6_2435_80_CameraEncodedDdsEvent"></topic>
+        <topic name="domain_1_192.168.10.6_2435_81_CameraEncodedDdsEvent"></topic>
+        <topic name="domain_1_192.168.10.6_2435_82_CameraEncodedDdsEvent"></topic>
+        <topic name="domain_1_192.168.10.6_2435_83_CameraEncodedDdsEvent"></topic>
+        <topic name="domain_1_192.168.10.6_2435_84_CameraEncodedDdsEvent"></topic>
+    </profile>
+</qos>

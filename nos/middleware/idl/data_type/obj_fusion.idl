@@ -1,0 +1,40 @@
+#include "common.idl"
+#include "type.idl"
+
+/* ******************************************************************************
+    结构 名        :  AlgFusionOut
+    功能描述       :  融合后障碍物结果
+****************************************************************************** */
+struct AlgFusionOut {
+    uint32 ObjectID;                    // 障碍物id
+    uint8 Type;                         // 障碍物类别
+    uint32 DetectSensor_Current;
+    uint32 DetectSensor_History;
+    uint8 MaintenanceStatus;
+    float TypeConfidence;                // 障碍物类别置信度
+    float ExistenceProbability;      // 障碍物存在的概率
+    AlgRect3D RectInfo;               // 障碍物边框（自车坐标系）
+    Point3f VelocityAbs;              // 障碍物在当前坐标系下的速度
+    Point3f AccelerationAbs;          // 障碍物在世界坐标系下的速度
+    HafTime TimeCreation;                // 障碍物被识别的时间戳
+    HafTime LastUpdatedTime;             // 障碍物最近更新时间，单位s
+    sequence<uint32> SensorID; 
+    uint8 MotionPattern;
+    uint8 MotionPatternHistory;
+    uint8 BrakeLightSt;
+    uint8 TurnLightSt;
+    uint8 NearSide;
+    sequence<float> associatedConf;
+    uint32 age;
+};
+
+/* ******************************************************************************
+    结构 名        :  AlgFusionOut
+    功能描述       :  融合后障碍物队列结果
+****************************************************************************** */
+struct AlgFusionOutArray : IDLBaseType {
+    uint32 ObjAmount;
+    uint32 locSeq;
+    sequence<AlgFusionOut> fusionOut;
+    boolean isValid ;         // 该帧数据是否可用
+};

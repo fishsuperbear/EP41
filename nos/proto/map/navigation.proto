@@ -1,0 +1,45 @@
+syntax = "proto2";
+
+package hozon.navigation_hdmap;
+
+import "proto/common/header.proto";
+import "proto/common/pnc_point.proto";
+import "proto/localization/localization.proto";
+import "proto/map/map.proto";
+import "proto/perception/perception_obstacle.proto";
+import "proto/routing/routing.proto";
+
+message NavigationPath {
+  optional hozon.common.Path path = 1;
+  // highest = 0 which can directly reach destination; change lane indicator
+  optional uint32 path_priority = 2;
+}
+
+message NavigationInfo {
+  optional hozon.common.Header header = 1;
+  repeated NavigationPath navigation_path = 2;
+}
+
+// The map message in transmission format.
+message MapMsg {
+  optional hozon.common.Header header = 1;
+
+  // Coordination: FLU
+  // x: Forward
+  // y: Left
+  // z: Up
+  optional hozon.hdmap.Map hdmap = 2;
+
+  // key: type string; the lane id in Map
+  // value: Navigation path; the reference line of the lane
+  map<string, NavigationPath> navigation_path = 3;
+
+  // lane marker info from perception
+  optional hozon.perception.LaneMarkers lane_marker = 4;
+
+  // localization
+  optional hozon.localization.Localization localization = 5;
+
+  // routing 
+  optional hozon.routing.RoutingResponse routing = 6;
+}

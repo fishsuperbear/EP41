@@ -1,0 +1,33 @@
+[
+    {
+        "key" : "app",
+        "value" :
+        {
+            "string" : "log-control"
+        }
+    },
+    {
+        "key" : "command",
+        "value" :
+        {
+            "string[]" : [
+                "log-control level < LEVEL >",
+                "log-control appid < APPID > level < LEVEL >",
+                "log-control ctxid < CTXID > level < LEVEL >",
+                "log-control appid < APPID > ctxid < CTXID > level < LEVEL >"
+                ]
+        }
+    },
+    {
+        "key" : "help",
+        "value" :
+        {
+            "string[]" : [
+                "log-control level < LEVEL >,                                   Change the loglevel of all process and all module to LEVEL",
+                "log-control appid < APPID > level < LEVEL >,                   Change the loglevel of all module of APPID process to LEVEL",
+                "log-control ctxid < CTXID > level < LEVEL >,                   Change the loglevel of CTXID module of all app process to LEVEL",
+                "log-control appid < APPID > ctxid < CTXID> level < LEVEL >,    Change the loglevel of APPID process and all module to LEVEL"
+                ]
+        }
+    }
+]

@@ -1,0 +1,145 @@
+
+{
+    "PPort_mapping_list" : [
+    ],
+
+    "RPort_mapping_list" : [
+        {
+            "mapping_name" : "/IAUTOSAR/AASWC_McuDataService_Client_SOC/McuDataService_1_RPort",
+            "mapping_instance_table" : ["1"
+            ]
+        }
+    ],
+
+    "binding_list" : [
+        {
+            "binding_name" : "isomeip",
+            "has_prefix" : false,
+            "serialize_type" : "someip",
+            "someip_services" :
+            {
+            "services":
+            [
+                {
+                    "short_name" : "mcudataservice_1_0",
+                    "service" : 25002,
+                    "major_version" : 1,
+                    "minor_version" : 0,
+                    "events":
+                    [
+                        {
+                            "short_name" : "MbdDebugData",
+                            "event" : 5,
+                            "communication_type" : "UDP"
+                        },
+                        {
+                            "short_name" : "AlgImuInsInfo",
+                            "event" : 6,
+                            "communication_type" : "UDP"
+                        },
+                        {
+                            "short_name" : "AlgGNSSPosInfo",
+                            "event" : 7,
+                            "communication_type" : "UDP"
+                        },
+                        {
+                            "short_name" : "AlgChassisInfo",
+                            "event" : 8,
+                            "communication_type" : "UDP"
+                        },
+                        {
+                            "short_name" : "AlgPNCControl",
+                            "event" : 9,
+                            "communication_type" : "UDP"
+                        },
+                        {
+                            "short_name" : "AlgMcuToEgo",
+                            "event" : 10,
+                            "communication_type" : "UDP"
+                        },
+                        {
+                            "short_name" : "AlgUssRawdata",
+                            "event" : 11,
+                            "communication_type" : "UDP"
+                        }
+                    ],
+                    "fields":
+                    [
+                    ],
+                    "methods":
+                    [
+                    ],
+                    "eventgroups":
+                    [
+                        {
+                            "short_name" : "McuDataService_258_EventGroup",
+                            "eventgroup" : 258,
+                            "events" : [5,6,7,8,9,10,11]
+                        }
+                    ]
+                }
+            ],
+            "provided_instances" :
+            [
+            ],
+            "required_instances" :
+            [
+                {
+                    "service" : 25002,
+                    "major_version" : 1,
+                    "short_name" : "McuDataService_SOC_SomeipRIns_1",
+                    "instance" : 1,
+                    "udp_port" : 10001,
+                    "tcp_port" : 0,
+                    "tp_separation_time_usec" : 1000,
+                    "tcp_reuse" : false,
+                    "udp_reuse" : false,
+                    "method_attribute" :
+                    [
+                    ],
+                    "find_time_reference" : "ServiceRequiredSomeipSD",
+                    "ethernet_reference" :  "NEP_SOC_1",
+                    "tcp_tls_flag" : false,
+                    "udp_tls_flag" : false,
+                    "required_eventgroups" :
+                    [
+                        {
+                            "eventgroup" : 258
+                        }
+                    ]
+                }
+            ],
+            "sd_server_offer_times" :
+            [
+            ],
+            "sd_client_find_times" :
+            [
+                {
+                    "sd_time_name" : "ServiceRequiredSomeipSD",
+                    "initial_delay_min" : 10,
+                    "initial_delay_max" : 100,
+                    "repetitions_base_delay" : 200,
+                    "repetitions_max" : 3,
+                    "ttl" : 10
+                }
+            ],
+            "sd_client_subscribe_times" :
+            [
+            ],
+            "sd_server_subscribe_times" :
+            [
+            ],
+            "network_endpoints" :
+            [{
+                    "network_id" : "NEP_SOC_1",
+                    "ip_addr" : "172.16.90.11",
+                    "ip_addr_type" : 4,
+                    "subnet_mask" : "255.255.255.0",
+                    "multicast_ip_addr" : "239.192.255.123",
+                    "multicast_port" : 30491
+                }
+            ]
+            }
+        }
+    ]
+}

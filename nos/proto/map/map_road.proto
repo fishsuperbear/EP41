@@ -1,0 +1,101 @@
+syntax = "proto2";
+
+package hozon.hdmap;
+
+import "proto/map/map_geometry.proto";
+import "proto/map/map_id.proto";
+
+message BoundaryEdge {
+  optional Curve curve = 1;
+  enum Type {
+    UNKNOWN = 0;
+    NORMAL = 1;
+    LEFT_BOUNDARY = 2;
+    RIGHT_BOUNDARY = 3;
+  };
+  optional Type type = 2;
+  optional Id id = 3;
+  optional bool virtual = 4;
+}
+
+message BoundaryPolygon {
+  repeated BoundaryEdge edge = 1;
+}
+
+// boundary with holes
+message RoadBoundary {
+  optional BoundaryPolygon outer_polygon = 1;
+  // if boundary without hole, hole is null
+  repeated BoundaryPolygon hole = 2;
+}
+
+message RoadROIBoundary {
+  optional Id id = 1;
+  repeated RoadBoundary road_boundaries = 2;
+}
+
+// road section defines a road cross-section, At least one section must be
+// defined in order to
+// use a road, If multiple road sections are defined, they must be listed in
+// order along the road
+message RoadSection {
+  optional Id id = 1;
+  // lanes contained in this section
+  repeated Id lane_id = 2;
+  // boundary of section
+  optional RoadBoundary boundary = 3;
+
+  enum Type {
+    UNKNOWN = 0;
+    MultipleCarriageWay = 1; // 双向高速公路（高速主路，非匝道）
+    SingleCarriageWay = 2; // 单向高速公路（高速主路，非匝道）
+    RoundaboutCircle = 3; // 环岛
+    Service = 4; // 服务区
+    Ramp = 5; // 匝道
+    CrossLink = 6; // 交叉点内
+    SlipRoad = 7; // 引路（引导上高速的路）
+    SideRoad = 8; // 辅路
+    CarPark = 10; //停车场
+    JCT = 11; // 高速互通
+    Other = 99;
+  };
+
+  optional Type type = 4;
+
+  optional double max_max_speed = 5;
+
+  optional double min_max_speed = 6;
+}
+
+// The road is a collection of traffic elements, such as lanes, road boundary
+// etc.
+// It provides general information about the road.
+message Road {
+  optional Id id = 1;
+  repeated RoadSection section = 2;
+
+  // if lane road not in the junction, junction id is null.
+  optional Id junction_id = 3;
+
+  enum Type {
+    UNKNOWN = 0;
+    HIGHWAY = 1;
+    CITY_ROAD = 2;
+    PARK = 3;
+    NATIONAL_ROAD = 4;
+    PROVINCIAL_ROAD = 5;
+    COUNTY_ROAD = 6;
+    TOWN_ROAD = 7;
+    WALK_ROAD = 8;
+    CITY_HIGHWAY = 9;
+  };
+  optional Type type = 4;
+    enum RoadType {
+      UnknowType = 0;
+      Park       = 1;
+      Public     = 2;
+  }
+  optional RoadType road_type = 5;  // parking, traval type
+  optional int32 from_floor   = 6;  // parking
+  optional int32 to_floor     = 7;  // parking
+}

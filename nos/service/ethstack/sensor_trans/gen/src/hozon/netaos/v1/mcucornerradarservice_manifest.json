@@ -1,0 +1,130 @@
+
+{
+    "PPort_mapping_list" : [
+    ],
+
+    "RPort_mapping_list" : [
+        {
+            "mapping_name" : "/IAUTOSAR/AASWC_McuCornerRadarService_Client_SOC/McuCornerRadarService_1_RPort",
+            "mapping_instance_table" : ["1"
+            ]
+        }
+    ],
+
+    "binding_list" : [
+        {
+            "binding_name" : "isomeip",
+            "has_prefix" : false,
+            "serialize_type" : "someip",
+            "someip_services" :
+            {
+            "services":
+            [
+                {
+                    "short_name" : "mcucornerradarservice_1_0",
+                    "service" : 25014,
+                    "major_version" : 1,
+                    "minor_version" : 0,
+                    "events":
+                    [
+                        {
+                            "short_name" : "AlgCornerRadarTrackFR",
+                            "event" : 17,
+                            "communication_type" : "UDP"
+                        },
+                        {
+                            "short_name" : "AlgCornerRadarTrackFL",
+                            "event" : 18,
+                            "communication_type" : "UDP"
+                        },
+                        {
+                            "short_name" : "AlgCornerRadarTrackRR",
+                            "event" : 19,
+                            "communication_type" : "UDP"
+                        },
+                        {
+                            "short_name" : "AlgCornerRadarTrackRL",
+                            "event" : 20,
+                            "communication_type" : "UDP"
+                        }
+                    ],
+                    "fields":
+                    [
+                    ],
+                    "methods":
+                    [
+                    ],
+                    "eventgroups":
+                    [
+                        {
+                            "short_name" : "McuCornerRadarService_262_EventGroup",
+                            "eventgroup" : 262,
+                            "events" : [17,18,19,20]
+                        }
+                    ]
+                }
+            ],
+            "provided_instances" :
+            [
+            ],
+            "required_instances" :
+            [
+                {
+                    "service" : 25014,
+                    "major_version" : 1,
+                    "short_name" : "McuCornerRadarService_SOC_SomeipRIns_1",
+                    "instance" : 1,
+                    "udp_port" : 10008,
+                    "tcp_port" : 0,
+                    "tp_separation_time_usec" : 1000,
+                    "tcp_reuse" : false,
+                    "udp_reuse" : false,
+                    "method_attribute" :
+                    [
+                    ],
+                    "find_time_reference" : "ServiceRequiredSomeipSD",
+                    "ethernet_reference" :  "NEP_SOC_1",
+                    "tcp_tls_flag" : false,
+                    "udp_tls_flag" : false,
+                    "required_eventgroups" :
+                    [
+                        {
+                            "eventgroup" : 262
+                        }
+                    ]
+                }
+            ],
+            "sd_server_offer_times" :
+            [
+            ],
+            "sd_client_find_times" :
+            [
+                {
+                    "sd_time_name" : "ServiceRequiredSomeipSD",
+                    "initial_delay_min" : 10,
+                    "initial_delay_max" : 100,
+                    "repetitions_base_delay" : 200,
+                    "repetitions_max" : 3,
+                    "ttl" : 10
+                }
+            ],
+            "sd_client_subscribe_times" :
+            [
+            ],
+            "sd_server_subscribe_times" :
+            [
+            ],
+            "network_endpoints" :
+            [{
+                    "network_id" : "NEP_SOC_1",
+                    "ip_addr" : "172.16.90.11",
+                    "ip_addr_type" : 4,
+                    "subnet_mask" : "255.255.255.0",
+                    "multicast_ip_addr" : "239.192.255.123",
+                    "multicast_port" : 30491
+                }
+            ]
+            }
+        }
+    ]
+}

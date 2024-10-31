@@ -1,0 +1,213 @@
+[
+{
+	"ip_addr":"172.16.50.11",
+	"port":13400,
+	"fname":"mgbe3_0.50",
+	"thread_start_delay":10,
+	"test":[
+	{
+		"protocol_type":"TCP",
+		"timeout":2000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x0e80",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":1,
+			"source_addr":"0x0e80",
+			"target_addr":"0x10c3",
+			"payload_data":"..."
+		},
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0007",
+			"payload_len":0
+		}
+		],
+		"describe":"<TG6_TC4> task1 在线检测请求-测试仪回复错误的在线检测响应测试-激活"
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":2000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0008",
+			"payload_len":2,
+			"payload_data":"0e80"
+		}
+		],
+		"describe":"<TG6_TC4> task1 在线检测请求-测试仪回复错误的在线检测响应测试-0008",
+		"delay_timems": 1000
+	}
+	]
+},
+{
+	"ip_addr":"172.16.50.11",
+	"port":13400,
+	"fname":"mgbe3_0.50",
+	"thread_start_delay":10,
+	"test":[
+	{
+		"protocol_type":"TCP",
+		"timeout":2000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1062",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":1,
+			"source_addr":"0x1062",
+			"target_addr":"0x10c3",
+			"payload_data":"..."
+		},
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0007",
+			"payload_len":0
+		}
+		],
+		"describe":"<TG6_TC4> task2 在线检测请求-测试仪回复错误的在线检测响应测试-激活"
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":2000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0008",
+			"payload_len":2,
+			"payload_data":"1062"
+		}
+		],
+		"describe":"<TG6_TC4> task2 在线检测请求-测试仪回复错误的在线检测响应测试-0008",
+		"delay_timems": 1000
+	}
+	]
+},
+{
+	"ip_addr":"172.16.50.11",
+	"port":13400,
+	"fname":"mgbe3_0.50",
+	"thread_start_delay":10,
+	"test":[
+	{
+		"protocol_type":"TCP",
+		"timeout":2000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x1063",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":1,
+			"source_addr":"0x1063",
+			"target_addr":"0x10c3",
+			"payload_data":"..."
+		},
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0007",
+			"payload_len":0
+		}
+		],
+		"describe":"<TG6_TC4> task3 在线检测请求-测试仪回复错误的在线检测响应测试-激活"
+	},
+	{
+		"protocol_type":"TCP",
+		"timeout":2000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0008",
+			"payload_len":2,
+			"payload_data":"1063"
+		}
+		],
+		"describe":"<TG6_TC4> task3 在线检测请求-测试仪回复错误的在线检测响应测试-0008",
+		"delay_timems": 1000
+	}
+	]
+},
+{
+	"ip_addr":"172.16.50.11",
+	"port":13400,
+	"fname":"mgbe3_0.50",
+	"thread_start_delay":10,
+	"test":[
+	{
+		"protocol_type":"TCP",
+		"timeout":2000,
+		"retryCounts":1,
+		"doip_request":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0005",
+			"payload_len":7,
+			"source_addr":"0x10c3",
+			"target_addr":"0x0000",
+			"payload_data":"000000"
+		}
+		],
+		"doip_response":[
+		{
+			"version":"0x02",
+			"ver_inverse":"0xFD",
+			"payload_type":"0x0006",
+			"payload_len":9,
+			"source_addr":"0x10c3",
+			"target_addr":"0x10c3",
+			"payload_data":"01 00 00 00 00"
+		}
+		],
+		"describe":"<TG6_TC4> task4 在线检测请求-测试仪回复错误的在线检测响应测试-激活",
+		"sever_close_wait":500
+	}
+	]
+}
+]

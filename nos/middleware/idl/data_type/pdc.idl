@@ -1,0 +1,4 @@
+struct pdc
+{
+    string data;
+};

@@ -1,0 +1,207 @@
+syntax = "proto2";
+package hozon.hmi;
+// import  "proto/hmi/sd_signal.proto";
+// message SrFrameList{
+//   repeated SrFrame framelist = 1;
+// }
+// message SrFrame {
+//   optional LocFusionInfo locFusionInfo = 1; //融合定位
+//   optional DecisionInfo decisionInfo = 2; // 决策信息
+//   optional SRObjects srObjects = 3; //SR 周围目标`
+//   optional State state = 4; //当前状态信息
+//   optional fixed32 srDisplayStatus = 5; //1 ： sr界面需要显示； 2： sr界面不需要显示
+//   // optional LocForSDMapSimulate locForSDSignal = 6; // 模拟信号需要
+// }
+
+//笛卡尔坐标系坐标
+message PosCoordLocal {
+  optional double x = 1; //经度对应的局部坐标。单位：米
+  optional double y = 2; //纬度对应的局部坐标。单位：米
+  optional double z = 3; //高程 。单位：米
+}
+
+// // 3D位置信息
+// message Coord3DDouble {
+//   optional double lon = 1; //经度
+//   optional double lat = 2; //纬度
+//   optional double z = 3; // 高度
+// }
+
+// //外部厂商 自己融合后的最终车道结果
+// message LocLaneFusionResultExternal {
+//   optional uint64 ticktime = 1;  //与各传感器数据同维度的时间戳
+//   optional fixed32 indices = 2; //自车所在车道结果，例如左1等
+//   optional float probs = 3; //自车所在车道结果对应的置信度，范围为[0.0, 1.0]。
+//   optional float lateralOffsetLeft = 4;//当前所在位置距离当前所在车道左边线的距离，单位：米。
+//   optional float lateralOffsetLeftAcc = 5; // 当前所在位置距离当前所在车道左边线距离的精度（置信度），单位：米。
+//   optional float lateralOffsetRight = 6;  //当前所在位置距离当前所在车道右边线的距离，单位：米。
+//   optional float lateralOffsetRightAcc = 7; //当前所在位置距离当前所在车道右边线距离的精度（置信度），单位：米。
+// }
+
+// //结合 rtk + imu + hd + camera 等融合后定位结果
+// message LocAllFusionPos {
+//   optional uint64 ticktime = 1;  //与各传感器数据同维度的时间戳
+//   optional fixed32 status = 2; //融合位置状态位。 - 'A'：有效定位 - 'V'：无效定位
+//   optional fixed32 ns = 3 ;//	纬度半球。'N'或'S'
+//   optional fixed32 ew = 4; //经度半球。'E'或'W'
+//   optional PosCoordLocal posEnu = 5; //自车经纬度对应的ENU坐标系中坐标值，单位：m
+//   optional PosCoordLocal refPosEcef = 6; //ENU坐标系原点对应的ecef坐标，单位：m
+//   optional float speed = 7;  // 速度。单位：公里/小时
+//   optional float course = 8; // 航向。单位：度。范围：[0-360)，北零顺时针
+//   optional float alt = 9; // 海拔高度。 单位：米
+//   optional float posAcc = 10;   // 位置精度半径。单位：米
+//   optional float courseAcc = 11;  // 航向精度。 单位：度
+//   optional float altAcc = 12;  //海拔精度。单位：米
+//   optional float speedAcc = 13; //车速精度。单位：公里/时
+//   optional uint64 datetime = 14; //融合位置的绝对日期和时间。 utc时间戳
+//   optional fixed32 fusiontype = 15;// 厂商自定义位置融合类型，用于区分融合逻辑从而代表融合精度预期，例如RTK+IMU+HD，RTK+IMU+视觉+HD等(待定义)
+//   optional Coord3DDouble posRaw = 16;//未加密的经纬度
+// }
+
+// message LocFusionInfo {
+//   optional LocAllFusionPos  allFusionPosResult = 1;    //结合 rtk + imu + hd + camera 等融合后定位结果
+//   optional LocLaneFusionResultExternal  laneFusionResult = 2; // 外部厂商 自己融合后的最终车道结果
+// }
+
+message DecisionInfo {
+  repeated PosCoordLocal coords = 1; // 决策引导线点集集合, ENU坐标系中坐标值
+}
+
+// Object type
+enum DynamicSRObjType {
+  SR_TYPE_UNKNOWN = 0; //未知
+  SR_TYPE_PERSON = 1; //	行人
+  SR_TYPE_ANIMAL = 2; //动物
+  SR_TYPE_SEDAN = 3; //轿车
+  SR_TYPE_SUV = 4; //SUV
+  SR_TYPE_VAN = 5; //	厢式车
+  SR_TYPE_BICYCLE = 6; //自行车
+  SR_TYPE_TRICYCLE = 7; //	三轮车
+  SR_TYPE_MOTORCYCLE = 8; //	摩托车
+  SR_TYPE_TRUCK = 9; //	卡车
+  SR_TYPE_BUS = 10; //	公交车
+  SR_TYPE_PICKUP = 11; //	皮卡车
+  SR_TYPE_SCOOTER = 12; //	代步车
+  SR_TYPE_ENGINEERING_VEHICLE = 13; //	工程车
+}
+
+enum StaticSRObjType {
+  SR_TYPE_CRASH_BARRELS = 0; //	防撞桶
+  SR_TYPE_CONSTRUCTION_FENCE = 1; //施工围栏
+  SR_TYPE_CONE_BARREL = 2;//	锥桶
+  SR_TYPE_CONSTRUCTION_SIGN = 3; //施工牌
+}
+
+enum CarLightStatus {
+  CAR_LIGHT_UNKNOWN = 0;
+  CAR_LIGHT_LEFT = 1;
+  CAR_LIGHT_RIGHT = 2;
+  CAR_LIGHT_OFF = 3;
+}
+
+enum BrakeLightStatus {
+  BRAKE_LIGHT_UNKNOWN = 0;
+  BRAKE_LIGHT_ON = 1;
+  BRAKE_LIGHT_OFF = 2;
+}
+
+message DynamicSRObject {
+  optional fixed32 id = 1; //目标id
+  optional DynamicSRObjType type = 2;  //	道路使用者类型
+  optional BrakeLightStatus brakeLightStatus = 3; //刹车灯状态
+  optional CarLightStatus carLightStatus = 4; //车转向灯等状态(如还有其他信号灯状态 还需与产品自动驾驶确认)
+  optional PosCoordLocal localPose = 5; // 周围目标对应的ENU坐标系中坐标值
+  optional float heading = 6; // 与自车航向角差值
+  // FCW功能_Bit0-1: 0x0=无报警 0x1=Level1 0x2=level2
+  // AEB功能_Bit2-3： 0x0=无报警 0x1=Level1 0x2=level2
+  // ACC功能_Bit4-5：0x0=非跟车目标 0x1=ACC target 0x2=potential（预留）
+  // FCTA_left功能_Bit6-7：0x0=无报警 0x1=Level1 0x2=level2
+  // FCTA_right功能_Bit8-9：0x0=无报警 0x1=Level1 0x2=level2
+  // RCTA_left功能_Bit10-1位：0x0=无报警 0x1=Level1 0x2=level2
+  // RCTA_right功能_Bit12-13：0x0=无报警 0x1=Level1 0x2=level2
+  // LCA_left功能_Bit14-15：0x0=无报警 0x1=Level1 0x2=level2
+  // LCA_right功能_Bit16-17：0x0=无报警 0x1=Level1 0x2=level2
+  // DOW_left功能_Bit18-19：0x0=无报警 0x1=Level1 0x2=level2 0x3=Level3
+  // DOW_right功能_Bit20-21：0x0=无报警 0x1=Level1 0x2=level2 0x3=level3
+  // RCW功能_Bit22-23：0x0=无报警 0x1=Level1 0x2=level2
+  // ALC功能_Bit24-25：0x0=无报警 0x1=left warning 0x2=right warning
+  // Bit26-31位预留
+  optional fixed32 is_high_light = 7; 
+}
+
+message StaticSRObject {
+  optional fixed32 id = 1; //目标id
+  optional StaticSRObjType type = 2;  //	道路设施类类型
+  optional PosCoordLocal localPose = 3; // 周围目标对应的ENU坐标系中坐标值
+}
+
+message SRObjects {
+  repeated DynamicSRObject dynamicSRObjects = 1; // SR 周围动态目标集合
+  repeated StaticSRObject staticSRObjects = 2; // SR 周围静态目标集合
+}
+
+enum LaneChangeType {
+  UNKOWN = 0; // 未知
+  NORMAL_CHANGE_LANE= 1; // 正常变道
+  LEFT_FORK_CHANGE_LANE = 2; // 左侧岔口变道
+  RIGHT_FORK_CHANGE_LANE = 3; // 右侧岔口变道
+}
+
+enum LaneChangeStatus {
+  NO_ACTION = 0; // 无变道
+  LEFT = 1; // 左变道
+  RIGHT = 2; // 右变道
+  ACTIVE_CHANGE_LANE_LEFT = 3; // 变道激活(等待左变道)
+  ACTIVE_CHANGE_LANE_RIGHT = 4; // 变道激活(等待右变道)
+  LANE_CHANGE_DANGER_LEFT= 5; // 变道危险_左
+  LANE_CHANGE_DANGER_RIGHT= 6; // 变道危险_右
+  WAIT_CONFIRM_CHANGE_LANE = 7; // 变道确认(等待确认变道)
+  FINISH_CHANGE_LANE = 8; // 变道完成
+  CANCEL_CHANGE_LANE = 9; // 变道取消
+}
+
+// 驾驶模式
+enum DriveMode{
+    NOMODE = 0;
+    MANAUL = 1;
+    ACC = 2;
+    NPILOT = 3;
+    NNP = 4;
+}
+
+message State {
+  optional LaneChangeStatus lane_changed_status = 1; // 0: 无变道； 1: 向左变道 ；2：向右变道; 3:变道激活(等待变道); 4:变道确认(等待确认变道); 5:变道完成; 6=变道取消
+  optional LaneChangeType lane_changed_type = 2; // 0:未知; 1: 正常换道；2：分叉口，左侧岔路； 3：分叉口，右侧岔路
+  // optional fixed32 lane_changed_tips_status = 3; // 变道原因提示 （需与自动驾驶确认）
+  // optional fixed32 lane_changed_tips_tts = 4; // 变道原因tts （需与自动驾驶确认）
+  optional fixed32 drive_mode = 5; // 1: 手动； 2：acc;  3: N-pilot;  4: nnp (需与自动驾驶确认支持的驾驶模式)
+  // optional fixed32 limit_speed = 6; //当前车道限速
+  // optional fixed32 vehicle_pulse = 7; //当前车速
+  // optional fixed32 acc_speed = 8; //用户设定的自适应巡航限速值
+  // optional fixed32 quit_odd_status = 9;// 驶离高精地图区域状态 ；如 1： 距驶离高精地图终点 还有500 m; 2: 距离终点 200 m 等，待产品定义
+}
+
+message NNPHmiOutput {
+  enum HighLightReasion{
+    LAT_NUDGE = 0;
+    LON_NUDGE = 1;
+    LON_FOLLOW = 2;
+    ALC_LEFT = 3;
+    ALC_RIGHT = 4;
+    MAX_REASON = 10;
+  }
+  message NNPObsHighLight {
+    optional uint32 obs_hightlight_id  = 1; // 目标ID 
+    optional HighLightReasion highlight_reason = 2;
+  }
+
+  optional DecisionInfo decision_info = 1; // 决策信息
+  repeated DynamicSRObject dynamic_SR_objects = 2; // SR 周围动态目标集合
+  optional State state = 3; //当前状态信息
+  optional DriveMode driver_mode = 4; // 驾驶模式
+  optional bool is_nnp_active = 6; 
+  optional uint64 map_spd_km_for_tsr = 8;
+  repeated NNPObsHighLight nnp_obs_hightlight  = 10; //nnp 跟车目标id
+  repeated NNPObsHighLight nnp_alc_obs_hightlight  = 12; //nnp alc target obs id
+}
+

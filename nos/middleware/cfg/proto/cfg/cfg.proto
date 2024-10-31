@@ -1,0 +1,150 @@
+syntax = "proto2";
+message CfgInitclientReqMethod {
+    optional string client_name = 1;
+}
+
+message CfgInitclientResMethod {
+    optional int32 result = 1;
+}
+
+message CfgDeinitclientReqMethod {
+  optional string client_name = 1;
+}
+
+message CfgDeinitclientResMethod {
+  optional int32 result = 1;
+}
+
+message CfgSetparamReqMethod {
+  optional string client_name = 1;
+  optional string param_name = 2;
+  repeated bytes param_value = 3;
+  optional int32 param_type = 4;
+  optional bool isdefault_value = 5;
+  optional int32 persist_flag = 6;
+}
+
+message CfgSetparamResMethod {
+  optional int32 result = 1;
+}
+
+message CfgGetparamReqMethod {
+  optional string client_name = 1;
+  optional string param_name = 2;
+  optional int32 param_type = 3;
+}
+
+message CfgGetparamResMethod {
+  repeated bytes param_value = 1;
+  optional int32 param_type = 2;
+  optional int32 result = 3;
+}
+
+message CfgResetparamReqMethod {
+  optional string client_name = 1;
+  optional string param_name = 2;
+}
+
+message CfgResetparamResMethod {
+  optional int32 result = 1;
+}
+message CfgMonitorparamReqMethod {
+  optional string client_name = 1;
+  optional string param_name = 2;
+}
+message CfgMonitorparamResMethod {
+  optional int32 result = 1;
+}
+
+message CfgUnmonitorparamReqMethod {
+  optional string client_name = 1;
+  optional string param_name = 2;
+}
+
+message CfgUnmonitorparamResMethod {
+  optional int32 result = 1;
+}
+
+message CfgDelparamReqMethod {
+  optional string client_name = 1;
+  optional string param_name = 2;
+}
+
+message CfgDelparamResMethod {
+  optional int32 result = 1;
+}
+
+message CfgParamupdatedataresReqMethod {
+  optional string client_name = 1;
+  optional string param_name = 2;
+}
+
+message CfgParamupdatedataresResMethod {
+  optional int32 result = 1;
+}
+
+message CfgGetmonitorclientsReqMethod {
+  optional string client_name = 1;
+  optional string param_name = 2;
+}
+
+message CfgGetmonitorclientsResMethod {
+  repeated string monitor_clients = 1;
+  optional int32 result = 2;
+}
+
+
+message CfgGetclientinfolistReqMethod {
+  optional string client_name = 1;
+}
+
+message CfgMethodEventInfo {
+  optional int32 type = 1;
+  optional string param_name = 2;
+  optional int32 count = 3;
+}
+
+message CfgClientInfo {
+  optional string client_name = 1;
+  repeated string monitor_params = 2;
+  optional int32 running_status = 3;
+  optional string start_time = 4;
+  optional string end_time = 5;
+  repeated CfgMethodEventInfo methodevent_info = 6;
+}
+
+message CfgGetclientinfolistResMethod {
+  repeated CfgClientInfo clientlist = 1;
+  optional int32 result = 2;
+}
+
+message CfgGetparaminfolistReqMethod {
+  optional string client_name = 1;
+}
+
+message CfgParamInfo {
+  optional string param_name = 1;
+  optional int32 data_type = 2;
+  optional int32 data_size = 3;
+  optional string lastupdate_clientname = 4;
+  optional string lastupdate_time = 5;
+  optional int32 per_plag = 6;
+}
+message CfgGetparaminfolistResMethod {
+  repeated CfgParamInfo paramlist = 1;
+  optional int32 result = 2;
+}
+
+message CfgParamupdatedataEvent {
+  optional string param_name = 1;
+  repeated bytes param_value = 2;
+  optional int32 param_type = 3;
+  optional string client_name = 4;
+  optional string update_client_name = 5;
+}
+
+message CfgParamupdatedataresEvent {
+  optional string client_name = 1;
+  optional string param_name = 2;
+  optional int32 result = 3;
+}

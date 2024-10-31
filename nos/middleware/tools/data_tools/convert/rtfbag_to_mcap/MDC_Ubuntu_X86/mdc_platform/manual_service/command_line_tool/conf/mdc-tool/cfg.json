@@ -1,0 +1,27 @@
+[
+    {
+        "key" : "app",
+        "value" :
+        {
+            "string" : "cfg"
+        }
+    },
+    {
+        "key" : "command",
+        "value" :
+        {
+            "string[]" : [ "cfg set < key > < value >",
+                           "cfg get < key >",
+                           "cfg del < key >"]
+        }
+    },
+    {
+        "key" : "help",
+        "value" :
+        {
+            "string[]" : ["cfg set key value,                                          Used to set param",
+                          "cfg get key,                                                Used to get param value",
+                          "cfg del key,                                                Used to del param"]
+        }
+    }
+]

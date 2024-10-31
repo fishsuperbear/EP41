@@ -1,0 +1,198 @@
+<?xml version="1.0" ?>
+<!--The update process file of sensor!!!!!!!!!!!!!-->
+<UdsRepro>
+  <Version>0.1</Version>
+  <Case>
+    <BeginProgress>0</BeginProgress>
+    <TransType>TransData</TransType>
+    <UpdateStep>Default Session Change</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>10 01</TransDatas>
+    <TransLen>2</TransLen>
+    <RecvDatas>50 01</RecvDatas>
+    <RecvLen>6</RecvLen>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Read Part Number</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>22 F1 87</TransDatas>
+    <TransLen>3</TransLen>
+    <RecvDatas>62 F1 87</RecvDatas>
+    <RecvLen>16</RecvLen>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Read Supplier Code</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>22 F1 8A</TransDatas>
+    <TransLen>3</TransLen>
+    <RecvDatas>62 F1 8A</RecvDatas>
+    <RecvLen>6</RecvLen>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Read Software Version</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>22 F1 C0</TransDatas>
+    <TransLen>3</TransLen>
+    <RecvDatas>62 F1 C0</RecvDatas>
+    <RecvLen>11</RecvLen>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Extended Session Change</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>10 03</TransDatas>
+    <TransLen>2</TransLen>
+    <RecvDatas>50 03</RecvDatas>
+    <RecvLen>6</RecvLen>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Programming Condition Check</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>31 01 02 03</TransDatas>
+    <TransLen>4</TransLen>
+    <RecvDatas>71 01 02 03 02</RecvDatas>
+    <RecvLen>5</RecvLen>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Disable DTC</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>85 02</TransDatas>
+    <TransLen>2</TransLen>
+    <RecvDatas>C5 02</RecvDatas>
+    <RecvLen>2</RecvLen>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Disable Communication</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>28 03 03</TransDatas>
+    <TransLen>3</TransLen>
+    <RecvDatas>68 03</RecvDatas>
+    <RecvLen>2</RecvLen>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Programming Session Change</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>10 02</TransDatas>
+    <TransLen>2</TransLen>
+    <RecvDatas>50 02</RecvDatas>
+    <RecvLen>6</RecvLen>
+    <Wait>00 00 01 F4</Wait>
+    <Delay>00 00 01 F4</Delay>
+  </Case>
+  <Case>
+    <BeginProgress>6</BeginProgress>
+    <TransType>SecurityAccess</TransType>
+    <UpdateStep>Security Access</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <SecurityLevel>LevelFBL</SecurityLevel>
+    <SecurityMask>71 88 75 03</SecurityMask>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Write SerialNumber</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>2E F1 99</TransDatas>
+    <AppendData>Date</AppendData>
+    <TransLen>7</TransLen>
+    <RecvDatas>6E F1 99</RecvDatas>
+    <RecvLen>3</RecvLen>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Write Timestamp</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>2E F1 98</TransDatas>
+    <AppendData>TesterSN</AppendData>
+    <TransLen>13</TransLen>
+    <RecvDatas>6E F1 98</RecvDatas>
+    <RecvLen>3</RecvLen>
+  </Case>
+  <Case>
+    <TransType>TransFile</TransType>
+    <UpdateStep>Transfer Data</UpdateStep>
+    <FileType>AppFirmware</FileType>
+    <FilePath>sensor/firmware/S40-3603099AG_9AL_SRR_APP_05.01.10_H1.20_20221215.s19</FilePath>
+    <EndProgress>92</EndProgress>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>ECU Reset</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>11 01</TransDatas>
+    <TransLen>2</TransLen>
+    <RecvDatas>51 01</RecvDatas>
+    <RecvLen>2</RecvLen>
+    <Delay>00 00 01 F4</Delay>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Default Session Change</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>10 01</TransDatas>
+    <TransLen>2</TransLen>
+    <RecvDatas>50 01</RecvDatas>
+    <RecvLen>6</RecvLen>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Extended Session Change</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>10 03</TransDatas>
+    <TransLen>2</TransLen>
+    <RecvDatas>50 03</RecvDatas>
+    <RecvLen>6</RecvLen>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Enable Communication</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>28 00 03</TransDatas>
+    <TransLen>3</TransLen>
+    <RecvDatas>68 00</RecvDatas>
+    <RecvLen>2</RecvLen>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Enable DTC</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>85 01</TransDatas>
+    <TransLen>2</TransLen>
+    <RecvDatas>C5 01</RecvDatas>
+    <RecvLen>2</RecvLen>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Default Session Change</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>10 01</TransDatas>
+    <TransLen>2</TransLen>
+    <RecvDatas>50 01</RecvDatas>
+    <RecvLen>6</RecvLen>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Clear DTC</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>14 FF FF FF</TransDatas>
+    <TransLen>4</TransLen>
+    <RecvDatas>54</RecvDatas>
+    <RecvLen>1</RecvLen>
+    <EndProgress>100</EndProgress>
+  </Case>
+  <Case>
+    <TransType>TransData</TransType>
+    <UpdateStep>Read Software Version</UpdateStep>
+    <AddrType>PhysicAddr</AddrType>
+    <TransDatas>22 F1 C0</TransDatas>
+    <TransLen>3</TransLen>
+    <RecvDatas>62 F1 C0</RecvDatas>
+    <RecvLen>11</RecvLen>
+  </Case>
+</UdsRepro>

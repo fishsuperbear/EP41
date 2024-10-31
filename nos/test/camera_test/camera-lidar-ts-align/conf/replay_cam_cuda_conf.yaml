@@ -1,0 +1,93 @@
+%YAML:1.0
+
+recvInstances:
+    - name: /soc/camera_0
+      topic: /soc/camera_0
+      type: proto_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: /soc/camera_1
+      topic: /soc/camera_1
+      type: proto_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: /soc/camera_3
+      topic: /soc/camera_3
+      type: proto_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: /soc/camera_4
+      topic: /soc/camera_4
+      type: proto_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: /soc/camera_5
+      topic: /soc/camera_5
+      type: proto_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: /soc/camera_6
+      topic: /soc/camera_6
+      type: proto_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: /soc/camera_7
+      topic: /soc/camera_7
+      type: proto_cuda_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: pointcloud
+      topic: /soc/pointcloud
+      type: proto_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: imu_ins
+      topic: /soc/imuinsinfo
+      type: proto_proxy
+      domainId: 0
+      bufferCapacity: 2
+    - name: chassis
+      topic: /soc/chassis
+      type: proto_proxy
+      domainId: 0
+      bufferCapacity: 2
+
+monitor:
+  printPeriodMs: 1000
+
+log:
+    mode: 3
+    file: ./
+    name: cmps
+    description: cm_proto_sample
+    level: 2  
+    adf:
+      level: 2
+
+# trigger二选一即可
+trigger:
+    - name: replay_cam
+      type: EVENT
+      timeWindow: 1000
+      mainSources:
+          - name: /soc/camera_0
+            timeout: 1000
+      auxSources:
+          - name: imu_ins
+            timeout: 1000
+          - name: chassis
+            timeout: 1000
+          - name: pointcloud
+            timeout: 1000
+          - name: /soc/camera_1
+            timeout: 1000
+          - name: /soc/camera_3
+            timeout: 1000
+          - name: /soc/camera_4
+            timeout: 1000
+          - name: /soc/camera_5
+            timeout: 1000
+          - name: /soc/camera_6
+            timeout: 1000
+          - name: /soc/camera_7
+            timeout: 1000

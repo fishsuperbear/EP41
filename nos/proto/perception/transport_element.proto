@@ -1,0 +1,381 @@
+syntax = "proto2";
+
+package hozon.perception;
+
+import "proto/common/header.proto";
+import "proto/common/types.proto";
+
+// 线类型
+enum LaneType {
+  Unknown                          = 0;  // 未知
+  SolidLine                        = 1;  // 单实线
+  DashedLine                       = 2;  // 单虚线
+  ShortDashedLine                  = 3;  // 短虚线
+  DoubleSolidLine                  = 4;  // 双实线
+  DoubleDashedLine                 = 5;  // 双虚线
+  LeftSolidRightDashed             = 6;  // 左实右虚
+  RightSolidLeftDashed             = 7;  // 右实左虚
+  ShadedArea                       = 8;  // 导流线
+  LaneVirtualMarking               = 9;  // 车道虚拟线
+  IntersectionVirualMarking        = 10;  // 路口虚拟线
+  CurbVirtualMarking               = 11;  // 路边缘虚拟线
+  UnclosedRoad                     = 12;  // 非封闭路段线
+  RoadVirtualLine                  = 13;  // 道路虚拟线
+  LaneChangeVirtualLine            = 14;
+  Other                            = 99;  // 其他
+}
+
+enum Color {
+  UNKNOWN                           = 0;
+  WHITE                            = 1;
+  YELLOW                           = 2;
+  GREEN                            = 3;
+  RED                              = 4;
+  BLACK                            = 5;
+}
+
+enum LanePositionType {
+  BOLLARD_LEFT                     = -5;
+  FOURTH_LEFT                      = -4;
+  THIRD_LEFT                       = -3;
+  ADJACENT_LEFT                    = -2;  // ego左边第二个
+  EGO_LEFT                         = -1;  // ego左边
+  EGO_RIGHT                        = 1;   // ego右边
+  ADJACENT_RIGHT                   = 2;   // ego又边第二个
+  THIRD_RIGHT                      = 3;
+  FOURTH_RIGHT                     = 4;
+  BOLLARD_RIGHT                    = 5;
+  OTHER                            = 6;
+}
+
+enum LaneUseType {
+  REAL                                     = 1;  // 真实
+  VIRTUAL                                  = 2;  // 虚假、脑补
+}
+
+message LaneCubicSpline {
+  repeated hozon.common.Point3D control_point_set = 1;    //控制点
+  repeated LaneCubicCurve cubic_curve_set          = 2;    //分段三次曲线
+}
+
+message LaneCubicCurve {
+  optional float start_point_x              = 1;
+  optional float end_point_x                = 2;
+  optional float c0                         = 3;
+  optional float c1                         = 4;
+  optional float c2                         = 5;
+  optional float c3                         = 6;
+}
+
+// @brief lane line point definition
+message LaneLinePoint {
+  // 图像系下的坐标点
+  optional hozon.common.Point2D image_point = 1;
+  // 车体系下的坐标点
+  optional hozon.common.Point3D vehicle_point = 2;
+  // local系下的坐标点
+  optional hozon.common.Point3D local_point = 3;
+  // 相机系下的坐标点
+  optional hozon.common.Point3D camera_point = 4;
+
+  optional LaneType type = 5;
+
+  optional Color color = 6;
+
+  optional float confidence = 7;
+};
+
+//车道线信息
+message LaneInfo {
+  enum LaneLineSceneType {
+    UNKNOWN  = 0;           // unknow scene
+    NORMAL   = 1;            // common lane line
+    FORK     = 2;              // fork line
+    CONVERGE = 3;          // converge line
+  };
+  optional int32 track_id                   = 1;           //车道线踪编号
+  optional LaneType lanetype                = 2;           //车道线线型
+  optional LanePositionType lanepos         = 3;           //车道线相对ego位置
+  repeated hozon.common.Point3D points      = 4;           //车道线边线点坐标
+  optional LaneCubicSpline  lane_param      = 5;           //车道线参数
+  optional double           confidence      = 6;           //置信度
+  optional LaneUseType      use_type        = 7;           //车道线生成来源
+  optional Color            color           = 8;           //车道线颜色
+  optional LaneLineSceneType scene_type     = 9;           //场景类型
+}
+
+//停止线
+message StopLine {
+  optional int32 track_id                    = 1;         //ID
+  optional hozon.common.Point3D  left_point  = 2;         //停止线左端3D点
+  optional hozon.common.Point3D  right_point = 3;         //停止线右端3D点
+  optional double confidence                 = 4;           //置信度
+}
+
+//斑马线
+message ZebraCrossing {
+  optional int32 track_id                   = 1;           //ID
+  optional double heading                   = 2;           //斑马线heading
+  optional hozon.common.Polygon points      = 3;           //斑马线几何信息, 4个点; 左上角起点，逆时针
+  optional double confidence                = 4;           //置信度
+}
+
+// 禁停区
+message NoParkingZone {
+  optional int32 track_id                   = 1;           //ID
+  optional double heading                   = 2;           //等待区heading
+  optional hozon.common.Polygon points      = 3;           //等待区几何信息, 4个点; 左上角起点，逆时针
+  optional double confidence                = 4;           //置信度
+
+}
+
+// 减速标线
+message SlowDown {
+  optional int32 track_id                   = 1;           //ID
+  optional double heading                   = 2;           //等待区heading
+  optional hozon.common.Polygon points      = 3;           //等待区几何信息, 4个点; 左上角起点，逆时针
+  optional double confidence                = 4;           //置信度
+
+}
+
+enum WaitZoneType {
+  LEFTWAIT_ZONE = 0;
+  STRAIGHTWAIT_ZONE = 1;
+  WAITZONETYPE_UNKNOWN = 2;  // unknown
+}
+
+// 待转区
+message TurnWaitingZone {
+  optional WaitZoneType type                = 1;
+  optional int32 track_id                   = 2;           //ID
+  optional double heading                   = 3;           //等待区heading
+  optional hozon.common.Polygon points      = 4;           //等待区几何信息, 4个点; 左上角起点，逆时针
+  optional double confidence                = 5;           //置信度
+
+}
+
+// 灯杆
+message LightPole {
+  optional hozon.common.Point2D  up_point     = 2;         // 图像坐标系灯杆的上点
+  optional hozon.common.Point2D  down_point   = 3;         // 图像坐标系灯杆的下点
+  optional hozon.common.Point3D points_3d     = 4;
+}
+
+enum ArrowType {
+  STRAIGHT_FORWARD = 0;            // 直行箭头
+  STRAIGHT_FORWARD_OR_TURN_LEFT = 1;  // 直行或左转
+  STRAIGHT_FORWARD_OR_TURN_RIGHT = 2;  // 直行或右转
+  STRAIGHT_FORWARD_OR_TURN_LEFT_OR_TURN_RIGHT = 3;   // 直行或左转或右转
+  STRAIGHT_FORWARD_OR_TURN_AROUND = 4;   // 直行或掉头
+  STRAIGHT_FORWARD_OR_TURN_AROUND_OR_TURN_LEFT = 5;  // 直行或掉头或左转
+
+  TURN_LEFT = 6;   // 左转
+  TURN_LEFT_OR_MERGE_LEFT = 7;  // 左转或向左合流
+  TURN_LEFT_OR_TURN_AROUND = 8;  // 左转或掉头
+  TURN_LEFT_OR_TURN_RIGHT = 9;   // 左转或右转
+  TURN_RIGHT = 10;    // 右转
+  TURN_RIGHT_OR_MERGE_RIGHT = 11;   // 右转或向右合流
+  TURN_RIGHT_OR_TURN_AROUND = 12;  // 右转或掉头
+  TURN_AROUND = 13;   // 掉头
+
+  FORBID_TURN_LEFT = 14;  // 禁止左转
+  FORBID_TURN_RIGHT = 15;  // 禁止右转
+  FORBID_TURN_AROUND = 16;  // 禁止掉头
+  FRONT_NEAR_CROSSWALK = 17;  // 前向斑马线
+  ARROWTYPE_UNKNOWN = 18;
+}
+
+//路面箭头
+message Arrow {
+  optional ArrowType type                   = 1;
+  optional int32 track_id                   = 2;           //ID
+  optional double heading                   = 3;           //路面箭头heading
+  optional hozon.common.Polygon points      = 4;           //路面箭头几何信息, 4个点; 左上角起点，逆时针
+  optional double confidence                = 5;           //置信度
+}
+
+enum CrossType {
+  SPLIT                                     = 0;          //分流 
+  MERGE                                     = 1;          //合流
+  CROSSTYPE_UNKNOWN                         = 2;
+}
+
+message CrossPoint {
+  optional int32 id                         = 1;
+  optional CrossType type                   = 2;
+  optional double confidence                = 3;  
+  optional hozon.common.Point3D point_3d    = 4;
+}
+
+enum TrafficLightType {
+  TurnAround                                = 2;
+  LeftTurn                                  = 3;
+  RightTurn                                 = 4;
+  StraightAhead                             = 5;
+  YellowFlashing                            = 6;
+  BlueFlashing                              = 7;
+  Circle                                    = 8;
+}
+
+message TrafficLight {
+  enum CameraID {
+    CAMERA_FRONT_LONG = 0;
+    CAMERA_FRONT_SHORT = 1;
+  };
+  optional CameraID camera_id               = 1;
+  optional TrafficLightType type            = 2;
+  optional Color color                      = 3;
+  optional double confidence                = 4;  // 联合概率值
+  optional hozon.common.Point2D points_2d   = 5;  // 4个点，左上角起点，逆时针
+  optional hozon.common.Point3D points_3d   = 6;
+  optional string id                        = 7;
+  repeated TrafficLightType shape_series    = 8;   // 支持灯组形式， color和shape 的长度对应
+  repeated Color color_series               = 9;
+  optional hozon.common.Rect2D bbox2d       = 10;      // 图像2d检测框
+  optional hozon.common.Point3D position    = 11; // 车体坐标系
+  optional bool is_predicted                = 12; // 预测但没有观测
+  optional int32 fusion_priority            = 13; // 灯融合优先级
+}
+
+enum TrafficSignType {
+  // 限速值、禁止类、指示类等
+  Other_Type                                = 0; // 其他标识
+  ProhibitDirection                         = 1; // 禁止行驶方向
+  ProhibitObject                            = 2; // 禁止行驶行为
+  LimitSpeed                                = 3; // 限速
+  RemoveLimitSpeed                          = 4; // 取消限速
+}
+
+
+enum TrafficSignSubType{
+  LimitMinSpeed = 6;                 // 最低限速
+  LimitMaxSpeed = 7;                 // 最高限速*
+  RemoveLimit_Speed = 8;              // 取消限速*
+  ProhibitOvertaking = 40;           // 禁止超车*
+  ProhibitStraigh = 41;              // 禁止直行*
+  ProhibitStraightTurnRight = 42;    // 禁止直行和右转*
+  ProhibitStraightTurnLeft = 43;     // 禁止直行和左转*
+  ProhibitTurnRight = 46;            // 禁止右转
+  ProhibitTurnLeftRight = 48;        // 禁止左转和右转
+  ProhibitTurnLeft = 51;             // 禁止左转
+  ProhibitTurnAround = 70;           // 禁止掉头
+  ProhibitPassage = 82;              // 禁止通行
+  ProhibitParking = 176;             // 禁止停车
+  ProhibitEntry = 177;               // 禁止驶入
+}
+
+enum SpeedType {
+  Speed_30        = 3;
+  Speed_40        = 4;
+  Speed_50        = 5;
+  Speed_60        = 6;
+  Speed_70        = 7;
+  Speed_80        = 8;
+  Speed_90        = 9;
+  Speed_100       = 10;
+  Speed_110       = 11;
+  Speed_120       = 12;
+}
+
+enum IhbcLightType{
+  HeadLight    = 0;           // 车头灯
+  TailLight    = 1;           // 车尾灯
+  BrakeLight   = 2;          // 刹车灯
+  Type_Unknown = 3;             // 未知
+  RoadLight    = 4;           // 路灯
+  NoLight      = 5;
+}
+
+enum IhbcSencetType{
+  FarLight = 0;            // 远光灯
+  FarNearLight = 1;        // 远近灯均可
+  NearLight = 2;           // 近光灯
+  DuskLight = 3;           // 白天或黄昏输出的灯光类别
+  NoScene = 4;
+}
+
+message IhbcLight{
+  optional IhbcLightType light_type         = 1;
+  optional double confidence                = 2;
+  optional hozon.common.Rect2D bbox2d       = 3;    // 图像2d检测框
+}
+
+message IhbcSence{
+  optional IhbcSencetType sence_type = 1;
+  optional double confidence         = 2; //场景就只有类别和置性度
+}
+
+
+message TrafficSign {
+  optional TrafficSignType type              = 1; //模型出的大的检测类别
+  optional double confidence                 = 2; //置信度
+  optional hozon.common.Point2D points_2d    = 3; // 4个点，左上角起点，逆时针
+  optional hozon.common.Point3D points_3d    = 4; //车体坐标系
+  optional SpeedType speed_type              = 5; //当前直接用value 代替
+  optional int32 type_value                  = 6; //当value为零时，即当前的类别不为最大速度限制类.value不为零时，即当前类别为最大速度限制， 且最大速度为value对应的值                             
+  optional hozon.common.Rect2D bbox2d        = 7; // 图像2d检测框
+  optional TrafficSignSubType sub_type       = 8; //发布的类别
+}
+
+message TrafficLightDetection {
+  message PassableInfo{
+    optional Color turn_around = 1;   // 颜色 红、黄、绿
+    optional Color turn_left = 2;
+    optional Color straight = 3;
+    optional Color turn_right = 4;
+  }
+  message CropResizeConfig{
+    optional string sensor_name = 1;
+    optional int32 left_offset = 2;
+    optional int32 top_offset = 3;
+    optional int32 crop_width = 4;
+    optional int32 crop_height = 5;
+    optional int32 resize_width = 6;
+    optional int32 resize_height = 7;
+  }
+  optional hozon.common.Header header = 1;
+  repeated TrafficLight traffic_light = 2;
+  optional bool contain_lights = 3;
+  optional PassableInfo passable_info = 4;
+  repeated CropResizeConfig crop_resize_conf = 5;
+  repeated int32 proposal_lights_id = 6;   // 顺序为：圆饼，左转箭头，掉头箭头，直行箭头，右转箭头
+}
+
+message Vision2dDetection{
+  optional hozon.common.Header header           = 1;
+  repeated TrafficSign traffic_sign             = 2;
+  repeated IhbcLight ihbc_light                 = 3;
+  repeated IhbcSence ihbc_sence                 = 4;
+}
+
+message RoadEdge {
+  enum RoadEdgeType{
+    ROAD_EDGE = 0;        // 马路路沿
+    GROUND_EDGE = 1;      // 地面路沿
+    CONE_EDGE = 2;        // 锥桶路沿
+    WATERHORSE_EDGE = 3;  // 水马路沿
+    FENCE_EDGE = 4;       // 围栏路沿
+    UNKNOWN = 5;
+  };
+  optional int32 id                             = 1;
+  optional RoadEdgeType type                    = 2;
+  optional float confidence                     = 3;
+  repeated hozon.common.Point3D points          = 4;
+  optional LaneCubicCurve vehicle_curve         = 5;
+}
+
+message TransportElement {
+  optional hozon.common.Header header           = 1;
+  repeated LaneInfo lane                        = 2; 
+  repeated RoadEdge road_edges                  = 3; 
+  repeated Arrow arrow                          = 4;
+  repeated StopLine stopline                    = 5;
+  repeated ZebraCrossing zebra_crossing         = 6;
+  repeated NoParkingZone no_parking_zone        = 7;
+  repeated TurnWaitingZone turn_waiting_zone    = 8;
+  repeated LightPole light_poles                = 9;
+  repeated TrafficLight traffic_lights          = 10;
+  repeated TrafficSign traffic_signs            = 11;
+  repeated SlowDown slow_Downs                  = 12;
+  repeated CrossPoint cross_points              = 13;
+}

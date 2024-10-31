@@ -1,0 +1,17 @@
+{
+  "process_name": "mappingProcess",
+  "executable": "mapping",
+  "restart_attempt_num": "2",
+  "shall_run_ons": [],
+  "mode_of_order": [
+    "Normal.2"
+  ],
+  "scheduling_policy": "RR",
+  "scheduling_priority": "60",
+  "arguments": ["/app/runtime_service/mapping/conf/lite/top_config.yaml"],
+  "environments": [
+    "LD_LIBRARY_PATH=/app/lib:/app/runtime_service/mapping/lib",
+    "NETA_CM_QOS_PATH=/app/runtime_service/mapping/etc/default_qos.json",
+    "ADFLITE_ROOT_PATH=/app/"
+  ]
+}

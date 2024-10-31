@@ -1,0 +1,65 @@
+{
+    "End2EndEventProtectionPropsSet":
+    {
+        "End2EndEventProtectionProps":
+        [
+            {
+                "dataId": 1,
+                "maxDataLength": 4096,
+                "minDataLength": 1,
+                "maxDeltaCounter": 1,
+                "maxErrorStateInit": 0,
+                "maxErrorStateInvalid": 0,
+                "maxErrorStateValid": 0,
+                "minOkStateInit": 1,
+                "minOkStateInvalid": 1,
+                "minOkStateValid": 1,
+                "profileName": "PROFILE_04",
+                "windowSizeInit": 1,
+                "windowSizeValid": 1,
+                "windowSizeInvalid": 1,
+                "offset": 8
+            }
+        ]
+    },
+    "End2EndMethodProtectionPropsSet":
+    {
+        "End2EndMethodProtectionProps":
+        [
+            {
+                "dataId": 101,
+                "maxDataLength": 4096,
+                "minDataLength": 1,
+                "maxDeltaCounter": 1,
+                "maxErrorStateInit": 0,
+                "maxErrorStateInvalid": 0,
+                "maxErrorStateValid": 0,
+                "minOkStateInit": 1,
+                "minOkStateInvalid": 1,
+                "minOkStateValid": 1,
+                "profileName": "PROFILE_04",
+                "windowSizeInit": 1,
+                "windowSizeValid": 1,
+                "windowSizeInvalid": 1,
+                "offset": 8
+            },
+            {
+                "dataId": 102,
+                "maxDataLength": 4096,
+                "minDataLength": 1,
+                "maxDeltaCounter": 1,
+                "maxErrorStateInit": 0,
+                "maxErrorStateInvalid": 0,
+                "maxErrorStateValid": 0,
+                "minOkStateInit": 1,
+                "minOkStateInvalid": 1,
+                "minOkStateValid": 1,
+                "profileName": "PROFILE_04",
+                "windowSizeInit": 1,
+                "windowSizeValid": 1,
+                "windowSizeInvalid": 1,
+                "offset": 8
+            }
+        ]
+    }
+}

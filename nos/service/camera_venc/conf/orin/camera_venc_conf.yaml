@@ -1,0 +1,83 @@
+sensor_ids: [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11]
+codec_type: 0 # 0: h265, 1: h264
+write_file: false
+uhp_mode: true
+frame_sampling: 0
+sensor_infos:
+  # front 0
+  - sensor_id: 0
+    resolution_width: 3840
+    resolution_height: 2160
+    src_layout: 0  # 0: block linear, 1: pitch linear
+    yuv_topic: "/soc/camera_0"
+    enc_topic: "/soc/encoded_camera_0"
+  # front 1
+  - sensor_id: 1
+    resolution_width: 3840
+    resolution_height: 2160
+    src_layout: 0  # 0: block linear, 1: pitch linear
+    yuv_topic: "/soc/camera_1"
+    enc_topic: "/soc/encoded_camera_1"
+  # rear
+  - sensor_id: 2
+    resolution_width: 1920
+    resolution_height: 1080
+    src_layout: 1  # 0: block linear, 1: pitch linear
+    yuv_topic: "/soc/camera_2"
+    enc_topic: "/soc/encoded_camera_2"
+  # front left
+  - sensor_id: 4
+    resolution_width: 1920
+    resolution_height: 1080
+    src_layout: 1  # 0: block linear, 1: pitch linear
+    yuv_topic: "/soc/camera_4"
+    enc_topic: "/soc/encoded_camera_4"
+  # front right
+  - sensor_id: 5
+    resolution_width: 1920
+    resolution_height: 1080
+    src_layout: 1  # 0: block linear, 1: pitch linear
+    yuv_topic: "/soc/camera_5"
+    enc_topic: "/soc/encoded_camera_5"
+  # rear left
+  - sensor_id: 6
+    resolution_width: 1920
+    resolution_height: 1080
+    src_layout: 1  # 0: block linear, 1: pitch linear
+    yuv_topic: "/soc/camera_6"
+    enc_topic: "/soc/encoded_camera_6"
+  # rear right
+  - sensor_id: 7
+    resolution_width: 1920
+    resolution_height: 1080
+    src_layout: 1  # 0: block linear, 1: pitch linear
+    yuv_topic: "/soc/camera_7"
+    enc_topic: "/soc/encoded_camera_7"
+  # fisheye right
+  - sensor_id: 8
+    resolution_width: 1920
+    resolution_height: 1080
+    src_layout: 1  # 0: block linear, 1: pitch linear
+    yuv_topic: "/soc/camera_8"
+    enc_topic: "/soc/encoded_camera_8"
+  # fisheye left
+  - sensor_id: 9
+    resolution_width: 1920
+    resolution_height: 1080
+    src_layout: 1  # 0: block linear, 1: pitch linear
+    yuv_topic: "/soc/camera_9"
+    enc_topic: "/soc/encoded_camera_9"
+  # # fisheye rear
+  - sensor_id: 10
+    resolution_width: 1920
+    resolution_height: 1080
+    src_layout: 1  # 0: block linear, 1: pitch linear
+    yuv_topic: "/soc/camera_10"
+    enc_topic: "/soc/encoded_camera_10"
+  # fisheye front
+  - sensor_id: 11
+    resolution_width: 1920
+    resolution_height: 1080
+    src_layout: 1  # 0: block linear, 1: pitch linear
+    yuv_topic: "/soc/camera_11"
+    enc_topic: "/soc/encoded_camera_11"

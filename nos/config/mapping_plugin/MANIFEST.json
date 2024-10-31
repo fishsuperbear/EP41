@@ -1,0 +1,17 @@
+{
+  "process_name": "mapping_pluginProcess",
+  "executable": "hz_location",
+  "restart_attempt_num": "2",
+  "shall_run_ons": [],
+  "mode_of_order": [
+    "Normal.2"
+  ],
+  "scheduling_policy": "RR",
+  "scheduling_priority": "60",
+  "arguments": ["--flagfile /app/runtime_service/mapping_plugin/conf/hz_location_plugin_ind.conf"],
+  "environments": [
+    "NETA_CM_QOS_PATH=/app/runtime_service/mapping_plugin/etc/default_qos.json",
+    "MAPPING_PLUGIN_ROOT_PATH=/app/runtime_service/mapping_plugin",
+    "LD_LIBRARY_PATH=/app/lib:/app/runtime_service/mapping_plugin/lib"
+  ]
+}

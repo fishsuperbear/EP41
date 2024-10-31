@@ -1,0 +1,77 @@
+[
+{
+	"ip_addr":"172.16.50.11",
+	"port":13400,
+	"fname":"mgbe3_0.50",
+	"thread_start_delay":10,
+	"test":[
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"describe":"<TG5_TC9> task1 DoIP实体支持的最大并发TCP_DATA Sockets数目测试",
+		"sever_close_wait":2500
+	}
+	]
+},
+{
+	"ip_addr":"172.16.50.11",
+	"port":13400,
+	"fname":"mgbe3_0.50",
+	"thread_start_delay":10,
+	"test":[
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"describe":"<TG5_TC9> task2 DoIP实体支持的最大并发TCP_DATA Sockets数目测试",
+		"sever_close_wait":2500
+	}
+	]
+},
+{
+	"ip_addr":"172.16.50.11",
+	"port":13400,
+	"fname":"mgbe3_0.50",
+	"thread_start_delay":10,
+	"test":[
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"describe":"<TG5_TC9> task3 DoIP实体支持的最大并发TCP_DATA Sockets数目测试",
+		"sever_close_wait":2500
+	}
+	]
+},
+{
+	"ip_addr":"172.16.50.11",
+	"port":13400,
+	"fname":"mgbe3_0.50",
+	"thread_start_delay":10,
+	"test":[
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"describe":"<TG5_TC9> task4 DoIP实体支持的最大并发TCP_DATA Sockets数目测试",
+		"sever_close_wait":2500
+	}
+	]
+},
+{
+	"ip_addr":"172.16.50.11",
+	"port":13400,
+	"fname":"mgbe3_0.50",
+	"thread_start_delay":10,
+	"test":[
+	{
+		"protocol_type":"TCP",
+		"timeout":1000,
+		"retryCounts":1,
+		"describe":"<TG5_TC9> task5 DoIP实体支持的最大并发TCP_DATA Sockets数目测试",
+		"sever_close_wait":500
+	}
+	]
+}
+]

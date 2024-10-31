@@ -1,0 +1,33 @@
+%YAML:1.0
+
+module:
+    className: ProtobufRecvSample
+    path: ./lib/libproto_recv_sample.so
+
+recvInstances:
+    - name: cm_protobuf
+      type: cm_proxy
+      topic: /hozon/cm_protobuf
+      domainId: 1
+sendInstances:
+    - name: cm_protobuf
+      type: cm_skeleton
+      topic: /hozon/cm_protobuf
+      domainId: 0
+
+log:
+    mode: 3
+    file: ./
+    name: cmpr
+    description: cm_proto_sample
+    level: 0   
+    adf:
+      level: 0
+
+# trigger二选一即可
+trigger:
+    - name: main
+      type: PERIOD
+      period: 1000
+      auxSources:
+          - name: cm_protobuf

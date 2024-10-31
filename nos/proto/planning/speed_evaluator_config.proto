@@ -1,0 +1,663 @@
+syntax = "proto2";
+
+package hozon.planning;
+
+message SpeedCurveConfig {
+  optional double min_total_time = 1 [default = 7.0];
+  optional double max_total_time = 2 [default = 20.0];
+  optional double sparse_point_interval = 3 [default = 1.0];
+  optional double dense_point_interval = 4 [default = 0.2];
+}
+
+message SpeedCacheConfig {
+  enum NudgeState {
+    IGNORE = 1;
+    UNCERTAIN = 2;
+    FOLLOW = 3;
+    OVERTAKE = 4;
+  }
+
+  message JerkValueCalibrationInfo {
+    optional double accel = 1 [default = 0.0];
+    optional double jerk_value = 2 [default = 0.0];
+  }
+  
+  message JerkValueCalibrationTable {
+    repeated JerkValueCalibrationInfo calibration_info = 1;
+  }
+
+  message JerkCoefCalibrationInfo {
+    optional double speed = 1 [default = 0.0];
+    optional double jerk_coef = 2 [default = 0.0];
+  }
+  
+  message JerkCoefCalibrationTable {
+    repeated JerkCoefCalibrationInfo calibration_info = 1;
+  }
+
+  // stop s filter window size
+  optional int32 stop_s_filter_window_size = 1 [default = 10];
+
+  // max_negetive_expected_stop_distance_error < (real_stop_distance - expected_stop_distance) &&
+  // (real_stop_distance - expected_stop_distance) < max_positive_expected_stop_distance_error
+  optional double max_stop_distance = 2 [default = 1.5];
+  optional double min_stop_distance = 3 [default = 2.0];
+
+  // if lateral length of adc head entering the target lane > lane_change_finish_l_threshold,
+  // this means adc finish lane change
+  optional double lane_change_finish_l_threshold = 4 [default = 0.5];
+
+  optional double cross_collision_check_distance_buffer = 5 [default = 2.0];
+  optional double non_cross_collision_check_distance_buffer = 6 [default = 1.0];
+
+  // big car cost config
+  optional double hexagon_cost_big_car_p1_x_buffer = 7 [default = 5];
+  optional double hexagon_cost_big_car_p1_y_buffer = 8 [default = 3.0];
+  optional double hexagon_cost_big_car_p6_x_buffer = 9 [default = 5];
+  optional double follow_time_desired = 10 [default = 0.5];
+
+  // cruise target speed filter window size
+  optional int32 cruise_target_speed_filter_window_size = 11 [default = 5];
+
+  optional double delta_curvature_speed_limit_threshold = 12 [default = 1.0];
+
+  // dece、jerk limit when adc over cruise speed
+  optional double dece_when_exceed_cruise_speed = 13 [default = -0.5];
+  optional double jerk_when_exceed_cruise_speed = 14 [default = -0.5];
+
+  optional double dece_when_exceed_map_speed_limit = 15 [default = -0.5];
+  optional double jerk_when_exceed_map_speed_limit = 16 [default = -0.5];
+
+  // dece、jerk limit when adc over ramp speed limit
+  optional double dece_when_exceed_ramp_speed_limit = 17 [default = -1.0];
+  optional double jerk_when_exceed_ramp_speed_limit = 18 [default = -0.5];
+
+  optional double obstacle_filter_max_s = 19 [default = 300];
+  optional double obstacle_filter_unit_s = 20 [default = 1.0];
+  optional double obstacle_filter_max_t = 21 [default = 7.0];
+  optional double obstacle_filter_unit_t = 22 [default = 0.2];
+
+  optional double front_nudge_obstacle_frozen_distance = 23 [default = 10.0];
+  optional double back_nudge_obstacle_frozen_distance = 24 [default = 10.0];
+
+  optional double sparse_point_interval = 25 [default = 1.0];
+  optional double dense_point_interval = 26 [default = 0.2];
+
+  optional double front_nudge_s_threshold = 27 [default =  1000.0];
+  optional double rear_nudge_s_threshold = 28 [default =  0.5];
+  optional double ignore_debounce_time_threshold = 29 [default = 1.0];
+  optional double uncertain_debounce_time_threshold = 30 [default = 1.0];
+  optional double follow_debounce_time_threshold = 31 [default = 1.0];
+  optional double overtake_debounce_time_threshold = 32 [default = 0.0];
+
+  optional double curvature_speed_limit_smooth_l_threshold = 33 [default = 0.15];
+  optional double curvature_speed_limit_smooth_s_ratio = 34 [default = 0.75];
+
+  // params used to estimated  obstacle emergency braking
+  optional JerkValueCalibrationTable jerk_value_calibration_table = 35;
+  optional JerkCoefCalibrationTable jerk_coef_calibration_table = 36;
+
+  optional double obstacle_time_unit = 37 [default = 0.2];
+  optional double nudge_obstacle_time_unit = 38 [default = 1.0];
+  optional double gap_obstacle_time_unit = 39 [default = 1.0];
+
+  optional bool ignore_cruise_speed_limit = 40 [default = false];
+  optional bool ignore_ramp_speed_limit = 41 [default = false];
+  optional double cruise_speed_limit_in_ramp = 42 [default = 22.22];
+
+  optional double obstacle_cache_time_length = 43 [default = 20.0];
+
+  optional double max_over_cruise_speed_limit_ratio_when_nudge_obstacle = 44 [default = 0.1];
+  optional double max_over_map_speed_limit_ratio_when_nudge_obstacle = 45 [default = 0.1];
+  optional double max_speed_limit_when_nudge_obstacle = 46 [default = 34.73];
+  optional double max_preview_ramp_distance = 47 [default = 500.0];
+  optional double max_preview_tunnel_distance = 48 [default = 500.0];
+
+   // dece、jerk limit when adc over tunnel speed limit
+  optional double dece_when_exceed_tunnel_speed_limit = 49 [default = -0.8];
+  optional double jerk_when_exceed_tunnel_speed_limit = 50 [default = -0.5];
+  optional double speed_limit_point_distance_to_tunnel = 51 [default = 200.0];
+
+  // consider static obstacle go backward in stop case
+  optional double stop_distance_backward_coef = 52 [default = 1.0];
+
+  // if speed is less then stop_prefinish_distance_threshold, adc will reuse last frame stop curve
+  optional double stop_prefinish_distance_threshold = 53 [default = 5.0];
+
+  // dece、jerk limit when adc over pedestrian speed limit
+  optional double dece_when_exceed_pedestrian_speed_limit = 54 [default = -0.9];
+  optional double jerk_when_exceed_pedestrian_speed_limit = 55 [default = -0.8];
+  // if average accel of stop curve is greate than average_accel_threshold,
+  // stop curve is not good
+  optional double average_accel_threshold_for_stop_curve = 56 [default = -0.3];
+
+  optional double nudge_speed_limit_coef = 57 [default = 60.0];
+}
+
+message ComfortAccelCalibrationInfo {
+  optional double speed = 1 [default = 0.0];
+  optional double max_accel = 2 [default = 0.0];
+  optional double min_accel = 3 [default = 0.0];
+}
+
+message ComfortAccelCalibrationTable {
+  repeated ComfortAccelCalibrationInfo calibration_info = 1;
+}
+
+message AccelCostConfig {
+  optional ComfortAccelCalibrationTable comfort_accel_calibration_table = 1;
+  optional double max_sensitive_accel = 2 [default = 2.0];
+  optional double min_sensitive_accel = 3 [default = -4.0];
+  optional double max_comfort_cost = 4 [default = 5000];
+}
+
+message ComfortJerkCalibrationInfo {
+  optional double speed = 1 [default = 0.0];
+  optional double max_jerk = 2 [default = 0.0];
+  optional double min_jerk = 3 [default = 0.0];
+  optional double max_comfort_cost = 4 [default = 5000];
+}
+
+message ComfortJerkCalibrationTable {
+  repeated ComfortJerkCalibrationInfo calibration_info = 1;
+}
+
+message JerkCostConfig {
+  optional ComfortJerkCalibrationTable comfort_jerk_calibration_table = 1;
+  optional double max_sensitive_jerk = 2 [default = 3.0];
+  optional double min_sensitive_jerk = 3 [default = -3.0];
+  optional double max_comfort_cost = 4 [default = 5000];
+}
+
+message LowSpeedCostConfig {
+  optional double low_speed_cost_coef = 1 [default = 1e4];
+  optional double over_acce_cost = 2 [default = 1e4];
+}
+
+message OverSpeedCostConfig {
+  optional double over_curvature_speed_limit_cost_coef = 1 [default = 1e11];
+  optional double over_decision_speed_limit_cost_coef = 2 [default = 1e11];
+  optional double over_map_speed_limit_cost_coef = 3 [default = 1e5];
+  optional double over_cruise_speed_limit_cost_coef = 4 [default = 1e5];
+  optional double over_ramp_speed_limit_cost_coef = 5 [default = 1e7];
+  optional double over_speed_limit_threshold = 6 [default = 0.1];
+  optional double over_tunnel_speed_limit_cost_coef = 7 [default = 1e7];
+  optional double over_nudge_speed_limit_cost_coef = 8 [default = 1e5];
+}
+
+message ObstacleSafeDistanceCostConfig {
+  // overtake time coef
+  optional double min_overtake_distance = 1 [default = 1.0];
+  // obstacle cost time coef
+  repeated double obstacle_cost_time_coef = 2;
+  // obstacle distance cost coef
+  optional double obstacle_distance_cost_coef = 3 [default = 1e7];
+  // follow distance speed coef
+  optional double s_follow_distance_coef_for_speed = 4 [default = 0.25];
+  // follow distance speed coef
+  optional double max_s_follow_distance_for_speed = 5 [default = 5.0];
+  // overtake distance speed coef
+  optional double s_overtake_distance_coef_for_speed = 6 [default = 0.25];
+  // overtake distance speed coef
+  optional double max_s_overtake_distance_for_speed = 7 [default = 5.0];
+  // follow distance speed coef
+  optional double l_follow_distance_coef_for_speed = 8 [default = 2.0];
+  // follow distance speed coef
+  optional double max_l_follow_distance_for_speed = 9 [default = 20.0];
+  // overtake distance speed coef
+  optional double l_overtake_distance_coef_for_speed = 10 [default = 2.0];
+  // overtake distance speed coef
+  optional double max_l_overtake_distance_for_speed = 11 [default = 20.0];
+  // whether check safe follow and safe overtake
+  optional bool enable_safe_check = 12 [default = false];
+  // used to prevent longitudinal dangerous when lane change / lane merge
+  optional double safe_distance_cost_threshold = 13 [default = 1e100];
+  optional double safe_check_end_time = 14 [default = 4.5];
+}
+
+message ObstacleExpectedDistanceCostConfig {
+  message SpeedTrackSpeedCalibrationInfo {
+    optional double speed = 1 [default = 0.0];
+    optional double track_speed = 2 [default = 1.0];
+  }
+  
+  message SpeedTrackSpeedCalibrationTable {
+    repeated SpeedTrackSpeedCalibrationInfo calibration_info = 1;
+  }
+
+  message FollowTimeErrorTrackSpeed {
+    optional double follow_time_error = 1 [default = 0.0];
+    optional double track_speed = 2 [default = 1.0];
+  }
+
+  message  FollowTimeErrorTrackSpeedCalibrationTable {
+    repeated FollowTimeErrorTrackSpeed calibration_info = 1;
+  }
+
+  optional double expected_distance_cost_coef = 1 [default = 2.5e6];
+  optional double expected_follow_time_error_change = 2 [default = 0.2];
+  optional SpeedTrackSpeedCalibrationTable speed_track_speed_calibration_table = 3;
+  optional FollowTimeErrorTrackSpeedCalibrationTable follow_time_error_track_speed_calibration_table = 4;
+  repeated double obstacle_cost_time_coef = 5;
+}
+
+message StopDistanceCostConfig {
+  optional ComfortAccelCalibrationTable comfort_accel_calibration_table = 1;
+  optional double stop_accel_cost_coef = 2 [default = 1e15];
+  optional double stop_low_speed_threshold = 3 [default = 1.0];
+  optional double stop_low_speed_time_threshold = 4 [default = 1.5];
+  optional double stop_low_speed_time_cost_coef = 5 [default = 1e12];
+}
+
+message NudgeCostConfig {
+  optional double hexagon_cost_sigmoid_a = 1 [default = 3];
+  optional double hexagon_cost_sigmoid_b = 2 [default = 2.1];
+  optional double hexagon_cost_sigmoid_factor = 3 [default = 2.5e6];
+  optional double obstacle_distance_cost_coef = 4 [default = 1e7];
+  optional double follow_time_cost_coef = 5 [default = 1e5];
+}
+
+message CurvePriorityCostConfig {
+  optional double stop_curve_priority_cost = 1 [default = 0.0];
+  optional double cruise_curve_priority_cost = 2 [default = 248663.46];
+  optional double follow_curve_priority_cost = 3 [default = 248663.46];
+  optional double unknown_curve_priority_cost = 4 [default = 432195.47];
+  optional double mean_follow_time_error_threshold = 5 [default = 0.12];
+}
+
+message GapCostConfig {
+  // max acce, min acce, max jerk, min jerk when wait gap,
+  // if curve acce and jerk is not in this range, give max gap cost
+  // even though this curve has a small distance to gap
+  optional double max_acce_for_wait_gap = 1 [default = 1.0];
+  optional double min_acce_for_wait_gap = 2 [default = -2.0];
+  optional double max_jerk_for_wait_gap = 3 [default = 3.5];
+  optional double min_jerk_for_wait_gap = 4 [default = -3.5];
+  optional double max_distance_to_gap = 5 [default = 500];
+  optional double not_in_gap_cost = 6 [default = 1e10];
+}
+
+message LateralDistanceCostConfig {
+ // obstacle cost time coef
+  repeated double obstacle_cost_time_coef = 1;
+  optional double obstacle_distance_cost_coef = 2 [default = 1e7];
+  optional double max_safe_distance = 3 [default = 1.5];
+  optional double safe_distance_coef = 4 [default = 0.5];
+  optional double preview_time = 5 [default = 0.0];
+  // whether check safe yield
+  optional bool enable_safe_check = 6 [default = false];
+  // used to prevent longitudinal dangerous when lane change / lane merge
+  optional double safe_lateral_distance_cost_threshold = 7 [default = 1e100];
+}
+
+message YieldCostConfig {
+  // obstacle cost time coef
+   repeated double obstacle_cost_time_coef = 1;
+   optional double obstacle_distance_cost_coef = 2 [default = 1e7];
+   optional double max_safe_distance = 3 [default = 1.5];
+   optional double safe_distance_coef = 4 [default = 0.5];
+   optional double preview_time = 5 [default = 0.0];
+ }
+ 
+
+message CollisionCostConfig {
+  optional double collision_check_time_buffer = 1 [default = 1.0];
+  optional bool use_collision_risk = 2 [default = false];
+  optional double collision_risk_speed_lower_threshold = 3 [default = 1.0];
+  optional double collision_risk_speed_upper_threshold = 4 [default = 5.0];
+  optional double collision_risk_base_cost = 5 [default = 5e5];
+  optional double collision_risk_cost_coef = 6 [default = 2e5];
+  optional bool consider_back_obstacle = 7 [default = true];
+}
+
+message SpeedCostConfig {
+  enum SpeedCostType {
+    OBSTACLE_SAFE_DISTANCE_COST = 1;
+    OBSTACLE_EXPECTED_DISTANCE_COST = 2;
+    ACCEL_COST = 3;
+    JERK_COST = 4;
+    LOW_SPEED_COST = 5;
+    OVER_SPEED_COST = 6;
+    STOP_DISTANCE_COST = 7;
+    NUDGE_COST = 8;
+    CURVE_PRIORITY_COST = 9;
+    GAP_COST = 10;
+    YIELD_COST = 11;
+    COLLISION_COST = 12;
+    LATERAL_DISTANCE_COST = 13;
+  };
+
+  optional SpeedCostType speed_cost_type = 1;
+  oneof speed_cost_config {
+    ObstacleSafeDistanceCostConfig obstacle_safe_distance_cost_config = 2;
+    ObstacleExpectedDistanceCostConfig obstacle_expected_distance_cost_config = 3;
+    AccelCostConfig accel_cost_config = 4;
+    JerkCostConfig jerk_cost_config = 5;
+    LowSpeedCostConfig low_speed_cost_config = 6;
+    OverSpeedCostConfig over_speed_cost_config = 7;
+    StopDistanceCostConfig stop_distance_cost_config = 8;
+    NudgeCostConfig nudge_cost_config = 9;
+    CurvePriorityCostConfig curve_priority_cost_config = 10;
+    GapCostConfig gap_cost_config = 11;
+    YieldCostConfig yield_cost_config = 12;
+    CollisionCostConfig collision_cost_config = 13;
+    LateralDistanceCostConfig lateral_distance_cost_config = 14;
+  }
+}
+
+message LaneKeepEvaluatorConfig {
+  optional ComfortAccelCalibrationTable comfort_accel_calibration_table = 1;
+  optional ComfortJerkCalibrationTable comfort_jerk_calibration_table = 2;
+  repeated double obstacle_cost_time_coef = 3;
+  optional double collision_check_time_buffer = 4 [default = 1.0];
+  optional double max_over_cruise_speed_limit_ratio_when_nudge_obstacle = 5 [default = 0.1];
+  optional double max_over_map_speed_limit_ratio_when_nudge_obstacle = 6 [default = 0.1];
+  optional double max_speed_limit_when_nudge_obstacle = 7 [default = 34.73];
+}
+
+message LaneChangeOngoingEvaluatorConfig {
+  optional ComfortAccelCalibrationTable comfort_accel_calibration_table = 1;
+  optional ComfortJerkCalibrationTable comfort_jerk_calibration_table = 2;
+  repeated double obstacle_cost_time_coef = 3;
+  optional double collision_check_time_buffer = 4 [default = 1.0];
+  optional double max_over_cruise_speed_limit_ratio_when_nudge_obstacle = 5 [default = 0.1];
+  optional double max_over_map_speed_limit_ratio_when_nudge_obstacle = 6 [default = 0.1];
+  optional double max_speed_limit_when_nudge_obstacle = 7 [default = 34.73];
+}
+
+message LaneChangePrefinishEvaluatorConfig {
+  optional ComfortAccelCalibrationTable comfort_accel_calibration_table = 1;
+  optional ComfortJerkCalibrationTable comfort_jerk_calibration_table = 2;
+  repeated double obstacle_cost_time_coef = 3;
+  optional double collision_check_time_buffer = 4 [default = 1.0];
+  optional double max_over_cruise_speed_limit_ratio_when_nudge_obstacle = 5 [default = 0.1];
+  optional double max_over_map_speed_limit_ratio_when_nudge_obstacle = 6 [default = 0.1];
+  optional double max_speed_limit_when_nudge_obstacle = 7 [default = 34.73];
+
+}
+
+message LaneMergeCruiseEvaluatorConfig {
+  optional ComfortAccelCalibrationTable comfort_accel_calibration_table = 1;
+  optional ComfortJerkCalibrationTable comfort_jerk_calibration_table = 2;
+  repeated double obstacle_cost_time_coef = 3;
+  optional double collision_check_time_buffer = 4 [default = 1.0];
+  optional double max_over_cruise_speed_limit_ratio_when_nudge_obstacle = 5 [default = 0.1];
+  optional double max_over_map_speed_limit_ratio_when_nudge_obstacle = 6 [default = 0.1];
+  optional double max_speed_limit_when_nudge_obstacle = 7 [default = 34.73];
+
+}
+
+message LaneMergeStopEvaluatorConfig {
+  optional ComfortAccelCalibrationTable comfort_accel_calibration_table = 1;
+  optional ComfortJerkCalibrationTable comfort_jerk_calibration_table = 2;
+  repeated double obstacle_cost_time_coef = 3;
+  optional double collision_check_time_buffer = 4 [default = 1.0];
+  optional double max_over_cruise_speed_limit_ratio_when_nudge_obstacle = 5 [default = 0.1];
+  optional double max_over_map_speed_limit_ratio_when_nudge_obstacle = 6 [default = 0.1];
+  optional double max_speed_limit_when_nudge_obstacle = 7 [default = 34.73];
+
+}
+
+message LaneContinueEvaluatorConfig {
+  optional ComfortAccelCalibrationTable comfort_accel_calibration_table = 1;
+  optional ComfortJerkCalibrationTable comfort_jerk_calibration_table = 2;
+  repeated double obstacle_cost_time_coef = 3;
+  optional double collision_check_time_buffer = 4 [default = 1.0];
+  optional double max_over_cruise_speed_limit_ratio_when_nudge_obstacle = 5 [default = 0.1];
+  optional double max_over_map_speed_limit_ratio_when_nudge_obstacle = 6 [default = 0.1];
+  optional double max_speed_limit_when_nudge_obstacle = 7 [default = 34.73];
+
+}
+
+message ReverseGearEvaluatorConfig {
+  optional double collision_check_time_buffer = 1 [default = 1.0];
+  optional double max_over_cruise_speed_limit_when_nudge_obstacle = 2 [default = 2.78];
+  optional double max_over_map_speed_limit_when_nudge_obstacle = 3 [default = 2.78];
+}
+
+message SpeedEvaluatorConfig {
+  enum EvaluatorType {
+    LANE_KEEP_EVALUATOR = 1;
+    LANE_CHANGE_ONGOING_EVALUATOR = 2;
+    LANE_CHANGE_PREFINISH_EVALUATOR = 3;
+    LANE_MERGE_CRUISE_EVALUATOR = 4;
+    LANE_MERGE_STOP_EVALUATOR = 5;
+    LANE_CONTINUE_EVALUATOR = 6;
+    REVERSE_GEAR_EVALUATOR = 7;
+  }
+
+  optional EvaluatorType evaluator_type = 1;
+  repeated SpeedCostConfig speed_cost_config = 2;
+  oneof speed_evaluator_config {
+    LaneKeepEvaluatorConfig lane_keep_evaluator_config = 3;
+    LaneChangeOngoingEvaluatorConfig lane_change_ongoing_evaluator_config = 4;
+    LaneChangePrefinishEvaluatorConfig lane_change_prefinish_evaluator_config = 5;
+    LaneMergeCruiseEvaluatorConfig lane_merge_cruise_evaluator_config = 6;
+    LaneMergeStopEvaluatorConfig lane_merge_stop_evaluator_config = 7;
+    LaneContinueEvaluatorConfig lane_continue_evaluator_config = 8;
+    ReverseGearEvaluatorConfig reverse_gear_evaluator_config = 9;
+  }
+}
+
+message LaneKeepStageConfig {
+
+}
+
+message LaneChangeOngoingStageConfig {
+  // in lane change case, if accel is less then this threshold, 
+  // we should judge whether this accel is reasonable
+  optional double lane_change_accel_threshold = 1 [default = -0.5];
+ 
+  // in lane change case, if accel for rear obstacle is less then (accel for front obstacle - this threshold), 
+  // this is unreasonable, we should cancel lane change
+  optional double lane_change_delta_accel_threshold_for_rear_obstacle = 2 [default = -0.5];
+}
+
+message LaneChangePrefinishStageConfig {
+
+}
+
+message LaneMergeCruiseStageConfig {
+
+}
+
+message LaneMergeStopStageConfig {
+  optional SpeedEvaluatorConfig merge_curve_evaluator_config = 1;
+}
+
+message LaneContinueStageConfig {
+
+}
+
+message ReverseGearStageConfig {
+
+}
+
+message SpeedStageConfig {
+  enum StageType {
+    LANE_KEEP_STAGE = 0;
+    LANE_CHANGE_ONGOING_STAGE = 1;
+    LANE_CHANGE_PREFINISH_STAGE = 2;
+    LANE_MERGE_CRUISE_STAGE = 3;
+    LANE_MERGE_STOP_STAGE = 4;
+    LANE_CONTINUE_STAGE = 5;
+    REVERSE_GEAR_STAGE = 6;
+  }
+
+  optional StageType stage_type = 1;
+  optional StageType next_stage_type = 2;
+  optional SpeedEvaluatorConfig speed_evaluator_config = 3;
+  oneof speed_stage_config {
+    LaneKeepStageConfig lane_keep_stage_config = 4;
+    LaneChangeOngoingStageConfig lane_change_ongoing_stage_config = 5;
+    LaneChangePrefinishStageConfig lane_change_prefinish_stage_config = 6;
+    LaneMergeCruiseStageConfig lane_merge_cruise_stage_config = 7;
+    LaneMergeStopStageConfig lane_merge_stop_stage_config = 8;
+    LaneContinueStageConfig lane_continue_stage_config = 9;
+    ReverseGearStageConfig reverse_gear_stage_config = 10;
+  }
+}
+
+message LaneKeepScenarioConfig {
+}
+
+message LaneChangeScenarioConfig {
+}
+
+message LaneMergeScenarioConfig {
+}
+
+message LaneContinueScenarioConfig {
+}
+
+message ReverseGearScenarioConfig {
+}
+
+message SpeedScenarioConfig {
+  enum ScenarioType {
+    LANE_KEEP_SCENARIO = 1;
+    LANE_CHANGE_SCENARIO = 2;
+    LANE_MERGE_SCENARIO = 3;
+    LANE_CONTINUE_SCENARIO = 4;
+    REVERSE_GEAR_SCENARIO = 5;
+  }
+
+  optional ScenarioType scenario_type = 1;
+  repeated SpeedStageConfig speed_stage_config = 2;
+  oneof speed_scenario_config {
+    LaneKeepScenarioConfig lane_keep_scenario_config = 3;
+    LaneChangeScenarioConfig lane_change_scenario_config = 4;
+    LaneMergeScenarioConfig lane_merge_scenario_config = 5;
+    LaneContinueScenarioConfig lane_continue_scenario_config = 6;
+    ReverseGearScenarioConfig reverse_gear_scenario_config = 7;
+  }
+
+
+  // select follow_time to nudge parallel car in follow case
+  repeated double follow_time = 8;
+  optional double standstill_accel = 9 [default = -0.3];
+  // after adc has already finish stop, if static obstacle distance change does not exceed this value,
+  // adc will keep standstill
+  optional double adc_start_distance_threshold_after_stop = 10 [default = 5.0];
+}
+
+message SpeedScenarioManagerConfig {
+  repeated SpeedScenarioConfig speed_scenario_config = 1;
+  optional double ramp_acceleration_distance = 2 [default = 105.0];
+  optional double ramp_acceleration_speed = 3 [default = 19.45];
+  optional double lane_merge_start_distance = 4 [default = 250.0];
+  optional double lane_continue_start_distance = 5 [default = 200.0];
+}
+
+message ForwardVtSamplerConfig {
+  optional double min_accel = 1 [default = -4.95];
+  optional double max_accel = 2 [default = 1.0];
+  optional double min_jerk = 3 [default = -3.95];
+  optional double max_jerk = 4 [default = 3.95];
+  optional int32 max_quadratic_curve_count = 5 [default = 500];
+  optional int32 max_cubic_curve_count = 6 [default = 2500];
+  optional int32 max_quartic_curve_count = 7 [default = 500];
+  optional double max_curve_time_length = 8 [default = 42.0];
+  optional double stop_curve_end_speed = 9 [default = 0.3];
+  optional double stop_curve_end_accel = 10 [default = -0.3];
+  // if average accel of stop curve is greate than average_accel_threshold,
+  // stop curve is not good
+  optional double average_accel_threshold_for_stop_curve = 11 [default = -0.25];
+  repeated double sample_accel = 12;
+  repeated double sample_jerk = 13;
+  optional int32 low_speed_unknown_v_count = 14 [default = 101];
+  optional int32 over_speed_unknown_v_count = 15 [default = 10];
+  optional double over_speed_ratio = 16 [default = 0.1];
+}
+
+message ReverseVtSamplerConfig {
+  optional double min_accel = 1 [default = -0.3];
+  optional double max_accel = 2 [default = 0.3];
+  optional double min_jerk = 3 [default = -1.0];
+  optional double max_jerk = 4 [default = 1.0];
+  optional int32 max_quadratic_curve_count = 5 [default = 1000];
+  optional int32 max_cubic_curve_count = 6 [default = 100];
+  optional int32 max_quartic_curve_count = 7 [default = 100];
+  optional double max_curve_time_length = 8 [default = 42.0];
+  optional double stop_curve_end_speed = 9 [default = 0.3];
+  optional double stop_curve_end_accel = 10 [default = -0.3];
+  // if average accel of stop curve is greate than average_accel_threshold,
+  // stop curve is not good
+  optional double average_accel_threshold_for_stop_curve = 11 [default = -0.1];
+  repeated double sample_accel = 12;
+  repeated double sample_jerk = 13;
+}
+
+message VtSamplerConfig {
+  enum VtSamplerType {
+    FORWARD_VT_SAMPLER = 1;
+    REVERSE_VT_SAMPLER = 2;
+  };
+  optional VtSamplerType vt_sampler_type = 1;
+  oneof vt_sampler_config {
+    ForwardVtSamplerConfig forward_vt_sampler_config = 2;
+    ReverseVtSamplerConfig reverse_vt_sampler_config = 3;
+  }
+}
+
+message VtSampleGeneratorConfig {
+  message AccelClampCalibrationInfo {
+    optional double speed = 1 [default = 0.0];
+    optional double min_accel = 2 [default = 0.0];
+    optional double max_accel = 3 [default = 0.0];
+  }
+
+  message JerkClampCalibrationInfo {
+    optional double accel = 1 [default = 0.0];
+    optional double min_jerk = 2 [default = 0.0];
+    optional double max_jerk = 3 [default = 0.0];
+  }
+
+  message AccelClampCalibrationTable {
+    repeated AccelClampCalibrationInfo calibration_info = 1;
+  }
+  
+  message JerkClampCalibrationTable {
+    repeated JerkClampCalibrationInfo calibration_info = 1;
+  }
+  
+  optional int32 thread_count = 1 [default = 4];
+
+  // curve config
+  optional SpeedCurveConfig speed_curve_config = 2;
+
+  // sampler config
+  optional VtSamplerConfig forward_vt_sampler_config = 3;
+  optional VtSamplerConfig reverse_vt_sampler_config = 4;
+
+  // when the vehicle is standstill, vt will generate const accel curve to keep standstill
+  optional double standstill_accel = 5 [default = -0.3];
+
+  // accel and jerk clamp calibration table
+  optional AccelClampCalibrationTable accel_clamp_calibration_table = 7;
+  optional JerkClampCalibrationTable jerk_clamp_calibration_table = 8;
+
+  // if selected curve is dangerous, adc will use fallback curve, untill selected curve is safe
+  optional double dangerous_decel_for_static_obstacle = 9 [default = -3.75];
+  optional double safe_decel_for_static_obstacle = 10 [default = -3.25];
+  // if selected curve is dangerous, adc will use fallback curve, untill selected curve is safe
+   optional double dangerous_decel_for_dynamic_obstacle = 11 [default = -3.0];
+   optional double safe_decel_for_dynamic_obstacle = 12 [default = -2.5];
+}
+
+message SpeedDataGeneratorConfig {
+  enum GeneratorType {
+    FORWARD_VT_SAMPLE_GENERATOR = 1;
+    REVERSE_VT_SAMPLE_GENERATOR = 2;
+  }
+
+  optional GeneratorType generator_type = 1;
+  oneof speed_scenario_config {
+    VtSampleGeneratorConfig forward_vt_sample_generator_config = 2;
+    VtSampleGeneratorConfig reverse_vt_sample_generator_config = 3;
+  }
+}
+
+message DefaultSpeedCostConfig {
+  repeated SpeedCostConfig speed_cost_config = 1;
+}

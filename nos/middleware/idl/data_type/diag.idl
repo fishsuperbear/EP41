@@ -1,0 +1,79 @@
+#include "servicebase.idl"
+
+struct uds_data_method : ServiceBase
+{
+    map<string, string> meta_info;
+    uint8 sid;
+    uint8 subid;
+    uint8 resp_ack;
+    uint32 data_len;
+    sequence<octet> data_vec;
+};
+
+struct update_status_method : ServiceBase
+{
+    uint8 update_status;
+};
+
+struct uds_raw_data_req_event
+{
+    uint16 sa;
+    uint16 ta;
+    uint8 bus_type;
+    sequence<octet> data_vec;
+};
+
+struct uds_raw_data_resp_event
+{
+    uint16 sa;
+    uint16 ta;
+    uint8 bus_type;
+    uint32 result;
+    sequence<octet> data_vec;
+};
+
+struct remote_uds_raw_data_req_event
+{
+    uint16 sa;
+    uint16 ta;
+    uint8 bus_type;
+    sequence<octet> data_vec;
+};
+
+struct remote_uds_raw_data_resp_event
+{
+    uint16 sa;
+    uint16 ta;
+    uint8 bus_type;
+    uint32 result;
+    sequence<octet> data_vec;
+};
+
+struct uds_current_session_notify_event
+{
+    uint8 current_session;
+};
+
+struct reportDemEvent
+{
+    uint32 dtcValue;
+    uint8  alarmStatus;
+};
+
+struct dtcControlSettingSw
+{
+    uint8 controlSettingSw;
+};
+
+struct testDiagEvent
+{
+    uint32 iCmd;
+    sequence<octet> data_vec;
+};
+
+struct chassis_info_event
+{
+    uint8 gear_display;
+    boolean vehicle_speed_vaid;
+    double vehicle_speed;
+};

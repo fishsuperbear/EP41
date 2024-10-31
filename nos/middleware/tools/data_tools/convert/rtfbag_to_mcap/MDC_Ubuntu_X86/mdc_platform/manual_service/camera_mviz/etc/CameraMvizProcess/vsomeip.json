@@ -1,0 +1,12 @@
+{
+  "logging": {
+    "level": "info",
+    "console": "false",
+    "syslog": {
+      "enable": "true"
+    }
+  },
+  "routing": "someipd",
+  "services": [],
+  "clients": []
+}

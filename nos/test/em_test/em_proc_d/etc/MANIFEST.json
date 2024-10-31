@@ -1,0 +1,17 @@
+{
+  "process_name": "hz_app_dProcess",
+  "executable": "em_proc_d",
+  "restart_attempt_num": "2",
+  "keep_alive_num": "0",
+  "shall_run_ons": [8,9],
+  "mode_of_order":[
+    "Normal.3",
+    "Driving.3",
+    "Parking.1",
+    "OTA.3"
+  ],
+  "scheduling_policy":"RR",
+  "scheduling_priority":"1",
+  "arguments":["-s d"],
+  "environments":["CM_CONFIG_FILE_PATH=/opt/usr/app/em_proc_d/etc/process"]
+}

@@ -1,0 +1,118 @@
+syntax = "proto2";
+package hozon.planning;
+
+import "proto/common/header.proto";
+import "proto/common/vehicle_state.proto";
+import "proto/common/vehicle_config.proto";
+import "proto/common/types.proto";
+import "proto/perception/perception_obstacle.proto";
+import "proto/common/pnc_point.proto";
+import "proto/map/map_lane.proto";
+import "proto/map/map_geometry.proto";
+
+message EgoStateInfo{
+  repeated hozon.common.VehicleState ego_state_history = 1;
+  optional hozon.common.VehicleState ego_present_state = 2;
+  optional hozon.common.VehicleParam ego_param = 3;
+  optional int32 sequence_num = 4;
+}
+
+message PerceptionObsInfo{
+  repeated hozon.perception.PerceptionObstacle perception_obstacles = 1;
+  optional int32 sequence_num = 2;
+}
+
+message ObsStateType{
+  optional double time = 1;
+  optional hozon.common.Point2D position = 2;
+  optional hozon.common.Point2D velocity = 3;
+  optional hozon.common.Point2D acceleration = 4;
+  optional double theta = 5;
+}
+
+
+
+message ObstacleWithoutLane{
+
+  enum LaneType {
+  LLeftLane = 2;
+  LeftLane = 1;
+  EgoLane = 0;
+  RightLane = -1;
+  RRightLane = -2;
+  Unknown = -3;
+  TooFarUnDefined = -4;
+  }
+  message SLLaneType{
+    optional hozon.common.SLPoint sl_position = 1;
+    optional LaneType lane_type = 2;
+  }
+
+  enum MovingBehavior{
+    Cruise = 1;
+    LeftCutOut = 2;
+    LeftCutIn = 3;
+    RightCutOut = 4;
+    RightCutIn = 5;
+    Unknown_ = 0;
+  }
+
+  optional int32 id_unique = 1;
+  optional int32 perception_id = 2;
+  optional ObsStateType state_present = 3;
+  repeated ObsStateType state_history = 4;
+  repeated ObsStateType state_history_extend = 5;
+  optional bool is_stable = 6 [default = true] ;
+  optional bool is_too_far = 7 [default = false] ;
+  optional bool is_update_consistence = 8 [default = true] ;
+  optional bool is_need_remove = 9 [default = false];
+  optional LaneType lane_type = 10 [default = Unknown];
+  repeated SLLaneType sl_position_lane_type = 11;
+  optional int32 sequence_num = 12;
+  optional MovingBehavior moving_behavior = 13;
+}
+
+message IdMap{
+  repeated int32 id_unique = 1;
+  optional int32 perception_id = 2;
+  optional int32 sequence_num = 3;
+}
+
+message ObstacleManager{
+  optional int32 sequence_num = 1;
+  repeated ObstacleWithoutLane obstacle_merged = 2;
+  repeated ObstacleWithoutLane obstacle_present = 3;
+  optional bool is_close_enough = 4;
+  optional double time_stamp = 5;
+  repeated IdMap id_map = 6;
+  optional int32 max_obs_num = 7;
+}
+
+message TempValue{
+  optional string name = 1[default="none"];
+  optional bool flag = 2[default = false];
+  optional int32 i1 = 3;
+  optional int32 i2 = 4;
+  optional double d1 = 5;
+  optional double d2 = 6;
+  repeated int32 ri = 7;
+  repeated double rd= 8;
+}
+
+message Debug{
+  optional int32 sequence_num = 1;
+  optional double time_stamp = 2;
+  repeated TempValue temp_value = 13;
+  repeated double pure_value = 14;
+}
+
+message WithoutLaneFollow{
+  optional hozon.common.Header header = 1;
+  optional PerceptionObsInfo perception_obstacles = 2;
+  optional ObstacleManager obstacle_manager = 3;
+  optional EgoStateInfo ego_info = 4;
+  optional Debug debug = 5;
+  repeated hozon.hdmap.Curve central_curve = 6;
+  optional hozon.hdmap.LaneBoundary left_boundary = 7;
+  optional hozon.hdmap.LaneBoundary right_boundary = 8;
+}

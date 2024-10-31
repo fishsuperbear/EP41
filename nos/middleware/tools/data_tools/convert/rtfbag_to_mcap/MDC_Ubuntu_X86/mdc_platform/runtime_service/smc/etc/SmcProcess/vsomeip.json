@@ -1,0 +1,136 @@
+{
+  "logging": {
+    "level": "info",
+    "console": "false",
+    "syslog": {
+      "enable": "true"
+    }
+  },
+  "routing": "someipd",
+  "services": [
+    {
+      "service": "2980",
+      "instance": "1",
+      "initial_delay_min": "10",
+      "initial_delay_max": "100",
+      "repetitions_base_delay": "200",
+      "repetitions_max": "3",
+      "cyclic_offer_delay": "2000",
+      "ttl": "10",
+      "request_response_delay_min": "1500",
+      "request_response_delay_max": "1500",
+      "reliable": "52980",
+      "events": [
+        {
+          "event": "33974",
+          "is_field": "true",
+          "is_reliable": "true"
+        }
+      ],
+      "eventgroups": [
+        {
+          "eventgroup": "13455",
+          "events": [
+            "33974"
+          ]
+        }
+      ]
+    },
+    {
+      "service": "2982",
+      "instance": "1",
+      "initial_delay_min": "10",
+      "initial_delay_max": "100",
+      "repetitions_base_delay": "200",
+      "repetitions_max": "3",
+      "cyclic_offer_delay": "2000",
+      "ttl": "10",
+      "request_response_delay_min": "1500",
+      "request_response_delay_max": "1500",
+      "unreliable": "52982",
+      "events": [
+        {
+          "event": "32769",
+          "is_field": "false",
+          "is_reliable": "false"
+        }
+      ],
+      "eventgroups": [
+        {
+          "eventgroup": "1",
+          "events": [
+            "32769"
+          ]
+        }
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "service": "3392",
+      "instance": "1",
+      "initial_delay_min": "10",
+      "initial_delay_max": "100",
+      "repetitions_base_delay": "200",
+      "repetitions_max": "3",
+      "ttl": "10",
+      "unreliable": [
+        "52946"
+      ],
+      "eventgroups": [
+        {
+          "eventgroup": "1"
+        },
+        {
+          "eventgroup": "2"
+        }
+      ]
+    },
+    {
+      "service": "3456",
+      "instance": "1",
+      "initial_delay_min": "10",
+      "initial_delay_max": "100",
+      "repetitions_base_delay": "200",
+      "repetitions_max": "3",
+      "ttl": "10",
+      "unreliable": [
+        "52947"
+      ]
+    },
+    {
+      "service": "4800",
+      "instance": "1",
+      "initial_delay_min": "10",
+      "initial_delay_max": "100",
+      "repetitions_base_delay": "200",
+      "repetitions_max": "3",
+      "ttl": "10",
+      "unreliable": [
+        "52948"
+      ],
+      "eventgroups": [
+        {
+          "eventgroup": "1"
+        }
+      ]
+    },
+    {
+      "service": "4802",
+      "instance": "1",
+      "initial_delay_min": "10",
+      "initial_delay_max": "100",
+      "repetitions_base_delay": "200",
+      "repetitions_max": "3",
+      "ttl": "10",
+      "unreliable": [
+        "52952"
+      ],
+      "eventgroups": [
+        {
+          "eventgroup": "2"
+        }
+      ]
+    }
+  ]
+}

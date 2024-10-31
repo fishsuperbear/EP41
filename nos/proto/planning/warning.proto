@@ -1,0 +1,519 @@
+syntax = "proto2";
+package hozon.planning;
+import "proto/common/header.proto";
+
+message DebugObj {
+  optional hozon.common.Header header = 1;
+  optional bytes obj = 10;
+}
+
+message RCTAObjGlobal{
+  repeated double bt_hit_hyst_timer = 1;
+  repeated uint32 breakthrough_hitConfi = 2;
+  repeated bool breakthrough_hit = 3;
+  repeated bool warning_condition = 4;
+  repeated bool object_in_range = 5;
+  repeated bool ttc_below_thresh = 6;
+  repeated bool bt_hit_hyst_active = 7;
+  optional bool relevant = 8;
+  optional bool mirror = 9;
+  optional bool object_from_side = 10;
+  optional bool approach_angle_valid = 11;
+  optional bool short_ttc = 12;
+  optional bool updated_recently = 13;
+  optional bool quality = 14;
+  optional int32 id = 15;
+  optional float x_breakthrough = 16;
+  optional float dist_to_crossing_line = 17;
+  optional float ttc = 19;
+  optional float ttc_filtered = 20;
+  optional float rear_track = 21;
+}
+
+message RCTADebug{
+  repeated RCTAObjGlobal rcta_obj_global = 1;
+  repeated double ttc_threshold = 2;
+  repeated double xmin_breakthrough = 3;
+  repeated double xmax_breakthrough = 4;
+  repeated double obj_max_range = 5;
+  optional double max_heading_angle = 6;
+  optional double min_heading_angle = 7;
+  optional double obj_critical_ttc = 8;
+  optional double obj_critical_y = 9;
+  optional double obj_last_critical_y = 10;
+  optional uint32 obj_critical_id = 11;
+  optional uint32 interrupt_cycle_count = 12;
+  optional bool warning_interrupt = 13;
+  repeated bool rcta_warning_active = 14;
+}
+
+message FCTAObjGlobal{
+  repeated double bt_hit_hyst_timer = 1;
+  repeated uint32 breakthrough_hitConfi = 2;
+  repeated bool breakthrough_hit = 3;
+  repeated bool warning_condition = 4;
+  repeated bool object_in_range = 5;
+  repeated bool ttc_below_thresh = 6;
+  repeated bool bt_hit_hyst_active = 7;
+  optional bool relevant = 8;
+  optional bool mirror = 9;
+  optional bool object_from_side = 10;
+  optional bool approach_angle_valid = 11;
+  optional bool short_ttc = 12;
+  optional bool updated_recently = 13;
+  optional bool quality = 14;
+  optional int32 id = 15;
+  optional float x_breakthrough = 16;
+  optional float dist_to_crossing_line = 17;
+  optional float dist_to_crossing_line_filtered = 18;
+  optional float ttc = 19;
+  optional float ttc_filtered = 20;
+  optional float rear_track = 21;
+}
+
+message FCTADebug{
+  repeated FCTAObjGlobal fcta_obj_global = 1;
+  repeated double ttc_threshold = 2;
+  repeated double xmin_breakthrough = 3;
+  repeated double xmax_breakthrough = 4;
+  repeated double obj_max_range = 5;
+  optional double max_heading_angle = 6;
+  optional double min_heading_angle = 7;
+  optional double obj_critical_ttc = 8;
+  optional double obj_critical_y = 9;
+  optional double obj_last_critical_y = 10;
+  optional uint32 obj_critical_id = 11;
+  optional uint32 interrupt_cycle_count = 12;
+  optional bool warning_interrupt = 13;
+  repeated bool fcta_warning_active = 14;
+}
+
+message SIGlobal{
+  optional double si_seek_lane_width = 1;
+  optional double si_track_lane_width = 2;
+  optional double lane_width = 3;
+  optional double curve_radius_min_filter = 4;
+  optional bool lane_change_flag = 5;
+}
+message SIBoolTag{
+  optional bool occupancy_inlane = 1;
+  optional bool custom_inlane = 2; 
+  optional bool quality_inlane = 3;
+  optional bool object_occupancy_inlane = 4;
+  optional bool lane_occupancy_inlane = 5; 
+  optional bool lane_overlap_inlane = 6; 
+  optional bool time_inlane = 7;
+  optional bool occupancy_outlane = 8; 
+  optional bool custom_outlane = 9;
+  optional bool object_occupancy_outlane = 10;
+  optional bool lane_occupancy_outlane = 11;
+  optional bool lane_overlap_outlane = 12; 
+}
+
+message SIObjLaneState{
+  enum SILaneState{
+    OBJ_IN_LANE = 1;
+    OBJ_OUT_LANE = 2;
+  }
+  optional uint32 obj_in2out_lane_counter = 1;
+  optional uint32 obj_inlane_counter = 2;
+  optional double obj_in_corridor_relevant_timer = 3;
+  optional double obj_in_corridor_relevant_distance = 4;
+  optional SILaneState si_lane_state = 5;
+}
+message SIObjCorridor{
+  optional double trace_extension_factor = 1;
+  optional double trace_extension_distance_factor = 2;
+  optional double trace_bracket_offset_left = 3;
+  optional double trace_bracket_offset_right = 4;
+}
+message SITrajRefPoint{
+  optional double x_met = 1;
+  optional double y_met = 2;
+  optional double dist_to_traj = 3;
+  optional double dist_on_traj = 4;
+}
+message SITraceBracket{
+  optional double trace_bracket_left = 1;
+  optional double trace_bracket_right = 2;
+}
+message SIObjInfo{
+  optional SIBoolTag si_bool_tag = 1;
+  optional SIObjLaneState si_obj_lane_state = 2;
+  optional SIObjCorridor si_obj_corridor = 3;
+  optional SITrajRefPoint si_traj_refpoint = 4;
+  optional SITraceBracket si_trace_bracket = 5;
+  optional double trace_bracket_met = 6;
+  optional double obj_bracket_overlap = 7;
+  optional double obj_relvelocity_traj = 8;
+  optional uint32 obj_inlane_predict_number = 9;
+  optional uint32 obj_outlane_predict_number = 10;
+  optional int32 id = 11;
+}
+
+message SIPredictDist{
+  optional double pdist = 1;
+  optional double pdist_var = 2;
+  optional double pdist_var_fullpred = 3;
+}
+message SIObjInfoOutput{
+  optional uint32 associate_lane = 1;
+  optional double vrel_to_traj_mps = 2;
+  optional double dist_to_traj_met = 3;
+  optional double trace_bracket_left = 4;
+  optional double trace_bracket_right = 5;
+  optional double obj_bracket_overlap = 6;
+}
+
+message SIDebug{
+  optional SIGlobal si_global = 1;
+  repeated SIObjInfo si_obj_info = 2;
+  repeated uint32 associated_lane_list = 3;
+  optional SIPredictDist si_predict_distance = 4;
+  repeated SIObjInfoOutput si_obj_info_output = 5;
+}
+
+
+message LCAObjInfo{
+  optional double ttc_threshold = 1;
+  optional double behind_guardrail_probability = 2;
+  optional uint32 front_mirror_counter = 3;
+  optional bool update_recently = 4;
+  optional bool in_lca_range = 5;
+  optional bool lca_mirror_object = 6;
+  optional bool lca_mirror_front_object = 7;
+  optional bool lca_obj_path_invalid = 8;
+  optional bool lca_quality = 9;
+  optional bool lca_relevant = 10;
+  optional bool lca_warning_conditions = 11;
+  optional bool lca_warning_flag = 12;
+  optional bool lca_low_ttc_at_start = 13;
+  optional bool lca_create_adj_stable_object = 14;
+  optional int32 id = 15;
+  optional double ttc = 17;
+  optional double ttc_acceleration  = 19;
+}
+message LCAWarnInfo{
+  optional double critial_ttc = 1;
+  optional double object_warning_x_met = 2;
+  optional uint32 lca_warning_id = 3;
+  optional bool lca_warning_active = 4;
+  optional bool lca_warning_active_lastcycle = 5;
+}
+message LCAConfig{
+  optional double ttc_thresh_vrel_low = 1;
+  optional double ttc_thresh_vrel_mid = 2;
+  optional double ttc_thresh_vrel_high = 3;
+  optional double ttc_hysteresis = 4;
+  optional double lca_max_range_met = 5;
+  optional double lca_max_curve_rad_met = 6;
+  optional uint32 lca_warning_duration_cfg = 7;
+}
+
+message LCAFrontMirror{
+  optional double front_mirror_rate = 1;
+  optional double lca_vf_vx_thresh_add = 2;
+  optional double lca_vf_vx_thresh_ownlane_min = 3;
+  optional double lca_vf_vx_thresh_ownlane_max = 4;
+  optional double lca_vf_vx_thresh_adjlane_min = 5;
+  optional double lca_vf_vx_thresh_adjlane_max = 6;
+  optional double rcs_stable_obj_ownlane = 7;
+  optional double rcs_stable_obj_adjlane = 8;
+  optional uint32 closet_stable_obj_ownlane_id = 9;
+  optional uint32 closet_stable_obj_adjlane_id = 10;
+  optional uint32 front_mirror_object_number = 11;
+}
+
+message LCAGlobal{
+  optional LCAWarnInfo lca_warn_info = 1;
+  optional LCAConfig lca_config = 2;
+  optional LCAFrontMirror lca_front_mirror = 3;
+  optional double lca_range = 4;
+  optional uint32 lca_left_path_block_counter = 5;
+  optional uint32 lca_right_path_block_counter = 6;
+  optional bool lca_left_path_block_flag = 7;
+  optional bool lca_right_path_block_flag = 8;
+}
+
+message LCADebug{
+repeated LCAObjInfo lca_obj_info = 1;
+optional LCAGlobal lca_global = 2;
+}
+
+message DOWObjInfoLevelOutPro{
+  optional double bt_hit_hyst_timer = 1;
+  repeated uint32 breakthrough_hit_confi = 2;
+  repeated bool breakthrough_hit = 3;
+  optional bool warning = 4;
+  optional bool warning_last_cycle = 5;
+  optional bool object_in_range = 6;
+  repeated bool ttc_below_thresh = 7;
+  optional bool bt_hit_hyst_active = 8;
+  }
+message DOWWidthEstim{
+  repeated uint32 counters = 1;
+  optional double value = 2;
+  }
+message DOWObjInfo{
+  repeated DOWObjInfoLevelOutPro dow_info_level = 1;
+  repeated double y_breakthrough = 2;
+  repeated double y_breakthrough_std = 3;
+  repeated double ttc = 4;
+  repeated double ttc_filtered = 5;
+  repeated double dist_to_crossing_line = 6;
+  optional double side_track_prob = 7;
+  optional bool dow_relevant = 8;
+  optional bool dow_mirror_object = 9;
+  optional bool dow_side_track = 10;
+  optional bool dow_object_from_rear = 11;
+  optional bool dow_valid_approach_angle = 12;
+  optional bool dow_object_at_edge_fov = 13;
+  optional bool dow_short_ttc = 14;
+  optional bool dow_updated_recently = 15;
+  optional double dow_quality = 16;
+  optional DOWWidthEstim est_width = 17;
+  optional int32 id = 18;
+}
+message DOWGlobal{
+  optional double critical_ttc = 1;
+  optional double critical_obj_dist_x = 2;
+  optional uint32 critical_obj_id = 3;
+  optional bool warning_interrupt = 4;
+  repeated bool ose_warn_active = 5;
+}
+message DOWDebug{
+  repeated DOWObjInfo dow_obj_info = 1;
+  optional DOWGlobal dow_global = 2;
+  }
+
+enum SensorDirection{
+  LBSBSD_UNKNOW_SENSOR = 0;
+  LBSBSD_LEFT_SENSOROBJ = 1;
+  LBSBSD_RIGHT_SENSOROBJ = 2;
+}
+
+enum FunctionFaultStatus{			
+  NO_ERROR = 0;			
+  PERFORMANCE_DEGRADE = 1;			
+  SYS_TEMP_UNAVAILABLE = 2;			
+  SERVICE_REQUIRED = 3;			
+}
+
+enum RCWStateMachine{
+  RCW_STATE_INIT = 1;
+  RCW_STATE_PASSIVE = 2;
+  RCW_STATE_STANDBY = 3;
+  RCW_STATE_ACTIVE = 4;
+  RCW_STATE_FAILURE = 5;
+  RCW_STATE_OFF = 6;
+}
+
+
+enum WarningLevel{
+  NO_WARNING = 0;
+  LV1_WARNING = 1;
+  LV2_WARNING = 2;
+  LV3_WARNING = 3;
+  LV_RESERVED = 4;
+}
+
+enum AudioPlay{
+  NO_AUDIO_WARNING = 0;
+  LEFT_WARNING_PLAY = 1;
+  RIGHT_WARNING_PLAY = 2;
+}
+
+enum RCTAObjType{
+  NO_OBJ_R = 0;
+  PEDESTRIAN_R = 1;
+  VEHICLE_R = 2;
+  BYCYCLE_R = 3;
+  UNKNOWN_R = 4;
+}
+
+enum FCTAObjType{
+  NO_OBJ_F = 0;
+  VEHICLE_F = 1;
+  UNKNOWN_F = 2;
+  RESERVED_F = 3;
+}
+
+message BSDOBJInfor {
+
+  optional double sot_delay_time = 1;
+  optional double rear_confidence = 2;
+  optional double bsd_zone_obj_xmin = 3;
+  optional uint32 appearance = 4;
+  optional uint32 hits_in_font = 5;
+  optional uint32 hits_in_side = 6;
+  optional uint32 hits_in_rear = 7;
+  optional uint32 grd_hit_counter = 8;
+  optional uint32 behind_grd_counter = 9;
+  optional uint32 obj_class = 10;
+  optional uint32 own_lane_counter = 11;
+  optional bool inbsdzone = 12;
+  optional bool insotzone = 13;
+  optional bool in_sot_zone_previous = 14;
+  optional bool objectand_zone_overlap = 15;
+  optional bool bsd_relevant = 16;
+  optional bool bsd_warning = 17;
+  optional bool updated_recently = 18;
+  optional bool updated_recently_weak = 19;
+  optional bool lived_long_enough = 20;
+  optional bool quality_enough = 21;
+  optional bool object_on_ownlane = 22;
+  optional bool create_behind_grd = 23;
+  optional bool object_behind_grd = 24;
+  optional bool sot_delayactive = 25;
+  optional bool short_warn = 26;
+  optional bool is_sot = 27;
+  optional bool fast_sot = 28;
+  optional bool plausibility = 29;
+  optional bool possible_wrapped_obj = 30;
+  optional SensorDirection obj_direction = 31 [default = LBSBSD_UNKNOW_SENSOR];
+  optional int32 id = 32;
+}
+
+message BSDDebug {
+  optional uint32 version_number = 1;
+  repeated BSDOBJInfor lbs_object = 2;
+  optional float bsd_warning_criticle_ttc = 3; 
+  optional uint32 bsd_warning_criticle_id = 4;
+  optional bool bsd_warning_active = 5;
+  optional bool bsd_warning_active_last_cycle = 6;
+}
+
+message RCWStatusSubcondition {
+optional bool atv_rcw_warning_active = 1;
+optional bool atv_corridor_blocked = 2;
+optional bool psv_v_out_of_range = 3;
+optional bool psv_lat_a_out_of_range = 4;
+optional bool psv_left_turn_light = 5;
+optional bool psv_right_turn_light = 6;
+optional bool psv_gear_position = 7;
+optional bool psv_blockingtime_active = 8;
+optional bool hmi_switch = 9;
+optional bool failure_condition = 10; 
+}
+
+message RCWWarningInfo {
+  optional double ttc = 1;
+  optional double x_object_warning = 2;
+  optional uint32 warning_obj_ID = 3;
+  optional bool warning_active = 4;
+  optional bool warning_active_last_cycle = 5;
+}
+
+message RCWOBJInfoArray {
+  optional double ttc_threshold = 1;
+  optional double corridor_overlap = 2;
+  optional double corridor_occupancy = 3;
+  optional double object_occupancy = 4;
+  optional double corridor_occ_threshold = 5;
+  optional double in_corridor_time = 6;
+  optional double y_break_through = 7;
+  optional double heading_filtered = 8;
+  optional uint32 corridor_hit_cnt = 9;
+  optional uint32 multi_path_cnt = 10;
+  optional bool rcw_quality = 11;
+  optional bool update_recently = 12;
+  optional bool rcw_relevant = 13;
+  optional bool in_rcw_corridor = 14;
+  optional bool heading_angle_in_range = 15;
+  optional bool obj_corridor_blocked = 16;
+  optional bool multi_path_obj = 17;
+  optional bool rcw_warning_conditions = 18;
+  optional bool rcw_warning = 19;
+  optional bool opposite_overlap = 20;
+  optional int32 id = 21;
+  optional double ttc = 22;
+  optional double ttc_acceleration = 23;
+  optional DebugObj debug_obj = 25;
+}
+
+message RCWCorridorObsvArray {
+  optional double x_dist = 1;
+  optional double corridor_occupancy = 2;
+  optional double x_min = 3;
+  optional double x_max = 4;
+  optional double in_corridor_time = 5;
+  optional uint32 cor_obj_id = 6;
+}
+
+message RCWDebug {
+
+optional RCWStatusSubcondition debug_sub_conditions = 1;
+optional RCWWarningInfo warning_info = 2;
+repeated RCWOBJInfoArray obj_info = 3;
+repeated RCWCorridorObsvArray corridor_objs = 4;
+optional RCWStateMachine state_machine = 5;
+optional double hmi_x_object_warning = 6;
+optional uint32 hmi_warning_id = 7;
+optional uint32 hmi_warning_active = 8;
+optional bool hmi_on = 9;
+optional bool hmi_failure = 10;
+}
+
+message WarningStatus{
+
+  optional bool lca_state = 1 [default = true];
+  optional bool dow_state = 2 [default = true];
+  optional bool dow_audio_play = 3;
+  optional bool rcta_state = 4 [default = true];
+  optional bool fcta_state = 5 [default = true];
+  optional bool rcw_state = 6 [default = true];
+  optional bool rcw_audio_play = 7 [default = false];
+  
+  optional WarningLevel lca_right_warning = 8[default = NO_WARNING];
+  optional WarningLevel lca_left_warning = 9[default = NO_WARNING];
+  optional WarningLevel dow_right_warning = 10[default = NO_WARNING];
+  optional WarningLevel dow_left_warning = 11[default = NO_WARNING];
+  optional WarningLevel rcta_right_warning = 12[default = NO_WARNING];
+  optional WarningLevel rcta_left_warning = 13[default = NO_WARNING];
+  optional WarningLevel fcta_right_warning = 14[default = NO_WARNING];
+  optional WarningLevel fcta_left_warning = 15[default = NO_WARNING];
+  optional WarningLevel rcw_warning = 16[default = NO_WARNING];
+
+  optional FunctionFaultStatus lca_fault_status = 17 [default = NO_ERROR];
+  optional FunctionFaultStatus dow_fault_status = 18 [default = NO_ERROR];
+  optional FunctionFaultStatus rcta_fault_status = 19 [default = NO_ERROR];
+  optional FunctionFaultStatus fcta_fault_status = 20 [default = NO_ERROR];
+  optional FunctionFaultStatus rcw_fault_status = 21 [default = NO_ERROR];
+
+  optional AudioPlay rcta_audio_play = 23;
+  optional AudioPlay fcta_audio_play = 24;
+
+  optional RCTAObjType rcta_object_type = 26;
+  optional FCTAObjType fcta_object_type = 27;
+}
+
+message KinematicInfo {
+  repeated ObjectKinematicInfo object_kinematic_info = 1;
+}
+
+message ObjectKinematicInfo {
+  optional uint32 obj_id = 7;
+  optional double obj_x = 8;
+  optional double obj_y = 9;
+  optional double ego_speed_mps = 11;
+  optional double ego_w_radps = 12;
+  optional double obj_relative_speed_x = 13;
+  optional double obj_relative_speed_y = 14;
+  optional double ego_acceleration_x = 15;
+  optional double ego_acceleration_y = 16;
+  optional double obj_relative_accelerarion_x = 17;
+  optional double obj_relative_accelerarion_y = 18;
+}
+
+message WarningOutput {
+  optional hozon.common.Header header = 1;
+  optional WarningStatus warning_status = 2;
+  optional LCADebug lca_debug = 3;
+  optional KinematicInfo kinematic_info = 4;
+  optional BSDDebug bsd_debug = 5;
+  optional FCTADebug fcta_debug = 7;
+  optional RCTADebug rcta_debug = 9;
+  optional DOWDebug dow_debug = 11;
+  optional SIDebug si_debug = 13;
+  optional RCWDebug rcw_debug = 15;
+}

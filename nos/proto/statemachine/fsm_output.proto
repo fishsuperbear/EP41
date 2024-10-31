@@ -1,0 +1,16 @@
+syntax = "proto2";
+package hozon.fsm_output;
+
+import "proto/common/header.proto";
+import "proto/statemachine/fsm_rule.proto";
+
+message StateStack {
+    required fsm_rule.StateId state_id = 1;       // state key, include level and name
+    optional StateStack parent_state = 2;         // parent state, in recursive
+}
+
+message StateOutput {
+    optional hozon.common.Header header = 1;
+    optional StateStack stack = 2;                // now state
+    optional uint64 into_time = 3;                // when enter to now state
+}

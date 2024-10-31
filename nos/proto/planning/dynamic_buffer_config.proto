@@ -1,0 +1,47 @@
+syntax = "proto2";
+
+package hozon.planning;
+
+// VSL: (v:vehicle's speed) (s:longitudinal distance) (l:lateral distance)
+message VSLCalibrationTable {
+  repeated double threshold_s = 1;
+  repeated double threshold_l = 2;
+  repeated double threshold_v = 3;
+  repeated double buffer_s = 4;
+  repeated double buffer_l = 5;
+  repeated double buffer_v = 6;
+}
+
+// VRV: (v:vehicle's speed) (RV:relative speed error)
+message VRVCalibrationTable {
+  repeated double threshold_v = 1;
+  repeated double threshold_rv = 3;
+  repeated double buffer_v = 5;
+  repeated double buffer_rv = 7;
+}
+
+// V(v:vehicle's speed)
+message VCalibrationTable {
+  repeated double threshold_v = 1;
+  repeated double buffer_v = 5;
+}
+
+message DynamicBufferConfig {
+  enum ObstacleType {
+    VEHICLE = 0;
+    BIG_VEHICLE = 1;
+    PEDESTRIAN = 2;
+    BICYCLE = 3;
+  }
+  optional double weight_vehicle = 1;
+  optional double weight_bigvehicle = 2;
+  optional double weight_pedestrian =3;
+  optional double weight_bicycle = 4;
+  optional double lower_threshold = 5;
+  optional double upper_threshold = 6;
+  repeated ObstacleType obstacle_type = 7;
+  optional VSLCalibrationTable dynamic_buffer_vsl = 8;
+  optional VRVCalibrationTable dynamic_buffer_vrv = 10;
+  optional VCalibrationTable dynimic_obs_buffer = 12;
+  optional VCalibrationTable static_obs_buffer = 13;
+}

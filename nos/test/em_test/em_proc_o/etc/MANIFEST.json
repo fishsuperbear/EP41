@@ -1,0 +1,19 @@
+{
+  "process_name": "hz_app_oProcess",
+  "executable": "em_proc_o",
+  "restart_attempt_num": "2",
+  "keep_alive_num": "0",
+  "shall_run_ons": [2,3],
+  "mode_of_order":[
+    "Normal.2",
+    "Driving.2",
+    "OTA.1"
+  ],
+  "scheduling_policy":"OTHER",
+  "scheduling_priority":"1",
+  "arguments":[
+     "-s o"
+  ],
+  "environments":["CM_CONFIG_FILE_PATH=/opt/usr/app/em_proc_o/etc/process"]
+}
+

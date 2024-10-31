@@ -1,0 +1,64 @@
+syntax = "proto2";
+
+package hozon.perception;
+
+import "proto/common/header.proto";
+
+message UssPoint {
+  optional float x = 1; // unit: m
+  optional float y = 2; // unit: m
+}
+
+message UssAPAInfo {
+  repeated UssPoint left_uss_point = 1;
+  repeated UssPoint right_uss_point = 2;
+}
+
+message UssUPAInfo {
+  message UPAInfo {
+    message SonarInfo {
+      optional uint32 sensor_id = 1;
+      optional uint32 status = 2;
+    }
+
+    optional uint32 time_stamp_h = 1;
+    optional uint32 time_stamp_l = 2;
+    optional SonarInfo tx_sns_info = 3;
+    optional SonarInfo rx_sns0_info = 4;
+    optional SonarInfo rx_sns1_info = 5;
+    optional SonarInfo rx_sns2_info = 6;
+    optional uint32 tx_sns_ringtime = 7; // uint: us
+    repeated uint32 tx_sns_echo_distance = 8; // uint: cm
+    repeated uint32 rx_sns0_echo_distance = 9; // uint: cm
+    repeated uint32 rx_sns1_echo_distance = 10; // uint: cm
+    repeated uint32 rx_sns2_echo_distance = 11; // uint: cm
+  }
+
+  optional UPAInfo front_upa_info = 1;
+  optional UPAInfo back_upa_info = 2;
+}
+
+message TrackerDataArray {
+  message TrackerData {
+    optional UssPoint uss_point = 1;
+    optional UssPoint uss_point_flu = 2;
+    repeated uint32 distance = 3; // uint: cm
+    optional uint32 tracker_age = 4; // uint: ms
+    optional uint32 tracker_status = 5;
+    optional uint32 tracker_id = 6;
+    optional uint32 tracker_type = 7;
+  }
+
+  repeated TrackerData tracker_data = 1;
+}
+
+message PerceptionUssInfo {
+  optional hozon.common.Header header = 1;
+  optional UssAPAInfo uss_apa_info = 2;
+  optional UssUPAInfo uss_upa_info = 3;
+  optional TrackerDataArray tarcker_data_array = 4;
+  repeated UssPoint apa_virtual_point = 5;
+  repeated uint32 reserved1 = 6;
+  repeated uint32 reserved2 = 7;
+  repeated uint32 reserved3 = 8;
+}

@@ -1,0 +1,449 @@
+{
+    "log_config": [
+        // LogAppName: appid
+        // LogFilePath: log path
+        // MaxLogFileNum: max log file num
+        // MaxSizeOfLogFile: max file size
+        // LogMode: CONSOLE=1,FILE=2,CONSOLE_FILE=3
+        // AppLogLevel: TRACE=0,DEBUG=1,INFO=2,WARN=3,ERROR=4,CRITICAL=5,OFF=6
+        // CtxLogLevels: contex log level, eg: CtxLogLevels: { "CM": 1, "MD": 3 }
+        {
+            "LogAppName": "LOGCLTR",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "chss",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "lcmn",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "cmps",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "prts",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "sens",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "CTSC",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "CFG_SERVER",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "DIAG",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "EM",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "OTA_API",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "PHM",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "stoh",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "DEVM",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "SSTR",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "SOC_MCU",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "EXTRA",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "LOGSV",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "PHMS",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "REMOTE_DIAG",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2, 
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "SSM",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "STMM",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "CAMV",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "CAPTURE",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "DCMCU",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "DCCFG",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1
+        },
+        {
+            "LogAppName": "DC",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "NVS_P",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "crypto_server",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "lidar",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "parking_slam",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "parking_fusion",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "planning",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "parking_state_machine",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "pki_service",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "fisheye_perception",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "mapping",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "ultrasonic_perception",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "state_machine",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "FSD",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "UPMG",
+            "LogFilePath": "/opt/usr/log/soc_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "DESAY_MCU",
+            "LogFilePath": "/svp_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "DESAY",
+            "LogFilePath": "/svp_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        },
+        {
+            "LogAppName": "HZ_MCU",
+            "LogFilePath": "/opt/usr/log/mcu_log/",
+            "MaxLogFileNum": 10,
+            "MaxSizeOfLogFile": 10,
+            "LogMode": 2,
+            "AppLogLevel": 1,
+            "CtxLogLevels": {
+            }
+        }
+    ]
+}

@@ -1,0 +1,113 @@
+
+{
+    "PPort_mapping_list" : [
+        {
+            "mapping_name" : "/IAUTOSAR/AASWC_TriggerIDService_Server_SOC/TriggerIDService_1_PPort",
+            "mapping_instance_table" : ["1"
+            ]
+        }
+    ],
+
+    "RPort_mapping_list" : [
+    ],
+
+    "binding_list" : [
+        {
+            "binding_name" : "isomeip",
+            "has_prefix" : false,
+            "serialize_type" : "someip",
+            "someip_services" :
+            {
+            "services":
+            [
+                {
+                    "short_name" : "triggeridservice_1_0",
+                    "service" : 25032,
+                    "major_version" : 1,
+                    "minor_version" : 0,
+                    "events":
+                    [
+                    ],
+                    "fields":
+                    [
+                    ],
+                    "methods":
+                    [
+                        {
+                            "short_name":"MCUCloudTrigger",
+                            "method": 1281,
+                            "fire_and_forget" : false,
+                            "communication_type" : "UDP"
+                        }
+                    ],
+                    "eventgroups":
+                    [
+                    ]
+                }
+            ],
+            "provided_instances" :
+            [
+                {
+                    "service" : 25032,
+                    "major_version" : 1,
+                    "short_name" : "TriggerIDService_SOC_SomeipPIns_1",
+                    "instance" : 1,
+                    "udp_port" : 10016,
+                    "tcp_port" : 0,
+                    "tcp_reuse" : false,
+                    "udp_reuse" : false,
+                    "method_attribute" :
+                    [
+                    ],
+                    "event_attribute" :
+                    [
+                    ],
+                    "offer_time_reference" : "ServiceProvidedSomeipSD",
+                    "ethernet_reference" : "NEP_SOC_1",
+                    "tcp_tls_flag" : false,
+                    "udp_tls_flag" : false,
+                    "provided_eventgroups" :
+                    [
+                    ]
+                }
+            ],
+            "required_instances" :
+            [
+            ],
+            "sd_server_offer_times" :
+            [
+                {
+                    "sd_time_name" : "ServiceProvidedSomeipSD",
+                    "initial_delay_min" : 10,
+                    "initial_delay_max" : 100,
+                    "repetitions_base_delay" : 200,
+                    "repetitions_max" : 3,
+                    "ttl" : 10,
+                    "cyclic_offer_delay" : 2000,
+                    "request_response_delay_min" : 10,
+                    "request_response_delay_max" : 50
+                }
+            ],
+            "sd_client_find_times" :
+            [
+            ],
+            "sd_client_subscribe_times" :
+            [
+            ],
+            "sd_server_subscribe_times" :
+            [
+            ],
+            "network_endpoints" :
+            [{
+                    "network_id" : "NEP_SOC_1",
+                    "ip_addr" : "172.16.90.11",
+                    "ip_addr_type" : 4,
+                    "subnet_mask" : "255.255.255.0",
+                    "multicast_ip_addr" : "239.192.255.123",
+                    "multicast_port" : 30491
+                }
+            ]
+            }
+        }
+    ]
+}

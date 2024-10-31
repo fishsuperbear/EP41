@@ -1,0 +1,1047 @@
+dc_config:
+  version: 1
+  TimerCfg:
+    plane: DP   # DP: data plane, MP: manager plane
+    offsetSec: 1000  #offset, unit: second
+  CMConfig:
+    version: 1
+    maxThreadNum: 15
+    runningThreadNum: 9
+  PMConfig:
+    version: 1
+    maxThreadNum: 15
+    runningThreadNum: 9
+  DMConfig:
+    version: 1
+    maxThreadNum: 2
+    runningThreadNum: 1
+  Collections:
+    bagRecordBase: &bagRecordBase
+      type: BAG_RECORDER
+      priority: 5
+      lifecycle: lifeCycleOnce
+      configuration:
+        - type: storageOption
+          version: 1
+          max_bagfile_duration: 1
+          max_files: 17
+    recordAllTopicBase:
+      <<: *bagRecordBase
+      lifecycle: lifeCycleOnce
+      configuration:
+        - output_file_name: "/opt/usr/col/bag/commonrec/EP41_ORIN_trigger"
+          record_all: false
+          topics:
+            - /soc/chassis
+            - /soc/imuinsinfo
+            - /soc/gnssinfo
+            - /soc/radarcorner1
+            - /soc/radarcorner2
+            - /soc/radarcorner3
+            - /soc/radarcorner4
+            - /soc/radarfront
+            - /soc/ussrawdata
+            - /soc/statemachine
+            - /soc/mcu2ego
+            - /soc/chassis_ota_method
+            - /soc/apa2mcu_chassis
+            - /perception/fsd/obj_fusion_1
+            - /perception/fsd/freespace_1
+            - /perception/fsd/transportelement_1
+            - /perception/parking/obj_fusion_2
+            - /perception/parking/freespace_2
+            - /perception/parking/transportelement_2
+            - /perception/parking/parkinglot_2
+            - /perception/parking/state_machine
+            - /perception/parking/slam_location
+            - /planning/ego_trajectory
+            - /planning/routing
+            - /planning/prediction
+            - /planning/ego_planning dec
+            - /localization/fusionmap
+            - /localization/location
+            - /localization/deadreckoning
+            - /localization/location_node
+            - /someip/mcumaintainservice_1_0/MCUPlatCloudState/1
+        - type: delFileseBeforeRec
+          delFileseBeforeRec: true
+    recordVedioTopic:
+      <<: *bagRecordBase
+      lifecycle: lifeCycleSleep2s
+      configuration:
+        - output_file_name: "/opt/usr/col/bag/videorec/EP41_ORIN_trigger"
+          type: video
+          record_all: false
+          topics:
+            - /soc/encoded_camera_0
+            - /soc/encoded_camera_1
+            - /soc/encoded_camera_3
+            - /soc/encoded_camera_4
+            - /soc/encoded_camera_5
+            - /soc/encoded_camera_6
+            - /soc/encoded_camera_7
+            - /soc/encoded_camera_8
+            - /soc/encoded_camera_9
+            - /soc/encoded_camera_10
+            - /soc/encoded_camera_11
+        - type: delFileseBeforeRec
+          delFileseBeforeRec: true
+    ethBagRecord:
+      type: BAG_RECORDER
+      priority: 5
+      lifecycle: lifeCycleSleep5s
+      configuration:
+        - type: storageOption
+          version: 1
+          max_bagfile_duration: 600
+          output_file_name: "/opt/usr/col/eth/EP41_ORIN_period-hmi"
+          record_all: false
+          topics:
+            - /someip/socdataservice_1_0/SnsrFsnObj/1
+            - /someip/si_adasdataservice_0_0/ADASdataProperties_Field.onChange_ADASdataProperties_Field/1
+            - /someip/si_apadataservice_0_0/APAdataProperties_Field.onChange_APAdataProperties_Field/1
+    ethBagCollector:
+      type: LOG_COLLECTOR
+      priority: 5
+      lifecycle: lifeCycleOnce
+      configuration:
+        - type: search_log
+          logNameRegex: "^EP41_ORIN_period-hmi_(\\d{8}-\\d{6}_\\d+)\\.mcap$"
+          dateIndexOrPattern: "\\d{8}-\\d{6}"
+          dateFormatStr: "%Y%m%d-%H%M%S"  # 字符串转时间
+          triggerTimeOffsetSec: -5  # 默认获取当前时间戳，偏移量, 单位s.
+          searchSubPath: false
+          refreshLog: false
+          fileList: []
+          searchFolderPath:
+            - "/opt/usr/col/eth/"
+    logCollector:
+      type: LOG_COLLECTOR
+      priority: 2
+      lifecycle: lifeCycleOnce
+      configuration:
+        - type: search_log
+          logNameRegex: "^\\w+_\\d{4}_(20\\d{2}-[01]\\d-[0-3]\\d_[0-6]\\d-[0-6]\\d-[0-6]\\d)\\.[logzip]{3}$"  # 匹配log的正则表达式。
+          dateIndexOrPattern: "20\\d{2}-[01]\\d-[0-3]\\d_[0-6]\\d-[0-6]\\d-[0-6]\\d"  # size <2 index, size > 2 pattern
+          dateFormatStr: "%Y-%m-%d_%H-%M-%S"  # 字符串转时间
+          triggerTimeOffsetSec: -15  # 默认获取当前时间戳，偏移量, 单位s.
+          searchSubPath: false
+          refreshLog: true
+          fileList: []
+          searchFolderPath:
+            - "/opt/usr/log/soc_log/"
+
+    allLogCollectorLargeAndSlow:
+      type: ALL_LARGE_LOG_COLLECTOR
+      priority: 2
+      lifecycle: lifeCycleOnce
+      configuration:
+        - type: all_log
+          folderList:
+            - path: /opt/usr/col/fm
+              sizeMb: 10
+            - path: /opt/usr/log/soc_log
+              sizeMb: 1500
+            - path: /opt/usr/log/system_monitor_log
+              sizeMb: 15
+            - path: /opt/usr/log/mcu_log
+              sizeMb: 100
+            - path: /opt/usr/log/ota_log
+              sizeMb: 100
+            - path: /opt/usr/log/svp_log
+              sizeMb: 100
+            - path: /opt/usr/mcu_adas
+              sizeMb: 200
+            - path: /opt/usr/col/runinfo
+              sizeMb: 1
+    fmFilesCollector:
+      type: FIXED_FILES_COLLECTOR
+      priority: 2
+      lifecycle: lifeCycleOnce
+      configuration:
+        - type: faultManagerFiles  # enum FilesInListType
+          searchSubPath: false
+          fileList:
+            - "/app/version.json"
+          searchFolderPath:
+            - "/opt/usr/log/system_monitor_log/"
+    planningFilesCollector:
+      type: FIXED_FILES_COLLECTOR
+      priority: 2
+      lifecycle: lifeCycleOnce
+      configuration:
+        - type: planningFiles
+          searchSubPath: true
+          fileList: []
+          move2NewFolder: "/opt/usr/col/planning/old"
+          searchFolderPath:
+            - "/opt/usr/col/planning/stat"
+    calibrationFilesCollector:
+      type: FIXED_FILES_COLLECTOR   # 任务不可重入，因此不分配name，随机分配name.
+      priority: 2
+      lifecycle: lifeCycleOnce
+      configuration:
+        - type: calibrationFiles  # enum FilesInListType
+          searchSubPath: false
+          fileList: []
+          searchFolderPath:
+            - "/cfg/conf_calib_7v"
+            - "/cfg/conf_cam_7v"
+            - "/cfg/conf_calib_apa"
+            - "/cfg/conf_cam_apa"
+            - "/cfg/conf_calib_lidar"
+            - "/cfg/conf_pcl_lidar"
+    MCUBagRecorder:
+      name: "MCUBagRecorder"
+      type: MCU_BAG_RECORDER
+      lifecycle: lifeCycleSleep7s
+      priority: 3
+      configuration:
+        - type: storageOption
+          output_file_name: "/opt/usr/mcu_adas/EP41_ORIN_mcu_bag"
+          record_all: false
+          max_bagfile_duration: 600 # 10 min
+          max_files: 10
+          topics:
+            - /someip/mcumaintainservice_1_0/MCUPlatCloudState/1
+    CANBagRecorder:
+      type: BAG_RECORDER
+      lifecycle: lifeCycleSleep10s
+      priority: 3
+      configuration:
+        - type: storageOption
+          output_file_name: "/opt/usr/col/can/EP41_ORIN_period-can"
+          record_all: false
+          max_bagfile_duration: 600 # 10 min
+          topics:
+            - /someip/mcucanmsgservice_1_0/CanMsgDrive/1
+            - /someip/mcucanmsgservice_1_0/CanMsgPark/1
+    MCUBagCollector:
+      type: MCU_BAG_COLLECTOR
+      priority: 3
+      lifecycle: lifeCycleOnce
+      configuration:
+        - type: search_log
+          logNameRegex: "^EP41_ORIN_period-can_(\\d{8}-\\d{6}_\\d+)\\.mcap$"
+          dateIndexOrPattern: "\\d{8}-\\d{6}"
+          dateFormatStr: "%Y%m%d-%H%M%S"  # 字符串转时间
+          triggerTimeOffsetSec: -15  # 默认获取当前时间戳，偏移量, 单位s.
+          searchSubPath: false
+          fileList: []
+          searchFolderPath:
+            - "/opt/usr/mcu_adas/"
+    CANBagCollector:
+      type: CAN_BAG_COLLECTOR
+      priority: 3
+      lifecycle: lifeCycleOnce
+      configuration:
+        - type: search_log
+          logNameRegex: "^EP41_ORIN_can_bag_(\\d{8}-\\d{6}_\\d+)\\.mcap$"
+          dateIndexOrPattern: "\\d{8}-\\d{6}"
+          dateFormatStr: "%Y%m%d-%H%M%S"  # 字符串转时间
+          triggerTimeOffsetSec: -10  # 默认获取当前时间戳，偏移量, 单位s.
+          searchSubPath: false
+          refreshLog: false
+          fileList: []
+          searchFolderPath:
+            - "/opt/usr/col/can/"
+    MCULogCollector:
+      type: MCU_LOG_COLLECTOR
+      priority: 3
+      lifecycle: lifeCycleOnce
+      configuration:
+        - type: search_log
+          logNameRegex: "^HZ_MCU_\\d+_(\\d{4}-\\d{2}-\\d{2}_\\d{2}-\\d{2}-\\d{2})\\.log$"
+          dateIndexOrPattern: "\\d{4}-\\d{2}-\\d{2}_\\d{2}-\\d{2}-\\d{2}"
+          dateFormatStr: "%Y-%m-%d_%H-%M-%S"  # 字符串转时间
+          triggerTimeOffsetSec: -15  # 默认获取当前时间戳，偏移量, 单位s.
+          searchSubPath: false
+          refreshLog: false
+          fileList: []
+          searchFolderPath:
+            - "/opt/usr/log/mcu_log/"
+  Processor:
+    fmOldFileManager:
+      type: OLD_FILE_MANAGER
+      lifecycle: lifeCycleOnce
+      configuration:
+        - searchFolderPath:
+            - "/opt/usr/col/log/fm"
+          searchSubPath: false
+          delOldBeforeGet: true
+          getMaxFileNum: 3
+          fileNameRegex: "^EP41_ORIN_fault-\\d+-\\d+.tar.gz$"
+    logAllOldFileManager:
+      type: OLD_FILE_MANAGER
+      lifecycle: lifeCycleOnce
+      configuration:
+        - searchFolderPath:
+            - "/opt/usr/col/log/all"
+          searchSubPath: false
+          delOldBeforeGet: true
+          getMaxFileNum: 3
+          fileNameRegex: "^EP41_ORIN_log-all-\\d+-\\d+.tar.gz$"
+    triggerOldFileManager:
+      type: OLD_FILE_MANAGER
+      lifecycle: lifeCycleOnce
+      configuration:
+        - searchFolderPath:
+            - "/opt/usr/col/bag/masked"
+          searchSubPath: false
+          delOldBeforeGet: true
+          getMaxFileNum: 3
+          fileNameRegex: "^\\d+-\\d+$"
+    calibrationOldFileManager:
+      type: OLD_FILE_MANAGER
+      lifecycle: lifeCycleOnce
+      configuration:
+        - searchFolderPath:
+            - "/opt/usr/col/calibration"
+          searchSubPath: false
+          getMaxFileNum: 3
+          delOldBeforeGet: true
+          fileNameRegex: "^EP41_ORIN_calibration-\\d+-\\d+.tar.gz$"
+    mcuOldFileManager:
+      type: OLD_FILE_MANAGER
+      lifecycle: lifeCycleOnce
+      configuration:
+        - searchFolderPath:
+            - "/opt/usr/col/mcu"
+          searchSubPath: false
+          delOldBeforeGet: true
+          getMaxFileNum: 3
+          fileNameRegex: "^EP41_ORIN_mcu-adas-\\d+-\\d+-*\\d*.tar.gz$"
+    canOldFileManager:
+      type: OLD_FILE_MANAGER
+      lifecycle: lifeCycleOnce
+      configuration:
+        - searchFolderPath:
+            - "/opt/usr/col/can"
+          searchSubPath: false
+          getMaxFileNum: 3
+          delOldBeforeGet: true
+          fileNameRegex: "^EP41_ORIN_period-can.\\d+-\\d+.mcap$"
+    ethOldFileManager:
+      type: OLD_FILE_MANAGER
+      lifecycle: lifeCycleOnce
+      configuration:
+        - searchFolderPath:
+            - "/opt/usr/col/eth"
+          searchSubPath: false
+          getMaxFileNum: 3
+          delOldBeforeGet: true
+          fileNameRegex: "^EP41_ORIN_period-hmi.\\d+-\\d+.mcap$"
+    planningOldFileManager:
+      type: OLD_FILE_MANAGER
+      lifecycle: lifeCycleOnce
+      configuration:
+        - searchFolderPath:
+            - "/opt/usr/col/planning/old"
+          searchSubPath: false
+          getMaxFileNum: 3
+          delOldBeforeGet: true
+          fileNameRegex: "^EP41_ORIN_planning-\\d+-\\d+.tar.gz$"
+    toUploadOldFileManager:
+      type: OLD_FILE_MANAGER
+      lifecycle: lifeCycleOnce
+      configuration:
+        - searchFolderPath:
+            - "/opt/usr/col/toupload/CAN"
+            - "/opt/usr/col/toupload/TRIGGER"
+            - "/opt/usr/col/toupload/FAULT"
+            - "/opt/usr/col/toupload/ETH"
+            - "/opt/usr/col/toupload/MCULOG"
+            - "/opt/usr/col/toupload/PLANNING"
+            - "/opt/usr/col/toupload/CALIBRATION"
+            - "/opt/usr/col/toupload/ALLLOG"
+            - "/opt/usr/col/toupload/MCU"
+            - "/opt/usr/col/toupload/MCUADAS"
+            - "/opt/usr/col/toupload/TRIGGERDESC"
+          searchSubPath: false
+          delOldBeforeGet: true
+          getMaxFileNum: 10
+          fileNameRegex: "^EP41_ORIN_.*$"
+    commonRecCopier:
+      type: COPIER
+      lifecycle: lifeCycle7sWithStop
+      configuration:
+        - type: commonTopicMcapFiles
+          outputFolder: /opt/usr/col/bag/original/commonrec/
+          pathList:
+          - "/opt/usr/col/bag/commonrec/"
+    videoRecCopier:
+      type: COPIER
+      lifecycle: lifeCycle7sWithStop
+      configuration:
+        - type: videoTopicMcapFiles
+          outputFolder: /opt/usr/col/bag/original/videorec/
+          pathList:
+            - "/opt/usr/col/bag/videorec/"
+    compressUploadData: &compressTemp
+      type: COMPRESS
+      lifecycle: lifeCycleOnce
+      configuration:
+        - model: compress
+          compressType: 1
+          outputFolderPath: "/opt/usr/col/log"
+          outputFileName: none
+    compressFaultLog:
+      <<: *compressTemp
+      configuration:
+        - outputFileName: "EP41_ORIN_fault-%Y%m%d-%H%M%S.tar.gz"
+          outputFolderPath: "/opt/usr/col/log/fm"
+    compressPlanningLog:
+      <<: *compressTemp
+      configuration:
+        - outputFileName: "EP41_ORIN_planning-%Y%m%d-%H%M%S.tar.gz"
+          outputFolderPath: "/opt/usr/col/planning/old"
+    compressCalibration:
+      <<: *compressTemp
+      configuration:
+        - outputFileName: "EP41_ORIN_calibration-%Y%m%d-%H%M%S.tar.gz"
+          outputFolderPath: "/opt/usr/col/calibration"
+    compressLogall:
+      <<: *compressTemp
+      configuration:
+        - outputFileName: "EP41_ORIN_log-all-%Y%m%d-%H%M%S.tar.gz"
+          outputFolderPath: "/opt/usr/col/log/all"
+    MCUCompressBag:
+      type: COMPRESS
+      lifecycle: lifeCycleOnce
+      configuration:
+        - model: compress
+          compressType: 1
+          outputFolderPath: "/opt/usr/col/mcu"
+          outputFileName: "EP41_ORIN_mcu-adas-%Y%m%d-%H%M%S-%triggerId.tar.gz"
+    mcap_filter:
+      type: MCAPDEAL
+      lifecycle: lifeCycleOnce
+      configuration:
+      -   method: filter
+          whiteTopicVec: []
+          blackTopicVec: []
+          outputPath: /opt/usr/col/bag/mcap/filter/
+    desensitization:
+      type: DESENSE
+      lifecycle: lifeCycleOnce
+      configuration: []
+        # 在partion内，检测：1. 大于maxDays的文件，删除。 2.每个前缀保留最大maxFiles个文件，当分区大小接近minRemainSize M时，每个前缀保留minFiles 个文件。
+        # 前缀的定义： 去掉时间戳的前缀部分。比如：/opt/usr/col/log/compress/test_2023-06-30-22:22:00.tar.gz的前缀是：/opt/usr/col/log/compress/test_
+        # partition 获取所有文件： PathUtils:getFiles()
+        # 正则匹配时间，文件前缀获取，按时间排序。service/data_collection/collection/include/impl/log_collector.h   service/data_collection/processor/include/impl/copier.h
+        # 获取分区大小： df -h /opt/usr/col/bag  或其他。
+    desenseManager:
+      type: DESENSEMANAGER
+      lifecycle: lifeCycleOnce
+      configuration:
+      -  outputFolderPath: /opt/usr/col/bag/original/desense/
+         enable: true
+         delayMs: 40
+    addData:
+      type: ADDDATA
+      lifecycle: lifeCycleOnce
+      configuration:
+      -  cmd:
+           devm_version: /app/bin/devm upgrade version
+         file:
+           version: /app/version.json
+         calibParamsVec:
+         -  conf_calib_7v/7v_front_120_cam_params
+         -  conf_calib_7v/7v_front_30_cam_params
+         -  conf_calib_7v/7v_left_front_cam_params
+         -  conf_calib_7v/7v_left_rear_cam_params
+         -  conf_calib_7v/7v_rear_cam_params
+         -  conf_calib_7v/7v_right_front_cam_params
+         -  conf_calib_7v/7v_right_rear_cam_params
+         -  conf_calib_lidar/roof_lidar_params
+    getDynamicConfig:
+      type: GETCONFIG
+      lifecycle: lifeCycleSleep5m
+      configuration:
+      -  cdnConfigFilePath: /app/runtime_service/data_collection/conf/cdn_config.json
+    allFileMerge:
+      type: ALLFILEMERGE
+      lifecycle: lifeCycleOnce
+      configuration:
+      -  outputFolderPath: /opt/usr/col/bag/masked
+    filter:
+      filterTopics:
+        - xxx.yaml
+    filter2:
+      filterTopics:
+        - yyy.yaml
+  Destination:
+    uploadFiles: &uploadTemplate
+      version: 1
+      type: "advc_upload"
+      lifecycle: lifeCycleOnce
+      configuration:
+      - type: default
+        uploadPathFormat: "%P_%t_%s"
+        protocolId: "Protocol-463f137eb0b3"
+        retryCount: 5
+        retryInterval: 1000
+        uploadType: "LOG"
+        checkPoint: ""
+        enableEncrypt: false
+        deleteAfterUpload: true
+    uploadCustomerFiles:
+      <<: *uploadTemplate
+      configuration:
+      - uploadType: ""
+    uploadCalibrationFiles:
+      <<: *uploadTemplate
+      configuration:
+      - uploadType: "CALIBRATION"
+    uploadEthFiles:
+      <<: *uploadTemplate
+      configuration:
+        - uploadType: "ETH"
+          enableEncrypt: true
+    MCUUpload:
+      <<: *uploadTemplate
+      configuration:
+        - uploadType: "MCU"
+          enableEncrypt: true
+    CANUpload:
+      <<: *uploadTemplate
+      configuration:
+        - enableEncrypt: true
+          uploadType: "CAN"
+    uploadTriggerFiles:
+      <<: *uploadTemplate
+      configuration:
+      - uploadType: "TRIGGER"
+        enableEncrypt: true
+    uploadLogAllFiles:
+      <<: *uploadTemplate
+      configuration:
+        - uploadType: "LOG"
+          enableEncrypt: false
+    uploadFaultFiles:
+      <<: *uploadTemplate
+      configuration:
+      - uploadType: "FAULT"
+    uploadPlanningFiles:
+      <<: *uploadTemplate
+      configuration:
+      - uploadType: "PLANNING"
+        enableEncrypt: false
+    uploadMemory:
+      version: 1
+      type: memory
+      uploadPathFormat: "%P_%t_%s"
+  LifyCycle:
+    lifeCycleOnce:
+      timeOutMs: 0
+      executeTimes: 1
+      intervalMs: 1000
+      autoStop: true
+    lifeCycleOnceAfter5s:
+      timeOutMs: 5000
+      executeTimes: 1
+      intervalMs: 1000
+      autoStop: true
+    timeOut7SloopEvery10Min:
+      timeOutMs: 7000
+      executeTimes: -1
+      intervalMs: 600000
+      autoStop: true
+    timeOut50SloopEvery10Min:
+      timeOutMs: 50000
+      executeTimes: -1
+      intervalMs: 600000
+      autoStop: true
+    timeOut100SloopEvery10Min:
+      timeOutMs: 100000
+      executeTimes: -1
+      intervalMs: 600000
+      autoStop: true
+    timeOut150SloopEvery10Min:
+      timeOutMs: 150000
+      executeTimes: -1
+      intervalMs: 600000
+      autoStop: true
+    timeOut200SloopEvery10Min:
+      timeOutMs: 200000
+      executeTimes: -1
+      intervalMs: 600000
+      autoStop: true
+    timeOut250SloopEvery10Min:
+      timeOutMs: 250000
+      executeTimes: -1
+      intervalMs: 600000
+      autoStop: true
+    timeOut300SloopEvery10Min:
+      timeOutMs: 300000
+      executeTimes: -1
+      intervalMs: 600000
+      autoStop: true
+    timeOut350SloopEvery10Min:
+      timeOutMs: 350000
+      executeTimes: -1
+      intervalMs: 600000
+      autoStop: true
+    timeOut400SloopEvery10Min:
+      timeOutMs: 400000
+      executeTimes: -1
+      intervalMs: 600000
+      autoStop: true
+    timeOut450SloopEvery10Min:
+      timeOutMs: 450000
+      executeTimes: -1
+      intervalMs: 600000
+      autoStop: true
+    timeOut500SloopEvery10Min:
+      timeOutMs: 500000
+      executeTimes: -1
+      intervalMs: 600000
+      autoStop: true
+    timeOut550SloopEvery10Min:
+      timeOutMs: 500000
+      executeTimes: -1
+      intervalMs: 600000
+      autoStop: true
+    lifeCycleSleep2s:
+      timeOutMs: 2000
+      executeTimes: 1
+      intervalMs: 1000
+      autoStop: true
+    lifeCycleSleep5s:
+      timeOutMs: 5000
+      executeTimes: 1
+      intervalMs: 1000
+      autoStop: true
+    lifeCycleSleep7s:
+      timeOutMs: 7000
+      executeTimes: 1
+      intervalMs: 1000
+      autoStop: true
+    lifeCycleSleep10s:
+      timeOutMs: 10000
+      executeTimes: 1
+      intervalMs: 1000
+      autoStop: true
+    timeOut15SloopEvery10Min:
+      timeOutMs: 15000
+      executeTimes: -1
+      intervalMs: 600000
+      autoStop: true
+    lifeCycle7sWithStop:
+      timeOutMs: 0
+      executeTimes: 8
+      intervalMs: 1100
+      autoStop: false
+      stopControl:
+        timeOutMs: 9000
+        executeTimes: 1
+        intervalMs: 1000
+    lifeCycleSleep5m:
+      timeOutMs: 10
+      executeTimes: -1
+      intervalMs: 300000
+      autoStop: true
+  BasicTask:
+    version: 1
+    hzFmLogCollectorCompress:
+      pipeLine:
+        - type: collection
+          policy: logCollector
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: collection
+          policy: fmFilesCollector
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: processor
+          policy: compressFaultLog
+          createNew: true
+          waitReady: true
+          priority: 3
+    videoDesensitization:
+      pipeLine:
+        - type: processor
+          policy: videoRecCopier
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: processor
+          policy: desensitization
+          createNew: true
+          waitReady: true
+    uploadCalibration:
+      pipeLine:
+        - type: collection
+          policy: calibrationFilesCollector
+          createNew: true
+          waitReady: true
+        - type: processor
+          policy: compressCalibration
+          createNew: true
+          waitReady: true
+          priority: 3
+        - type: destination
+          policy: uploadCalibrationFiles
+          createNew: true
+          waitReady: true
+    uploadTrigger:
+      pipeLine:
+        - type: processor
+          policy: compressUploadData
+          createNew: true
+          waitReady: true
+          priority: 3
+        - type: destination
+          policy: uploadCustomerFiles
+          createNew: true
+          waitReady: true
+    uploadAllLog:
+      pipeLine:
+        - type: collection
+          policy: allLogCollectorLargeAndSlow
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: processor
+          policy: compressLogall
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: destination
+          policy: uploadLogAllFiles
+          createNew: true
+          waitReady: true
+          priority: 3
+    allFileMergeAndUpload:
+      pipeLine:
+        - type: collection
+          policy: logCollector
+          createNew: true
+          waitReady: true
+          priority: 5
+          waitItems: []
+        - type: collection
+          policy: fmFilesCollector
+          createNew: true
+          waitReady: true
+          priority: 5
+          waitItems: []
+        - type: group
+          policy: videoDesensitization
+          createNew: true
+          waitReady: true
+          priority: 5
+          waitItems: []
+        - type: processor
+          policy: commonRecCopier
+          createNew: true
+          waitReady: true
+          priority: 5
+          waitItems: []
+        - type: processor
+          policy: addData
+          createNew: true
+          waitReady: true
+          priority: 5
+          waitItems: [0]
+        - type: processor
+          policy: allFileMerge
+          createNew: true
+          waitReady: true
+          priority: 5
+          waitItems: [0, 1, 2, 3, 4]
+        - type: destination
+          policy: uploadTriggerFiles
+          createNew: true
+          waitReady: true
+          priority: 5
+    MCUPipeLine:
+      pipeLine:
+        - type: collection
+          policy: MCUBagRecorder
+          createNew: false
+          priority: 3
+          waitReady: false
+        - type: collection
+          policy: MCUBagCollector
+          createNew: true
+          waitReady: true
+          priority: 3
+        - type: collection
+          policy: MCULogCollector
+          createNew: true
+          waitReady: true
+          priority: 3
+        - type: processor
+          policy: MCUCompressBag
+          createNew: true
+          waitReady: true
+          priority: 3
+        - type: destination
+          policy: MCUUpload
+          createNew: true
+          waitReady: true
+          priority: 3
+  PresetTask:
+    version: 1
+    taskNames:
+      - bagRecordCommonTopics
+      - bagRecordVideoTopics
+      # - desensitizationCheck
+      - updateDynamicConfig
+      - uploadFaultFilesEvery10Min
+      - uploadPlanningEvery10Min
+      - uploadEthEvery10Minutes
+      - ethbagRecordTask
+      - mcuRecordMaintain
+      - mcuRecordCan
+      - runDesenseManager
+      - uploadCanEvery10Min
+      - managerOldFault
+      - managerOldLogAll
+      - managerOldMasked
+      - managerOldCablibration
+      - managerOldMcu
+      - managerOldCan
+      - managerOldPlanning
+      - managerOldEth
+    managerOldFault:
+      lifecycle: timeOut450SloopEvery10Min
+      pipeLine:
+        - type: processor
+          policy: fmOldFileManager
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: destination
+          policy: uploadFaultFiles
+          createNew: true
+          waitReady: true
+          priority: 3
+    managerOldLogAll:
+      lifecycle: timeOut200SloopEvery10Min
+      pipeLine:
+        - type: processor
+          policy: logAllOldFileManager
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: destination
+          policy: uploadLogAllFiles
+          createNew: true
+          waitReady: true
+          priority: 3
+    managerOldMasked:
+      lifecycle: timeOut250SloopEvery10Min
+      pipeLine:
+        - type: processor
+          policy: triggerOldFileManager
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: destination
+          policy: uploadTriggerFiles
+          createNew: true
+          waitReady: true
+          priority: 3
+    managerOldCablibration:
+      lifecycle: timeOut300SloopEvery10Min
+      pipeLine:
+        - type: processor
+          policy: calibrationOldFileManager
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: destination
+          policy: uploadCalibrationFiles
+          createNew: true
+          waitReady: true
+          priority: 3
+    managerOldMcu:
+      lifecycle: timeOut350SloopEvery10Min
+      pipeLine:
+        - type: processor
+          policy: mcuOldFileManager
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: destination
+          policy: MCUUpload
+          createNew: true
+          waitReady: true
+          priority: 3
+    managerOldCan:
+      lifecycle: timeOut100SloopEvery10Min
+      pipeLine:
+        - type: processor
+          policy: canOldFileManager
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: destination
+          policy: CANUpload
+          createNew: true
+          waitReady: true
+          priority: 3
+    managerOldPlanning:
+      lifecycle: timeOut500SloopEvery10Min
+      pipeLine:
+        - type: processor
+          policy: planningOldFileManager
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: destination
+          policy: uploadPlanningFiles
+          createNew: true
+          waitReady: true
+          priority: 3
+    managerOldEth:
+      lifecycle: timeOut550SloopEvery10Min
+      pipeLine:
+        - type: processor
+          policy: ethOldFileManager
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: destination
+          policy: uploadEthFiles
+          createNew: true
+          waitReady: true
+          priority: 3
+    bagRecordCommonTopics:
+      pipeLine:
+        - type: collection
+          policy: recordAllTopicBase
+          createNew: true
+          waitReady: true
+    bagRecordVideoTopics:
+      pipeLine:
+        - type: collection
+          policy: recordVedioTopic
+          createNew: true
+          waitReady: true
+    ethbagRecordTask:
+      pipeLine:
+        - type: collection
+          policy: ethBagRecord
+          createNew: true
+          waitReady: true
+    uploadEthEvery10Minutes:
+      lifecycle: timeOut7SloopEvery10Min
+      pipeLine:
+        - type: collection
+          policy: ethBagCollector
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: destination
+          policy: uploadEthFiles
+          createNew: true
+          waitReady: true
+          priority: 3
+    desensitizationCheck:
+      lifecycle: lifeCycleOnceAfter5s
+      pipeLine:
+        - type: processor
+          policy: desensitization
+          createNew: true
+          waitReady: true
+        - type: processor
+          policy: addData
+          createNew: true
+          waitReady: true
+        - type: processor
+          policy: allFileMerge
+          createNew: true
+          waitReady: true
+          waitItems: [0, 1]
+        - type: destination
+          policy: uploadTriggerFiles
+          createNew: true
+          waitReady: true
+          priority: 3
+    updateDynamicConfig:
+      pipeLine:
+        - type: processor
+          policy: getDynamicConfig
+          createNew: true
+          waitReady: true
+    uploadFaultFilesEvery10Min:
+      lifecycle: timeOut150SloopEvery10Min
+      pipeLine:
+        - type: collection
+          policy: fmFilesCollector
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: processor
+          policy: compressFaultLog
+          createNew: true
+          waitReady: true
+          priority: 3
+        - type: destination
+          policy: uploadFaultFiles
+          createNew: true
+          waitReady: true
+          priority: 3
+    uploadPlanningEvery10Min:
+      lifecycle: timeOut50SloopEvery10Min
+      pipeLine:
+        - type: collection
+          policy: planningFilesCollector
+          createNew: true
+          waitReady: true
+          priority: 5
+        - type: processor
+          policy: compressPlanningLog
+          createNew: true
+          waitReady: true
+          priority: 3
+        - type: destination
+          policy: uploadPlanningFiles
+          createNew: true
+          waitReady: true
+          priority: 3
+    mcuRecordMaintain:
+      pipeLine:
+        - type: collection
+          policy: MCUBagRecorder
+          createNew: true
+          waitReady: true
+          priority: 3
+    mcuRecordCan:
+      pipeLine:
+        - type: collection
+          policy: CANBagRecorder
+          createNew: true
+          waitReady: true
+          priority: 3
+    uploadCanEvery10Min:
+      lifecycle: timeOut15SloopEvery10Min
+      pipeLine:
+        - type: collection
+          policy: CANBagCollector
+          createNew: true
+          waitReady: true
+          priority: 3
+        - type: destination
+          policy: CANUpload
+          createNew: true
+          waitReady: true
+          priority: 3
+    runDesenseManager:
+      pipeLine:
+        - type: processor
+          policy: desenseManager
+          createNew: true
+          waitReady: true
+          priority: 3
+    task-4:
+      pipeLine:
+        - type: processor
+          policy: partitionMonitor
+          createNew: true
+          waitReady: true

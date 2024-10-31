@@ -1,0 +1,24 @@
+{
+  "process_name": "hz_app_bProcess",
+  "executable": "em_proc_b",
+  "restart_attempt_num": "2",
+  "keep_alive_num": "0",
+  "shall_run_ons": [4,5],
+  "mode_of_order":[
+    "Normal.1",
+    "Driving.1",
+    "Parking.2",
+    "OTA.2"
+  ],
+  "scheduling_policy":"FIFO",
+  "scheduling_priority":"2",
+  "arguments":[
+     "-s b",
+     "-c /em_proc_b/conf/proc_b.conf"
+  ],
+  "environments":[
+    "REPORT_RUN_DELAY_TIME=0",
+    "REPORT_TER_DELAY_TIME=0"
+  ]
+}
+

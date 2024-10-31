@@ -1,0 +1,41 @@
+#include "servicebase.idl"
+
+struct process_info {
+    uint32 group;
+    string procname;
+    uint32 procstate;
+};
+
+struct sm_request : ServiceBase
+{
+    uint32 type;
+    string process_name;
+    string old_mode;
+    string new_mode;
+    boolean succ;
+    string extra_data;
+};
+
+struct sm_reply : ServiceBase{
+    uint32 type;
+    string process_name;
+    string curr_mode;
+    sequence<process_info> data;
+    sequence<string> mode_list;
+    int32 result;
+};
+
+struct cm_request : ServiceBase
+{
+    uint32 type;
+    string process_name;
+    int32 state;
+};
+
+struct cm_reply : ServiceBase
+{
+    uint32 type;
+    string process_name;
+    int32 state;
+    int32 result;
+};
